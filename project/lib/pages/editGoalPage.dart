@@ -3,18 +3,18 @@ import 'package:flutter/material.dart';
 
 //
 
-class EditEventPage extends StatelessWidget {
-  const EditEventPage({Key? key}) : super(key: key);
+class EditGoalPage extends StatelessWidget {
+  const EditGoalPage({Key? key}) : super(key: key);
 
-  static const route = '/calendar/edit_event/';
-  static const routename = 'EditEventPage';
+  static const route = '/Goal/edit_event/';
+  static const routename = 'EditGoalPage';
 
   @override
   Widget build(BuildContext context) {
-    print('${EditEventPage.routename} built');
+    print('${EditGoalPage.routename} built');
     return Scaffold(
       appBar: AppBar(
-        title: Text(EditEventPage.routename),
+        title: Text(EditGoalPage.routename),
       ),
       body: Center(
         child: Column(

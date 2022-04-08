@@ -29,7 +29,7 @@ class GoalPage extends StatelessWidget {
             ElevatedButton(
               child: Text('To the EditEventPage'),
               onPressed: () {
-                _toEditEventPage(context);
+                _toEditGoalPage(context);
               },
             ),
           ],
@@ -38,9 +38,9 @@ class GoalPage extends StatelessWidget {
     );
   } //Build
 
-  void _toEditEventPage(BuildContext context) {
+  void _toEditGoalPage(BuildContext context) {
     //Push the EditEventPage
-    Navigator.pushNamed(context, EditEventPage.route);
+    Navigator.pushNamed(context, EditGoalPage.route);
   } //_toEditEventPage
 
 } //GoalPage
