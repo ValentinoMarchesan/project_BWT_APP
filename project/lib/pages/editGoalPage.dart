@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-//
+//cupertino package is unnecessary!
 
 class EditGoalPage extends StatelessWidget {
   const EditGoalPage({Key? key}) : super(key: key);
