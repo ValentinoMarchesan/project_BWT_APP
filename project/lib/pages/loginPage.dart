@@ -40,7 +40,7 @@ class LoginPage extends StatelessWidget {
         Navigator.of(context).pushReplacementNamed(HomePage.route);
       },
       theme: LoginTheme(
-        primaryColor: Colors.teal,
+        primaryColor: Color.fromARGB(255, 120, 0, 150),
         accentColor: Colors.yellow,
         errorColor: Colors.deepOrange,
         titleStyle: TextStyle(
