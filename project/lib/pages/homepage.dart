@@ -3,6 +3,7 @@ import 'package:project/pages/goalPage.dart';
 import 'package:project/models/homecard.dart';
 import 'package:project/pages/loginPage.dart';
 import 'package:project/pages/profilePage.dart';
+import 'package:step_progress_indicator/step_progress_indicator.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -54,7 +55,27 @@ class HomePage extends StatelessWidget {
               ),
             ),
             SizedBox(
-              height: 250,
+              height: 40,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: <Widget>[
+                CircularStepProgressIndicator(
+                  totalSteps: 100,
+                  currentStep: 74,
+                  stepSize: 10,
+                  selectedColor: Colors.greenAccent,
+                  unselectedColor: Colors.grey[200],
+                  padding: 0,
+                  width: 150,
+                  height: 150,
+                  selectedStepSize: 15,
+                  roundedCap: (_, __) => true,
+                ),
+              ],
+            ),
+            SizedBox(
+              height: 50,
             ),
             Padding(
               padding: EdgeInsets.only(left: 28),
