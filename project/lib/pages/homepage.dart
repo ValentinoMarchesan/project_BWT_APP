@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:project/pages/activitypage.dart';
 import 'package:project/pages/goalPage.dart';
 import 'package:project/models/homecard.dart';
 import 'package:project/pages/loginPage.dart';
@@ -118,7 +119,9 @@ class HomePage extends StatelessWidget {
                     gradientEndColor: Color(0xffF0B31A),
                   ),
                   HomeCard(
-                      onTap: () {}, title: "Activity", icon: Icon(Icons.abc)),
+                      onTap: () => _toActivityPage(context),
+                      title: "Activity",
+                      icon: Icon(Icons.abc)),
                 ],
               ),
             )
@@ -176,5 +179,9 @@ class HomePage extends StatelessWidget {
     //Then pop the HomePage
     Navigator.pop(context);
     Navigator.pushNamed(context, LoginPage.route);
+  }
+
+  void _toActivityPage(BuildContext context) {
+    Navigator.pushNamed(context, ActivityPage.route);
   }
 }

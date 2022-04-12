@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:project/pages/activitypage.dart';
 import 'package:project/pages/editGoalPage.dart';
 import 'package:project/pages/editProfilePage.dart';
 import 'package:project/pages/goalPage.dart';
@@ -23,6 +24,7 @@ class MyApp extends StatelessWidget {
         GoalPage.route: (context) => GoalPage(),
         EditGoalPage.route: (context) => EditGoalPage(),
         EditProfilePage.route: (context) => EditProfilePage(),
+        ActivityPage.route: (context) => ActivityPage(),
       },
     );
   } //build
