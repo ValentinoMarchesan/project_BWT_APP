@@ -11,8 +11,11 @@ class ActivityPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 20,
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Activity'),
+      ),
+      body: Text('ciao'),
     );
   }
 }
