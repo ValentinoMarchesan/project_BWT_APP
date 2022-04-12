@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:project/pages/goalPage.dart';
-import 'package:project/pages/homecard.dart';
+import 'package:project/models/homecard.dart';
+import 'package:project/pages/loginPage.dart';
 import 'package:project/pages/profilePage.dart';
 
 class HomePage extends StatelessWidget {
@@ -14,8 +15,8 @@ class HomePage extends StatelessWidget {
     print('${HomePage.routename} built');
     return Scaffold(
       appBar: AppBar(
-        title: Text(HomePage.routename),
-      ),
+          title: Text(HomePage.routename),
+          backgroundColor: Color.fromARGB(255, 195, 64, 255)),
       body: Container(
         child: ListView(
           physics: BouncingScrollPhysics(),
@@ -120,7 +121,7 @@ class HomePage extends StatelessWidget {
             ),
             ListTile(
               leading: Icon(Icons.calendar_today),
-              title: Text('To CalendarPage'),
+              title: Text('To GoalPage'),
               onTap: () => _toGoalPage(context),
             ),
             ListTile(
@@ -153,5 +154,6 @@ class HomePage extends StatelessWidget {
     Navigator.pop(context);
     //Then pop the HomePage
     Navigator.pop(context);
+    Navigator.pushNamed(context, LoginPage.route);
   }
 }
