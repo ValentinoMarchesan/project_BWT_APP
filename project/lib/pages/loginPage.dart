@@ -68,7 +68,7 @@ class LoginPage extends StatelessWidget {
           elevation: 5,
           margin: EdgeInsets.only(top: 15),
           shape: ContinuousRectangleBorder(
-              borderRadius: BorderRadius.circular(100.0)),
+              borderRadius: BorderRadius.circular(30.0)),
         ),
         inputTheme: InputDecorationTheme(
           filled: true,
@@ -78,7 +78,7 @@ class LoginPage extends StatelessWidget {
             backgroundColor: Colors.deepOrange,
             color: Colors.white,
           ),
-          labelStyle: TextStyle(fontSize: 12),
+          labelStyle: TextStyle(fontSize: 16),
           enabledBorder: UnderlineInputBorder(
             borderSide:
                 BorderSide(color: Color.fromARGB(255, 189, 189, 235), width: 6),
