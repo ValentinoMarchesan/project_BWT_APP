@@ -14,6 +14,7 @@ class EditGoalPage extends StatelessWidget {
     print('${EditGoalPage.routename} built');
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         title: Text(EditGoalPage.routename),
       ),
       body: Center(

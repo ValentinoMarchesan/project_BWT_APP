@@ -17,7 +17,7 @@ class LoginPage extends StatelessWidget {
     if (data.name == 'bug@expert.com' && data.password == '0000') {
       return '';
     } else {
-      return 'Wrong credentials';
+      return 'Oops! We could not find matching credentials';
     }
   } // _loginUser
 
@@ -32,7 +32,7 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FlutterLogin(
-      title: 'VRM',
+      title: 'MyMo',
       onLogin: _loginUser,
       onSignup: _signUpUser,
       onRecoverPassword: _recoverPassword,
@@ -40,28 +40,31 @@ class LoginPage extends StatelessWidget {
         Navigator.of(context).pushReplacementNamed(HomePage.route);
       },
       theme: LoginTheme(
-        primaryColor: Color.fromARGB(255, 120, 0, 150),
-        accentColor: Colors.yellow,
+        primaryColor: Color.fromARGB(255, 229, 121, 157),
+        pageColorLight: Colors.lightBlue,
+        accentColor: Color.fromARGB(255, 255, 255, 255),
         errorColor: Colors.deepOrange,
         titleStyle: TextStyle(
-          color: Colors.greenAccent,
+          color: Colors.white,
           fontFamily: 'Quicksand',
-          letterSpacing: 4,
+          letterSpacing: 6,
         ),
         bodyStyle: TextStyle(
           fontStyle: FontStyle.italic,
           decoration: TextDecoration.underline,
         ),
         textFieldStyle: TextStyle(
-          color: Colors.orange,
-          shadows: [Shadow(color: Colors.yellow, blurRadius: 2)],
+          color: Colors.black,
+          shadows: [
+            Shadow(color: Color.fromARGB(255, 210, 239, 244), blurRadius: 2)
+          ],
         ),
         buttonStyle: TextStyle(
           fontWeight: FontWeight.w800,
-          color: Colors.yellow,
+          color: Colors.white,
         ),
         cardTheme: CardTheme(
-          color: Colors.yellow.shade100,
+          color: Color.fromARGB(255, 255, 255, 255),
           elevation: 5,
           margin: EdgeInsets.only(top: 15),
           shape: ContinuousRectangleBorder(
@@ -69,23 +72,26 @@ class LoginPage extends StatelessWidget {
         ),
         inputTheme: InputDecorationTheme(
           filled: true,
-          fillColor: Colors.purple.withOpacity(.1),
+          fillColor: Color.fromARGB(255, 247, 247, 226).withOpacity(.1),
           contentPadding: EdgeInsets.zero,
           errorStyle: TextStyle(
-            backgroundColor: Colors.orange,
+            backgroundColor: Colors.deepOrange,
             color: Colors.white,
           ),
           labelStyle: TextStyle(fontSize: 12),
           enabledBorder: UnderlineInputBorder(
-            borderSide: BorderSide(color: Colors.blue.shade700, width: 4),
+            borderSide:
+                BorderSide(color: Color.fromARGB(255, 189, 189, 235), width: 6),
             borderRadius: inputBorder,
           ),
           focusedBorder: UnderlineInputBorder(
-            borderSide: BorderSide(color: Colors.blue.shade400, width: 5),
+            borderSide:
+                BorderSide(color: Color.fromARGB(255, 218, 209, 232), width: 5),
             borderRadius: inputBorder,
           ),
           errorBorder: UnderlineInputBorder(
-            borderSide: BorderSide(color: Colors.red.shade700, width: 7),
+            borderSide:
+                BorderSide(color: Color.fromARGB(255, 216, 178, 228), width: 7),
             borderRadius: inputBorder,
           ),
           focusedErrorBorder: UnderlineInputBorder(
@@ -93,17 +99,18 @@ class LoginPage extends StatelessWidget {
             borderRadius: inputBorder,
           ),
           disabledBorder: UnderlineInputBorder(
-            borderSide: BorderSide(color: Colors.grey, width: 5),
+            borderSide:
+                BorderSide(color: Color.fromARGB(255, 215, 186, 220), width: 5),
             borderRadius: inputBorder,
           ),
         ),
         buttonTheme: LoginButtonTheme(
-          splashColor: Colors.purple,
-          backgroundColor: Colors.pinkAccent,
-          highlightColor: Colors.lightGreen,
+          splashColor: Color.fromARGB(255, 185, 223, 234),
+          backgroundColor: Color.fromARGB(255, 101, 173, 232),
+          highlightColor: Color.fromARGB(255, 211, 175, 146),
           elevation: 9.0,
           highlightElevation: 6.0,
-          shape: BeveledRectangleBorder(
+          shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10),
           ),
           // shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),

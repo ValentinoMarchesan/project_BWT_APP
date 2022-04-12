@@ -13,6 +13,7 @@ class ProfilePage extends StatelessWidget {
     print('${ProfilePage.routename} built');
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         title: Text(ProfilePage.routename),
         actions: [
           IconButton(

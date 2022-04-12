@@ -12,6 +12,7 @@ class EditProfilePage extends StatelessWidget {
     print('${EditProfilePage.routename} built');
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         title: Text(EditProfilePage.routename),
       ),
       body: Center(

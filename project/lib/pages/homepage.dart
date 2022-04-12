@@ -17,8 +17,9 @@ class HomePage extends StatelessWidget {
     print('${HomePage.routename} built');
     return Scaffold(
       appBar: AppBar(
-          title: Text(HomePage.routename),
-          backgroundColor: Color.fromARGB(255, 195, 64, 255)),
+          centerTitle: true,
+          title: Text(HomePage.routename, textAlign: TextAlign.center),
+          backgroundColor: Colors.deepOrange),
       body: Container(
         child: ListView(
           physics: BouncingScrollPhysics(),
