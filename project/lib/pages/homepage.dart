@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:project/pages/activitypage.dart';
 import 'package:project/pages/goalPage.dart';
 import 'package:project/models/homecard.dart';
+import 'package:project/pages/heartpage.dart';
 import 'package:project/pages/loginPage.dart';
 import 'package:project/pages/profilePage.dart';
+import 'package:project/pages/sleeppage.dart';
+import 'package:project/pages/steppage.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
 
 class HomePage extends StatelessWidget {
@@ -33,7 +36,7 @@ class HomePage extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text("VMR APP",
+                  Text("MYMO",
                       style: TextStyle(
                           color: Color.fromARGB(255, 12, 0, 0),
                           fontSize: 34,
@@ -102,19 +105,19 @@ class HomePage extends StatelessWidget {
                 physics: NeverScrollableScrollPhysics(),
                 children: [
                   HomeCard(
-                    onTap: () {},
+                    onTap: () => _toSleepPage(context),
                     title: "Sleep Monitoring",
                     gradientStartColor: Color(0xff13DEA0),
                     gradientEndColor: Color(0xff06B782),
                   ),
                   HomeCard(
-                      onTap: () {},
+                      onTap: () => _toHeartPage(context),
                       title: "Heart Rate",
                       gradientStartColor: Color(0xffFC67A7),
                       gradientEndColor: Color(0xffF6815B),
                       icon: Icon(Icons.abc)),
                   HomeCard(
-                    onTap: () {},
+                    onTap: () => _toStepPage(context),
                     title: "Steps",
                     gradientStartColor: Color(0xffFFD541),
                     gradientEndColor: Color(0xffF0B31A),
@@ -185,4 +188,16 @@ class HomePage extends StatelessWidget {
   void _toActivityPage(BuildContext context) {
     Navigator.pushNamed(context, ActivityPage.route);
   }
+
+  void _toStepPage(BuildContext context) {
+    Navigator.pushNamed(context, StepPage.route);
+  } //_toStepPage
+
+  void _toHeartPage(BuildContext context) {
+    Navigator.pushNamed(context, HeartPage.route);
+  } //_toStepPage
+
+  void _toSleepPage(BuildContext context) {
+    Navigator.pushNamed(context, SleepPage.route);
+  } //_toStepPage
 }
