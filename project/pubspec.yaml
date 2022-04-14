@@ -31,6 +31,7 @@ dependencies:
     sdk: flutter
   step_progress_indicator: ^1.0.2
   material_design_icons_flutter: ^5.0.6595
+  water_drop_nav_bar:
   charts_flutter: ^0.12.0
 
 

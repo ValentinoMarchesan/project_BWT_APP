@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:project/pages/activitypage.dart';
-import 'package:project/pages/editGoalPage.dart';
 import 'package:project/pages/editProfilePage.dart';
-import 'package:project/pages/goalPage.dart';
 import 'package:project/pages/heartpage.dart';
 import 'package:project/pages/homepage.dart';
 import 'package:project/pages/loginPage.dart';
@@ -24,8 +22,6 @@ class MyApp extends StatelessWidget {
         LoginPage.route: (context) => LoginPage(),
         HomePage.route: (context) => HomePage(),
         ProfilePage.route: (context) => ProfilePage(),
-        GoalPage.route: (context) => GoalPage(),
-        EditGoalPage.route: (context) => EditGoalPage(),
         EditProfilePage.route: (context) => EditProfilePage(),
         ActivityPage.route: (context) => ActivityPage(),
         StepPage.route: (context) => StepPage(),
