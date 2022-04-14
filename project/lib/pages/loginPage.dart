@@ -33,6 +33,7 @@ class LoginPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return FlutterLogin(
       title: 'MyMo',
+      logo: AssetImage('assets/logo/def1.png'),
       onLogin: _loginUser,
       onSignup: _signUpUser,
       onRecoverPassword: _recoverPassword,
@@ -40,65 +41,74 @@ class LoginPage extends StatelessWidget {
         Navigator.of(context).pushReplacementNamed(HomePage.route);
       },
       theme: LoginTheme(
-        primaryColor: Color.fromARGB(255, 241, 226, 6), //255, 229, 170, 121
-        pageColorLight: Color.fromARGB(255, 252, 123, 3), //lightblue
-        accentColor: Color.fromARGB(255, 255, 255, 255),
-        errorColor: Color.fromARGB(255, 255, 255, 255),
+        primaryColor: Color.fromARGB(
+            255, 244, 190, 110), //colore principale = a quello di SIGN UP
+        pageColorLight: Color.fromARGB(255, 239, 65, 123), //colore secondario
+        accentColor: Color.fromARGB(
+            255, 171, 231, 179), // colore del rettangolino dell'animazione
+        errorColor: Colors.red,
+        beforeHeroFontSize: 65, // dimensione del titolo
         titleStyle: TextStyle(
-          color: Colors.white,
-          fontFamily: 'Quicksand',
-          letterSpacing: 6,
+          color: Color.fromARGB(255, 255, 255, 255),
+          fontFamily: 'Audiowide', // carattere personalizzato aggiunto
+          letterSpacing: 10,
         ),
         bodyStyle: TextStyle(
+          //password dimenticata
           fontStyle: FontStyle.italic,
           decoration: TextDecoration.underline,
         ),
         textFieldStyle: TextStyle(
-          color: Colors.black,
+          color: Color.fromARGB(255, 87, 86, 86),
+          fontFamily: 'OpenSans',
           shadows: [
             Shadow(color: Color.fromARGB(255, 210, 239, 244), blurRadius: 2)
           ],
+          letterSpacing: 2,
         ),
         buttonStyle: TextStyle(
-          fontWeight: FontWeight.w800,
+          fontWeight: FontWeight.w900,
+          fontFamily: 'OpenSans',
           color: Colors.white,
+          letterSpacing: 3,
         ),
         cardTheme: CardTheme(
-          color: Color.fromARGB(255, 255, 255, 255),
+          color: Colors.white,
           elevation: 5,
-          margin: EdgeInsets.only(top: 15),
+          margin: EdgeInsets.only(top: 20),
           shape: ContinuousRectangleBorder(
-              borderRadius: BorderRadius.circular(30.0)),
+              borderRadius: BorderRadius.circular(60.0)),
         ),
         inputTheme: InputDecorationTheme(
           filled: true,
-          fillColor: Color.fromARGB(255, 247, 247, 226).withOpacity(.1),
+          fillColor: Color.fromARGB(255, 228, 202, 147)
+              .withOpacity(.1), //rettangolini delle credenziali
           contentPadding: EdgeInsets.zero,
           errorStyle: TextStyle(
             backgroundColor: Color.fromARGB(255, 255, 255, 255),
-            color: Color.fromARGB(255, 0, 0, 0),
+            color: Colors.red,
+            fontSize: 14,
           ),
           labelStyle: TextStyle(fontSize: 16),
           enabledBorder: UnderlineInputBorder(
             borderSide: BorderSide(
-                color: Color.fromARGB(255, 235, 109, 36),
-                width: 6), //255, 189, 189, 235
+                color:
+                    Color.fromARGB(255, 235, 109, 36), //linea delle credenziali
+                width: 3), //255, 189, 189, 235
             borderRadius: inputBorder,
           ),
           focusedBorder: UnderlineInputBorder(
-            borderSide:
-                BorderSide(color: Color.fromARGB(255, 218, 209, 232), width: 5),
+            borderSide: BorderSide(color: Colors.orange, width: 5),
             borderRadius: inputBorder,
           ),
           errorBorder: UnderlineInputBorder(
             borderSide: BorderSide(
-                color: Color.fromARGB(255, 255, 136, 0),
-                width: 7), //255, 216, 178, 228
+                color: Colors.red,
+                width: 7), // linea delle credenziali se errore
             borderRadius: inputBorder,
           ),
           focusedErrorBorder: UnderlineInputBorder(
-            borderSide:
-                BorderSide(color: Color.fromARGB(255, 255, 255, 255), width: 8),
+            borderSide: BorderSide(color: Colors.red, width: 8),
             borderRadius: inputBorder,
           ),
           disabledBorder: UnderlineInputBorder(
@@ -108,19 +118,21 @@ class LoginPage extends StatelessWidget {
           ),
         ),
         buttonTheme: LoginButtonTheme(
-          splashColor: Color.fromARGB(255, 248, 234, 112), //255, 185, 223, 234
+          splashColor: Colors.red, //255, 185, 223, 234
           backgroundColor:
-              Color.fromARGB(255, 238, 145, 23), //255, 101, 173, 232
-          highlightColor: Color.fromARGB(255, 211, 175, 146),
-          elevation: 9.0,
-          highlightElevation: 6.0,
+              Color.fromARGB(255, 235, 153, 47), //255, 101, 173, 232
+          highlightColor: Colors.yellow,
+          elevation: 10,
+          highlightElevation: 15,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10),
           ),
+
           // shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
           // shape: CircleBorder(side: BorderSide(color: Colors.green)),
           // shape: ContinuousRectangleBorder(borderRadius: BorderRadius.circular(55.0)),
         ),
+        logoWidth: 0.5, //dimensioni logo, massimo =1
       ),
     );
   }
