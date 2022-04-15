@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:project/models/customcard.dart';
 import 'package:project/models/homecard.dart';
 import 'package:project/pages/activitypage.dart';
 import 'package:project/pages/heartpage.dart';
@@ -45,7 +44,9 @@ class _HomePageState extends State<HomePage> {
           physics: const NeverScrollableScrollPhysics(),
           controller: pageController,
           children: <Widget>[
-//_______________ CONTAINER HOMEPAGE __________________________________
+//______________________________________________________________________________
+//_______________ CONTAINER HOMEPAGE ___________________________________________
+//______________________________________________________________________________
             Container(
               alignment: Alignment.center,
               child: ListView(
@@ -53,33 +54,373 @@ class _HomePageState extends State<HomePage> {
                   SizedBox(
                     height: 15,
                   ),
+//_____________________ HEART RATE CARD ________________________________________
+                  Card(
+                    clipBehavior: Clip.antiAlias,
+                    // forma dei bordi
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(24)),
+                    // contenuto
+                    child: Column(
+                      children: [
+                        Container(
+                          //colore interno
+                          decoration: BoxDecoration(
+                            gradient: LinearGradient(
+                              //sfumatura
+                              colors: [Colors.orangeAccent, Colors.deepOrange],
+                              // direzione della sfumatura
+                              begin: Alignment.topLeft,
+                              end: Alignment.bottomRight,
+                            ),
+                          ),
+                          padding: EdgeInsets.all(8),
+                          child: Row(
+                            children: [
+                              SizedBox(
+                                width: 10,
+                              ),
+                              Icon(Icons.heart_broken),
+                              SizedBox(
+                                height: 1,
+                                width: 10,
+                              ),
+                              Text('HEART RATE'),
+                              SizedBox(
+                                width: 210,
+                              ),
+                              Icon(Icons.view_column),
+                            ],
+                          ),
+                        ),
+                        Row(
+                          children: [
+                            Stack(
+                              children: [
+                                // parte per posizionare immagine
+                                Ink.image(
+                                  image: NetworkImage(
+                                      'https://image.shutterstock.com/image-illustration/cardio-exercise-increases-hearts-health-600w-173381630.jpg'),
+                                  // rendere la card schiacciabile
+                                  width: 200,
+                                  height: 100,
+                                  child: InkWell(
+                                      onTap: () => _toHeartPage(context)),
+                                  fit: BoxFit.cover,
+                                ),
+                              ],
+                            ),
+                            Container(
+                              //colore interno
+                              height: 100,
+                              width: 184.7,
+                              decoration: BoxDecoration(
+                                color: Color.fromARGB(255, 236, 200, 145),
+                                /*gradient: LinearGradient(
+                    //sfumatura
+                    colors: [Colors.orangeAccent, Colors.deepOrange],
+                    // direzione della sfumatura
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                  ),
+                  */
+                              ),
+                              padding: EdgeInsets.all(8),
+                              child: Column(
+                                children: [
+                                  Text(
+                                    'Inserire Testo',
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+//__________________________ FINE HEART RATE CARD _____________________________
                   SizedBox(
                     height: 5,
                   ),
-                  CardHR(),
+// _______________________ SLEEP CARD _________________________________________
+                  Card(
+                    clipBehavior: Clip.antiAlias,
+                    // forma dei bordi
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(24)),
+                    // contenuto
+                    child: Column(
+                      children: [
+                        Container(
+                          //colore interno
+                          decoration: BoxDecoration(
+                            gradient: LinearGradient(
+                              //sfumatura
+                              colors: [Colors.orangeAccent, Colors.deepOrange],
+                              // direzione della sfumatura
+                              begin: Alignment.topLeft,
+                              end: Alignment.bottomRight,
+                            ),
+                          ),
+                          padding: EdgeInsets.all(8),
+                          child: Row(
+                            children: [
+                              SizedBox(
+                                width: 10,
+                              ),
+                              Icon(Icons.dark_mode),
+                              SizedBox(
+                                height: 1,
+                                width: 10,
+                              ),
+                              Text('SLEEP MONITORING'),
+                              SizedBox(
+                                width: 165,
+                              ),
+                              Icon(Icons.view_column),
+                            ],
+                          ),
+                        ),
+                        Row(
+                          children: [
+                            Stack(
+                              children: [
+                                // parte per posizionare immagine
+                                Ink.image(
+                                  image: NetworkImage(
+                                      'https://image.shutterstock.com/image-vector/sleep-cycle-labeled-night-stages-600w-1945387777.jpg'),
+                                  // rendere la card schiacciabile
+                                  width: 200,
+                                  height: 100,
+                                  child: InkWell(
+                                    onTap: () => _toSleepPage(context),
+                                  ),
+                                  fit: BoxFit.cover,
+                                ),
+                              ],
+                            ),
+                            Container(
+                              //colore interno
+                              height: 100,
+                              width: 184.7,
+                              decoration: BoxDecoration(
+                                color: Color.fromARGB(255, 236, 200, 145),
+                                /*gradient: LinearGradient(
+                    //sfumatura
+                    colors: [Colors.orangeAccent, Colors.deepOrange],
+                    // direzione della sfumatura
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                  ),
+                  */
+                              ),
+                              padding: EdgeInsets.all(8),
+                              child: Column(
+                                children: [
+                                  Text(
+                                    'Inserire Testo',
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+//________________________ FINE SLEEP CARD ____________________________________
                   SizedBox(
                     height: 5,
                   ),
-                  CardSleepM(),
+// _____________________ STEP CARD _____________________________________________
+                  Card(
+                    clipBehavior: Clip.antiAlias,
+                    // forma dei bordi
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(24)),
+                    // contenuto
+                    child: Column(
+                      children: [
+                        Container(
+                          //colore interno
+                          decoration: BoxDecoration(
+                            gradient: LinearGradient(
+                              //sfumatura
+                              colors: [Colors.orangeAccent, Colors.deepOrange],
+                              // direzione della sfumatura
+                              begin: Alignment.topLeft,
+                              end: Alignment.bottomRight,
+                            ),
+                          ),
+                          padding: EdgeInsets.all(8),
+                          child: Row(
+                            children: [
+                              SizedBox(
+                                width: 10,
+                              ),
+                              Icon(Icons.run_circle),
+                              SizedBox(
+                                height: 1,
+                                width: 10,
+                              ),
+                              Text('STEPS MONITORING'),
+                              SizedBox(
+                                width: 160,
+                              ),
+                              Icon(Icons.view_column),
+                            ],
+                          ),
+                        ),
+                        Row(
+                          children: [
+                            Stack(
+                              children: [
+                                // parte per posizionare immagine
+                                Ink.image(
+                                  image: NetworkImage(
+                                      'https://images.unsplash.com/photo-1461896836934-ffe607ba8211?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80'),
+                                  // rendere la card schiacciabile
+                                  width: 200,
+                                  height: 100,
+                                  child: InkWell(
+                                    onTap: () => _toStepPage(context),
+                                  ),
+                                  fit: BoxFit.cover,
+                                ),
+                              ],
+                            ),
+                            Container(
+                              //colore interno
+                              height: 100,
+                              width: 184.7,
+                              decoration: BoxDecoration(
+                                color: Color.fromARGB(255, 236, 200, 145),
+                                /*gradient: LinearGradient(
+                    //sfumatura
+                    colors: [Colors.orangeAccent, Colors.deepOrange],
+                    // direzione della sfumatura
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                  ),
+                  */
+                              ),
+                              padding: EdgeInsets.all(8),
+                              child: Column(
+                                children: [
+                                  Text(
+                                    'Inserire Testo',
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+//___________________________ FINE STEP CARD ___________________________________
                   SizedBox(
                     height: 5,
                   ),
-                  Cardsteps(),
-                  SizedBox(
-                    height: 5,
+//_________________________ ACTIVITY CARD ______________________________________
+                  Card(
+                    clipBehavior: Clip.antiAlias,
+                    // forma dei bordi
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(24)),
+                    // contenuto
+                    child: Column(
+                      children: [
+                        Container(
+                          //colore interno
+                          decoration: BoxDecoration(
+                            gradient: LinearGradient(
+                              //sfumatura
+                              colors: [Colors.orangeAccent, Colors.deepOrange],
+                              // direzione della sfumatura
+                              begin: Alignment.topLeft,
+                              end: Alignment.bottomRight,
+                            ),
+                          ),
+                          padding: EdgeInsets.all(8),
+                          child: Row(
+                            children: [
+                              SizedBox(
+                                width: 10,
+                              ),
+                              Icon(Icons.fitness_center),
+                              SizedBox(
+                                height: 1,
+                                width: 10,
+                              ),
+                              Text('ACTIVITY'),
+                              SizedBox(
+                                width: 230,
+                              ),
+                              Icon(Icons.view_column),
+                            ],
+                          ),
+                        ),
+                        Row(
+                          children: [
+                            Stack(
+                              children: [
+                                // parte per posizionare immagine
+                                Ink.image(
+                                  image: NetworkImage(
+                                      'https://media.istockphoto.com/photos/sports-equipment-on-green-grass-top-view-picture-id905105146'),
+                                  // rendere la card schiacciabile
+                                  width: 200,
+                                  height: 100,
+                                  child: InkWell(
+                                    onTap: () => _toActivityPage(context),
+                                  ),
+                                  fit: BoxFit.cover,
+                                ),
+                              ],
+                            ),
+                            Container(
+                              //colore interno
+                              height: 100,
+                              width: 184.7,
+                              decoration: BoxDecoration(
+                                color: Color.fromARGB(255, 236, 200, 145),
+                                /*gradient: LinearGradient(
+                                //sfumatura
+                                colors: [Colors.orangeAccent, Colors.deepOrange],
+                                // direzione della sfumatura
+                                begin: Alignment.topLeft,
+                                end: Alignment.bottomRight,
+                                ),
+                              */
+                              ),
+                              padding: EdgeInsets.all(8),
+                              child: Column(
+                                children: [
+                                  Text(
+                                    'Inserire Testo',
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
-                  CardActivity(),
-                  SizedBox(
-                    height: 5,
-                  ),
+//_________________________ FINE ACTIVITY CARD _________________________________
+
                   SizedBox(
                     height: 5,
                   ),
                 ],
               ),
             ),
-//_________________  FINE HOMEPAGE    _____________________________________
-//_______________ CONTAINER TRAININGPAGE __________________________________
+//______________________________________________________________________________
+//_________________  FINE HOMEPAGE    __________________________________________
+//_______________ CONTAINER TRAININGPAGE _______________________________________
+//______________________________________________________________________________
             Container(
               alignment: Alignment.center,
               child: Center(
@@ -97,8 +438,10 @@ class _HomePageState extends State<HomePage> {
                     ]),
               ),
             ),
-//_________________FINE TRAININGPAGE  _____________________________________
-//_______________ CONTAINER GAMEPAGE __________________________________
+//______________________________________________________________________________
+//_________________FINE TRAININGPAGE  __________________________________________
+//_______________ CONTAINER GAMEPAGE ___________________________________________
+//______________________________________________________________________________
             Container(
               alignment: Alignment.center,
               child: Center(
@@ -117,8 +460,10 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
             ),
-//_________________FINE GAMEPAGE       _____________________________________
-//_______________ CONTAINER SETTING PAGE __________________________________
+//______________________________________________________________________________
+//________________    FINE GAMEPAGE    _________________________________________
+//_______________ CONTAINER SETTING PAGE _______________________________________
+//______________________________________________________________________________
             Container(
               alignment: Alignment.center,
               child: SafeArea(
@@ -139,11 +484,14 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
             ),
-//______________________ FINE SETTING PAGE __________________________________
           ],
         ),
-//___________________________________________________________________________
-//__________________ BOTTOM BAR _____________________________________________
+//______________________________________________________________________________
+//______________________ FINE SETTING PAGE _____________________________________
+//______________________________________________________________________________
+//__________________________ BOTTOM BAR ________________________________________
+//______________________________________________________________________________
+
         bottomNavigationBar: ClipRRect(
           borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
           child: WaterDropNavBar(
