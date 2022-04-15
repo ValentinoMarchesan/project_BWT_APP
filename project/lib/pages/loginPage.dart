@@ -61,15 +61,17 @@ class LoginPage extends StatelessWidget {
         textFieldStyle: TextStyle(
           color: Color.fromARGB(255, 87, 86, 86),
           fontFamily: 'OpenSans',
+          fontSize: 16,
           shadows: [
             Shadow(color: Color.fromARGB(255, 210, 239, 244), blurRadius: 2)
           ],
           letterSpacing: 2,
         ),
         buttonStyle: TextStyle(
-          fontWeight: FontWeight.w900,
-          fontFamily: 'OpenSans',
+          fontWeight: FontWeight.w800,
+          fontFamily: 'Quicksand',
           color: Colors.white,
+          fontSize: 16,
           letterSpacing: 3,
         ),
         cardTheme: CardTheme(
@@ -80,8 +82,8 @@ class LoginPage extends StatelessWidget {
               borderRadius: BorderRadius.circular(60.0)),
         ),
         inputTheme: InputDecorationTheme(
-          filled: true,
-          fillColor: Color.fromARGB(255, 228, 202, 147)
+          filled: false,
+          fillColor: Color.fromARGB(255, 227, 189, 169)
               .withOpacity(.1), //rettangolini delle credenziali
           contentPadding: EdgeInsets.zero,
           errorStyle: TextStyle(
@@ -89,7 +91,8 @@ class LoginPage extends StatelessWidget {
             color: Colors.red,
             fontSize: 14,
           ),
-          labelStyle: TextStyle(fontSize: 16),
+          labelStyle:
+              TextStyle(fontSize: 15, fontFamily: 'Quicksand'), // credenziali
           enabledBorder: UnderlineInputBorder(
             borderSide: BorderSide(
                 color:
@@ -113,7 +116,7 @@ class LoginPage extends StatelessWidget {
           ),
           disabledBorder: UnderlineInputBorder(
             borderSide:
-                BorderSide(color: Color.fromARGB(255, 215, 186, 220), width: 5),
+                BorderSide(color: Color.fromARGB(255, 158, 216, 160), width: 5),
             borderRadius: inputBorder,
           ),
         ),
@@ -132,7 +135,7 @@ class LoginPage extends StatelessWidget {
           // shape: CircleBorder(side: BorderSide(color: Colors.green)),
           // shape: ContinuousRectangleBorder(borderRadius: BorderRadius.circular(55.0)),
         ),
-        logoWidth: 0.5, //dimensioni logo, massimo =1
+        logoWidth: 1, //dimensioni logo, massimo =1
       ),
     );
   }

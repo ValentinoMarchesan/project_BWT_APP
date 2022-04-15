@@ -39,7 +39,7 @@ class _HomePageState extends State<HomePage> {
         systemNavigationBarIconBrightness: Brightness.dark,
       ),
       child: Scaffold(
-        backgroundColor: Colors.amber,
+        backgroundColor: Color.fromARGB(255, 254, 183, 77),
         body: PageView(
           physics: const NeverScrollableScrollPhysics(),
           controller: pageController,

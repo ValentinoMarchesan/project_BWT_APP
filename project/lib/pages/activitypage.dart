@@ -16,7 +16,7 @@ class ActivityPage extends StatelessWidget {
         centerTitle: true,
         title: Text('Activity'),
       ),
-      body: Text('ciao'),
+      body: Text('pota l è cambiat negot'),
     );
   }
 }
