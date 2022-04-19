@@ -1,67 +1,69 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:project/pages/classes/UserPreferences.dart';
+import 'package:project/pages/classes/profile_widget.dart';
 import 'package:project/pages/editProfilePage.dart';
+import '../models/appbar_widget.dart';
+import 'classes/user.dart';
 
-class ProfilePage extends StatelessWidget {
-  const ProfilePage({Key? key}) : super(key: key);
-
-  static const route = '/profile/';
+class ProfilePage extends StatefulWidget {
+  static const route = ' /home/profile';
   static const routename = 'ProfilePage';
+  @override
+  _ProfilePageState createState() => _ProfilePageState();
+}
 
+class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
-    print('${ProfilePage.routename} built');
+    final user = Userpreferences.getUser();
+    //final user = Userpreferences.myUser;
+
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: Text(ProfilePage.routename),
-        actions: [
-          IconButton(
-              onPressed: () => _toEditProfilePage(context),
-              icon: Icon(Icons.edit))
-        ],
-      ),
-      body: Stack(
-        alignment: Alignment.center,
-        children: <Widget>[
-          // background image and bottom contents
-          Column(
-            children: <Widget>[
-              Container(
-                height: 200.0,
-                color: Colors.orange,
-                child: Center(
-                  child: Text('Background image goes here'),
-                ),
-              ),
-              Expanded(
-                child: Container(
-                  color: Colors.white,
-                  child: Center(
-                    child: Text("Valentino Marchesan"),
-                  ),
-                ),
-              ),
-            ],
+        appBar: buildAppBar(context),
+        body: ListView(physics: BouncingScrollPhysics(), children: [
+          ProfileWidget(
+            imagePath: user.imagePath,
+            onClicked: () async {
+              await Navigator.of(context).push(
+                MaterialPageRoute(builder: (context) => EditprofilePage()),
+              );
+              setState(() {});
+            },
           ),
-          // Profile image
-          Positioned(
-            top: 150.0, // (background container size) - (circle height / 2)
-            child: Container(
-              height: 100.0,
-              width: 100.0,
-              decoration:
-                  BoxDecoration(shape: BoxShape.circle, color: Colors.green),
-            ),
-          )
+          const SizedBox(
+            height: 20,
+          ),
+          buildName(user),
+          const SizedBox(
+            height: 48,
+          ),
+          buildAbout(user),
+        ]));
+  }
+
+  Widget buildName(User user) => Column(
+        children: [
+          Text(user.name,
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24)),
+          const SizedBox(
+            height: 4,
+          ),
+          Text(user.email, style: TextStyle(color: Colors.grey)),
         ],
-      ),
-    );
-  } //build
-
-  void _toEditProfilePage(BuildContext context) {
-    //Push the EditProfilePage
-    Navigator.pushNamed(context, EditProfilePage.route);
-  } //_toEditProfilePage
-
-} //ProfilePage
+      );
+  Widget buildAbout(User user) => Container(
+        padding: EdgeInsets.symmetric(horizontal: 48),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text('About me :',
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24)),
+            const SizedBox(
+              height: 10,
+            ),
+            Text(user.about, style: TextStyle(fontSize: 16, height: 1.4)),
+          ],
+        ),
+      );
+}

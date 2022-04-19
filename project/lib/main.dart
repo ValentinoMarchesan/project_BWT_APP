@@ -1,19 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:project/models/walk.dart';
 import 'package:project/pages/activitypage.dart';
+import 'package:project/pages/classes/UserPreferences.dart';
 import 'package:project/pages/editProfilePage.dart';
 import 'package:project/pages/heartpage.dart';
 import 'package:project/pages/homepage.dart';
 import 'package:project/pages/loginPage.dart';
 import 'package:project/pages/profilePage.dart';
+
 import 'package:project/pages/sleeppage.dart';
 import 'package:project/pages/steppage.dart';
 import 'package:provider/provider.dart';
 import 'package:project/models/walkDB.dart';
 import 'package:project/pages/walkpage.dart';
 
-void main() {
-  runApp(const MyApp());
+Future main() async {
+  //this two lines need to initialized the UserPreferences
+  WidgetsFlutterBinding.ensureInitialized();
+  await Userpreferences.init();
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -55,9 +60,9 @@ class MyApp extends StatelessWidget {
             return MaterialPageRoute(builder: (context) {
               return ActivityPage();
             });
-          } else if (settings.name == EditProfilePage.route) {
+          } else if (settings.name == EditprofilePage.route) {
             return MaterialPageRoute(builder: (context) {
-              return EditProfilePage();
+              return EditprofilePage();
             });
           } else if (settings.name == HeartPage.route) {
             return MaterialPageRoute(builder: (context) {
