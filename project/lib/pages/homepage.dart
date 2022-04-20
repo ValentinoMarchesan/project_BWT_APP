@@ -197,19 +197,4 @@ class _HomePageState extends State<HomePage> {
       ),
     );
   }
-
-  void _toProfilePage(BuildContext context) {
-    //Pop the drawer first
-    //Navigator.pop(context);
-    //Then push the ProfilePage
-    Navigator.pushNamed(context, ProfilePage.route);
-  } //_toProfilePage
-
-  void _toLoginPage(BuildContext context) {
-    //Pop the drawer first
-    Navigator.pop(context);
-    //Then pop the HomePage
-    //Navigator.pop(context);
-    Navigator.pushNamed(context, LoginPage.route);
-  }
 }

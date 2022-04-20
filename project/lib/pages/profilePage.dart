@@ -20,6 +20,7 @@ class _ProfilePageState extends State<ProfilePage> {
     //final user = Userpreferences.myUser;
 
     return Scaffold(
+        backgroundColor: Colors.orangeAccent,
         appBar: buildAppBar(context),
         body: ListView(physics: BouncingScrollPhysics(), children: [
           ProfileWidget(
