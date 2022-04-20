@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:project/models/CustomCard.dart';
 import 'package:project/models/homecard.dart';
 import 'package:project/pages/activitypage.dart';
 import 'package:project/pages/heartpage.dart';
@@ -55,360 +56,25 @@ class _HomePageState extends State<HomePage> {
                     height: 15,
                   ),
 //_____________________ HEART RATE CARD ________________________________________
-                  Card(
-                    clipBehavior: Clip.antiAlias,
-                    // forma dei bordi
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(24)),
-                    // contenuto
-                    child: Column(
-                      children: [
-                        Container(
-                          //colore interno
-                          decoration: BoxDecoration(
-                            gradient: LinearGradient(
-                              //sfumatura
-                              colors: [Colors.orangeAccent, Colors.deepOrange],
-                              // direzione della sfumatura
-                              begin: Alignment.topLeft,
-                              end: Alignment.bottomRight,
-                            ),
-                          ),
-                          padding: EdgeInsets.all(8),
-                          child: Row(
-                            children: [
-                              SizedBox(
-                                width: 10,
-                              ),
-                              Icon(Icons.heart_broken),
-                              SizedBox(
-                                height: 1,
-                                width: 10,
-                              ),
-                              Text('HEART RATE'),
-                              SizedBox(
-                                width: 210,
-                              ),
-                              Icon(Icons.view_column),
-                            ],
-                          ),
-                        ),
-                        Row(
-                          children: [
-                            Stack(
-                              children: [
-                                // parte per posizionare immagine
-                                Ink.image(
-                                  image: NetworkImage(
-                                      'https://image.shutterstock.com/image-illustration/cardio-exercise-increases-hearts-health-600w-173381630.jpg'),
-                                  // rendere la card schiacciabile
-                                  width: 200,
-                                  height: 100,
-                                  child: InkWell(
-                                      onTap: () => _toHeartPage(context)),
-                                  fit: BoxFit.cover,
-                                ),
-                              ],
-                            ),
-                            Container(
-                              //colore interno
-                              height: 100,
-                              width: 184.7,
-                              decoration: BoxDecoration(
-                                color: Color.fromARGB(255, 236, 200, 145),
-                                /*gradient: LinearGradient(
-                    //sfumatura
-                    colors: [Colors.orangeAccent, Colors.deepOrange],
-                    // direzione della sfumatura
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                  ),
-                  */
-                              ),
-                              padding: EdgeInsets.all(8),
-                              child: Column(
-                                children: [
-                                  Text(
-                                    'Inserire Testo',
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
+                  CardHR(),
 //__________________________ FINE HEART RATE CARD _____________________________
                   SizedBox(
                     height: 5,
                   ),
 // _______________________ SLEEP CARD _________________________________________
-                  Card(
-                    clipBehavior: Clip.antiAlias,
-                    // forma dei bordi
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(24)),
-                    // contenuto
-                    child: Column(
-                      children: [
-                        Container(
-                          //colore interno
-                          decoration: BoxDecoration(
-                            gradient: LinearGradient(
-                              //sfumatura
-                              colors: [Colors.orangeAccent, Colors.deepOrange],
-                              // direzione della sfumatura
-                              begin: Alignment.topLeft,
-                              end: Alignment.bottomRight,
-                            ),
-                          ),
-                          padding: EdgeInsets.all(8),
-                          child: Row(
-                            children: [
-                              SizedBox(
-                                width: 10,
-                              ),
-                              Icon(Icons.dark_mode),
-                              SizedBox(
-                                height: 1,
-                                width: 10,
-                              ),
-                              Text('SLEEP MONITORING'),
-                              SizedBox(
-                                width: 165,
-                              ),
-                              Icon(Icons.view_column),
-                            ],
-                          ),
-                        ),
-                        Row(
-                          children: [
-                            Stack(
-                              children: [
-                                // parte per posizionare immagine
-                                Ink.image(
-                                  image: NetworkImage(
-                                      'https://image.shutterstock.com/image-vector/sleep-cycle-labeled-night-stages-600w-1945387777.jpg'),
-                                  // rendere la card schiacciabile
-                                  width: 200,
-                                  height: 100,
-                                  child: InkWell(
-                                    onTap: () => _toSleepPage(context),
-                                  ),
-                                  fit: BoxFit.cover,
-                                ),
-                              ],
-                            ),
-                            Container(
-                              //colore interno
-                              height: 100,
-                              width: 184.7,
-                              decoration: BoxDecoration(
-                                color: Color.fromARGB(255, 236, 200, 145),
-                                /*gradient: LinearGradient(
-                    //sfumatura
-                    colors: [Colors.orangeAccent, Colors.deepOrange],
-                    // direzione della sfumatura
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                  ),
-                  */
-                              ),
-                              padding: EdgeInsets.all(8),
-                              child: Column(
-                                children: [
-                                  Text(
-                                    'Inserire Testo',
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
+                  CardSM(),
 //________________________ FINE SLEEP CARD ____________________________________
                   SizedBox(
                     height: 5,
                   ),
 // _____________________ STEP CARD _____________________________________________
-                  Card(
-                    clipBehavior: Clip.antiAlias,
-                    // forma dei bordi
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(24)),
-                    // contenuto
-                    child: Column(
-                      children: [
-                        Container(
-                          //colore interno
-                          decoration: BoxDecoration(
-                            gradient: LinearGradient(
-                              //sfumatura
-                              colors: [Colors.orangeAccent, Colors.deepOrange],
-                              // direzione della sfumatura
-                              begin: Alignment.topLeft,
-                              end: Alignment.bottomRight,
-                            ),
-                          ),
-                          padding: EdgeInsets.all(8),
-                          child: Row(
-                            children: [
-                              SizedBox(
-                                width: 10,
-                              ),
-                              Icon(Icons.run_circle),
-                              SizedBox(
-                                height: 1,
-                                width: 10,
-                              ),
-                              Text('STEPS MONITORING'),
-                              SizedBox(
-                                width: 160,
-                              ),
-                              Icon(Icons.view_column),
-                            ],
-                          ),
-                        ),
-                        Row(
-                          children: [
-                            Stack(
-                              children: [
-                                // parte per posizionare immagine
-                                Ink.image(
-                                  image: NetworkImage(
-                                      'https://images.unsplash.com/photo-1461896836934-ffe607ba8211?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80'),
-                                  // rendere la card schiacciabile
-                                  width: 200,
-                                  height: 100,
-                                  child: InkWell(
-                                    onTap: () => _toStepPage(context),
-                                  ),
-                                  fit: BoxFit.cover,
-                                ),
-                              ],
-                            ),
-                            Container(
-                              //colore interno
-                              height: 100,
-                              width: 184.7,
-                              decoration: BoxDecoration(
-                                color: Color.fromARGB(255, 236, 200, 145),
-                                /*gradient: LinearGradient(
-                    //sfumatura
-                    colors: [Colors.orangeAccent, Colors.deepOrange],
-                    // direzione della sfumatura
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                  ),
-                  */
-                              ),
-                              padding: EdgeInsets.all(8),
-                              child: Column(
-                                children: [
-                                  Text(
-                                    'Inserire Testo',
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
+                  CardSteep(),
 //___________________________ FINE STEP CARD ___________________________________
                   SizedBox(
                     height: 5,
                   ),
 //_________________________ ACTIVITY CARD ______________________________________
-                  Card(
-                    clipBehavior: Clip.antiAlias,
-                    // forma dei bordi
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(24)),
-                    // contenuto
-                    child: Column(
-                      children: [
-                        Container(
-                          //colore interno
-                          decoration: BoxDecoration(
-                            gradient: LinearGradient(
-                              //sfumatura
-                              colors: [Colors.orangeAccent, Colors.deepOrange],
-                              // direzione della sfumatura
-                              begin: Alignment.topLeft,
-                              end: Alignment.bottomRight,
-                            ),
-                          ),
-                          padding: EdgeInsets.all(8),
-                          child: Row(
-                            children: [
-                              SizedBox(
-                                width: 10,
-                              ),
-                              Icon(Icons.fitness_center),
-                              SizedBox(
-                                height: 1,
-                                width: 10,
-                              ),
-                              Text('ACTIVITY'),
-                              SizedBox(
-                                width: 230,
-                              ),
-                              Icon(Icons.view_column),
-                            ],
-                          ),
-                        ),
-                        Row(
-                          children: [
-                            Stack(
-                              children: [
-                                // parte per posizionare immagine
-                                Ink.image(
-                                  image: NetworkImage(
-                                      'https://media.istockphoto.com/photos/sports-equipment-on-green-grass-top-view-picture-id905105146'),
-                                  // rendere la card schiacciabile
-                                  width: 200,
-                                  height: 100,
-                                  child: InkWell(
-                                    onTap: () => _toActivityPage(context),
-                                  ),
-                                  fit: BoxFit.cover,
-                                ),
-                              ],
-                            ),
-                            Container(
-                              //colore interno
-                              height: 100,
-                              width: 184.7,
-                              decoration: BoxDecoration(
-                                color: Color.fromARGB(255, 236, 200, 145),
-                                /*gradient: LinearGradient(
-                                //sfumatura
-                                colors: [Colors.orangeAccent, Colors.deepOrange],
-                                // direzione della sfumatura
-                                begin: Alignment.topLeft,
-                                end: Alignment.bottomRight,
-                                ),
-                              */
-                              ),
-                              padding: EdgeInsets.all(8),
-                              child: Column(
-                                children: [
-                                  Text(
-                                    'Inserire Testo',
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
+                  CardActivity(),
 //_________________________ FINE ACTIVITY CARD _________________________________
 
                   SizedBox(
@@ -466,8 +132,10 @@ class _HomePageState extends State<HomePage> {
 //______________________________________________________________________________
             Container(
               alignment: Alignment.center,
-              child: SafeArea(
-                child: ListView(
+              child: SafeArea(child: ProfilePage()
+
+                  /*
+                 ListView(
                   padding: EdgeInsets.zero,
                   children: [
                     ListTile(
@@ -482,7 +150,8 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ],
                 ),
-              ),
+              */
+                  ),
             ),
           ],
         ),
@@ -519,8 +188,8 @@ class _HomePageState extends State<HomePage> {
                 outlinedIcon: Icons.gamepad_rounded,
               ),
               BarItem(
-                filledIcon: Icons.settings_rounded,
-                outlinedIcon: Icons.settings_rounded,
+                filledIcon: Icons.account_box_rounded,
+                outlinedIcon: Icons.account_box_rounded,
               ),
             ],
           ),
@@ -528,35 +197,4 @@ class _HomePageState extends State<HomePage> {
       ),
     );
   }
-
-  void _toProfilePage(BuildContext context) {
-    //Pop the drawer first
-    //Navigator.pop(context);
-    //Then push the ProfilePage
-    Navigator.pushNamed(context, ProfilePage.route);
-  } //_toProfilePage
-
-  void _toLoginPage(BuildContext context) {
-    //Pop the drawer first
-    Navigator.pop(context);
-    //Then pop the HomePage
-    //Navigator.pop(context);
-    Navigator.pushNamed(context, LoginPage.route);
-  }
-
-  void _toActivityPage(BuildContext context) {
-    Navigator.pushNamed(context, ActivityPage.route);
-  }
-
-  void _toStepPage(BuildContext context) {
-    Navigator.pushNamed(context, StepPage.route);
-  } //_toStepPage
-
-  void _toHeartPage(BuildContext context) {
-    Navigator.pushNamed(context, HeartPage.route);
-  } //_toStepPage
-
-  void _toSleepPage(BuildContext context) {
-    Navigator.pushNamed(context, SleepPage.route);
-  } //_toStepPage
 }

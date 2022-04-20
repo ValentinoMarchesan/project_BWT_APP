@@ -46,6 +46,7 @@ class MyApp extends StatelessWidget {
         // CODICE IMPLEMENTATO DAL PROF. NEL LAB 7:
         // Here, I'm demonstrating another way to manage Navigation. This approach can be handy when you need to
         // pass data to a route directly to its constructor and you want to continue to use pushNamed().
+        // ciao
 
         onGenerateRoute: (settings) {
           if (settings.name == LoginPage.route) {

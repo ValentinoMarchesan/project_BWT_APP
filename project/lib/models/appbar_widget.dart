@@ -6,7 +6,7 @@ import 'package:project/pages/profilePage.dart';
 AppBar buildAppBar(BuildContext context) {
   return AppBar(
     title: Text(ProfilePage.routename),
-    leading: BackButton(),
+    // leading: BackButton(),
     backgroundColor: Colors.orangeAccent,
     elevation: 0,
     actions: [
