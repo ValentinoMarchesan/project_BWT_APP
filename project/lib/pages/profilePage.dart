@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:project/pages/classes/UserPreferences.dart';
 import 'package:project/pages/classes/profile_widget.dart';
 import 'package:project/pages/editProfilePage.dart';
@@ -17,19 +16,19 @@ class _ProfilePageState extends State<ProfilePage> {
   @override
   Widget build(BuildContext context) {
     final user = Userpreferences.getUser();
-    //final user = Userpreferences.myUser;
 
     return Scaffold(
         backgroundColor: Colors.orangeAccent,
         appBar: buildAppBar(context),
         body: ListView(physics: BouncingScrollPhysics(), children: [
           ProfileWidget(
+            // backgroundPath: user.backgroundPath,
             imagePath: user.imagePath,
             onClicked: () async {
               await Navigator.of(context).push(
                 MaterialPageRoute(builder: (context) => EditprofilePage()),
               );
-              setState(() {});
+              setState(() {}); //await the re build of our UI
             },
           ),
           const SizedBox(
@@ -46,11 +45,11 @@ class _ProfilePageState extends State<ProfilePage> {
   Widget buildName(User user) => Column(
         children: [
           Text(user.name,
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24)),
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 26)),
           const SizedBox(
             height: 4,
           ),
-          Text(user.email, style: TextStyle(color: Colors.grey)),
+          Text(user.email, style: TextStyle(color: Colors.grey, fontSize: 18)),
         ],
       );
   Widget buildAbout(User user) => Container(
@@ -68,6 +67,3 @@ class _ProfilePageState extends State<ProfilePage> {
         ),
       );
 }
-
-//questa invece sarà la pagina in cui farò le modifiche
-//ciao a tutti

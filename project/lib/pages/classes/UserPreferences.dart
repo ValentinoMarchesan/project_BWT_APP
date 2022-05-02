@@ -5,9 +5,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class Userpreferences {
   static late SharedPreferences _preferences;
-  static const _keyUser = 'user';
-
+  static const _keyUser = 'user'; //in key user we store user information
   static const myUser = User(
+      // backgroundPath: 'assets/tree.jpg',
       imagePath: 'assets/donna.png',
       name: 'Maria Ghirardi',
       email: 'maria.ghirardi@studenti.unipd.it',
@@ -19,7 +19,8 @@ class Userpreferences {
 
   static Future setUser(User user) async {
     //convert  json map to String
-    final json = jsonEncode(user.toJson());
+    final json =
+        jsonEncode(user.toJson()); //jsonEcode return a string from json map
 
     await _preferences.setString(_keyUser, json);
   }
