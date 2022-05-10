@@ -2,16 +2,17 @@ import 'dart:convert';
 
 import 'package:project/pages/classes/user.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter_login/flutter_login.dart';
 
 class Userpreferences {
+  static const email_name = "bug@expert.com";
   static late SharedPreferences _preferences;
   static const _keyUser = 'user'; //in key user we store user information
   static const myUser = User(
-      // backgroundPath: 'assets/tree.jpg',
-      imagePath: 'assets/donna.png',
-      name: 'Maria Ghirardi',
-      email: 'maria.ghirardi@studenti.unipd.it',
-      about: 'faccio i video con i droni e sono milanese');
+      imagePath: 'assets/user_image.png',
+      name: 'Name',
+      email: email_name,
+      about: 'somethings about you');
 
   static Future init() async =>
       _preferences = await SharedPreferences.getInstance();

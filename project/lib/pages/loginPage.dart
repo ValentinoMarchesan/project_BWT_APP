@@ -5,7 +5,7 @@ import 'package:flutter_login/flutter_login.dart';
 
 class LoginPage extends StatelessWidget {
   //const LoginPage({Key? key}) : super(key: key);
-
+  String email = 'bug@expert.com';
   static const route = '/';
   static const routename = 'LoginPage';
   final inputBorder = BorderRadius.vertical(
@@ -14,7 +14,7 @@ class LoginPage extends StatelessWidget {
   );
 
   Future<String> _loginUser(LoginData data) async {
-    if (data.name == 'bug@expert.com' && data.password == '0000') {
+    if (data.name == email && data.password == '0000') {
       return '';
     } else {
       return 'Oops! We could not find matching credentials';
