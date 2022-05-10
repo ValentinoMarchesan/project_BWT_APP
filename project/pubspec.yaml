@@ -46,6 +46,7 @@ dependencies:
   path_provider: ^2.0.9
 
   #fitbitter
+  fitbitter: ^1.1.1
   
   
   
