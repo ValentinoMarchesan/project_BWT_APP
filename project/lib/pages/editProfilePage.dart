@@ -103,5 +103,3 @@ class _EditProfilePageState extends State<EditprofilePage> {
             )
           ]));
 }
-
-//oppure se si mette il button dentro alle colonne viene più piccolo ma magari con del padding si può espandere
