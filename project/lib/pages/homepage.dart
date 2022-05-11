@@ -106,23 +106,12 @@ class _HomePageState extends State<HomePage> {
             ),
 //______________________________________________________________________________
 //_________________  FINE HOMEPAGE    __________________________________________
-//_______________ CONTAINER TRAININGPAGE _______________________________________
+//_______________ CONTAINER ACTIVITY _______________________________________
 //______________________________________________________________________________
             Container(
               alignment: Alignment.center,
               child: Center(
-                child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Container(
-                        child: Text('GAMEPAGE'),
-                      ),
-                      Icon(
-                        Icons.fitness_center_sharp,
-                        size: 56,
-                        color: Colors.red[400],
-                      ),
-                    ]),
+                child: ActivityPage(),
               ),
             ),
 //______________________________________________________________________________
