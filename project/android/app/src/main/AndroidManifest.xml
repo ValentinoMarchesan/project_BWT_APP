@@ -1,5 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.project">
+    <uses-permission android:name="android.permission.INTERNET" />
    <application
         android:label="project"
         android:name="${applicationName}"
@@ -30,7 +31,7 @@
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-                <data android:scheme="CALLBACK_SCHEME" />
+                <data android:scheme="example" />
             </intent-filter>
         </activity>
         <!-- Don't delete the meta-data below.

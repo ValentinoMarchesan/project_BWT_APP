@@ -1,7 +1,10 @@
+import 'package:fitbitter/fitbitter.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:project/pages/homepage.dart';
 import 'package:flutter_login/flutter_login.dart';
+
+import '../utils/strings.dart';
 
 class LoginPage extends StatelessWidget {
   //const LoginPage({Key? key}) : super(key: key);
