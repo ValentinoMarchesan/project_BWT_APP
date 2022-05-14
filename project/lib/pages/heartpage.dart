@@ -49,7 +49,9 @@ class HeartPage extends StatelessWidget {
 
           //Using them
           // Use them as you want
-          final snackBar = SnackBar(content: Text(' ${fitbitHeartData[0]} '));
+          final snackBar = SnackBar(
+              content: Text(
+                  ' ${fitbitHeartData[0]} ')); //fitbitHeartData[0].---- printo solo quel dato della lista
           ScaffoldMessenger.of(context).showSnackBar(snackBar);
           print(fitbitHeartData);
         },
