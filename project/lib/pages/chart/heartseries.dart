@@ -11,4 +11,7 @@ class HeartSeries {
     required this.min,
     required this.color,
   });
+
+  static HeartSeries empty() => HeartSeries(
+      status: '', min: 0, color: charts.ColorUtil.fromDartColor(Colors.white));
 }
