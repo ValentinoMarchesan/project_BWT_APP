@@ -1,3 +1,4 @@
+import 'package:fitbitter/fitbitter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:project/models/CustomCard.dart';
@@ -8,6 +9,7 @@ import 'package:project/pages/loginPage.dart';
 import 'package:project/pages/profilePage.dart';
 import 'package:project/pages/sleeppage.dart';
 import 'package:project/pages/steppage.dart';
+import 'package:project/utils/strings.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
 import 'package:water_drop_nav_bar/water_drop_nav_bar.dart';
 
@@ -80,28 +82,36 @@ class _HomePageState extends State<HomePage> {
                   SizedBox(
                     height: 5,
                   ),
+                  //_______________________________________________________________________
+                  //________________________________________________________________________
+                  /*
+                  ElevatedButton(
+                    onPressed: () async {
+                      // Authorize the app
+                      String? userId = await FitbitConnector.authorize(
+                          context: context,
+                          clientID: Strings.fitbitClientID,
+                          clientSecret: Strings.fitbitClientSecret,
+                          redirectUri: Strings.fitbitRedirectUri,
+                          callbackUrlScheme: Strings.fitbitCallbackScheme);
+                    },
+                    child: Text('Tap to authorize'),
+                  ),
+                  */
+
+                  //_______________________________________________________________________
+                  //________________________________________________________________________
                 ],
               ),
             ),
 //______________________________________________________________________________
 //_________________  FINE HOMEPAGE    __________________________________________
-//_______________ CONTAINER TRAININGPAGE _______________________________________
+//_______________ CONTAINER ACTIVITY _______________________________________
 //______________________________________________________________________________
             Container(
               alignment: Alignment.center,
               child: Center(
-                child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Container(
-                        child: Text('GAMEPAGE'),
-                      ),
-                      Icon(
-                        Icons.fitness_center_sharp,
-                        size: 56,
-                        color: Colors.red[400],
-                      ),
-                    ]),
+                child: ActivityPage(),
               ),
             ),
 //______________________________________________________________________________

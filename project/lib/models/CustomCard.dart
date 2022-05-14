@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:project/pages/activitypage.dart';
+import 'package:project/pages/caloriespage.dart';
 import 'package:project/pages/heartpage.dart';
 import 'package:project/pages/sleeppage.dart';
 import 'package:project/pages/steppage.dart';
@@ -335,12 +336,12 @@ class CardActivity extends StatelessWidget {
                 SizedBox(
                   width: 10,
                 ),
-                Icon(Icons.fitness_center),
+                Icon(Icons.no_meals),
                 SizedBox(
                   height: 1,
                   width: 10,
                 ),
-                Text('ACTIVITY'),
+                Text('CALORIES'),
                 SizedBox(
                   width: 230,
                 ),
@@ -360,7 +361,7 @@ class CardActivity extends StatelessWidget {
                     width: 200,
                     height: 100,
                     child: InkWell(
-                      onTap: () => _toActivityPage(context),
+                      onTap: () => _toCaloriesPage(context),
                     ),
                     fit: BoxFit.cover,
                   ),
@@ -397,7 +398,7 @@ class CardActivity extends StatelessWidget {
     );
   }
 
-  void _toActivityPage(BuildContext context) {
-    Navigator.pushNamed(context, ActivityPage.route);
+  void _toCaloriesPage(BuildContext context) {
+    Navigator.pushNamed(context, CaloriesPage.route);
   }
 }

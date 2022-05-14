@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:project/models/walk.dart';
 import 'package:project/pages/activitypage.dart';
+import 'package:project/pages/caloriespage.dart';
 import 'package:project/pages/classes/UserPreferences.dart';
 import 'package:project/pages/editProfilePage.dart';
 import 'package:project/pages/heartpage.dart';
@@ -60,6 +61,10 @@ class MyApp extends StatelessWidget {
           } else if (settings.name == ActivityPage.route) {
             return MaterialPageRoute(builder: (context) {
               return ActivityPage();
+            });
+          } else if (settings.name == CaloriesPage.route) {
+            return MaterialPageRoute(builder: (context) {
+              return CaloriesPage();
             });
           } else if (settings.name == EditprofilePage.route) {
             return MaterialPageRoute(builder: (context) {
