@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:project/pages/chart/heart_chart.dart';
 import 'package:project/utils/strings.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
-
 import 'chart/step_chart.dart';
 
 class HeartPage extends StatelessWidget {
@@ -53,7 +52,7 @@ class HeartPage extends StatelessWidget {
           ScaffoldMessenger.of(context).showSnackBar(snackBar);
           print(fitbitHeartData);
         },
-        child: Text('fetch data'),
+        child: Text('Tap to authorize and fetch data'),
       ),
     );
   } //build
