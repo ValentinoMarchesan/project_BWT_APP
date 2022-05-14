@@ -84,9 +84,9 @@ class _HeartPageState extends State<HeartPage> {
           final fitbitHeartData = await fitbitHeartDataManager
               .fetch(fitbitHeartApiUrl) as List<FitbitHeartData>;
           flag = 1;
-          setState(() {
-            HeartPage();
-          });
+          // setState(() {
+          //  HeartPage();
+          //   });
           //Using them
           // Use them as you want
           final snackBar = SnackBar(content: Text(' ${fitbitHeartData[0]} '));
