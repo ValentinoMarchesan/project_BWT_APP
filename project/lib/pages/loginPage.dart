@@ -1,16 +1,41 @@
 import 'package:fitbitter/fitbitter.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:project/pages/authpage.dart';
 import 'package:project/pages/homepage.dart';
 import 'package:flutter_login/flutter_login.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../utils/strings.dart';
 
-class LoginPage extends StatelessWidget {
-  //const LoginPage({Key? key}) : super(key: key);
-  String email = 'bug@expert.com';
+class LoginPage extends StatefulWidget {
+  const LoginPage({Key? key}) : super(key: key);
   static const route = '/';
   static const routename = 'LoginPage';
+
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  //const LoginPage({Key? key}) : super(key: key);
+  String email = 'bug@expert.com';
+
+  void initState() {
+    super.initState();
+    //check if the user is already Logged in before rendering the loginpage
+    _checkLogin();
+  } //initstate
+
+  void _checkLogin() async {
+    //get the sharedpreferences instance and check
+    final sp = await SharedPreferences.getInstance();
+    //if username is set push homepage
+    if (sp.getString('username') != null) {
+      Navigator.of(context).pushReplacementNamed(HomePage.route);
+    }
+  }
+
   final inputBorder = BorderRadius.vertical(
     bottom: Radius.circular(10.0),
     top: Radius.circular(20.0),
@@ -18,20 +43,25 @@ class LoginPage extends StatelessWidget {
 
   Future<String> _loginUser(LoginData data) async {
     if (data.name == email && data.password == '0000') {
+      final sp = await SharedPreferences.getInstance();
+      sp.setString('username', data.name);
       return '';
     } else {
       return 'Oops! We could not find matching credentials';
     }
-  } // _loginUser
+  }
 
+  // _loginUser
   Future<String> _signUpUser(SignupData data) async {
     return 'To be implemented';
-  } // _signUpUser
+  }
 
+  // _signUpUser
   Future<String> _recoverPassword(String email) async {
     return 'Recover password functionality needs to be implemented';
-  } // _recoverPassword
+  }
 
+  // _recoverPassword
   @override
   Widget build(BuildContext context) {
     return FlutterLogin(
@@ -41,7 +71,7 @@ class LoginPage extends StatelessWidget {
       onSignup: _signUpUser,
       onRecoverPassword: _recoverPassword,
       onSubmitAnimationCompleted: () async {
-        Navigator.of(context).pushReplacementNamed(HomePage.route);
+        Navigator.of(context).pushReplacementNamed(AuthPage.route);
       },
       theme: LoginTheme(
         primaryColor: Color.fromARGB(

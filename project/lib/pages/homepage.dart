@@ -1,4 +1,3 @@
-import 'package:fitbitter/fitbitter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:project/models/CustomCard.dart';
@@ -15,7 +14,7 @@ import 'package:water_drop_nav_bar/water_drop_nav_bar.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
-  static const route = '/home/';
+  static const route = '/Auth/home/';
   static const routename = 'Homepage';
 
   @override

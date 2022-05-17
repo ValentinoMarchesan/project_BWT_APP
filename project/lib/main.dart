@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:project/models/walk.dart';
 import 'package:project/pages/activitypage.dart';
+import 'package:project/pages/authpage.dart';
 import 'package:project/pages/caloriespage.dart';
 import 'package:project/pages/classes/UserPreferences.dart';
 import 'package:project/pages/editProfilePage.dart';
@@ -85,6 +86,10 @@ class MyApp extends StatelessWidget {
           } else if (settings.name == StepPage.route) {
             return MaterialPageRoute(builder: (context) {
               return StepPage();
+            });
+          } else if (settings.name == AuthPage.route) {
+            return MaterialPageRoute(builder: (context) {
+              return AuthPage();
             });
           } else if (settings.name == WalkPage.route) {
             // Walk p. --> mettendolo così come nel lab, non mi dà errore
