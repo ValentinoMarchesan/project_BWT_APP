@@ -7,6 +7,7 @@ import 'package:project/pages/chart/heartseries.dart';
 
 import 'package:project/utils/strings.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
+import 'package:shared_preferences/shared_preferences.dart';
 
 class HeartPage extends StatefulWidget {
   static const route = '/home/heart';
@@ -68,13 +69,16 @@ class _HeartPageState extends State<HeartPage> {
       ),
       bottomNavigationBar: ElevatedButton(
         onPressed: () async {
+          final sp = await SharedPreferences.getInstance();
           // Authorize the app
+          /*
           String? userId = await FitbitConnector.authorize(
               context: context,
               clientID: Strings.fitbitClientID,
               clientSecret: Strings.fitbitClientSecret,
               redirectUri: Strings.fitbitRedirectUri,
               callbackUrlScheme: Strings.fitbitCallbackScheme);
+              */
 
           //STEP1: Instanciate a menager
           FitbitHeartDataManager fitbitHeartDataManager =
@@ -86,7 +90,7 @@ class _HeartPageState extends State<HeartPage> {
           //STEP2: Create the request url
           FitbitHeartAPIURL fitbitHeartApiUrl = FitbitHeartAPIURL.dayWithUserID(
             date: DateTime.now().subtract(Duration(days: 1)),
-            userID: userId,
+            userID: sp.getString('userid'),
           );
 
           //STEP3: Get the data
@@ -102,7 +106,7 @@ class _HeartPageState extends State<HeartPage> {
           ScaffoldMessenger.of(context).showSnackBar(snackBar);
           print(fitbitHeartData[0].minutesOutOfRange);
         },
-        child: Text('Tap to authorize and fetch data'),
+        child: Text('tap to fetch data'),
       ),
       body: Center(
         child: HeartChart(
