@@ -9,8 +9,6 @@ import 'package:project/utils/strings.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
 
 class HeartPage extends StatefulWidget {
-  HeartPage({Key? key}) : super(key: key);
-
   static const route = '/home/heart';
   static const routename = 'Heart Page';
 
@@ -20,35 +18,46 @@ class HeartPage extends StatefulWidget {
   State<HeartPage> createState() => _HeartPageState();
 
   static List<HeartSeries> marameo(int flag) {
-    List<HeartSeries> data = [];
-    List<HeartSeries> empty = [];
+    List<HeartSeries> data;
 
     if (flag == 1) {
       return data = [
         HeartSeries(
             status: 'Out of Range',
-            min: fitbitHeartData[0].minutesOutOfRange,
+            // min: fitbitHeartData[0].minutesOutOfRange,
+            min: 5,
             color: charts.ColorUtil.fromDartColor(Colors.red)),
         HeartSeries(
             status: 'Fat Burn',
-            min: fitbitHeartData[0].minutesFatBurn,
-            color: charts.ColorUtil.fromDartColor(Colors.white)),
+            // min: fitbitHeartData[0].minutesFatBurn,
+            min: 6,
+            color: charts.ColorUtil.fromDartColor(Colors.orangeAccent)),
         HeartSeries(
             status: 'Cardio',
-            min: fitbitHeartData[0].minutesCardio,
+            // min: fitbitHeartData[0].minutesCardio,
+            min: 8,
             color: charts.ColorUtil.fromDartColor(Colors.black12)),
         HeartSeries(
             status: 'Peak',
-            min: fitbitHeartData[0].minutesPeak,
+            //min: fitbitHeartData[0].minutesPeak,
+            min: 9,
             color: charts.ColorUtil.fromDartColor(Colors.blue))
       ];
     } else
-      return empty = [HeartSeries.empty()];
+      return data = [HeartSeries.empty()];
   }
 }
 
 class _HeartPageState extends State<HeartPage> {
-  int flag = 0;
+  late List<HeartSeries> data;
+  late int flag;
+
+  @override
+  void initState() {
+    super.initState();
+    flag = 0;
+    data = HeartPage.marameo(flag);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -83,12 +92,12 @@ class _HeartPageState extends State<HeartPage> {
           //STEP3: Get the data
           final fitbitHeartData = await fitbitHeartDataManager
               .fetch(fitbitHeartApiUrl) as List<FitbitHeartData>;
-          flag = 1;
-          // setState(() {
-          //  HeartPage();
-          //   });
-          //Using them
-          // Use them as you want
+          setState(() {
+            // we recreate the build method
+            flag = 1;
+            data = HeartPage.marameo(flag);
+          });
+
           final snackBar = SnackBar(content: Text(' ${fitbitHeartData[0]} '));
           ScaffoldMessenger.of(context).showSnackBar(snackBar);
           print(fitbitHeartData[0].minutesOutOfRange);
@@ -97,7 +106,7 @@ class _HeartPageState extends State<HeartPage> {
       ),
       body: Center(
         child: HeartChart(
-          data: HeartPage.marameo(flag),
+          data: data,
         ),
       ),
     );
