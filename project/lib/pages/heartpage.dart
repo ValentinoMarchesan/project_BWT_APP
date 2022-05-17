@@ -5,6 +5,7 @@ import 'package:project/pages/chart/heart_chart.dart';
 import 'package:project/utils/strings.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
 import 'chart/step_chart.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class HeartPage extends StatelessWidget {
   HeartPage({Key? key}) : super(key: key);
@@ -21,13 +22,16 @@ class HeartPage extends StatelessWidget {
       ),
       bottomNavigationBar: ElevatedButton(
         onPressed: () async {
+          final sp = await SharedPreferences.getInstance();
           // Authorize the app
+          /*
           String? userId = await FitbitConnector.authorize(
               context: context,
               clientID: Strings.fitbitClientID,
               clientSecret: Strings.fitbitClientSecret,
               redirectUri: Strings.fitbitRedirectUri,
               callbackUrlScheme: Strings.fitbitCallbackScheme);
+              */
 
           //STEP1: Instanciate a menager
           FitbitHeartDataManager fitbitHeartDataManager =
@@ -39,7 +43,7 @@ class HeartPage extends StatelessWidget {
           //STEP2: Create the request url
           FitbitHeartAPIURL fitbitHeartApiUrl = FitbitHeartAPIURL.dayWithUserID(
             date: DateTime.now(),
-            userID: userId,
+            userID: sp.getString('userid'),
           );
 
           //STEP3: Get the data
@@ -52,7 +56,7 @@ class HeartPage extends StatelessWidget {
           ScaffoldMessenger.of(context).showSnackBar(snackBar);
           print(fitbitHeartData);
         },
-        child: Text('Tap to authorize and fetch data'),
+        child: Text('tap to fetch data'),
       ),
     );
   } //build
