@@ -17,47 +17,16 @@ class HeartPage extends StatefulWidget {
 
   @override
   State<HeartPage> createState() => _HeartPageState();
-
-  static List<HeartSeries> marameo(int flag) {
-    List<HeartSeries> data;
-
-    if (flag == 1) {
-      return data = [
-        HeartSeries(
-            status: 'Out of Range',
-            // min: fitbitHeartData[0].minutesOutOfRange,
-            min: 5,
-            color: charts.ColorUtil.fromDartColor(Colors.red)),
-        HeartSeries(
-            status: 'Fat Burn',
-            // min: fitbitHeartData[0].minutesFatBurn,
-            min: 6,
-            color: charts.ColorUtil.fromDartColor(Colors.orangeAccent)),
-        HeartSeries(
-            status: 'Cardio',
-            // min: fitbitHeartData[0].minutesCardio,
-            min: 8,
-            color: charts.ColorUtil.fromDartColor(Colors.black12)),
-        HeartSeries(
-            status: 'Peak',
-            //min: fitbitHeartData[0].minutesPeak,
-            min: 9,
-            color: charts.ColorUtil.fromDartColor(Colors.blue))
-      ];
-    } else
-      return data = [HeartSeries.empty()];
-  }
 }
 
 class _HeartPageState extends State<HeartPage> {
   late List<HeartSeries> data;
-  late int flag;
+  // late int flag;
 
   @override
   void initState() {
     super.initState();
-    flag = 0;
-    data = HeartPage.marameo(flag);
+    data = [HeartSeries.empty()];
   }
 
   @override
@@ -70,15 +39,6 @@ class _HeartPageState extends State<HeartPage> {
       bottomNavigationBar: ElevatedButton(
         onPressed: () async {
           final sp = await SharedPreferences.getInstance();
-          // Authorize the app
-          /*
-          String? userId = await FitbitConnector.authorize(
-              context: context,
-              clientID: Strings.fitbitClientID,
-              clientSecret: Strings.fitbitClientSecret,
-              redirectUri: Strings.fitbitRedirectUri,
-              callbackUrlScheme: Strings.fitbitCallbackScheme);
-              */
 
           //STEP1: Instanciate a menager
           FitbitHeartDataManager fitbitHeartDataManager =
@@ -89,25 +49,40 @@ class _HeartPageState extends State<HeartPage> {
 
           //STEP2: Create the request url
           FitbitHeartAPIURL fitbitHeartApiUrl = FitbitHeartAPIURL.dayWithUserID(
-            date: DateTime.now().subtract(Duration(days: 1)),
+            date: DateTime.now(),
             userID: sp.getString('userid'),
           );
 
           //STEP3: Get the data
           final fitbitHeartData = await fitbitHeartDataManager
               .fetch(fitbitHeartApiUrl) as List<FitbitHeartData>;
-          setState(() {
-            // we recreate the build method
-            flag = 1;
-            data = HeartPage.marameo(flag);
-          });
 
           final snackBar = SnackBar(content: Text(' ${fitbitHeartData[0]} '));
 
           ScaffoldMessenger.of(context).showSnackBar(snackBar);
           print(fitbitHeartData[0].minutesOutOfRange);
+
+          setState(() {
+            // we recreate the build method
+            // flag = 1;
+            // data = HeartPage.marameo(flag);
+            data = [
+              HeartSeries.creation(
+                  'Out of Range',
+                  fitbitHeartData[0].minutesOutOfRange,
+                  charts.ColorUtil.fromDartColor(Colors.red)),
+              HeartSeries.creation(
+                  'Fat Burn',
+                  fitbitHeartData[0].minutesFatBurn,
+                  charts.ColorUtil.fromDartColor(Colors.orangeAccent)),
+              HeartSeries.creation('Cardio', fitbitHeartData[0].minutesCardio,
+                  charts.ColorUtil.fromDartColor(Colors.black12)),
+              HeartSeries.creation('Peak', fitbitHeartData[0].minutesPeak,
+                  charts.ColorUtil.fromDartColor(Colors.blue))
+            ];
+          });
         },
-        child: Text('tap to fetch data'),
+        child: Text('tap to fetch today hearth data'),
       ),
       body: Center(
         child: HeartChart(
