@@ -7,11 +7,31 @@ import 'package:project/utils/strings.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class AuthPage extends StatelessWidget {
+class AuthPage extends StatefulWidget {
   AuthPage({Key? key}) : super(key: key);
 
   static const route = '/login/';
   static const routename = 'AuthPage';
+
+  @override
+  State<AuthPage> createState() => _AuthPageState();
+}
+
+class _AuthPageState extends State<AuthPage> {
+  void initState() {
+    super.initState();
+    //check if the user is already Logged in before rendering the loginpage
+    _checkLogin();
+  } //initstate
+
+  void _checkLogin() async {
+    //get the sharedpreferences instance and check
+    final sp = await SharedPreferences.getInstance();
+    //if username is set push homepage
+    if (sp.getString('username') != null && sp.getBool('confirm') == true) {
+      Navigator.of(context).pushReplacementNamed(HomePage.route);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +53,11 @@ class AuthPage extends StatelessWidget {
               radius: const BorderRadius.all(Radius.circular(30)),
               color: Colors.orangeAccent,
               child: Text('No'),
-              onPressed: () => _toLoginPage(context),
+              onPressed: () async {
+                _toLoginPage(context);
+                final sp = await SharedPreferences.getInstance();
+                sp.setBool('confirm', false);
+              },
             ),
             DialogButton(
               radius: const BorderRadius.all(Radius.circular(30)),
@@ -48,6 +72,8 @@ class AuthPage extends StatelessWidget {
                     callbackUrlScheme: Strings.fitbitCallbackScheme);
                 final sp = await SharedPreferences.getInstance();
                 sp.setString('userid', userId!);
+                sp.setBool('confirm', true);
+
                 Navigator.of(context).pushReplacementNamed(HomePage.route);
               },
             )

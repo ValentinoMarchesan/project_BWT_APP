@@ -21,21 +21,6 @@ class _LoginPageState extends State<LoginPage> {
   //const LoginPage({Key? key}) : super(key: key);
   String email = 'bug@expert.com';
 
-  void initState() {
-    super.initState();
-    //check if the user is already Logged in before rendering the loginpage
-    _checkLogin();
-  } //initstate
-
-  void _checkLogin() async {
-    //get the sharedpreferences instance and check
-    final sp = await SharedPreferences.getInstance();
-    //if username is set push homepage
-    if (sp.getString('username') != null) {
-      Navigator.of(context).pushReplacementNamed(HomePage.route);
-    }
-  }
-
   final inputBorder = BorderRadius.vertical(
     bottom: Radius.circular(10.0),
     top: Radius.circular(20.0),

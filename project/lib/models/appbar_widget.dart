@@ -74,6 +74,7 @@ void _toLoginPage(BuildContext context) async {
       clientSecret: Strings.fitbitClientSecret);
   final sp = await SharedPreferences.getInstance();
   sp.remove('username');
+  sp.setBool('confirm', false);
   Navigator.of(context).pushReplacementNamed(LoginPage.route);
   //Navigator.pushNamed(context, LoginPage.route);
 }
