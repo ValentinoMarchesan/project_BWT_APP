@@ -75,7 +75,7 @@ class _HomePageState extends State<HomePage> {
                     height: 5,
                   ),
 //_________________________ ACTIVITY CARD ______________________________________
-                  CardActivity(),
+                  Cardbmi(),
 //_________________________ FINE ACTIVITY CARD _________________________________
 
                   SizedBox(
