@@ -20,7 +20,9 @@ class HeartPage extends StatefulWidget {
 }
 
 class _HeartPageState extends State<HeartPage> {
+  //static late SharedPreferences prova;
   late List<HeartSeries> data;
+
   // late int flag;
 
   @override
@@ -38,6 +40,7 @@ class _HeartPageState extends State<HeartPage> {
       ),
       bottomNavigationBar: ElevatedButton(
         onPressed: () async {
+         // prova = await SharedPreferences.getInstance();
           final sp = await SharedPreferences.getInstance();
 
           //STEP1: Instanciate a menager
@@ -49,9 +52,9 @@ class _HeartPageState extends State<HeartPage> {
 
           //STEP2: Create the request url
           FitbitHeartAPIURL fitbitHeartApiUrl = FitbitHeartAPIURL.dayWithUserID(
-            date: DateTime.now(),
-            userID: sp.getString('userid'),
-          );
+              date: DateTime.now(),
+              userID: sp.getString('userid'));
+             // userID: prova.getString('userid'));
 
           //STEP3: Get the data
           final fitbitHeartData = await fitbitHeartDataManager
