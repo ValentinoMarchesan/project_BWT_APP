@@ -1,20 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:project/models/walk.dart';
-import 'package:project/pages/activitypage.dart';
+import 'package:project/pages/annotationpage.dart';
 import 'package:project/pages/authpage.dart';
 import 'package:project/pages/bmipage.dart';
 import 'package:project/pages/classes/UserPreferences.dart';
+import 'package:project/pages/diarypage.dart';
 import 'package:project/pages/editProfilePage.dart';
 import 'package:project/pages/heartpage.dart';
 import 'package:project/pages/homepage.dart';
 import 'package:project/pages/loginPage.dart';
 import 'package:project/pages/profilePage.dart';
-
 import 'package:project/pages/sleeppage.dart';
 import 'package:project/pages/steppage.dart';
 import 'package:provider/provider.dart';
-import 'package:project/models/walkDB.dart';
-import 'package:project/pages/walkpage.dart';
+import '../models/annotationDB.dart';
 
 Future main() async {
   //this two lines need to initialized the UserPreferences
@@ -27,9 +25,9 @@ class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider<WalkDB>(
-      //added for walkpage
-      create: (context) => WalkDB(), //added for walkpage
+    return ChangeNotifierProvider<AnnotationDB>(
+      //added for annotationpage
+      create: (context) => AnnotationDB(), //added for annotationpage
       child: MaterialApp(
         initialRoute: LoginPage.route,
 
@@ -59,9 +57,9 @@ class MyApp extends StatelessWidget {
             return MaterialPageRoute(builder: (context) {
               return HomePage();
             });
-          } else if (settings.name == ActivityPage.route) {
+          } else if (settings.name == DiaryPage.route) {
             return MaterialPageRoute(builder: (context) {
-              return ActivityPage();
+              return DiaryPage();
             });
           } else if (settings.name == BmiPage.route) {
             return MaterialPageRoute(builder: (context) {
@@ -91,12 +89,13 @@ class MyApp extends StatelessWidget {
             return MaterialPageRoute(builder: (context) {
               return AuthPage();
             });
-          } else if (settings.name == WalkPage.route) {
+          } else if (settings.name == AnnotationPage.route) {
             // Walk p. --> mettendolo così come nel lab, non mi dà errore
             final args = settings.arguments as Map;
             return MaterialPageRoute(builder: (context) {
-              return WalkPage(
-                  walkIndex: args['walkIndex'], walkDB: args['walkDB']);
+              return AnnotationPage(
+                  annotationIndex: args['annotationIndex'],
+                  annotationDB: args['annotationDB']);
             });
           } else {
             return null;

@@ -15,7 +15,8 @@ class FormTextTile extends ListTile {
   Widget build(BuildContext context) {
     Size screenSize = MediaQuery.of(context).size;
     return ListTile(
-      leading: Icon(icon, color: Theme.of(context).accentColor),
+      leading: Icon(icon,
+          color: Colors.orange), //color: Theme.of(context).accentColor),
       title: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
@@ -26,9 +27,9 @@ class FormTextTile extends ListTile {
               validator: (value) => value == "" ? 'Must not be empty.' : null,
               keyboardType: TextInputType.text,
               decoration: InputDecoration(
-                labelText: labelText,
-                focusColor: Theme.of(context).accentColor,
-              ),
+                  labelText: labelText,
+                  focusColor: Colors.orange //Theme.of(context).accentColor,
+                  ),
             ),
           ),
         ],
@@ -51,7 +52,8 @@ class FormNumberTile extends ListTile {
   Widget build(BuildContext context) {
     Size screenSize = MediaQuery.of(context).size;
     return ListTile(
-      leading: Icon(icon, color: Theme.of(context).accentColor),
+      leading: Icon(icon,
+          color: Colors.orange), //color: Theme.of(context).accentColor),
       title: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
@@ -69,8 +71,9 @@ class FormNumberTile extends ListTile {
               },
               keyboardType: TextInputType.numberWithOptions(signed: true),
               decoration: InputDecoration(
-                labelText: labelText,
-              ),
+                  labelText: labelText,
+                  focusColor: Colors.orange //Theme.of(context).accentColor,
+                  ),
             ),
           ),
         ],
@@ -100,7 +103,10 @@ class FormDateTile extends ListTile {
   Widget build(BuildContext context) {
     Size screenSize = MediaQuery.of(context).size;
     return ListTile(
-      leading: Icon(icon, color: Theme.of(context).accentColor),
+      leading: Icon(
+        icon,
+        color: Colors.orange,
+      ),
       title: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[

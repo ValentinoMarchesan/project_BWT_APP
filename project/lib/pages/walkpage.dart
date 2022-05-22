@@ -32,6 +32,7 @@ class _WalkPageState extends State<WalkPage> {
 
   //Variables that maintain the current form fields values in memory.
   TextEditingController _kmController = TextEditingController();
+  TextEditingController _litriController = TextEditingController();
   DateTime _selectedDate = DateTime.now();
 
   //Here, we are using initState() to initialize the form fields values.
@@ -45,6 +46,9 @@ class _WalkPageState extends State<WalkPage> {
     _selectedDate = widget.walkIndex == -1
         ? DateTime.now()
         : widget.walkDB.walks[widget.walkIndex].dateTime;
+    _litriController.text = widget.walkIndex == -1
+        ? ''
+        : widget.walkDB.walks[widget.walkIndex].litri.toString();
     super.initState();
   } // initState
 
@@ -52,6 +56,7 @@ class _WalkPageState extends State<WalkPage> {
   @override
   void dispose() {
     _kmController.dispose();
+    _litriController.dispose();
     super.dispose();
   } // dispose
 
@@ -111,6 +116,12 @@ class _WalkPageState extends State<WalkPage> {
               },
               dateFormat: Formats.fullDateFormatNoSeconds,
             ),
+            FormSeparator(label: 'Litri bevuti'),
+            FormNumberTile(
+              labelText: 'Litri',
+              controller: _litriController,
+              icon: MdiIcons.walk,
+            ),
           ],
         ),
       ),
@@ -148,8 +159,10 @@ class _WalkPageState extends State<WalkPage> {
   //Utility method that validate the form and, if it is valid, save the new meal information.
   void _validateAndSave(BuildContext context) {
     if (formKey.currentState!.validate()) {
-      Walk newWalk =
-          Walk(km: double.parse(_kmController.text), dateTime: _selectedDate);
+      Walk newWalk = Walk(
+          km: double.parse(_kmController.text),
+          dateTime: _selectedDate,
+          litri: int.parse(_litriController.text));
       widget.walkIndex == -1
           ? widget.walkDB.addWalk(newWalk)
           : widget.walkDB.editWalk(widget.walkIndex, newWalk);

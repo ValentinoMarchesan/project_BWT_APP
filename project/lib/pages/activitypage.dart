@@ -41,7 +41,8 @@ class ActivityPage extends StatelessWidget {
                         child: ListTile(
                           leading: Icon(MdiIcons.walk),
                           trailing: Icon(MdiIcons.noteEdit),
-                          title: Text('Metri : ${walkDB.walks[walkIndex].km}'),
+                          title: Text(
+                              'Metri : ${walkDB.walks[walkIndex].km}, Litri: ${walkDB.walks[walkIndex].litri}'),
                           subtitle: Text(
                               '${Formats.fullDateFormatNoSeconds.format(walkDB.walks[walkIndex].dateTime)}'),
                           //When a ListTile is tapped, the user is redirected to the WalkPage, where it will be able to edit it.

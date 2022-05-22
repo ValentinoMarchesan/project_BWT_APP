@@ -12,6 +12,8 @@ import 'package:project/utils/strings.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
 import 'package:water_drop_nav_bar/water_drop_nav_bar.dart';
 
+import 'diarypage.dart';
+
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
   static const route = '/Auth/home/';
@@ -110,7 +112,7 @@ class _HomePageState extends State<HomePage> {
             Container(
               alignment: Alignment.center,
               child: Center(
-                child: ActivityPage(),
+                child: DiaryPage(),
               ),
             ),
 //______________________________________________________________________________
@@ -190,16 +192,15 @@ class _HomePageState extends State<HomePage> {
                 outlinedIcon: Icons.home_rounded,
               ),
               BarItem(
-                  filledIcon: Icons.fitness_center_rounded,
-                  outlinedIcon: Icons.fitness_center_rounded),
+                  filledIcon: Icons.history_edu,
+                  outlinedIcon: Icons.history_edu),
               BarItem(
                 filledIcon: Icons.gamepad_rounded,
                 outlinedIcon: Icons.gamepad_rounded,
               ),
               BarItem(
-                filledIcon: Icons.account_box_rounded,
-                outlinedIcon: Icons.account_box_rounded,
-              ),
+                  filledIcon: Icons.account_circle,
+                  outlinedIcon: Icons.account_circle),
             ],
           ),
         ),
