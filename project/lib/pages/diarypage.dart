@@ -50,7 +50,7 @@ class DiaryPage extends StatelessWidget {
                           ),
                           trailing: Icon(MdiIcons.noteEdit),
                           title: Text(
-                            '\nWater intake (ml): ${annotationDB.annotations[annotationIndex].ml} \n\nMeditation (min): ${annotationDB.annotations[annotationIndex].min} \n\nMood: \n',
+                            '\nWater intake (ml): ${annotationDB.annotations[annotationIndex].ml} \n\nMeditation (min): ${annotationDB.annotations[annotationIndex].min} \n\nMood: ${annotationDB.annotations[annotationIndex].mood}\n',
                           ),
                           subtitle: Text(
                               '${Formats.fullDateFormatNoSeconds.format(annotationDB.annotations[annotationIndex].dateTime)}'),

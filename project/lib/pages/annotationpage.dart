@@ -24,17 +24,18 @@ class AnnotationPage extends StatefulWidget {
   static const routeDisplayName = 'Annotation';
 
   @override
-  State<AnnotationPage> createState() => _AnnotationageState();
+  State<AnnotationPage> createState() => _AnnotationState();
 } // AnnotationPage
 
 // Class that manages the state of AnnotationPage
-class _AnnotationageState extends State<AnnotationPage> {
+class _AnnotationState extends State<AnnotationPage> {
   final formKey = GlobalKey<
       FormState>(); // Form globalkey: this is required to validate the form fields.
 
   // Variables that maintain the current form fields values in memory.
   TextEditingController _minController = TextEditingController();
   TextEditingController _mlController = TextEditingController();
+  TextEditingController _moodController = TextEditingController();
   DateTime _selectedDate = DateTime.now();
 
   // Here, we are using initState() to initialize the form fields values.
@@ -49,6 +50,10 @@ class _AnnotationageState extends State<AnnotationPage> {
     _mlController.text = widget.annotationIndex == -1
         ? ''
         : widget.annotationDB.annotations[widget.annotationIndex].ml.toString();
+    _moodController.text = widget.annotationIndex == -1
+        ? ''
+        : widget.annotationDB.annotations[widget.annotationIndex].mood
+            .toString();
     _selectedDate = widget.annotationIndex == -1
         ? DateTime.now()
         : widget.annotationDB.annotations[widget.annotationIndex].dateTime;
@@ -60,6 +65,7 @@ class _AnnotationageState extends State<AnnotationPage> {
   void dispose() {
     _minController.dispose(); //dispose i min (di meditazione)
     _mlController.dispose(); //dispose i ml (idratazione)
+    _moodController.dispose();
     super.dispose();
   } // dispose
 
@@ -117,6 +123,12 @@ class _AnnotationageState extends State<AnnotationPage> {
               controller: _mlController,
               icon: MdiIcons.water,
             ),
+            FormSeparator(label: 'Mood'),
+            FormTextTile(
+              labelText: 'Mood',
+              icon: MdiIcons.stickerEmoji,
+              controller: _moodController,
+            ),
             FormSeparator(label: 'Current date and time'),
             FormDateTile(
               labelText: 'Date and time',
@@ -167,6 +179,7 @@ class _AnnotationageState extends State<AnnotationPage> {
       Annotation newAnnotation = Annotation(
         min: int.parse(_minController.text),
         ml: int.parse(_mlController.text),
+        mood: _moodController.text,
         dateTime: _selectedDate,
       );
       widget.annotationIndex == -1
@@ -183,4 +196,4 @@ class _AnnotationageState extends State<AnnotationPage> {
     Navigator.pop(context);
   } //_deleteAndPop
 
-} //WalkPage
+} //Annotation State
