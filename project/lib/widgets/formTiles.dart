@@ -170,7 +170,7 @@ class DropdownButtonTileNumber extends ListTile {
   } // build
 } // DropdownButtonTileNumber
 
-///Class that implement a custom-made [//ListTile] to manage dropdown menus containing strings in a [//Form].
+///Class that implement a custom-made [//ListTile]  menus containito manage dropdownng strings in a [//Form].
 ///You must provide a label that is shown as helper, the value to show, the items to show, a callback to define the behaviour of the field when it changes, and an icon.
 ///The [//DropdownButtonTileString] content is always valid since it is guaranteed by the fact that the values it can assumes are provided by the user.
 class DropdownButtonTileString extends ListTile {

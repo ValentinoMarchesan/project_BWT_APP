@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:project/models/CustomCard.dart';
 import 'package:project/models/homecard.dart';
-import 'package:project/pages/activitypage.dart';
 import 'package:project/pages/heartpage.dart';
 import 'package:project/pages/loginPage.dart';
 import 'package:project/pages/profilePage.dart';

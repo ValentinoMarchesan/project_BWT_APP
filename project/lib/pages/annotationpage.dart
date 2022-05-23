@@ -111,17 +111,17 @@ class _AnnotationState extends State<AnnotationPage> {
         padding: const EdgeInsets.only(top: 10, bottom: 8, left: 20, right: 20),
         child: ListView(
           children: <Widget>[
-            FormSeparator(label: 'Meditation'),
-            FormNumberTile(
-              labelText: 'min',
-              controller: _minController,
-              icon: MdiIcons.meditation,
-            ),
             FormSeparator(label: 'Water intake'),
             FormNumberTile(
               labelText: 'ml',
               controller: _mlController,
               icon: MdiIcons.water,
+            ),
+            FormSeparator(label: 'Meditation'),
+            FormNumberTile(
+              labelText: 'min',
+              controller: _minController,
+              icon: MdiIcons.meditation,
             ),
             FormSeparator(label: 'Mood'),
             FormTextTile(
@@ -179,7 +179,7 @@ class _AnnotationState extends State<AnnotationPage> {
       Annotation newAnnotation = Annotation(
         min: int.parse(_minController.text),
         ml: int.parse(_mlController.text),
-        mood: _moodController.text,
+        mood: _moodController.text, //!!!
         dateTime: _selectedDate,
       );
       widget.annotationIndex == -1

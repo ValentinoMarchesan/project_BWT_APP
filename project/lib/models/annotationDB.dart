@@ -1,5 +1,4 @@
 import 'package:project/models/annotation.dart';
-import 'package:project/models/walk.dart';
 import 'package:flutter/material.dart';
 
 //This class extends ChangeNotifier.

@@ -47,7 +47,7 @@ class _AuthPageState extends State<AuthPage> {
             style: TextStyle(fontWeight: FontWeight.bold),
           ),
           content: Text(
-              'To continue, you must authorise the sharing of data from fitbit site'),
+              'To continue, you must authorize data sharing from the fitbit site'),
           actions: [
             DialogButton(
               radius: const BorderRadius.all(Radius.circular(30)),

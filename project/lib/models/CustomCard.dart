@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:project/pages/activitypage.dart';
 import 'package:project/pages/bmipage.dart';
 import 'package:project/pages/heartpage.dart';
 import 'package:project/pages/sleeppage.dart';
