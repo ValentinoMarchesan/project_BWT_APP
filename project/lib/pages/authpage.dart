@@ -18,7 +18,9 @@ class AuthPage extends StatefulWidget {
 }
 
 class _AuthPageState extends State<AuthPage> {
-  void initState() {
+  static late SharedPreferences prova;
+  void initState() async {
+    prova = await SharedPreferences.getInstance();
     super.initState();
     //check if the user is already Logged in before rendering the loginpage
     _checkLogin();
@@ -26,8 +28,11 @@ class _AuthPageState extends State<AuthPage> {
 
   void _checkLogin() async {
     //get the sharedpreferences instance and check
-    final sp = await SharedPreferences.getInstance();
+    final sp = await SharedPreferences
+        .getInstance(); //---------------questo commentato
     //if username is set push homepage
+
+    //if (prova.getstring .............)
     if (sp.getString('username') != null && sp.getBool('confirm') == true) {
       Navigator.of(context).pushReplacementNamed(HomePage.route);
     }
@@ -70,8 +75,9 @@ class _AuthPageState extends State<AuthPage> {
                     clientSecret: Strings.fitbitClientSecret,
                     redirectUri: Strings.fitbitRedirectUri,
                     callbackUrlScheme: Strings.fitbitCallbackScheme);
-                final sp = await SharedPreferences.getInstance();
-                sp.setString('userid', userId!);
+                final sp = await SharedPreferences
+                    .getInstance(); //---------questo commentato
+                sp.setString('userid', userId!); //prova.setstring.......
                 sp.setBool('confirm', true);
 
                 Navigator.of(context).pushReplacementNamed(HomePage.route);
