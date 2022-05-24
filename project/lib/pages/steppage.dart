@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
-
-import 'chart/step_chart.dart';
-import 'chart/stepseries.dart';
+import 'package:project/chart/step_chart.dart';
+import 'package:project/chart/stepseries.dart';
 
 class StepPage extends StatelessWidget {
   StepPage({Key? key}) : super(key: key);

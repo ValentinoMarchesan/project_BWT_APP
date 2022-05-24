@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:project/pages/classes/UserPreferences.dart';
-import 'package:project/pages/classes/profile_widget.dart';
+import 'package:project/classes/UserPreferences.dart';
+import 'package:project/classes/profile_widget.dart';
+import 'package:project/classes/user.dart';
+
 import 'package:project/pages/editProfilePage.dart';
 import '../models/appbar_widget.dart';
-import 'classes/user.dart';
 
 class ProfilePage extends StatefulWidget {
   static const route = ' /home/profile';

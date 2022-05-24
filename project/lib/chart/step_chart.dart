@@ -1,22 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
-import 'package:project/pages/chart/stepseries.dart';
-import 'heartseries.dart';
+import 'package:project/chart/stepseries.dart';
 
-class HeartChart extends StatelessWidget {
-  final List<HeartSeries> data;
+class StepChart extends StatelessWidget {
+  final List<StepSeries> data;
 
-  HeartChart({required this.data});
-
+  StepChart({required this.data});
   @override
   Widget build(BuildContext context) {
-    List<charts.Series<HeartSeries, String>> series = [
+    List<charts.Series<StepSeries, String>> series = [
       charts.Series(
-          id: "heart",
+          id: "steps",
           data: data,
-          domainFn: (HeartSeries series, _) => series.status,
-          measureFn: (HeartSeries series, _) => series.min,
-          colorFn: (HeartSeries series, _) => series.color)
+          domainFn: (StepSeries series, _) => series.day,
+          measureFn: (StepSeries series, _) => series.passes,
+          colorFn: (StepSeries series, _) => series.color)
     ];
 
     return Container(
@@ -27,7 +25,7 @@ class HeartChart extends StatelessWidget {
           padding: const EdgeInsets.all(9.0),
           child: Column(
             children: <Widget>[
-              Text("Heart activity in a day",
+              Text("Step in a day",
                   style: Theme.of(context).textTheme.bodyMedium),
               Expanded(
                 child: charts.BarChart(series, animate: true),

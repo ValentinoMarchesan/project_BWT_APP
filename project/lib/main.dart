@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:project/classes/UserPreferences.dart';
 import 'package:project/pages/annotationpage.dart';
 import 'package:project/pages/authpage.dart';
 import 'package:project/pages/bmipage.dart';
-import 'package:project/pages/classes/UserPreferences.dart';
 import 'package:project/pages/diarypage.dart';
 import 'package:project/pages/editProfilePage.dart';
 import 'package:project/pages/heartpage.dart';

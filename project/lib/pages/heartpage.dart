@@ -2,8 +2,8 @@ import 'package:charts_flutter/flutter.dart';
 import 'package:fitbitter/fitbitter.dart';
 
 import 'package:flutter/material.dart';
-import 'package:project/pages/chart/heart_chart.dart';
-import 'package:project/pages/chart/heartseries.dart';
+import 'package:project/chart/heart_chart.dart';
+import 'package:project/chart/heartseries.dart';
 
 import 'package:project/utils/strings.dart';
 import 'package:charts_flutter/flutter.dart' as charts;

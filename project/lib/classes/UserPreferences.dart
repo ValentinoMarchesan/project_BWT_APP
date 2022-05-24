@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:project/pages/classes/user.dart';
+import 'package:project/classes/user.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_login/flutter_login.dart';
 
