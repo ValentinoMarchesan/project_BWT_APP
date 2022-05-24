@@ -34,7 +34,7 @@ dependencies:
   water_drop_nav_bar:
   charts_flutter: ^0.12.0
   google_fonts: ^2.3.1
-  provider: ^6.0.2 #added per walkpage
+  provider: #added per walkpage
   intl: ^0.17.0  #added per walkpage
   rflutter_alert: ^2.0.4
   #persist locally data
@@ -48,6 +48,10 @@ dependencies:
 
   #fitbitter
   fitbitter: ^1.1.1
+
+  #floor
+  floor: ^1.2.0
+  
   
   
   
@@ -63,6 +67,8 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_login:
+  floor_generator: ^1.2.0
+  build_runner: ^2.1.1
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is

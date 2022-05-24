@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:project/classes/UserPreferences.dart';
+import 'package:project/database/database.dart';
+import 'package:project/database/repository/databaseRepository.dart';
 import 'package:project/pages/annotationpage.dart';
 import 'package:project/pages/authpage.dart';
 import 'package:project/pages/bmipage.dart';
@@ -18,7 +20,10 @@ Future main() async {
   //this two lines need to initialized the UserPreferences
   WidgetsFlutterBinding.ensureInitialized();
   await Userpreferences.init();
-  runApp(MyApp());
+
+  runApp(
+    MyApp(),
+  );
 }
 
 class MyApp extends StatelessWidget {
