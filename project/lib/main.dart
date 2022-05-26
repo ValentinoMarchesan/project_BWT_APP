@@ -20,7 +20,7 @@ Future main() async {
   await Userpreferences.init();
 
   runApp(
-    const MyApp(),
+    MyApp(),
   );
 }
 
@@ -54,35 +54,35 @@ class MyApp extends StatelessWidget {
         onGenerateRoute: (settings) {
           if (settings.name == LoginPage.route) {
             return MaterialPageRoute(builder: (context) {
-              return const LoginPage();
+              return LoginPage();
             });
           } else if (settings.name == HomePage.route) {
             return MaterialPageRoute(builder: (context) {
-              return const HomePage();
+              return HomePage();
             });
           } else if (settings.name == DiaryPage.route) {
             return MaterialPageRoute(builder: (context) {
-              return const DiaryPage();
+              return DiaryPage();
             });
           } else if (settings.name == BmiPage.route) {
             return MaterialPageRoute(builder: (context) {
-              return const BmiPage();
+              return BmiPage();
             });
           } else if (settings.name == EditprofilePage.route) {
             return MaterialPageRoute(builder: (context) {
-              return const EditprofilePage();
+              return EditprofilePage();
             });
           } else if (settings.name == HeartPage.route) {
             return MaterialPageRoute(builder: (context) {
-              return const HeartPage();
+              return HeartPage();
             });
           } else if (settings.name == ProfilePage.route) {
             return MaterialPageRoute(builder: (context) {
-              return const ProfilePage();
+              return ProfilePage();
             });
           } else if (settings.name == SleepPage.route) {
             return MaterialPageRoute(builder: (context) {
-              return const SleepPage();
+              return SleepPage();
             });
           } else if (settings.name == StepPage.route) {
             return MaterialPageRoute(builder: (context) {
@@ -90,7 +90,7 @@ class MyApp extends StatelessWidget {
             });
           } else if (settings.name == AuthPage.route) {
             return MaterialPageRoute(builder: (context) {
-              return const AuthPage();
+              return AuthPage();
             });
           } else if (settings.name == AnnotationPage.route) {
             // Walk p. --> mettendolo così come nel lab, non mi dà errore

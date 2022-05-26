@@ -7,7 +7,7 @@ import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthPage extends StatefulWidget {
-  const AuthPage({Key? key}) : super(key: key);
+  AuthPage({Key? key}) : super(key: key);
 
   static const route = '/login/';
   static const routename = 'AuthPage';
@@ -17,7 +17,6 @@ class AuthPage extends StatefulWidget {
 }
 
 class _AuthPageState extends State<AuthPage> {
-  @override
   void initState() {
     super.initState();
     //check if the user is already Logged in before rendering the loginpage
@@ -26,11 +25,7 @@ class _AuthPageState extends State<AuthPage> {
 
   void _checkLogin() async {
     //get the sharedpreferences instance and check
-    final sp = await SharedPreferences
-        .getInstance(); //---------------questo commentato
-    //if username is set push homepage
-
-    //if (prova.getstring .............)
+    final sp = await SharedPreferences.getInstance();
     if (sp.getString('username') != null && sp.getBool('confirm') == true) {
       Navigator.of(context).pushReplacementNamed(HomePage.route);
     }
@@ -73,9 +68,8 @@ class _AuthPageState extends State<AuthPage> {
                     clientSecret: Strings.fitbitClientSecret,
                     redirectUri: Strings.fitbitRedirectUri,
                     callbackUrlScheme: Strings.fitbitCallbackScheme);
-                final sp = await SharedPreferences
-                    .getInstance(); //---------questo commentato
-                sp.setString('userid', userId!); //prova.setstring.......
+                final sp = await SharedPreferences.getInstance();
+                sp.setString('userid', userId!);
                 sp.setBool('confirm', true);
 
                 Navigator.of(context).pushReplacementNamed(HomePage.route);
