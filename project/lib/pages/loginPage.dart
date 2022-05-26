@@ -3,6 +3,8 @@ import 'package:project/pages/authpage.dart';
 import 'package:flutter_login/flutter_login.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'homepage.dart';
+
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
   static const route = '/';
@@ -14,6 +16,20 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   //const LoginPage({Key? key}) : super(key: key);
+  void initState() {
+    super.initState();
+    //check if the user is already Logged in before rendering the loginpage
+    _checkLogin();
+  } //initstate
+
+  void _checkLogin() async {
+    //get the sharedpreferences instance and check
+    final sp = await SharedPreferences.getInstance();
+    if (sp.getString('username') != null && sp.getBool('confirm') == true) {
+      Navigator.of(context).pushReplacementNamed(HomePage.route);
+    }
+  }
+
   String email = 'bug@expert.com';
 
   final inputBorder = const BorderRadius.vertical(

@@ -17,6 +17,7 @@ class AuthPage extends StatefulWidget {
 }
 
 class _AuthPageState extends State<AuthPage> {
+  /*
   void initState() {
     super.initState();
     //check if the user is already Logged in before rendering the loginpage
@@ -30,6 +31,7 @@ class _AuthPageState extends State<AuthPage> {
       Navigator.of(context).pushReplacementNamed(HomePage.route);
     }
   }
+  */
 
   @override
   Widget build(BuildContext context) {
