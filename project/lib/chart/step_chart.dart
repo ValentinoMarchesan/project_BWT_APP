@@ -19,7 +19,7 @@ class StepChart extends StatelessWidget {
 
     return Container(
       height: 300,
-      padding: EdgeInsets.all(25),
+      padding: const EdgeInsets.all(25),
       child: Card(
         child: Padding(
           padding: const EdgeInsets.all(9.0),

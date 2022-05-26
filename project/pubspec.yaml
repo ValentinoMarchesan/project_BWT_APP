@@ -50,7 +50,7 @@ dependencies:
   fitbitter: ^1.1.1
 
   #floor
-  floor: ^1.2.0
+ 
   
   
   
@@ -67,8 +67,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_login:
-  floor_generator: ^1.2.0
-  build_runner: ^2.1.1
+ 
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is

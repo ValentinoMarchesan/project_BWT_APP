@@ -16,7 +16,7 @@ class AnnotationPage extends StatefulWidget {
   final AnnotationDB annotationDB;
 
   // AnnotationPage constructor
-  AnnotationPage(
+  const AnnotationPage(
       {Key? key, required this.annotationDB, required this.annotationIndex})
       : super(key: key);
 
@@ -33,9 +33,9 @@ class _AnnotationState extends State<AnnotationPage> {
       FormState>(); // Form globalkey: this is required to validate the form fields.
 
   // Variables that maintain the current form fields values in memory.
-  TextEditingController _minController = TextEditingController();
-  TextEditingController _mlController = TextEditingController();
-  TextEditingController _moodController = TextEditingController();
+  final TextEditingController _minController = TextEditingController();
+  final TextEditingController _mlController = TextEditingController();
+  final TextEditingController _moodController = TextEditingController();
   DateTime _selectedDate = DateTime.now();
 
   // Here, we are using initState() to initialize the form fields values.
@@ -78,7 +78,7 @@ class _AnnotationState extends State<AnnotationPage> {
     // A FAB (floating action button) is showed to provide the "delete" functinality. It is showed only if the walk already exists.
     return Scaffold(
       appBar: AppBar(
-        title: Text(AnnotationPage.routeDisplayName),
+        title: const Text(AnnotationPage.routeDisplayName),
         centerTitle: true,
         backgroundColor: Colors.orange,
         actions: [
@@ -94,7 +94,7 @@ class _AnnotationState extends State<AnnotationPage> {
           ? null
           : FloatingActionButton(
               onPressed: () => _deleteAndPop(context),
-              child: Icon(Icons.delete),
+              child: const Icon(Icons.delete),
             ),
     );
   } //build
@@ -166,11 +166,11 @@ class _AnnotationState extends State<AnnotationPage> {
       }
       return null;
     });
-    if (picked != null && picked != _selectedDate)
-      //Using setState to update the _selectedDate field and rebuild the UI.
+    if (picked != null && picked != _selectedDate) {
       setState(() {
         _selectedDate = picked;
       });
+    }
   } // select Date
 
   //Utility method that validate the form and, if it is valid, save the new annotation information.

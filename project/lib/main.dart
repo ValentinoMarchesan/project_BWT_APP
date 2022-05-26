@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:project/classes/UserPreferences.dart';
-import 'package:project/database/database.dart';
-import 'package:project/database/repository/databaseRepository.dart';
 import 'package:project/pages/annotationpage.dart';
 import 'package:project/pages/authpage.dart';
 import 'package:project/pages/bmipage.dart';
@@ -22,7 +20,7 @@ Future main() async {
   await Userpreferences.init();
 
   runApp(
-    MyApp(),
+    const MyApp(),
   );
 }
 
@@ -56,35 +54,35 @@ class MyApp extends StatelessWidget {
         onGenerateRoute: (settings) {
           if (settings.name == LoginPage.route) {
             return MaterialPageRoute(builder: (context) {
-              return LoginPage();
+              return const LoginPage();
             });
           } else if (settings.name == HomePage.route) {
             return MaterialPageRoute(builder: (context) {
-              return HomePage();
+              return const HomePage();
             });
           } else if (settings.name == DiaryPage.route) {
             return MaterialPageRoute(builder: (context) {
-              return DiaryPage();
+              return const DiaryPage();
             });
           } else if (settings.name == BmiPage.route) {
             return MaterialPageRoute(builder: (context) {
-              return BmiPage();
+              return const BmiPage();
             });
           } else if (settings.name == EditprofilePage.route) {
             return MaterialPageRoute(builder: (context) {
-              return EditprofilePage();
+              return const EditprofilePage();
             });
           } else if (settings.name == HeartPage.route) {
             return MaterialPageRoute(builder: (context) {
-              return HeartPage();
+              return const HeartPage();
             });
           } else if (settings.name == ProfilePage.route) {
             return MaterialPageRoute(builder: (context) {
-              return ProfilePage();
+              return const ProfilePage();
             });
           } else if (settings.name == SleepPage.route) {
             return MaterialPageRoute(builder: (context) {
-              return SleepPage();
+              return const SleepPage();
             });
           } else if (settings.name == StepPage.route) {
             return MaterialPageRoute(builder: (context) {
@@ -92,7 +90,7 @@ class MyApp extends StatelessWidget {
             });
           } else if (settings.name == AuthPage.route) {
             return MaterialPageRoute(builder: (context) {
-              return AuthPage();
+              return const AuthPage();
             });
           } else if (settings.name == AnnotationPage.route) {
             // Walk p. --> mettendolo così come nel lab, non mi dà errore

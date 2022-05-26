@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
 import 'package:project/chart/step_chart.dart';
 import 'package:project/chart/stepseries.dart';
@@ -18,11 +17,13 @@ class StepPage extends StatelessWidget {
     StepSeries(
         day: '11',
         passes: 5000,
-        color: charts.ColorUtil.fromDartColor(Color.fromARGB(255, 6, 2, 245))),
+        color: charts.ColorUtil.fromDartColor(
+            const Color.fromARGB(255, 6, 2, 245))),
     StepSeries(
         day: '12',
         passes: 6000,
-        color: charts.ColorUtil.fromDartColor(Color.fromARGB(255, 10, 230, 10)))
+        color: charts.ColorUtil.fromDartColor(
+            const Color.fromARGB(255, 10, 230, 10)))
   ];
 
   @override
@@ -30,7 +31,7 @@ class StepPage extends StatelessWidget {
     print('${StepPage.routename} built');
     return Scaffold(
       appBar: AppBar(
-        title: Text(StepPage.routename),
+        title: const Text(StepPage.routename),
       ),
       body: Center(
         child: StepChart(

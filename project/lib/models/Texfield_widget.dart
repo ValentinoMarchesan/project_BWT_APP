@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class TextFieldWidget extends StatefulWidget {
   final int maxLines;
@@ -39,7 +38,7 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(widget.label,
-              style: TextStyle(
+              style: const TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 15,
               )),

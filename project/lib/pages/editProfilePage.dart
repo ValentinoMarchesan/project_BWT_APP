@@ -16,6 +16,8 @@ import 'package:path/path.dart'; //to use basename in line 45
 class EditprofilePage extends StatefulWidget {
   static const route = ' home/profile/edit';
   static const routename = 'EditProfilePage';
+
+  const EditprofilePage({Key? key}) : super(key: key);
   @override
   _EditProfilePageState createState() => _EditProfilePageState();
 }

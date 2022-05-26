@@ -1,5 +1,4 @@
 import 'package:fitbitter/fitbitter.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:project/pages/homepage.dart';
 import 'package:project/pages/loginPage.dart';
@@ -8,7 +7,7 @@ import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthPage extends StatefulWidget {
-  AuthPage({Key? key}) : super(key: key);
+  const AuthPage({Key? key}) : super(key: key);
 
   static const route = '/login/';
   static const routename = 'AuthPage';
@@ -18,9 +17,8 @@ class AuthPage extends StatefulWidget {
 }
 
 class _AuthPageState extends State<AuthPage> {
-  static late SharedPreferences prova;
-  void initState() async {
-    prova = await SharedPreferences.getInstance();
+  @override
+  void initState() {
     super.initState();
     //check if the user is already Logged in before rendering the loginpage
     _checkLogin();
@@ -42,22 +40,22 @@ class _AuthPageState extends State<AuthPage> {
   Widget build(BuildContext context) {
     print('${AuthPage.routename} built');
     return Container(
-      color: Color.fromARGB(255, 244, 190, 110),
+      color: const Color.fromARGB(255, 244, 190, 110),
       child: SafeArea(
         child: AlertDialog(
           shape: ContinuousRectangleBorder(
               borderRadius: BorderRadius.circular(60.0)),
-          title: Text(
+          title: const Text(
             'AUTHORIZATION',
             style: TextStyle(fontWeight: FontWeight.bold),
           ),
-          content: Text(
+          content: const Text(
               'To continue, you must authorize data sharing from the fitbit site'),
           actions: [
             DialogButton(
               radius: const BorderRadius.all(Radius.circular(30)),
               color: Colors.orangeAccent,
-              child: Text('No'),
+              child: const Text('No'),
               onPressed: () async {
                 _toLoginPage(context);
                 final sp = await SharedPreferences.getInstance();
@@ -67,7 +65,7 @@ class _AuthPageState extends State<AuthPage> {
             DialogButton(
               radius: const BorderRadius.all(Radius.circular(30)),
               color: Colors.orangeAccent,
-              child: Text('Yes'),
+              child: const Text('Yes'),
               onPressed: () async {
                 String? userId = await FitbitConnector.authorize(
                     context: context,

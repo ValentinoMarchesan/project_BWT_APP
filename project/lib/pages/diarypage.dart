@@ -1,8 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:project/pages/annotationpage.dart';
-import 'package:project/pages/homepage.dart';
-import 'package:flutter_login/flutter_login.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:project/utils/formats.dart';
 import 'package:provider/provider.dart';
@@ -18,7 +15,7 @@ class DiaryPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(DiaryPage.routename),
+        title: const Text(DiaryPage.routename),
         centerTitle: true,
         backgroundColor: Colors.orange,
         shadowColor: Colors.orangeAccent,
@@ -29,7 +26,7 @@ class DiaryPage extends StatelessWidget {
           builder: (context, annotationDB, child) {
             // If the list of annotatinos is empty, show a simple Text, otherwise show the list of annotations using a ListView.
             return annotationDB.annotations.isEmpty
-                ? Text(
+                ? const Text(
                     'The annotation list is currently empty. \n You can note down your daily: water intake, mood ecc.',
                     textAlign: TextAlign.center,
                   )
@@ -44,11 +41,11 @@ class DiaryPage extends StatelessWidget {
                       return Card(
                         elevation: 5,
                         child: ListTile(
-                          leading: Icon(
+                          leading: const Icon(
                             MdiIcons.bookOpenPageVariant,
                             color: Colors.deepOrangeAccent,
                           ),
-                          trailing: Icon(MdiIcons.noteEdit),
+                          trailing: const Icon(MdiIcons.noteEdit),
                           title: Text(
                             '\nWater intake (ml): ${annotationDB.annotations[annotationIndex].ml} \n\nMeditation (min): ${annotationDB.annotations[annotationIndex].min} \n\nMood: ${annotationDB.annotations[annotationIndex].mood}\n',
                           ),
@@ -66,7 +63,7 @@ class DiaryPage extends StatelessWidget {
       // Using a FAB to let the user add new annotations.
       // Rationale: Using -1 as mealIndex to let AnnotationPage know that we want to add a new annotation.
       floatingActionButton: FloatingActionButton(
-        child: Icon(MdiIcons.plus),
+        child: const Icon(MdiIcons.plus),
         backgroundColor: Colors.deepOrangeAccent,
         onPressed: () => _toAnnotationPage(
             context, Provider.of<AnnotationDB>(context, listen: false), -1),

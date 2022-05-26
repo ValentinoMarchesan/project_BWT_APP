@@ -9,6 +9,8 @@ import '../models/appbar_widget.dart';
 class ProfilePage extends StatefulWidget {
   static const route = ' /home/profile';
   static const routename = 'ProfilePage';
+
+  const ProfilePage({Key? key}) : super(key: key);
   @override
   _ProfilePageState createState() => _ProfilePageState();
 }
@@ -21,13 +23,14 @@ class _ProfilePageState extends State<ProfilePage> {
     return Scaffold(
         backgroundColor: Colors.orangeAccent,
         appBar: buildAppBar(context),
-        body: ListView(physics: BouncingScrollPhysics(), children: [
+        body: ListView(physics: const BouncingScrollPhysics(), children: [
           ProfileWidget(
             // backgroundPath: user.backgroundPath,
             imagePath: user.imagePath,
             onClicked: () async {
               await Navigator.of(context).push(
-                MaterialPageRoute(builder: (context) => EditprofilePage()),
+                MaterialPageRoute(
+                    builder: (context) => const EditprofilePage()),
               );
               setState(() {}); //await the re build of our UI
             },
@@ -46,24 +49,26 @@ class _ProfilePageState extends State<ProfilePage> {
   Widget buildName(User user) => Column(
         children: [
           Text(user.name,
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 26)),
+              style:
+                  const TextStyle(fontWeight: FontWeight.bold, fontSize: 26)),
           const SizedBox(
             height: 4,
           ),
-          Text(user.email, style: TextStyle(color: Colors.grey, fontSize: 18)),
+          Text(user.email,
+              style: const TextStyle(color: Colors.grey, fontSize: 18)),
         ],
       );
   Widget buildAbout(User user) => Container(
-        padding: EdgeInsets.symmetric(horizontal: 48),
+        padding: const EdgeInsets.symmetric(horizontal: 48),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('About me :',
+            const Text('About me :',
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24)),
             const SizedBox(
               height: 10,
             ),
-            Text(user.about, style: TextStyle(fontSize: 16, height: 1.4)),
+            Text(user.about, style: const TextStyle(fontSize: 16, height: 1.4)),
           ],
         ),
       );

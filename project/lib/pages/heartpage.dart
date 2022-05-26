@@ -1,10 +1,7 @@
-import 'package:charts_flutter/flutter.dart';
 import 'package:fitbitter/fitbitter.dart';
-
 import 'package:flutter/material.dart';
 import 'package:project/chart/heart_chart.dart';
 import 'package:project/chart/heartseries.dart';
-
 import 'package:project/utils/strings.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
 import 'package:shared_preferences/shared_preferences.dart';
@@ -12,6 +9,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 class HeartPage extends StatefulWidget {
   static const route = '/home/heart';
   static const routename = 'Heart Page';
+
+  const HeartPage({Key? key}) : super(key: key);
 
   static get fitbitHeartData => null;
 
@@ -44,8 +43,9 @@ class HeartPage extends StatefulWidget {
             min: 9,
             color: charts.ColorUtil.fromDartColor(Colors.blue))
       ];
-    } else
+    } else {
       return data = [HeartSeries.empty()];
+    }
   }
 }
 
@@ -65,7 +65,7 @@ class _HeartPageState extends State<HeartPage> {
     print('${HeartPage.routename} built');
     return Scaffold(
       appBar: AppBar(
-        title: Text(HeartPage.routename),
+        title: const Text(HeartPage.routename),
       ),
       bottomNavigationBar: ElevatedButton(
         onPressed: () async {
@@ -106,7 +106,7 @@ class _HeartPageState extends State<HeartPage> {
           ScaffoldMessenger.of(context).showSnackBar(snackBar);
           print(fitbitHeartData[0].minutesOutOfRange);
         },
-        child: Text('tap to fetch data'),
+        child: const Text('tap to fetch data'),
       ),
       body: Center(
         child: HeartChart(

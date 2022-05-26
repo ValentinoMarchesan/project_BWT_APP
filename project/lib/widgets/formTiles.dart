@@ -69,7 +69,7 @@ class FormNumberTile extends ListTile {
                 if (!regex.hasMatch(value!)) ret = 'Must be a number.';
                 return ret;
               },
-              keyboardType: TextInputType.numberWithOptions(signed: true),
+              keyboardType: const TextInputType.numberWithOptions(signed: true),
               decoration: InputDecoration(
                   labelText: labelText,
                   focusColor: Colors.orange //Theme.of(context).accentColor,
@@ -111,7 +111,7 @@ class FormDateTile extends ListTile {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Container(
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               border: Border(
                 bottom: BorderSide(width: 1),
                 top: BorderSide(width: 1),

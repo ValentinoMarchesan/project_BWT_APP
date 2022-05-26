@@ -9,6 +9,8 @@ class BmiPage extends StatefulWidget {
   static const route = '/home/Bmi';
   static const routename = 'BmiPage';
 
+  const BmiPage({Key? key}) : super(key: key);
+
   @override
   State<BmiPage> createState() => _BmiPageState();
 }
@@ -107,7 +109,7 @@ class _BmiPageState extends State<BmiPage> {
           ),
           Expanded(
               child: ContainerBox(
-            boxColor: Color(0xFFffffff),
+            boxColor: const Color(0xFFffffff),
             childWidget: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -339,7 +341,7 @@ class _BmiPageState extends State<BmiPage> {
               width: double.infinity,
               height: 70.0,
               color: activateColor,
-              margin: EdgeInsets.only(top: 10.0),
+              margin: const EdgeInsets.only(top: 10.0),
               child: const Center(
                 child: Text(
                   'Calculate',

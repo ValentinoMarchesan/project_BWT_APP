@@ -12,7 +12,7 @@ class FormSeparator extends StatelessWidget {
     return Center(
       child: Column(
         children: [
-          SizedBox(height: 10),
+          const SizedBox(height: 10),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -29,7 +29,7 @@ class FormSeparator extends StatelessWidget {
                   child: Center(
                       child: Text(
                 label,
-                style: TextStyle(
+                style: const TextStyle(
                     fontWeight: FontWeight.w600,
                     fontSize: 16,
                     color: Colors.black),
@@ -44,7 +44,7 @@ class FormSeparator extends StatelessWidget {
               ),
             ],
           ),
-          SizedBox(height: 10),
+          const SizedBox(height: 10),
         ],
       ),
     );

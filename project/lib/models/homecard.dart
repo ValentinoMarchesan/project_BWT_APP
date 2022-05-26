@@ -38,8 +38,8 @@ class HomeCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(20),
           gradient: LinearGradient(
             colors: [
-              gradientStartColor ?? Color(0xff441DFC),
-              gradientEndColor ?? Color(0xff4E81EB),
+              gradientStartColor ?? const Color(0xff441DFC),
+              gradientEndColor ?? const Color(0xff4E81EB),
             ],
             begin: Alignment.bottomLeft,
             end: Alignment.topRight,
@@ -57,7 +57,7 @@ class HomeCard extends StatelessWidget {
                 height: 125,
                 width: 150,
                 child: Stack(
-                  children: [
+                  children: const [
                     SizedBox(),
                     SizedBox(),
                   ],
@@ -68,14 +68,14 @@ class HomeCard extends StatelessWidget {
               height: 125,
               width: 150,
               child: Padding(
-                padding: EdgeInsets.only(left: 20, top: 20, bottom: 20),
+                padding: const EdgeInsets.only(left: 20, top: 20, bottom: 20),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
                       title!,
-                      style: TextStyle(
+                      style: const TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
                           color: Colors.white),

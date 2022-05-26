@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:project/pages/bmipage.dart';
@@ -25,7 +24,7 @@ class CardHR extends StatelessWidget {
           children: [
             Container(
               //colore interno
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 gradient: LinearGradient(
                   //sfumatura
                   colors: [Colors.orangeAccent, Colors.deepOrange],
@@ -34,9 +33,9 @@ class CardHR extends StatelessWidget {
                   end: Alignment.bottomRight,
                 ),
               ),
-              padding: EdgeInsets.all(8),
+              padding: const EdgeInsets.all(8),
               child: Row(
-                children: [
+                children: const [
                   SizedBox(
                     width: 10,
                   ),
@@ -59,7 +58,7 @@ class CardHR extends StatelessWidget {
                   children: [
                     // parte per posizionare immagine
                     Ink.image(
-                      image: NetworkImage(
+                      image: const NetworkImage(
                           'https://image.shutterstock.com/image-illustration/cardio-exercise-increases-hearts-health-600w-173381630.jpg'),
                       // rendere la card schiacciabile
                       width: 200,
@@ -73,7 +72,7 @@ class CardHR extends StatelessWidget {
                   //colore interno
                   height: 100,
                   width: 184.7,
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     color: Color.fromARGB(255, 236, 200, 145),
                     /*gradient: LinearGradient(
                     //sfumatura
@@ -84,9 +83,9 @@ class CardHR extends StatelessWidget {
                   ),
                   */
                   ),
-                  padding: EdgeInsets.all(10),
+                  padding: const EdgeInsets.all(10),
                   child: Column(
-                    children: [
+                    children: const [
                       Text(
                         'Through the data acquired by the device, it provides an overview of cardiac activity',
                       ),
@@ -126,7 +125,7 @@ class CardSM extends StatelessWidget {
           children: [
             Container(
               //colore interno
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 gradient: LinearGradient(
                   //sfumatura
                   colors: [Colors.orangeAccent, Colors.deepOrange],
@@ -135,9 +134,9 @@ class CardSM extends StatelessWidget {
                   end: Alignment.bottomRight,
                 ),
               ),
-              padding: EdgeInsets.all(8),
+              padding: const EdgeInsets.all(8),
               child: Row(
-                children: [
+                children: const [
                   SizedBox(
                     width: 10,
                   ),
@@ -160,7 +159,7 @@ class CardSM extends StatelessWidget {
                   children: [
                     // parte per posizionare immagine
                     Ink.image(
-                      image: NetworkImage(
+                      image: const NetworkImage(
                           'https://image.shutterstock.com/image-vector/sleep-cycle-labeled-night-stages-600w-1945387777.jpg'),
                       // rendere la card schiacciabile
                       width: 200,
@@ -176,7 +175,7 @@ class CardSM extends StatelessWidget {
                   //colore interno
                   height: 100,
                   width: 184.7,
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     color: Color.fromARGB(255, 236, 200, 145),
                     /*gradient: LinearGradient(
                     //sfumatura
@@ -187,9 +186,9 @@ class CardSM extends StatelessWidget {
                   ),
                   */
                   ),
-                  padding: EdgeInsets.all(8),
+                  padding: const EdgeInsets.all(8),
                   child: Column(
-                    children: [
+                    children: const [
                       Text(
                         'Inserire Testo',
                       ),
@@ -229,7 +228,7 @@ class CardSteep extends StatelessWidget {
           children: [
             Container(
               //colore interno
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 gradient: LinearGradient(
                   //sfumatura
                   colors: [Colors.orangeAccent, Colors.deepOrange],
@@ -238,9 +237,9 @@ class CardSteep extends StatelessWidget {
                   end: Alignment.bottomRight,
                 ),
               ),
-              padding: EdgeInsets.all(8),
+              padding: const EdgeInsets.all(8),
               child: Row(
-                children: [
+                children: const [
                   SizedBox(
                     width: 10,
                   ),
@@ -263,7 +262,7 @@ class CardSteep extends StatelessWidget {
                   children: [
                     // parte per posizionare immagine
                     Ink.image(
-                      image: NetworkImage(
+                      image: const NetworkImage(
                           'https://images.unsplash.com/photo-1461896836934-ffe607ba8211?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80'),
                       // rendere la card schiacciabile
                       width: 200,
@@ -279,7 +278,7 @@ class CardSteep extends StatelessWidget {
                   //colore interno
                   height: 100,
                   width: 184.7,
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     color: Color.fromARGB(255, 236, 200, 145),
                     /*gradient: LinearGradient(
                     //sfumatura
@@ -290,9 +289,9 @@ class CardSteep extends StatelessWidget {
                   ),
                   */
                   ),
-                  padding: EdgeInsets.all(8),
+                  padding: const EdgeInsets.all(8),
                   child: Column(
-                    children: [
+                    children: const [
                       Text(
                         'Inserire Testo',
                       ),
@@ -332,7 +331,7 @@ class Cardbmi extends StatelessWidget {
           children: [
             Container(
               //colore interno
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 gradient: LinearGradient(
                   //sfumatura
                   colors: [Colors.orangeAccent, Colors.deepOrange],
@@ -341,9 +340,9 @@ class Cardbmi extends StatelessWidget {
                   end: Alignment.bottomRight,
                 ),
               ),
-              padding: EdgeInsets.all(8),
+              padding: const EdgeInsets.all(8),
               child: Row(
-                children: [
+                children: const [
                   SizedBox(
                     width: 10,
                   ),
@@ -384,7 +383,7 @@ class Cardbmi extends StatelessWidget {
               //colore interno
               height: 100,
               //width: 234.7,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 color: Color.fromARGB(255, 236, 200, 145),
                 /*gradient: LinearGradient(
                                 //sfumatura
@@ -395,9 +394,9 @@ class Cardbmi extends StatelessWidget {
                                 ),
                               */
               ),
-              padding: EdgeInsets.all(10),
+              padding: const EdgeInsets.all(10),
               child: Column(
-                children: [
+                children: const [
                   Text(
                     'In this section you can calculate the BMI index by entering the age, weight and height. You also receive a feedback on the physical state based on data collected on the activity carried out in the last seven days. ',
                   )
