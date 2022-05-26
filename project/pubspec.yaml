@@ -50,7 +50,7 @@ dependencies:
   fitbitter: ^1.1.1
 
   #floor
- 
+  floor: ^1.2.0
   
   
   
