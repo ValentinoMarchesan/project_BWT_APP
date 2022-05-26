@@ -1,10 +1,7 @@
-import 'package:charts_flutter/flutter.dart';
 import 'package:fitbitter/fitbitter.dart';
-
 import 'package:flutter/material.dart';
-import 'package:project/pages/chart/heart_chart.dart';
-import 'package:project/pages/chart/heartseries.dart';
-
+import 'package:project/chart/heart_chart.dart';
+import 'package:project/chart/heartseries.dart';
 import 'package:project/utils/strings.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
 import 'package:shared_preferences/shared_preferences.dart';
@@ -12,6 +9,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 class HeartPage extends StatefulWidget {
   static const route = '/home/heart';
   static const routename = 'Heart Page';
+
+  const HeartPage({Key? key}) : super(key: key);
 
   static get fitbitHeartData => null;
 
@@ -36,11 +35,11 @@ class _HeartPageState extends State<HeartPage> {
     print('${HeartPage.routename} built');
     return Scaffold(
       appBar: AppBar(
-        title: Text(HeartPage.routename),
+        title: const Text(HeartPage.routename),
       ),
       bottomNavigationBar: ElevatedButton(
         onPressed: () async {
-         // prova = await SharedPreferences.getInstance();
+          // prova = await SharedPreferences.getInstance();
           final sp = await SharedPreferences.getInstance();
 
           //STEP1: Instanciate a menager
@@ -52,9 +51,8 @@ class _HeartPageState extends State<HeartPage> {
 
           //STEP2: Create the request url
           FitbitHeartAPIURL fitbitHeartApiUrl = FitbitHeartAPIURL.dayWithUserID(
-              date: DateTime.now(),
-              userID: sp.getString('userid'));
-             // userID: prova.getString('userid'));
+              date: DateTime.now(), userID: sp.getString('userid'));
+          // userID: prova.getString('userid'));
 
           //STEP3: Get the data
           final fitbitHeartData = await fitbitHeartDataManager

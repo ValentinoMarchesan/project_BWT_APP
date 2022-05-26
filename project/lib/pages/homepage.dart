@@ -1,16 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:project/models/CustomCard.dart';
-import 'package:project/models/homecard.dart';
-import 'package:project/pages/activitypage.dart';
-import 'package:project/pages/heartpage.dart';
-import 'package:project/pages/loginPage.dart';
 import 'package:project/pages/profilePage.dart';
-import 'package:project/pages/sleeppage.dart';
-import 'package:project/pages/steppage.dart';
-import 'package:project/utils/strings.dart';
-import 'package:step_progress_indicator/step_progress_indicator.dart';
 import 'package:water_drop_nav_bar/water_drop_nav_bar.dart';
+import 'diarypage.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -41,7 +34,7 @@ class _HomePageState extends State<HomePage> {
         systemNavigationBarIconBrightness: Brightness.dark,
       ),
       child: Scaffold(
-        backgroundColor: Color.fromARGB(255, 254, 183, 77),
+        backgroundColor: const Color.fromARGB(255, 254, 183, 77),
         body: PageView(
           physics: const NeverScrollableScrollPhysics(),
           controller: pageController,
@@ -52,33 +45,34 @@ class _HomePageState extends State<HomePage> {
             Container(
               alignment: Alignment.center,
               child: ListView(
+                // ignore: prefer_const_literals_to_create_immutables
                 children: <Widget>[
-                  SizedBox(
+                  const SizedBox(
                     height: 15,
                   ),
 //_____________________ HEART RATE CARD ________________________________________
-                  CardHR(),
+                  const CardHR(),
 //__________________________ FINE HEART RATE CARD _____________________________
-                  SizedBox(
+                  const SizedBox(
                     height: 5,
                   ),
 // _______________________ SLEEP CARD _________________________________________
-                  CardSM(),
+                  const CardSM(),
 //________________________ FINE SLEEP CARD ____________________________________
-                  SizedBox(
+                  const SizedBox(
                     height: 5,
                   ),
 // _____________________ STEP CARD _____________________________________________
-                  CardSteep(),
+                  const CardSteep(),
 //___________________________ FINE STEP CARD ___________________________________
-                  SizedBox(
+                  const SizedBox(
                     height: 5,
                   ),
 //_________________________ ACTIVITY CARD ______________________________________
-                  CardActivity(),
+                  const Cardbmi(),
 //_________________________ FINE ACTIVITY CARD _________________________________
 
-                  SizedBox(
+                  const SizedBox(
                     height: 5,
                   ),
                   //_______________________________________________________________________
@@ -109,8 +103,8 @@ class _HomePageState extends State<HomePage> {
 //______________________________________________________________________________
             Container(
               alignment: Alignment.center,
-              child: Center(
-                child: ActivityPage(),
+              child: const Center(
+                child: DiaryPage(),
               ),
             ),
 //______________________________________________________________________________
@@ -124,7 +118,7 @@ class _HomePageState extends State<HomePage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Container(
-                      child: Text('GAMEPAGE'),
+                      child: const Text('GAMEPAGE'),
                     ),
                     Icon(
                       Icons.gamepad_sharp,
@@ -171,7 +165,7 @@ class _HomePageState extends State<HomePage> {
 //______________________________________________________________________________
 
         bottomNavigationBar: ClipRRect(
-          borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+          borderRadius: const BorderRadius.vertical(top: Radius.circular(20)),
           child: WaterDropNavBar(
             backgroundColor: navigationBarColor,
             waterDropColor: Colors.orangeAccent,
@@ -190,16 +184,15 @@ class _HomePageState extends State<HomePage> {
                 outlinedIcon: Icons.home_rounded,
               ),
               BarItem(
-                  filledIcon: Icons.fitness_center_rounded,
-                  outlinedIcon: Icons.fitness_center_rounded),
+                  filledIcon: Icons.history_edu,
+                  outlinedIcon: Icons.history_edu),
               BarItem(
                 filledIcon: Icons.gamepad_rounded,
                 outlinedIcon: Icons.gamepad_rounded,
               ),
               BarItem(
-                filledIcon: Icons.account_box_rounded,
-                outlinedIcon: Icons.account_box_rounded,
-              ),
+                  filledIcon: Icons.account_circle,
+                  outlinedIcon: Icons.account_circle),
             ],
           ),
         ),

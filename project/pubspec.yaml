@@ -34,7 +34,7 @@ dependencies:
   water_drop_nav_bar:
   charts_flutter: ^0.12.0
   google_fonts: ^2.3.1
-  provider: ^6.0.2 #added per walkpage
+  provider: #added per walkpage
   intl: ^0.17.0  #added per walkpage
   rflutter_alert: ^2.0.4
   #persist locally data
@@ -48,6 +48,10 @@ dependencies:
 
   #fitbitter
   fitbitter: ^1.1.1
+
+  #floor
+ 
+  
   
   
   
@@ -57,11 +61,13 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
+  font_awesome_flutter: ^10.1.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_login:
+ 
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is

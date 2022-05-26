@@ -1,12 +1,9 @@
-import 'package:fitbitter/fitbitter.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:project/pages/authpage.dart';
-import 'package:project/pages/homepage.dart';
 import 'package:flutter_login/flutter_login.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../utils/strings.dart';
+import 'homepage.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -19,8 +16,6 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   //const LoginPage({Key? key}) : super(key: key);
-  String email = 'bug@expert.com';
-
   void initState() {
     super.initState();
     //check if the user is already Logged in before rendering the loginpage
@@ -30,13 +25,14 @@ class _LoginPageState extends State<LoginPage> {
   void _checkLogin() async {
     //get the sharedpreferences instance and check
     final sp = await SharedPreferences.getInstance();
-    //if username is set push homepage
-    if (sp.getString('username') != null) {
+    if (sp.getString('username') != null && sp.getBool('confirm') == true) {
       Navigator.of(context).pushReplacementNamed(HomePage.route);
     }
   }
 
-  final inputBorder = BorderRadius.vertical(
+  String email = 'bug@expert.com';
+
+  final inputBorder = const BorderRadius.vertical(
     bottom: Radius.circular(10.0),
     top: Radius.circular(20.0),
   );
@@ -66,7 +62,7 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return FlutterLogin(
       title: 'MyMo',
-      logo: AssetImage('assets/logo/def1.png'),
+      logo: const AssetImage('assets/logo/def1.png'),
       onLogin: _loginUser,
       onSignup: _signUpUser,
       onRecoverPassword: _recoverPassword,
@@ -74,24 +70,25 @@ class _LoginPageState extends State<LoginPage> {
         Navigator.of(context).pushReplacementNamed(AuthPage.route);
       },
       theme: LoginTheme(
-        primaryColor: Color.fromARGB(
+        primaryColor: const Color.fromARGB(
             255, 244, 190, 110), //colore principale = a quello di SIGN UP
-        pageColorLight: Color.fromARGB(255, 239, 65, 123), //colore secondario
-        accentColor: Color.fromARGB(
+        pageColorLight:
+            const Color.fromARGB(255, 239, 65, 123), //colore secondario
+        accentColor: const Color.fromARGB(
             255, 171, 231, 179), // colore del rettangolino dell'animazione
         errorColor: Colors.red,
         beforeHeroFontSize: 65, // dimensione del titolo
-        titleStyle: TextStyle(
+        titleStyle: const TextStyle(
           color: Color.fromARGB(255, 255, 255, 255),
           fontFamily: 'Audiowide', // carattere personalizzato aggiunto
           letterSpacing: 10,
         ),
-        bodyStyle: TextStyle(
+        bodyStyle: const TextStyle(
           //password dimenticata
           fontStyle: FontStyle.italic,
           decoration: TextDecoration.underline,
         ),
-        textFieldStyle: TextStyle(
+        textFieldStyle: const TextStyle(
           color: Color.fromARGB(255, 87, 86, 86),
           fontFamily: 'OpenSans',
           fontSize: 16,
@@ -100,7 +97,7 @@ class _LoginPageState extends State<LoginPage> {
           ],
           letterSpacing: 2,
         ),
-        buttonStyle: TextStyle(
+        buttonStyle: const TextStyle(
           fontWeight: FontWeight.w800,
           fontFamily: 'Quicksand',
           color: Colors.white,
@@ -110,53 +107,53 @@ class _LoginPageState extends State<LoginPage> {
         cardTheme: CardTheme(
           color: Colors.white,
           elevation: 5,
-          margin: EdgeInsets.only(top: 20),
+          margin: const EdgeInsets.only(top: 20),
           shape: ContinuousRectangleBorder(
               borderRadius: BorderRadius.circular(60.0)),
         ),
         inputTheme: InputDecorationTheme(
           filled: false,
-          fillColor: Color.fromARGB(255, 227, 189, 169)
+          fillColor: const Color.fromARGB(255, 227, 189, 169)
               .withOpacity(.1), //rettangolini delle credenziali
           contentPadding: EdgeInsets.zero,
-          errorStyle: TextStyle(
+          errorStyle: const TextStyle(
             backgroundColor: Color.fromARGB(255, 255, 255, 255),
             color: Colors.red,
             fontSize: 14,
           ),
-          labelStyle:
-              TextStyle(fontSize: 15, fontFamily: 'Quicksand'), // credenziali
+          labelStyle: const TextStyle(
+              fontSize: 15, fontFamily: 'Quicksand'), // credenziali
           enabledBorder: UnderlineInputBorder(
-            borderSide: BorderSide(
+            borderSide: const BorderSide(
                 color:
                     Color.fromARGB(255, 235, 109, 36), //linea delle credenziali
                 width: 3), //255, 189, 189, 235
             borderRadius: inputBorder,
           ),
           focusedBorder: UnderlineInputBorder(
-            borderSide: BorderSide(color: Colors.orange, width: 5),
+            borderSide: const BorderSide(color: Colors.orange, width: 5),
             borderRadius: inputBorder,
           ),
           errorBorder: UnderlineInputBorder(
-            borderSide: BorderSide(
+            borderSide: const BorderSide(
                 color: Colors.red,
                 width: 7), // linea delle credenziali se errore
             borderRadius: inputBorder,
           ),
           focusedErrorBorder: UnderlineInputBorder(
-            borderSide: BorderSide(color: Colors.red, width: 8),
+            borderSide: const BorderSide(color: Colors.red, width: 8),
             borderRadius: inputBorder,
           ),
           disabledBorder: UnderlineInputBorder(
-            borderSide:
-                BorderSide(color: Color.fromARGB(255, 158, 216, 160), width: 5),
+            borderSide: const BorderSide(
+                color: Color.fromARGB(255, 158, 216, 160), width: 5),
             borderRadius: inputBorder,
           ),
         ),
         buttonTheme: LoginButtonTheme(
           splashColor: Colors.red, //255, 185, 223, 234
           backgroundColor:
-              Color.fromARGB(255, 235, 153, 47), //255, 101, 173, 232
+              const Color.fromARGB(255, 235, 153, 47), //255, 101, 173, 232
           highlightColor: Colors.yellow,
           elevation: 10,
           highlightElevation: 15,
@@ -173,28 +170,3 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 }
-
-/*    BASIC LOGINPAGE TAMPLATE 
-@override
-  Widget build(BuildContext context) {
-    print('${LoginPage.routename} built');
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(LoginPage.routename),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            ElevatedButton(
-              child: Text('To the HomePage'),
-              onPressed: () {
-                Navigator.pushNamed(context, HomePage.route);
-              },
-            ),
-          ],
-        ),
-      ),
-    );
-  } //build
-*/

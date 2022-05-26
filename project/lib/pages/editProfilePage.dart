@@ -5,17 +5,19 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:project/classes/UserPreferences.dart';
+import 'package:project/classes/profile_widget.dart';
+import 'package:project/classes/user.dart';
 import 'package:project/models/Texfield_widget.dart';
 import 'package:project/models/appbar_widget.dart';
 
-import 'package:project/pages/classes/UserPreferences.dart';
-import 'package:project/pages/classes/profile_widget.dart';
 import 'package:path/path.dart'; //to use basename in line 45
-import 'classes/user.dart';
 
 class EditprofilePage extends StatefulWidget {
   static const route = ' home/profile/edit';
   static const routename = 'EditProfilePage';
+
+  const EditprofilePage({Key? key}) : super(key: key);
   @override
   _EditProfilePageState createState() => _EditProfilePageState();
 }
