@@ -3,7 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:project/pages/bmipage.dart';
 import 'package:project/pages/heartpage.dart';
 import 'package:project/pages/sleeppage.dart';
-import 'package:project/pages/steppage.dart';
+import 'package:project/pages/steppage/steppage.dart';
 
 //______________________________________________________________________________
 //_______________ HEART RATE CARD ______________________________________________

@@ -10,7 +10,7 @@ import 'package:project/pages/homepage.dart';
 import 'package:project/pages/loginPage.dart';
 import 'package:project/pages/profilePage.dart';
 import 'package:project/pages/sleeppage.dart';
-import 'package:project/pages/steppage.dart';
+import 'package:project/pages/steppage/steppage.dart';
 import 'package:provider/provider.dart';
 import '../models/annotationDB.dart';
 
