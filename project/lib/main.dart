@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:project/chart/database.dart';
+import 'package:project/chart/databaseRepository.dart';
 import 'package:project/classes/UserPreferences.dart';
 import 'package:project/pages/annotationpage.dart';
 import 'package:project/pages/authpage.dart';
@@ -19,9 +21,15 @@ Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Userpreferences.init();
 
-  runApp(
-    MyApp(),
-  );
+  final AppDatabase database =
+      await $FloorAppDatabase.databaseBuilder('app_database.db').build();
+
+  final databaseRepository = DatabaseRepository(database: database);
+
+  runApp(ChangeNotifierProvider<DatabaseRepository>(
+    create: (context) => databaseRepository,
+    child: MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
