@@ -33,6 +33,7 @@ dependencies:
   material_design_icons_flutter: ^5.0.6595
   water_drop_nav_bar:
   charts_flutter: ^0.12.0
+  fl_chart: ^0.51.0
   google_fonts: ^2.3.1
   provider: #added per walkpage
   intl: ^0.17.0  #added per walkpage

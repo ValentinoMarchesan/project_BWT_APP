@@ -175,11 +175,6 @@ class _StepPageState extends State<StepPage> {
                   padding: EdgeInsets.all(10),
                   child: Column(
                     children: [
-                      Text(
-                        'STEP OF LAST SEVEN DAYS',
-                        style: TextStyle(
-                            fontSize: 15, fontWeight: FontWeight.bold),
-                      ),
                       LinearCharts(
                         data: data,
                       ),
