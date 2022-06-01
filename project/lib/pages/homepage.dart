@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:project/models/CustomCard.dart';
+import 'package:project/pages/gamepage.dart';
 import 'package:project/pages/profilePage.dart';
 import 'package:water_drop_nav_bar/water_drop_nav_bar.dart';
 import 'diarypage.dart';
@@ -113,21 +114,7 @@ class _HomePageState extends State<HomePage> {
 //______________________________________________________________________________
             Container(
               alignment: Alignment.center,
-              child: Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Container(
-                      child: const Text('GAMEPAGE'),
-                    ),
-                    Icon(
-                      Icons.gamepad_sharp,
-                      size: 56,
-                      color: Colors.red[400],
-                    ),
-                  ],
-                ),
-              ),
+              child: Center(child: GamePage()),
             ),
 //______________________________________________________________________________
 //________________    FINE GAMEPAGE    _________________________________________

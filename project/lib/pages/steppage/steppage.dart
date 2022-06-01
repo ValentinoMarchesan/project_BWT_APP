@@ -178,6 +178,26 @@ class _StepPageState extends State<StepPage> {
                       LinearCharts(
                         data: data,
                       ),
+                      /*Consumer<DatabaseRepository>(
+                      builder: (context, dbr, child) {
+                    //The logic is to query the DB for the entire list of Todo using dbr.findAllTodos()
+                    //and then populate the ListView accordingly.
+                    //We need to use a FutureBuilder since the result of dbr.findAllTodos() is a Future.
+                    return FutureBuilder(
+                      initialData: null,
+                      future: dbr.getSteps(),
+                      builder: (context, snapshot) {
+                        if (snapshot.hasData) {
+                          final data = snapshot.data as List<Passi>;
+
+                          return LinearCharts(data: data);
+                        } else {
+                          //A CircularProgressIndicator is shown while the list of Todo is loading.
+                          return CircularProgressIndicator();
+                        } //else
+                      }, //builder of FutureBuilder
+                    );
+                  }),*/
                     ],
                   ),
                 ),
