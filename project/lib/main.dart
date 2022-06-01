@@ -8,6 +8,7 @@ import 'package:project/pages/bmipage.dart';
 import 'package:project/pages/diarypage.dart';
 import 'package:project/pages/editProfilePage.dart';
 import 'package:project/pages/heartpage.dart';
+import 'package:project/pages/heartpage2.dart';
 import 'package:project/pages/homepage.dart';
 import 'package:project/pages/loginPage.dart';
 import 'package:project/pages/profilePage.dart';
@@ -27,8 +28,14 @@ Future main() async {
   final databaseRepository = DatabaseRepository(database: database);
 
   runApp(ChangeNotifierProvider<DatabaseRepository>(
+    //runApp(MultiProvider(
+    // providers: [
+    //   ChangeNotifierProvider<AnnotationDB>(create: (context) => AnnotationDB()),
+    //   ChangeNotifierProvider<DatabaseRepository>(
+    //      create: (context) => DatabaseRepository(database: database))
+    // ],
     create: (context) => databaseRepository,
-    child: MyApp(),
+    child: const MyApp(),
   ));
 }
 
@@ -36,6 +43,8 @@ class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+//return MultiProvider(providers: [ChangeNotifierProvider<AnnotationDB>(create: (context)=> AnnotationDB()),ChangeNotifierProvider<DatabaseRepository>(create: (context)=> DatabaseRepository(database: database))])
+
     return ChangeNotifierProvider<AnnotationDB>(
       //added for annotationpage
       create: (context) => AnnotationDB(), //added for annotationpage
@@ -80,9 +89,9 @@ class MyApp extends StatelessWidget {
             return MaterialPageRoute(builder: (context) {
               return EditprofilePage();
             });
-          } else if (settings.name == HeartPage.route) {
+          } else if (settings.name == HeartPage2.route) {
             return MaterialPageRoute(builder: (context) {
-              return HeartPage();
+              return HeartPage2();
             });
           } else if (settings.name == ProfilePage.route) {
             return MaterialPageRoute(builder: (context) {

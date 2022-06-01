@@ -55,7 +55,7 @@ class _HeartPageState extends State<HeartPage> {
 
           //STEP2: Create the request url
           FitbitHeartAPIURL fitbitHeartApiUrl = FitbitHeartAPIURL.dayWithUserID(
-              date: DateTime.now().subtract(Duration(days: 2)),
+              date: DateTime.now().subtract(Duration(days: 1)),
               userID: sp.getString('userid'));
           // userID: prova.getString('userid'));
 
@@ -68,8 +68,9 @@ class _HeartPageState extends State<HeartPage> {
           ScaffoldMessenger.of(context).showSnackBar(snackBar);
           print(fitbitHeartData[0].minutesOutOfRange);
 
-          //  await Provider.of<DatabaseRepository>(context, listen: false)
-          //      .insertHeart(Heart(1, fitbitHeartData[0].minutesOutOfRange!));
+/////////////////////////DATABASE////////////////
+          await Provider.of<DatabaseRepository>(context, listen: false)
+              .updateHeart(Heart(1, fitbitHeartData[0].minutesOutOfRange!));
 
           await Provider.of<DatabaseRepository>(context, listen: false)
               .updateHeart(Heart(2, fitbitHeartData[0].minutesFatBurn!));
@@ -77,21 +78,21 @@ class _HeartPageState extends State<HeartPage> {
           await Provider.of<DatabaseRepository>(context, listen: false)
               .updateHeart(Heart(3, fitbitHeartData[0].minutesCardio!));
 
-          //   await Provider.of<DatabaseRepository>(context, listen: false)
-          //     .insertHeart(Heart(4, fitbitHeartData[0].minutesPeak!));
+          await Provider.of<DatabaseRepository>(context, listen: false)
+              .updateHeart(Heart(4, fitbitHeartData[0].minutesPeak!));
 
-          //  Heart? time_OutRange =
-          //      await Provider.of<DatabaseRepository>(context, listen: false)
-          //         .findminutes(1);
+          Heart? time_OutRange =
+              await Provider.of<DatabaseRepository>(context, listen: false)
+                  .findminutes(1);
           Heart? time_FatBurn =
               await Provider.of<DatabaseRepository>(context, listen: false)
                   .findminutes(2);
           Heart? time_Cardio =
               await Provider.of<DatabaseRepository>(context, listen: false)
                   .findminutes(3);
-          //  Heart? time_Peak =
-          //      await Provider.of<DatabaseRepository>(context, listen: false)
-          //          .findminutes(4);
+          Heart? time_Peak =
+              await Provider.of<DatabaseRepository>(context, listen: false)
+                  .findminutes(4);
 
           //insert fetched data into database
 
@@ -102,8 +103,8 @@ class _HeartPageState extends State<HeartPage> {
             data = [
               HeartSeries.creation(
                   'Out of Range',
-                  fitbitHeartData[0].minutesOutOfRange,
-                  //time_OutRange!.minute,
+                  //fitbitHeartData[0].minutesOutOfRange,
+                  time_OutRange!.minute,
                   charts.ColorUtil.fromDartColor(Colors.red)),
               HeartSeries.creation(
                   'Fat Burn',
@@ -112,13 +113,13 @@ class _HeartPageState extends State<HeartPage> {
                   charts.ColorUtil.fromDartColor(Colors.orangeAccent)),
               HeartSeries.creation(
                   'Cardio',
-                  //fitbitHeartData[0].minutesCardio,
+                  // fitbitHeartData[0].minutesCardio,
                   time_Cardio!.minute,
                   charts.ColorUtil.fromDartColor(Colors.black12)),
               HeartSeries.creation(
                   'Peak',
-                  fitbitHeartData[0].minutesPeak,
-                  //time_Peak!.minute,
+                  // fitbitHeartData[0].minutesPeak,
+                  time_Peak!.minute,
                   charts.ColorUtil.fromDartColor(Colors.blue))
             ];
           });

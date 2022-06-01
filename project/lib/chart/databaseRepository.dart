@@ -25,5 +25,17 @@ class DatabaseRepository extends ChangeNotifier {
   Future<Heart?> findminutes(int id) async {
     final results = await database.heartDao.findminutes(id);
     return results;
-  } //findAllTodos
+  } //findminutes
+
+  Future<void> deleteAllHeart(List<Heart> hearts) async {
+    await database.heartDao.deleteAllHeart(hearts);
+    notifyListeners();
+  } //removeHeart
+
+  //This method wraps the findAllHearts() method of the DAO
+  Future<List<Heart>> findAllHeart() async {
+    final results = await database.heartDao.findAllHeart();
+    return results;
+  } //findAllMeals
+
 }//databaseRepository

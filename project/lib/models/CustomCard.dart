@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:project/pages/bmipage.dart';
 import 'package:project/pages/heartpage.dart';
+import 'package:project/pages/heartpage2.dart';
 import 'package:project/pages/sleeppage.dart';
 import 'package:project/pages/steppage.dart';
 
@@ -101,7 +102,7 @@ class CardHR extends StatelessWidget {
   }
 
   void _toHeartPage(BuildContext context) {
-    Navigator.pushNamed(context, HeartPage.route);
+    Navigator.pushNamed(context, HeartPage2.route);
   } //_toStepPage
 }
 

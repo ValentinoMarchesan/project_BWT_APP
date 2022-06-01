@@ -82,7 +82,7 @@ class _$AppDatabase extends AppDatabase {
       },
       onCreate: (database, version) async {
         await database.execute(
-            'CREATE TABLE IF NOT EXISTS `Heart` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `minute` INTEGER NOT NULL)');
+            'CREATE TABLE IF NOT EXISTS `Heart` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `minute` INTEGER)');
 
         await callback?.onCreate?.call(database, version);
       },
@@ -102,26 +102,20 @@ class _$HeartDao extends HeartDao {
         _heartInsertionAdapter = InsertionAdapter(
             database,
             'Heart',
-            (Heart item) => <String, Object?>{
-                  'id': item.id,
-                  'minute': item.minute,
-                }),
+            (Heart item) =>
+                <String, Object?>{'id': item.id, 'minute': item.minute}),
         _heartUpdateAdapter = UpdateAdapter(
             database,
             'Heart',
             ['id'],
-            (Heart item) => <String, Object?>{
-                  'id': item.id,
-                  'minute': item.minute,
-                }),
+            (Heart item) =>
+                <String, Object?>{'id': item.id, 'minute': item.minute}),
         _heartDeletionAdapter = DeletionAdapter(
             database,
-            'Meal',
+            'Heart',
             ['id'],
-            (Heart item) => <String, Object?>{
-                  'id': item.id,
-                  'minute': item.minute,
-                });
+            (Heart item) =>
+                <String, Object?>{'id': item.id, 'minute': item.minute});
 
   final sqflite.DatabaseExecutor database;
 
@@ -137,11 +131,17 @@ class _$HeartDao extends HeartDao {
 
   @override
   Future<Heart?> findminutes(int id) async {
-    return _queryAdapter.query('SELECT * FROM Heart  where id=id ',
-        mapper: (Map<String, Object?> row) => Heart(
-              row['id'] as int?,
-              row['minute'] as int,
-            ));
+    return _queryAdapter.query('SELECT * FROM Heart  where id=?1',
+        mapper: (Map<String, Object?> row) =>
+            Heart(row['id'] as int?, row['minute'] as int?),
+        arguments: [id]);
+  }
+
+  @override
+  Future<List<Heart>> findAllHeart() async {
+    return _queryAdapter.queryList('SELECT * FROM heart',
+        mapper: (Map<String, Object?> row) =>
+            Heart(row['id'] as int?, row['minute'] as int?));
   }
 
   @override
@@ -152,5 +152,10 @@ class _$HeartDao extends HeartDao {
   @override
   Future<void> updateHeart(Heart heart) async {
     await _heartUpdateAdapter.update(heart, OnConflictStrategy.replace);
+  }
+
+  @override
+  Future<void> deleteAllHeart(List<Heart> task) async {
+    await _heartDeletionAdapter.deleteList(task);
   }
 }
