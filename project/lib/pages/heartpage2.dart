@@ -16,8 +16,9 @@ class HeartPage2 extends StatelessWidget {
 
   static const route = '/home/heart2';
   static const routename = 'Heartpage2';
+  //late
   List<HeartSeries> data_series = [];
-  late List<Heart> data_heart;
+  //late List<Heart> data_heart;
 
   @override
   Widget build(BuildContext context) {
@@ -34,6 +35,19 @@ class HeartPage2 extends StatelessWidget {
           builder: (context, snapshot) {
             if (snapshot.hasData) {
               final data_heart = snapshot.data as List<Heart>;
+              // _metodoprova(context);
+              // return data_heart.length == 0
+              //    ? Text('maracaibo', textAlign: TextAlign.center)
+              //     : HeartChart(data: data_series);
+              if (data_heart.length == 0) {
+                data_series = [HeartSeries.empty()];
+                // _metodoprova(context);
+                return HeartChart(data: data_series);
+              } else {
+                // final data_series = _metodoprova2(context);
+
+                return HeartChart(data: data_series);
+              }
               /*     final data_series = [
             HeartSeries.creation(
                 'Out of Range',
@@ -56,8 +70,9 @@ class HeartPage2 extends StatelessWidget {
                 time_Peak!.minute,
                 charts.ColorUtil.fromDartColor(Colors.blue))
           ];*/
-              return HeartChart(data: data_series);
+              //  return HeartChart(data: data_series);
             } else {
+              // _metodoprova(context);
               return CircularProgressIndicator();
             }
           },
@@ -90,33 +105,19 @@ class HeartPage2 extends StatelessWidget {
           ScaffoldMessenger.of(context).showSnackBar(snackBar);
           print(fitbitHeartData[0].minutesOutOfRange);
 
-/////////////////////////DATABASE////////////////
-          ///
-          if (data_heart.length == 0) {
-            await Provider.of<DatabaseRepository>(context, listen: false)
-                .insertHeart(Heart(1, fitbitHeartData[0].minutesOutOfRange!));
+          // _metodoprova(context);
+          await Provider.of<DatabaseRepository>(context, listen: false)
+              .updateHeart(Heart(1, fitbitHeartData[0].minutesOutOfRange!));
 
-            await Provider.of<DatabaseRepository>(context, listen: false)
-                .insertHeart(Heart(2, fitbitHeartData[0].minutesFatBurn!));
+          await Provider.of<DatabaseRepository>(context, listen: false)
+              .updateHeart(Heart(2, fitbitHeartData[0].minutesFatBurn!));
 
-            await Provider.of<DatabaseRepository>(context, listen: false)
-                .insertHeart(Heart(3, fitbitHeartData[0].minutesCardio!));
+          await Provider.of<DatabaseRepository>(context, listen: false)
+              .updateHeart(Heart(3, fitbitHeartData[0].minutesCardio!));
 
-            await Provider.of<DatabaseRepository>(context, listen: false)
-                .insertHeart(Heart(4, fitbitHeartData[0].minutesPeak!));
-          } else {
-            await Provider.of<DatabaseRepository>(context, listen: false)
-                .updateHeart(Heart(1, fitbitHeartData[0].minutesOutOfRange!));
+          await Provider.of<DatabaseRepository>(context, listen: false)
+              .updateHeart(Heart(4, fitbitHeartData[0].minutesPeak!));
 
-            await Provider.of<DatabaseRepository>(context, listen: false)
-                .updateHeart(Heart(2, fitbitHeartData[0].minutesFatBurn!));
-
-            await Provider.of<DatabaseRepository>(context, listen: false)
-                .updateHeart(Heart(3, fitbitHeartData[0].minutesCardio!));
-
-            await Provider.of<DatabaseRepository>(context, listen: false)
-                .updateHeart(Heart(4, fitbitHeartData[0].minutesPeak!));
-          }
           Heart? time_OutRange =
               await Provider.of<DatabaseRepository>(context, listen: false)
                   .findminutes(1);
@@ -129,6 +130,47 @@ class HeartPage2 extends StatelessWidget {
           Heart? time_Peak =
               await Provider.of<DatabaseRepository>(context, listen: false)
                   .findminutes(4);
+
+          data_series = [
+            HeartSeries.creation(
+                'Out of Range',
+                //fitbitHeartData[0].minutesOutOfRange,
+                time_OutRange!.minute,
+                charts.ColorUtil.fromDartColor(Colors.red)),
+            HeartSeries.creation(
+                'Fat Burn',
+                // fitbitHeartData[0].minutesFatBurn,
+                time_FatBurn!.minute,
+                charts.ColorUtil.fromDartColor(Colors.orangeAccent)),
+            HeartSeries.creation(
+                'Cardio',
+                // fitbitHeartData[0].minutesCardio,
+                time_Cardio!.minute,
+                charts.ColorUtil.fromDartColor(Colors.black12)),
+            HeartSeries.creation(
+                'Peak',
+                // fitbitHeartData[0].minutesPeak,
+                time_Peak!.minute,
+                charts.ColorUtil.fromDartColor(Colors.blue))
+          ];
+
+/////////////////////////DATABASE////////////////
+          ///
+          ///
+          /*
+          if (data_heart.length == 0) {
+            await Provider.of<DatabaseRepository>(context, listen: false)
+                .insertHeart(Heart(1, fitbitHeartData[0].minutesOutOfRange!));
+
+            await Provider.of<DatabaseRepository>(context, listen: false)
+                .insertHeart(Heart(2, fitbitHeartData[0].minutesFatBurn!));
+
+            await Provider.of<DatabaseRepository>(context, listen: false)
+                .insertHeart(Heart(3, fitbitHeartData[0].minutesCardio!));
+
+            await Provider.of<DatabaseRepository>(context, listen: false)
+                .insertHeart(Heart(4, fitbitHeartData[0].minutesPeak!));
+          } else { */
 
           //insert fetched data into database
 
@@ -164,6 +206,46 @@ class HeartPage2 extends StatelessWidget {
       ),
     );
   }
+
+  void _metodoprova(BuildContext context) async {
+    await Provider.of<DatabaseRepository>(context, listen: false)
+        .insertHeart(Heart(1, 0));
+
+    await Provider.of<DatabaseRepository>(context, listen: false)
+        .insertHeart(Heart(2, 0));
+
+    await Provider.of<DatabaseRepository>(context, listen: false)
+        .insertHeart(Heart(3, 0));
+
+    await Provider.of<DatabaseRepository>(context, listen: false)
+        .insertHeart(Heart(4, 0));
+  }
+/*
+  List<HeartSeries> _metodoprova2(BuildContext context) async {
+  
+    final data_series = [
+      HeartSeries.creation(
+          'Out of Range',
+          //fitbitHeartData[0].minutesOutOfRange,
+          time_OutRange!.minute,
+          charts.ColorUtil.fromDartColor(Colors.red)),
+      HeartSeries.creation(
+          'Fat Burn',
+          // fitbitHeartData[0].minutesFatBurn,
+          time_FatBurn!.minute,
+          charts.ColorUtil.fromDartColor(Colors.orangeAccent)),
+      HeartSeries.creation(
+          'Cardio',
+          // fitbitHeartData[0].minutesCardio,
+          time_Cardio!.minute,
+          charts.ColorUtil.fromDartColor(Colors.black12)),
+      HeartSeries.creation(
+          'Peak',
+          // fitbitHeartData[0].minutesPeak,
+          time_Peak!.minute,
+          charts.ColorUtil.fromDartColor(Colors.blue))
+    ];
+
+    return data_series;
+  }*/
 } //Page
-
-

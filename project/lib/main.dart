@@ -35,7 +35,7 @@ Future main() async {
     //      create: (context) => DatabaseRepository(database: database))
     // ],
     create: (context) => databaseRepository,
-    child: const MyApp(),
+    child: MyApp(),
   ));
 }
 
