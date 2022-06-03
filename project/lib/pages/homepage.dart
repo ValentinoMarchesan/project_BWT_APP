@@ -114,7 +114,7 @@ class _HomePageState extends State<HomePage> {
 //______________________________________________________________________________
             Container(
               alignment: Alignment.center,
-              child: Center(child: GamePage()),
+              child: GamePage(),
             ),
 //______________________________________________________________________________
 //________________    FINE GAMEPAGE    _________________________________________

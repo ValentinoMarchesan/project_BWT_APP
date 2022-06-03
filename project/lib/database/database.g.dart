@@ -61,7 +61,7 @@ class _$AppDatabase extends AppDatabase {
     changeListener = listener ?? StreamController<String>.broadcast();
   }
 
-  StepDao? _stepdaoInstance;
+  AnnotationDao? _annotationDaoInstance;
 
   Future<sqflite.Database> open(String path, List<Migration> migrations,
       [Callback? callback]) async {
@@ -82,7 +82,7 @@ class _$AppDatabase extends AppDatabase {
       },
       onCreate: (database, version) async {
         await database.execute(
-            'CREATE TABLE IF NOT EXISTS `Passi` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `passi` REAL)');
+            'CREATE TABLE IF NOT EXISTS `Annotation` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `min` INTEGER NOT NULL, `ml` INTEGER NOT NULL, `mood` TEXT NOT NULL, `dateTime` INTEGER NOT NULL)');
 
         await callback?.onCreate?.call(database, version);
       },
@@ -91,34 +91,46 @@ class _$AppDatabase extends AppDatabase {
   }
 
   @override
-  StepDao get stepdao {
-    return _stepdaoInstance ??= _$StepDao(database, changeListener);
+  AnnotationDao get annotationDao {
+    return _annotationDaoInstance ??= _$AnnotationDao(database, changeListener);
   }
 }
 
-class _$StepDao extends StepDao {
-  _$StepDao(this.database, this.changeListener)
-      : _queryAdapter = QueryAdapter(database, changeListener),
-        _passiInsertionAdapter = InsertionAdapter(
+class _$AnnotationDao extends AnnotationDao {
+  _$AnnotationDao(this.database, this.changeListener)
+      : _queryAdapter = QueryAdapter(database),
+        _annotationInsertionAdapter = InsertionAdapter(
             database,
-            'Passi',
-            (Passi item) =>
-                <String, Object?>{'id': item.id, 'passi': item.passi},
-            changeListener),
-        _passiUpdateAdapter = UpdateAdapter(
+            'Annotation',
+            (Annotation item) => <String, Object?>{
+                  'id': item.id,
+                  'min': item.min,
+                  'ml': item.ml,
+                  'mood': item.mood,
+                  'dateTime': _dateTimeConverter.encode(item.dateTime)
+                }),
+        _annotationUpdateAdapter = UpdateAdapter(
             database,
-            'Passi',
+            'Annotation',
             ['id'],
-            (Passi item) =>
-                <String, Object?>{'id': item.id, 'passi': item.passi},
-            changeListener),
-        _passiDeletionAdapter = DeletionAdapter(
+            (Annotation item) => <String, Object?>{
+                  'id': item.id,
+                  'min': item.min,
+                  'ml': item.ml,
+                  'mood': item.mood,
+                  'dateTime': _dateTimeConverter.encode(item.dateTime)
+                }),
+        _annotationDeletionAdapter = DeletionAdapter(
             database,
-            'Passi',
+            'Annotation',
             ['id'],
-            (Passi item) =>
-                <String, Object?>{'id': item.id, 'passi': item.passi},
-            changeListener);
+            (Annotation item) => <String, Object?>{
+                  'id': item.id,
+                  'min': item.min,
+                  'ml': item.ml,
+                  'mood': item.mood,
+                  'dateTime': _dateTimeConverter.encode(item.dateTime)
+                });
 
   final sqflite.DatabaseExecutor database;
 
@@ -126,48 +138,40 @@ class _$StepDao extends StepDao {
 
   final QueryAdapter _queryAdapter;
 
-  final InsertionAdapter<Passi> _passiInsertionAdapter;
+  final InsertionAdapter<Annotation> _annotationInsertionAdapter;
 
-  final UpdateAdapter<Passi> _passiUpdateAdapter;
+  final UpdateAdapter<Annotation> _annotationUpdateAdapter;
 
-  final DeletionAdapter<Passi> _passiDeletionAdapter;
+  final DeletionAdapter<Annotation> _annotationDeletionAdapter;
 
   @override
-  Stream<List<Passi>> getAllStep() {
-    return _queryAdapter.queryListStream('SELECT * FROM Employee',
-        mapper: (Map<String, Object?> row) =>
-            Passi(row['id'] as int?, row['passi'] as double?),
-        queryableName: 'Passi',
-        isView: false);
+  Future<List<Annotation>> findAllAnnotations() async {
+    return _queryAdapter.queryList('SELECT * FROM Annotation',
+        mapper: (Map<String, Object?> row) => Annotation(
+            row['id'] as int?,
+            row['min'] as int,
+            row['ml'] as int,
+            row['mood'] as String,
+            _dateTimeConverter.decode(row['dateTime'] as int)));
   }
 
   @override
-  Stream<Passi?> getAllStepBYID(int id) {
-    return _queryAdapter.queryStream('SELECT * FROM Employee WHERE id = ?1',
-        mapper: (Map<String, Object?> row) =>
-            Passi(row['id'] as int?, row['passi'] as double?),
-        arguments: [id],
-        queryableName: 'Passi',
-        isView: false);
+  Future<void> insertAnnotation(Annotation annotation) async {
+    await _annotationInsertionAdapter.insert(
+        annotation, OnConflictStrategy.abort);
   }
 
   @override
-  Future<void> deleteAllStep() async {
-    await _queryAdapter.queryNoReturn('DELETE FROM Employee');
+  Future<void> updateAnnotation(Annotation annotation) async {
+    await _annotationUpdateAdapter.update(
+        annotation, OnConflictStrategy.replace);
   }
 
   @override
-  Future<void> insertStep(Passi steps) async {
-    await _passiInsertionAdapter.insert(steps, OnConflictStrategy.abort);
-  }
-
-  @override
-  Future<void> updateStep(Passi steps) async {
-    await _passiUpdateAdapter.update(steps, OnConflictStrategy.abort);
-  }
-
-  @override
-  Future<void> deleteStep(Passi steps) async {
-    await _passiDeletionAdapter.delete(steps);
+  Future<void> deleteAnnotation(Annotation task) async {
+    await _annotationDeletionAdapter.delete(task);
   }
 }
+
+// ignore_for_file: unused_element
+final _dateTimeConverter = DateTimeConverter();
