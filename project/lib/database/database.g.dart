@@ -63,6 +63,8 @@ class _$AppDatabase extends AppDatabase {
 
   AnnotationDao? _annotationDaoInstance;
 
+  SleepDao? _sleepDaoInstance;
+
   Future<sqflite.Database> open(String path, List<Migration> migrations,
       [Callback? callback]) async {
     final databaseOptions = sqflite.OpenDatabaseOptions(
@@ -83,6 +85,8 @@ class _$AppDatabase extends AppDatabase {
       onCreate: (database, version) async {
         await database.execute(
             'CREATE TABLE IF NOT EXISTS `Annotation` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `min` INTEGER NOT NULL, `ml` INTEGER NOT NULL, `mood` TEXT NOT NULL, `dateTime` INTEGER NOT NULL)');
+        await database.execute(
+            'CREATE TABLE IF NOT EXISTS `Sleep` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `level` TEXT NOT NULL, `dateTime` INTEGER NOT NULL)');
 
         await callback?.onCreate?.call(database, version);
       },
@@ -93,6 +97,11 @@ class _$AppDatabase extends AppDatabase {
   @override
   AnnotationDao get annotationDao {
     return _annotationDaoInstance ??= _$AnnotationDao(database, changeListener);
+  }
+
+  @override
+  SleepDao get sleepDao {
+    return _sleepDaoInstance ??= _$SleepDao(database, changeListener);
   }
 }
 
@@ -170,6 +179,73 @@ class _$AnnotationDao extends AnnotationDao {
   @override
   Future<void> deleteAnnotation(Annotation task) async {
     await _annotationDeletionAdapter.delete(task);
+  }
+}
+
+class _$SleepDao extends SleepDao {
+  _$SleepDao(this.database, this.changeListener)
+      : _queryAdapter = QueryAdapter(database),
+        _sleepInsertionAdapter = InsertionAdapter(
+            database,
+            'Sleep',
+            (Sleep item) => <String, Object?>{
+                  'id': item.id,
+                  'level': item.level,
+                  'dateTime': _dateTimeConverter.encode(item.dateTime)
+                }),
+        _sleepUpdateAdapter = UpdateAdapter(
+            database,
+            'Sleep',
+            ['id'],
+            (Sleep item) => <String, Object?>{
+                  'id': item.id,
+                  'level': item.level,
+                  'dateTime': _dateTimeConverter.encode(item.dateTime)
+                }),
+        _sleepDeletionAdapter = DeletionAdapter(
+            database,
+            'Sleep',
+            ['id'],
+            (Sleep item) => <String, Object?>{
+                  'id': item.id,
+                  'level': item.level,
+                  'dateTime': _dateTimeConverter.encode(item.dateTime)
+                });
+
+  final sqflite.DatabaseExecutor database;
+
+  final StreamController<String> changeListener;
+
+  final QueryAdapter _queryAdapter;
+
+  final InsertionAdapter<Sleep> _sleepInsertionAdapter;
+
+  final UpdateAdapter<Sleep> _sleepUpdateAdapter;
+
+  final DeletionAdapter<Sleep> _sleepDeletionAdapter;
+
+  @override
+  Future<List<Sleep>> findAllSleep() async {
+    return _queryAdapter.queryList('SELECT * FROM Sleep',
+        mapper: (Map<String, Object?> row) => Sleep(
+            row['id'] as int?,
+            row['level'] as String,
+            _dateTimeConverter.decode(row['dateTime'] as int)));
+  }
+
+  @override
+  Future<void> insertSleep(Sleep sleep) async {
+    await _sleepInsertionAdapter.insert(sleep, OnConflictStrategy.abort);
+  }
+
+  @override
+  Future<void> updateSleep(Sleep sleep) async {
+    await _sleepUpdateAdapter.update(sleep, OnConflictStrategy.replace);
+  }
+
+  @override
+  Future<void> deleteSleep(Sleep sleep) async {
+    await _sleepDeletionAdapter.delete(sleep);
   }
 }
 

@@ -1,6 +1,8 @@
 //Imports necessary to the code generator of floor
 import 'dart:async';
 import 'package:floor/floor.dart';
+import 'package:project/database/daos/sleepDao.dart';
+import 'package:project/database/entities/sleep.dart';
 import 'package:project/database/typeConverters/dateTimeConverter.dart';
 import 'package:sqflite/sqflite.dart' as sqflite;
 
@@ -15,8 +17,9 @@ part 'database.g.dart';
 //TypeConverter added to manage the DateTime of a Meal entry, since DateTimes are not supported by Floor.
 
 @TypeConverters([DateTimeConverter])
-@Database(version: 1, entities: [Annotation])
+@Database(version: 1, entities: [Annotation, Sleep])
 abstract class AppDatabase extends FloorDatabase {
   //Add all the daos as getters here
   AnnotationDao get annotationDao;
+  SleepDao get sleepDao;
 }//AppDatabase
