@@ -2,7 +2,6 @@ import 'package:fitbitter/fitbitter.dart';
 import 'package:floor/floor.dart';
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
-import 'package:moor_db_viewer/moor_db_viewer.dart';
 import 'package:project/database/entities/sleep.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
