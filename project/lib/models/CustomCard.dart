@@ -141,7 +141,9 @@ class CardSM extends StatelessWidget {
                   SizedBox(
                     width: 10,
                   ),
-                  Icon(Icons.dark_mode),
+                  Icon(
+                    Icons.dark_mode,
+                  ),
                   SizedBox(
                     height: 1,
                     width: 10,

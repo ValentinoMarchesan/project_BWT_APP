@@ -1,0 +1,25 @@
+import 'package:project/database/entities/heart.dart';
+import 'package:project/database/entities/sleep.dart';
+import 'package:floor/floor.dart';
+
+// classe che definisce i DAO
+@dao
+abstract class HeartDao {
+  //Query #1: SELECT
+  @Query('SELECT * FROM Heart')
+  Future<List<Heart>> findAllHeart();
+  @Query('SELECT minutesheart FROM Heart WHERE id = :id')
+  Future<List<Heart>> findminutsHeart(int id);
+
+  //Query #2: INSERT
+  @insert
+  Future<void> insertHeart(Heart heart);
+
+  //Query #3: DELETE
+  @delete
+  Future<void> deleteHeart(List<Heart> task);
+
+  //Query #4: UPDATE
+  @Update(onConflict: OnConflictStrategy.replace)
+  Future<void> updateHeart(Heart heart);
+}

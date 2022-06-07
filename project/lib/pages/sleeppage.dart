@@ -9,7 +9,6 @@ import '../repositories/databaseRepository.dart';
 import '../utils/formats.dart';
 import '../utils/strings.dart';
 
-/*
 class SleepPage extends StatefulWidget {
   SleepPage({Key? key}) : super(key: key);
 
@@ -22,58 +21,17 @@ class SleepPage extends StatefulWidget {
 }
 
 class _SleepPageState extends State<SleepPage> {
-  String? levelController;
-  @override
-  void initState() {
-    levelController =
-        widget.sleep == null ? '' : widget.sleep!.level.toString();
-
-    super.initState();
-  } // initState
+  // initState
 
   @override
   Widget build(BuildContext context) {
     print('${SleepPage.routename} built');
     return Scaffold(
       appBar: AppBar(
-        title: const Text(SleepPage.routename),
-      ),
-      floatingActionButton: Row(
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: [
-          FloatingActionButton(
-            onPressed: () async {
-              delete(context);
-            },
-            child: const Icon(Icons.delete),
-            heroTag: 'delete',
-          ),
-          SizedBox(width: 20),
-          FloatingActionButton(
-            onPressed: () async {
-              // Authorize the app
-              final sp = await SharedPreferences.getInstance();
-
-              //Instantiate a proper data manager
-              FitbitSleepDataManager fitbitSleepDataManager =
-                  FitbitSleepDataManager(
-                clientID: Strings.fitbitClientID,
-                clientSecret: Strings.fitbitClientSecret,
-              );
-
-              //Fetch data
-              final sleepData = await fitbitSleepDataManager
-                  .fetch(FitbitSleepAPIURL.withUserIDAndDay(
-                date: DateTime.now().subtract(const Duration(days: 1)),
-                userID: sp.getString('userid'),
-              )) as List<FitbitSleepData>;
-
-              Save(context, sleepData);
-            },
-            heroTag: 'save',
-            child: const Text('FETCH'),
-          ),
-        ],
+        title: const Text(SleepPage.routename,
+            style: TextStyle(fontSize: 20, fontFamily: 'Audiowide')),
+        centerTitle: true,
+        backgroundColor: Colors.orange,
       ),
       body: Center(
         child: Consumer<DatabaseRepository>(builder: (context, dbr, child) {
@@ -82,7 +40,7 @@ class _SleepPageState extends State<SleepPage> {
 
           return FutureBuilder(
             initialData: null,
-            future: dbr.findAllSleep(),
+            future: null,
             builder: (context, snapshot) {
               if (snapshot.hasData) {
                 final data = snapshot.data as List<Sleep>;
@@ -98,17 +56,15 @@ class _SleepPageState extends State<SleepPage> {
                           return Card(
                               elevation: 5,
                               child: ListTile(
-                                leading: Icon(
-                                  MdiIcons.bookOpenPageVariant,
-                                  color: Colors.deepOrangeAccent,
-                                ),
-
-                                title: Text(
-                                    '\n SLEEP LEVEL = ${data[sleepIndex].level}'),
-                                subtitle: Text(
-                                    '${Formats.fullDateFormatNoSeconds.format(data[sleepIndex].dateTime)}'),
-                                // When a ListTile is tapped, the user is redirected to the AnnotationPage where he can edit it.
-                              ));
+                                  leading: Icon(
+                                    MdiIcons.bookOpenPageVariant,
+                                    color: Colors.deepOrangeAccent,
+                                  ),
+                                  title: Text(
+                                      '\n SLEEP LEVEL = ${data[sleepIndex]}'),
+                                  subtitle: Text('sd')
+                                  // When a ListTile is tapped, the user is redirected to the AnnotationPage where he can edit it.
+                                  ));
                         });
               } // if
               else {
@@ -121,7 +77,8 @@ class _SleepPageState extends State<SleepPage> {
       ),
     );
   }
-
+}
+/*
   void Save(BuildContext context, sleepData) async {
     levelController = sleepData[0].level;
 

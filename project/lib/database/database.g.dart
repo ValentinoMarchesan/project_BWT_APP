@@ -65,6 +65,10 @@ class _$AppDatabase extends AppDatabase {
 
   SleepDao? _sleepDaoInstance;
 
+  HeartDao? _heartDaoInstance;
+
+  ActivityDao? _activityDaoInstance;
+
   Future<sqflite.Database> open(String path, List<Migration> migrations,
       [Callback? callback]) async {
     final databaseOptions = sqflite.OpenDatabaseOptions(
@@ -87,6 +91,10 @@ class _$AppDatabase extends AppDatabase {
             'CREATE TABLE IF NOT EXISTS `Annotation` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `min` INTEGER NOT NULL, `ml` INTEGER NOT NULL, `mood` TEXT NOT NULL, `dateTime` INTEGER NOT NULL)');
         await database.execute(
             'CREATE TABLE IF NOT EXISTS `Sleep` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `sleepduration` INTEGER)');
+        await database.execute(
+            'CREATE TABLE IF NOT EXISTS `Heart` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `minutesheart` INTEGER)');
+        await database.execute(
+            'CREATE TABLE IF NOT EXISTS `Activity` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `step` REAL, `actcalories` REAL, `calories` REAL, `minsedentary` REAL)');
 
         await callback?.onCreate?.call(database, version);
       },
@@ -102,6 +110,16 @@ class _$AppDatabase extends AppDatabase {
   @override
   SleepDao get sleepDao {
     return _sleepDaoInstance ??= _$SleepDao(database, changeListener);
+  }
+
+  @override
+  HeartDao get heartDao {
+    return _heartDaoInstance ??= _$HeartDao(database, changeListener);
+  }
+
+  @override
+  ActivityDao get activityDao {
+    return _activityDaoInstance ??= _$ActivityDao(database, changeListener);
   }
 }
 
@@ -229,6 +247,15 @@ class _$SleepDao extends SleepDao {
   }
 
   @override
+  Future<List<Sleep>> findSleepDuration(int id) async {
+    return _queryAdapter.queryList(
+        'SELECT sleepduration FROM Sleep WHERE id = ?1',
+        mapper: (Map<String, Object?> row) =>
+            Sleep(row['id'] as int?, row['sleepduration'] as int?),
+        arguments: [id]);
+  }
+
+  @override
   Future<void> insertSleep(Sleep sleep) async {
     await _sleepInsertionAdapter.insert(sleep, OnConflictStrategy.abort);
   }
@@ -239,8 +266,198 @@ class _$SleepDao extends SleepDao {
   }
 
   @override
-  Future<void> deleteSleep(Sleep sleep) async {
-    await _sleepDeletionAdapter.delete(sleep);
+  Future<void> deleteSleep(List<Sleep> sleep) async {
+    await _sleepDeletionAdapter.deleteList(sleep);
+  }
+}
+
+class _$HeartDao extends HeartDao {
+  _$HeartDao(this.database, this.changeListener)
+      : _queryAdapter = QueryAdapter(database),
+        _heartInsertionAdapter = InsertionAdapter(
+            database,
+            'Heart',
+            (Heart item) => <String, Object?>{
+                  'id': item.id,
+                  'minutesheart': item.minutesheart
+                }),
+        _heartUpdateAdapter = UpdateAdapter(
+            database,
+            'Heart',
+            ['id'],
+            (Heart item) => <String, Object?>{
+                  'id': item.id,
+                  'minutesheart': item.minutesheart
+                }),
+        _heartDeletionAdapter = DeletionAdapter(
+            database,
+            'Heart',
+            ['id'],
+            (Heart item) => <String, Object?>{
+                  'id': item.id,
+                  'minutesheart': item.minutesheart
+                });
+
+  final sqflite.DatabaseExecutor database;
+
+  final StreamController<String> changeListener;
+
+  final QueryAdapter _queryAdapter;
+
+  final InsertionAdapter<Heart> _heartInsertionAdapter;
+
+  final UpdateAdapter<Heart> _heartUpdateAdapter;
+
+  final DeletionAdapter<Heart> _heartDeletionAdapter;
+
+  @override
+  Future<List<Heart>> findAllHeart() async {
+    return _queryAdapter.queryList('SELECT * FROM Heart',
+        mapper: (Map<String, Object?> row) =>
+            Heart(row['id'] as int?, row['minutesheart'] as int?));
+  }
+
+  @override
+  Future<List<Heart>> findminutsHeart(int id) async {
+    return _queryAdapter.queryList(
+        'SELECT minutesheart FROM Heart WHERE id = ?1',
+        mapper: (Map<String, Object?> row) =>
+            Heart(row['id'] as int?, row['minutesheart'] as int?),
+        arguments: [id]);
+  }
+
+  @override
+  Future<void> insertHeart(Heart heart) async {
+    await _heartInsertionAdapter.insert(heart, OnConflictStrategy.abort);
+  }
+
+  @override
+  Future<void> updateHeart(Heart heart) async {
+    await _heartUpdateAdapter.update(heart, OnConflictStrategy.replace);
+  }
+
+  @override
+  Future<void> deleteHeart(List<Heart> task) async {
+    await _heartDeletionAdapter.deleteList(task);
+  }
+}
+
+class _$ActivityDao extends ActivityDao {
+  _$ActivityDao(this.database, this.changeListener)
+      : _queryAdapter = QueryAdapter(database),
+        _activityInsertionAdapter = InsertionAdapter(
+            database,
+            'Activity',
+            (Activity item) => <String, Object?>{
+                  'id': item.id,
+                  'step': item.step,
+                  'actcalories': item.actcalories,
+                  'calories': item.calories,
+                  'minsedentary': item.minsedentary
+                }),
+        _activityUpdateAdapter = UpdateAdapter(
+            database,
+            'Activity',
+            ['id'],
+            (Activity item) => <String, Object?>{
+                  'id': item.id,
+                  'step': item.step,
+                  'actcalories': item.actcalories,
+                  'calories': item.calories,
+                  'minsedentary': item.minsedentary
+                }),
+        _activityDeletionAdapter = DeletionAdapter(
+            database,
+            'Activity',
+            ['id'],
+            (Activity item) => <String, Object?>{
+                  'id': item.id,
+                  'step': item.step,
+                  'actcalories': item.actcalories,
+                  'calories': item.calories,
+                  'minsedentary': item.minsedentary
+                });
+
+  final sqflite.DatabaseExecutor database;
+
+  final StreamController<String> changeListener;
+
+  final QueryAdapter _queryAdapter;
+
+  final InsertionAdapter<Activity> _activityInsertionAdapter;
+
+  final UpdateAdapter<Activity> _activityUpdateAdapter;
+
+  final DeletionAdapter<Activity> _activityDeletionAdapter;
+
+  @override
+  Future<List<Activity>> findAllActivity() async {
+    return _queryAdapter.queryList('SELECT * FROM Activity',
+        mapper: (Map<String, Object?> row) => Activity(
+            row['id'] as int?,
+            row['step'] as double?,
+            row['actcalories'] as double?,
+            row['calories'] as double?,
+            row['minsedentary'] as double?));
+  }
+
+  @override
+  Future<List<Activity>> findstep() async {
+    return _queryAdapter.queryList('SELECT step FROM Activity',
+        mapper: (Map<String, Object?> row) => Activity(
+            row['id'] as int?,
+            row['step'] as double?,
+            row['actcalories'] as double?,
+            row['calories'] as double?,
+            row['minsedentary'] as double?));
+  }
+
+  @override
+  Future<List<Activity>> findActCalories() async {
+    return _queryAdapter.queryList('SELECT actcalories FROM Activity',
+        mapper: (Map<String, Object?> row) => Activity(
+            row['id'] as int?,
+            row['step'] as double?,
+            row['actcalories'] as double?,
+            row['calories'] as double?,
+            row['minsedentary'] as double?));
+  }
+
+  @override
+  Future<List<Activity>> findCalories() async {
+    return _queryAdapter.queryList('SELECT calories FROM Activity',
+        mapper: (Map<String, Object?> row) => Activity(
+            row['id'] as int?,
+            row['step'] as double?,
+            row['actcalories'] as double?,
+            row['calories'] as double?,
+            row['minsedentary'] as double?));
+  }
+
+  @override
+  Future<List<Activity>> findMinSedentary() async {
+    return _queryAdapter.queryList('SELECT * FROM Activity',
+        mapper: (Map<String, Object?> row) => Activity(
+            row['id'] as int?,
+            row['step'] as double?,
+            row['actcalories'] as double?,
+            row['calories'] as double?,
+            row['minsedentary'] as double?));
+  }
+
+  @override
+  Future<void> insertActivity(Activity activity) async {
+    await _activityInsertionAdapter.insert(activity, OnConflictStrategy.abort);
+  }
+
+  @override
+  Future<void> updateActivity(Activity activity) async {
+    await _activityUpdateAdapter.update(activity, OnConflictStrategy.replace);
+  }
+
+  @override
+  Future<void> deleteActivity(List<Activity> task) async {
+    await _activityDeletionAdapter.deleteList(task);
   }
 }
 

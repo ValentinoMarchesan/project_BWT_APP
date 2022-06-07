@@ -1,106 +1,197 @@
+import 'package:confetti/confetti.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'package:progress_indicator/progress_indicator.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 /// This is the stateless widget that the main application instantiates.
-class GamePage extends StatelessWidget {
+class GamePage extends StatefulWidget {
   const GamePage({Key? key}) : super(key: key);
 
   static const route = '/home/game';
   static const routename = 'GAMEPAGE';
 
   @override
+  State<GamePage> createState() => _GamePageState();
+}
+
+class _GamePageState extends State<GamePage> {
+  @override
   Widget build(BuildContext context) {
     double maxheight = 300;
     return Scaffold(
-        appBar: AppBar(
-          title: const Text(GamePage.routename,
-              style: TextStyle(
-                fontFamily: 'AudioWide',
-                fontSize: 20,
-                fontWeight: FontWeight.w500,
-                color: Color(0xFF000000),
-              )),
-          centerTitle: true,
-          backgroundColor: Colors.orange,
-          elevation: 0,
-        ),
-        body: Column(
-          children: [
-            Container(
-              child: Stack(
-                children: [
-                  Opacity(
-                    opacity: 0.5,
-                    child: ClipPath(
-                      clipper: WaveClipper(),
-                      child: Container(
-                        color: Colors.deepOrangeAccent,
-                        height: 100,
-                      ),
-                    ),
-                  ),
-                  ClipPath(
+      appBar: AppBar(
+        title: const Text(GamePage.routename,
+            style: TextStyle(
+              fontFamily: 'AudioWide',
+              fontSize: 20,
+              fontWeight: FontWeight.w500,
+              color: Color(0xFF000000),
+            )),
+        centerTitle: true,
+        backgroundColor: Colors.orange,
+        elevation: 0,
+      ),
+      body: Column(
+        children: [
+          Container(
+            child: Stack(
+              children: [
+                Opacity(
+                  opacity: 0.5,
+                  child: ClipPath(
                     clipper: WaveClipper(),
                     child: Container(
-                      color: Colors.orange,
-                      height: 80,
-                      alignment: Alignment.center,
+                      color: Colors.deepOrangeAccent,
+                      height: 100,
                     ),
                   ),
-                ],
-              ),
-            ),
-            SizedBox(
-              height: 50,
-            ),
-            Container(
-              width: 300,
-              child: BarProgress(
-                percentage: 80,
-                backColor: Color.fromARGB(255, 235, 243, 166),
-                gradient: LinearGradient(colors: [
-                  Color.fromARGB(255, 243, 240, 33),
-                  Color.fromARGB(255, 135, 247, 8)
-                ]),
-                showPercentage: true,
-                textStyle: TextStyle(
+                ),
+                ClipPath(
+                  clipper: WaveClipper(),
+                  child: Container(
                     color: Colors.orange,
-                    fontSize: 40,
-                    fontFamily: 'AudioWide'),
-                stroke: 40,
-                round: true,
-              ),
+                    height: 80,
+                    alignment: Alignment.center,
+                  ),
+                ),
+              ],
             ),
-            SizedBox(
-              height: 50,
-            ),
-            Center(
-              child: Container(
-                  color: Colors.white,
-                  width: 300,
-                  height: maxheight,
-                  child: Stack(
-                    children: [
-                      /*
-                      CustomPaint(
-                          foregroundPainter: LinePainter(),
-                          child: Image.network(
-                            "https://cdn.pixabay.com/photo/2019/12/14/07/21/mountain-4694346_960_720.png",
-                          )),*/
-                      Image.network(
-                        "https://cdn.pixabay.com/photo/2019/12/14/07/21/mountain-4694346_960_720.png",
+          ),
+          SizedBox(
+            height: 50,
+          ),
+          FutureBuilder(
+            future: SharedPreferences.getInstance(),
+            builder: ((context, snapshot) {
+              if (snapshot.hasData) {
+                final sp = snapshot.data as SharedPreferences;
+                /*if (sp.getInt('sleepduration')! == null) {
+              return CircularProgressIndicator.adaptive(
+                valueColor: AlwaysStoppedAnimation<Color>(Colors.blue),
+              );
+            }*/
+                if (sp.getInt('sleepduration') == null) {
+                  return Center(
+                      child: CircularProgressIndicator(
+                    valueColor: AlwaysStoppedAnimation<Color>(Colors.red),
+                    strokeWidth: 30,
+                    semanticsValue: 'Loading...',
+                    semanticsLabel: 'Loading...',
+                  ));
+                } else if (sp.getInt('sleepduration')! >= 8) {
+                  return AnimationWidget(
+                    child: Center(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: const [
+                          Icon(
+                            FontAwesomeIcons.faceGrinBeam,
+                            size: 200,
+                            color: Colors.red,
+                          ),
+                          Text('CONGRATULAZIONI',
+                              style: TextStyle(
+                                  fontSize: 30,
+                                  color: Colors.red,
+                                  fontFamily: 'Audiowide',
+                                  fontWeight: FontWeight.bold)),
+                          Text('Hai dormito a sufficenza!!',
+                              style: TextStyle(
+                                  fontSize: 20,
+                                  color: Colors.red,
+                                  fontFamily: 'Audiowide',
+                                  fontWeight: FontWeight.bold))
+                        ],
                       ),
-                      Container(
-                        color: Colors.red,
-                        height: maxheight * 0.8,
-                      ),
-                    ],
-                  )),
-            ),
-          ],
-        ));
+                    ),
+                  );
+                } else {
+                  return Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: const [
+                        Icon(
+                          FontAwesomeIcons.faceAngry,
+                          size: 200,
+                          color: Colors.red,
+                        ),
+                        Text('NON HAI DORMITO A SUFFICENZA!!',
+                            style: TextStyle(
+                                fontSize: 30,
+                                color: Colors.red,
+                                fontFamily: 'Audiowide',
+                                fontWeight: FontWeight.bold),
+                            textAlign: TextAlign.center),
+                        Text(
+                          'Per uno stile di vita sano e per ottenere le massime performance durante il workout è necessario dormire almeno 8 ore al giorno',
+                          style: TextStyle(
+                              fontSize: 20,
+                              color: Colors.red,
+                              fontFamily: 'Audiowide',
+                              fontWeight: FontWeight.bold),
+                          textAlign: TextAlign.center,
+                        ),
+                      ],
+                    ),
+                  );
+                }
+              } else {
+                return Center(child: CircularProgressIndicator());
+              }
+            }),
+          ),
+        ],
+      ),
+      floatingActionButton: Row(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          FloatingActionButton(
+            heroTag: 'sleep',
+            focusColor: Colors.red,
+            splashColor: Colors.red,
+            backgroundColor: Colors.red,
+            onPressed: () async {
+              final sp = await SharedPreferences.getInstance();
+              sp.setInt('sleepduration', 9);
+              setState(() {});
+            },
+            child: Icon(Icons.add),
+          ),
+          SizedBox(
+            width: 10,
+          ),
+          FloatingActionButton(
+            heroTag: 'Removesleep',
+            focusColor: Colors.red,
+            splashColor: Colors.red,
+            backgroundColor: Colors.red,
+            onPressed: () async {
+              final sp = await SharedPreferences.getInstance();
+              sp.remove('sleepduration');
+              setState(() {});
+            },
+            child: Icon(Icons.remove),
+          ),
+          SizedBox(
+            width: 10,
+          ),
+          FloatingActionButton(
+            heroTag: 'wrongsleep',
+            focusColor: Colors.red,
+            splashColor: Colors.red,
+            backgroundColor: Colors.red,
+            onPressed: () async {
+              final sp = await SharedPreferences.getInstance();
+              sp.setInt('sleepduration', 6);
+              setState(() {});
+            },
+            child: Icon(FontAwesomeIcons.faceAngry),
+          ),
+        ],
+      ),
+    );
   }
 }
 
@@ -152,109 +243,58 @@ class WaveClipper extends CustomClipper<Path> {
   }
 }
 
-// ____________ CLASSE CHE DISEGNA LINEE SOPRA LA FIGURA ___________________
-class LinePainter extends CustomPainter {
+//
+class AnimationWidget extends StatefulWidget {
+  final Widget child;
+
+  const AnimationWidget({Key? key, required this.child}) : super(key: key);
+
   @override
-  void paint(Canvas canvas, Size size) {
-    final paint = Paint()
-      ..strokeWidth = 40
-      ..color = Colors.red;
+  State<AnimationWidget> createState() => _AnimationWidgetState();
+}
 
-    // faccio una linea
-    canvas.drawLine(
-        // distanza del punto iniziale dal bordo sinistro + altezza
-        // startpoint
-        Offset(size.width * 0 / 6, size.height * 1 / 50),
-        // distanza dal bordo destro della schermata + altezza
-        // endpoint
-        Offset(size.width * 6 / 6, size.height * 1 / 50),
-        // richiamo del paint
-        paint);
-    canvas.drawLine(
-        // distanza del punto iniziale dal bordo sinistro + altezza
-        // startpoint
-        Offset(size.width * 0 / 6, size.height * 1 / 7),
-        // distanza dal bordo destro della schermata + altezza
-        // endpoint
-        Offset(size.width * 6 / 6, size.height * 1 / 7),
-        // richiamo del paint
-        paint);
+class _AnimationWidgetState extends State<AnimationWidget> {
+  late ConfettiController controller;
 
-    canvas.drawLine(
-        // distanza del punto iniziale dal bordo sinistro + altezza
-        // startpoint
-        Offset(size.width * 0 / 6, size.height * 1 / 4),
-        // distanza dal bordo destro della schermata + altezza
-        // endpoint
-        Offset(size.width * 6 / 6, size.height * 1 / 4),
-        // richiamo del paint
-        paint);
-
-    canvas.drawLine(
-        // distanza del punto iniziale dal bordo sinistro + altezza
-        // startpoint
-        Offset(size.width * 0 / 6, size.height * 1 / 2.7),
-        // distanza dal bordo destro della schermata + altezza
-        // endpoint
-        Offset(size.width * 6 / 6, size.height * 1 / 2.7),
-        // richiamo del paint
-        paint);
-
-    canvas.drawLine(
-        // distanza del punto iniziale dal bordo sinistro + altezza
-        // startpoint
-        Offset(size.width * 0 / 6, size.height * 1 / 2),
-        // distanza dal bordo destro della schermata + altezza
-        // endpoint
-        Offset(size.width * 6 / 6, size.height * 1 / 2),
-        // richiamo del paint
-        paint);
-    canvas.drawLine(
-        // distanza del punto iniziale dal bordo sinistro + altezza
-        // startpoint
-        Offset(size.width * 0 / 6, size.height * 1 / 1.7),
-        // distanza dal bordo destro della schermata + altezza
-        // endpoint
-        Offset(size.width * 6 / 6, size.height * 1 / 1.7),
-        // richiamo del paint
-        paint);
-
-    canvas.drawLine(
-        // distanza del punto iniziale dal bordo sinistro + altezza
-        // startpoint
-        Offset(size.width * 0 / 6, size.height * 1 / 1.4),
-        // distanza dal bordo destro della schermata + altezza
-        // endpoint
-        Offset(size.width * 6 / 6, size.height * 1 / 1.4),
-        // richiamo del paint
-        paint);
-
-    canvas.drawLine(
-        // distanza del punto iniziale dal bordo sinistro + altezza
-        // startpoint
-        Offset(size.width * 0 / 6, size.height * 1 / 1.2),
-        // distanza dal bordo destro della schermata + altezza
-        // endpoint
-        Offset(size.width * 6 / 6, size.height * 1 / 1.2),
-        // richiamo del paint
-        paint);
-    canvas.drawLine(
-        // distanza del punto iniziale dal bordo sinistro + altezza
-        // startpoint
-        Offset(size.width * 0 / 6, size.height * 1 / 1.05),
-        // distanza dal bordo destro della schermata + altezza
-        // endpoint
-        Offset(size.width * 6 / 6, size.height * 1 / 1.05),
-        // richiamo del paint
-        paint);
+  @override
+  void initState() {
+    super.initState();
+    controller = ConfettiController(duration: const Duration(seconds: 2));
+    controller.play(); // start the animation
   }
 
   @override
-  bool shouldRepaint(CustomPainter oldDelegate) => false;
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      behavior: HitTestBehavior.opaque,
+      onTap: () {
+        if (controller.state == ConfettiControllerState.playing) {
+          controller.play();
+        } else {
+          controller.stop();
+        }
+      },
+      child: Stack(
+        children: [
+          Align(
+              alignment: Alignment.center,
+              child: ConfettiWidget(
+                confettiController: controller,
+                colors: [
+                  Colors.red,
+                  Colors.green,
+                  Colors.blue,
+                  Colors.yellow,
+                  Colors.purple,
+                ],
+                blastDirectionality: BlastDirectionality.explosive,
+                shouldLoop: true,
+                emissionFrequency: 0,
+                numberOfParticles: 200,
+              )),
+          widget.child,
+        ],
+      ),
+    );
+  }
 }
-/*
-Image.network(
-                "https://cdn.pixabay.com/photo/2019/12/14/07/21/mountain-4694346_960_720.png",
-                fit: BoxFit.cover,
-              ),
-              */
