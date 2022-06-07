@@ -16,6 +16,10 @@ class HeartPage2 extends StatelessWidget {
 
   static const route = '/home/heart2';
   static const routename = 'Heartpage2';
+  //Heart? time_OutRange;
+  //Heart? time_FatBurn;
+  //Heart? time_Cardio;
+  //Heart? time_Peak;
   //late
   List<HeartSeries> data_series = [];
   //late List<Heart> data_heart;
@@ -40,11 +44,17 @@ class HeartPage2 extends StatelessWidget {
               //    ? Text('maracaibo', textAlign: TextAlign.center)
               //     : HeartChart(data: data_series);
               if (data_heart.length == 0) {
-                data_series = [HeartSeries.empty()];
-                // _metodoprova(context);
+                List<HeartSeries> data_series = [HeartSeries.empty()];
+                //_metodoprova(context);
                 return HeartChart(data: data_series);
               } else {
                 // final data_series = _metodoprova2(context);
+                // final data_series = _ritornalista(
+                // context,
+                //time_OutRange!.minute,
+                //  time_FatBurn!.minute,
+                //  time_Cardio!.minute,
+                //   time_Peak!.minute);
 
                 return HeartChart(data: data_series);
               }
@@ -219,6 +229,24 @@ class HeartPage2 extends StatelessWidget {
 
     await Provider.of<DatabaseRepository>(context, listen: false)
         .insertHeart(Heart(4, 0));
+  }
+
+  List<HeartSeries> _ritornalista(
+      BuildContext context, int? out, int? fat, int? cardio, int? peak) {
+    final data = [
+      HeartSeries.creation(
+          'Out of Range', out, charts.ColorUtil.fromDartColor(Colors.red)),
+      HeartSeries.creation(
+          'Fat Burn', fat, charts.ColorUtil.fromDartColor(Colors.orangeAccent)),
+      HeartSeries.creation(
+          'Cardio', cardio, charts.ColorUtil.fromDartColor(Colors.black12)),
+      HeartSeries.creation(
+          'Peak',
+          // fitbitHeartData[0].minutesPeak,
+          peak,
+          charts.ColorUtil.fromDartColor(Colors.blue))
+    ];
+    return data;
   }
 /*
   List<HeartSeries> _metodoprova2(BuildContext context) async {
