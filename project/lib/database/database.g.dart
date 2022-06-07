@@ -86,7 +86,7 @@ class _$AppDatabase extends AppDatabase {
         await database.execute(
             'CREATE TABLE IF NOT EXISTS `Annotation` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `min` INTEGER NOT NULL, `ml` INTEGER NOT NULL, `mood` TEXT NOT NULL, `dateTime` INTEGER NOT NULL)');
         await database.execute(
-            'CREATE TABLE IF NOT EXISTS `Sleep` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `level` TEXT NOT NULL, `dateTime` INTEGER NOT NULL)');
+            'CREATE TABLE IF NOT EXISTS `Sleep` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `sleepduration` INTEGER)');
 
         await callback?.onCreate?.call(database, version);
       },
@@ -190,8 +190,7 @@ class _$SleepDao extends SleepDao {
             'Sleep',
             (Sleep item) => <String, Object?>{
                   'id': item.id,
-                  'level': item.level,
-                  'dateTime': _dateTimeConverter.encode(item.dateTime)
+                  'sleepduration': item.sleepduration
                 }),
         _sleepUpdateAdapter = UpdateAdapter(
             database,
@@ -199,8 +198,7 @@ class _$SleepDao extends SleepDao {
             ['id'],
             (Sleep item) => <String, Object?>{
                   'id': item.id,
-                  'level': item.level,
-                  'dateTime': _dateTimeConverter.encode(item.dateTime)
+                  'sleepduration': item.sleepduration
                 }),
         _sleepDeletionAdapter = DeletionAdapter(
             database,
@@ -208,8 +206,7 @@ class _$SleepDao extends SleepDao {
             ['id'],
             (Sleep item) => <String, Object?>{
                   'id': item.id,
-                  'level': item.level,
-                  'dateTime': _dateTimeConverter.encode(item.dateTime)
+                  'sleepduration': item.sleepduration
                 });
 
   final sqflite.DatabaseExecutor database;
@@ -227,10 +224,8 @@ class _$SleepDao extends SleepDao {
   @override
   Future<List<Sleep>> findAllSleep() async {
     return _queryAdapter.queryList('SELECT * FROM Sleep',
-        mapper: (Map<String, Object?> row) => Sleep(
-            row['id'] as int?,
-            row['level'] as String,
-            _dateTimeConverter.decode(row['dateTime'] as int)));
+        mapper: (Map<String, Object?> row) =>
+            Sleep(row['id'] as int?, row['sleepduration'] as int?));
   }
 
   @override
