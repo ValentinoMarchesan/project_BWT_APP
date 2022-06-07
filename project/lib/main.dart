@@ -10,6 +10,7 @@ import 'package:project/pages/homepage.dart';
 import 'package:project/pages/loginPage.dart';
 import 'package:project/pages/profilePage.dart';
 import 'package:project/pages/sleeppage.dart';
+import 'package:project/pages/sleeppage2.dart';
 import 'package:project/pages/steppage/steppage.dart';
 import 'package:project/repositories/databaseRepository.dart';
 import 'package:provider/provider.dart';
@@ -84,9 +85,9 @@ class MyApp extends StatelessWidget {
           return MaterialPageRoute(builder: (context) {
             return ProfilePage();
           });
-        } else if (settings.name == SleepPage.route) {
+        } else if (settings.name == SleepPage2.route) {
           return MaterialPageRoute(builder: (context) {
-            return SleepPage();
+            return SleepPage2();
           });
         } else if (settings.name == StepPage.route) {
           return MaterialPageRoute(builder: (context) {

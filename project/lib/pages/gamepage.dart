@@ -205,7 +205,7 @@ class LinePainter extends CustomPainter {
         Offset(size.width * 6 / 6, size.height * 1 / 1.7),
         // richiamo del paint
         paint);
-
+*/
     canvas.drawLine(
         // distanza del punto iniziale dal bordo sinistro + altezza
         // startpoint
@@ -215,7 +215,7 @@ class LinePainter extends CustomPainter {
         Offset(size.width * 6 / 6, size.height * 1 / 1.4),
         // richiamo del paint
         paint);
-    
+
     canvas.drawLine(
         // distanza del punto iniziale dal bordo sinistro + altezza
         // startpoint
@@ -233,7 +233,7 @@ class LinePainter extends CustomPainter {
         // endpoint
         Offset(size.width * 6 / 6, size.height * 1 / 1.05),
         // richiamo del paint
-        paint);*/
+        paint);
   }
 
   @override
