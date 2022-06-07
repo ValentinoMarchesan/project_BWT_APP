@@ -12,6 +12,7 @@ class GamePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double maxheight = 300;
     return Scaffold(
         appBar: AppBar(
           title: const Text(GamePage.routename,
@@ -79,12 +80,24 @@ class GamePage extends StatelessWidget {
               child: Container(
                   color: Colors.white,
                   width: 300,
-                  height: 300,
-                  child: CustomPaint(
-                      foregroundPainter: LinePainter(),
-                      child: Image.network(
+                  height: maxheight,
+                  child: Stack(
+                    children: [
+                      /*
+                      CustomPaint(
+                          foregroundPainter: LinePainter(),
+                          child: Image.network(
+                            "https://cdn.pixabay.com/photo/2019/12/14/07/21/mountain-4694346_960_720.png",
+                          )),*/
+                      Image.network(
                         "https://cdn.pixabay.com/photo/2019/12/14/07/21/mountain-4694346_960_720.png",
-                      ))),
+                      ),
+                      Container(
+                        color: Colors.red,
+                        height: maxheight * 0.8,
+                      ),
+                    ],
+                  )),
             ),
           ],
         ));
@@ -148,7 +161,7 @@ class LinePainter extends CustomPainter {
       ..color = Colors.red;
 
     // faccio una linea
-    /*canvas.drawLine(
+    canvas.drawLine(
         // distanza del punto iniziale dal bordo sinistro + altezza
         // startpoint
         Offset(size.width * 0 / 6, size.height * 1 / 50),
@@ -205,7 +218,7 @@ class LinePainter extends CustomPainter {
         Offset(size.width * 6 / 6, size.height * 1 / 1.7),
         // richiamo del paint
         paint);
-*/
+
     canvas.drawLine(
         // distanza del punto iniziale dal bordo sinistro + altezza
         // startpoint
