@@ -18,7 +18,7 @@ abstract class ActivityDao {
   Future<List<Activity>> findMinSedentary();
 
   //Query #2: INSERT
-  @insert
+  @Insert(onConflict: OnConflictStrategy.rollback)
   Future<void> insertActivity(Activity activity);
 
   //Query #3: DELETE

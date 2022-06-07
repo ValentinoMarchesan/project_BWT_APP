@@ -3,7 +3,6 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:project/pages/bmipage.dart';
 import 'package:project/pages/heartpage.dart';
 import 'package:project/pages/sleeppage.dart';
-import 'package:project/pages/sleeppage2.dart';
 import 'package:project/pages/steppage/steppage.dart';
 
 //______________________________________________________________________________
@@ -207,7 +206,7 @@ class CardSM extends StatelessWidget {
   }
 
   void _toSleepPage(BuildContext context) {
-    Navigator.pushNamed(context, SleepPage2.route);
+    Navigator.pushNamed(context, SleepPage.route);
   } //_toStepPage
 }
 

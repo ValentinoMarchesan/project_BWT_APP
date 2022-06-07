@@ -23,7 +23,7 @@ Future main() async {
 
   //This opens the database.
   final AppDatabase database =
-      await $FloorAppDatabase.databaseBuilder('app_database1.db').build();
+      await $FloorAppDatabase.databaseBuilder('app_database2.db').build();
   //This creates a new DatabaseRepository from the AppDatabase instance just initialized
   final databaseRepository = DatabaseRepository(database: database);
 

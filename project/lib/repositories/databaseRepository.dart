@@ -1,12 +1,9 @@
-import 'dart:io';
-
 import 'package:fitbitter/fitbitter.dart';
 import 'package:project/database/database.dart';
 import 'package:project/database/entities/annotation.dart';
 import 'package:flutter/material.dart';
 import 'package:project/database/entities/sleep.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
 import '../database/entities/activity.dart';
 import '../database/entities/heart.dart';
 import '../utils/strings.dart';
@@ -67,8 +64,15 @@ class DatabaseRepository extends ChangeNotifier {
     notifyListeners();
   } //removeHeart
 
-  Future<List<Sleep>> findminutsleep(int id) async {
+  Future<List<Sleep>> findminutsleep(
+    int id,
+  ) async {
     final results = await database.sleepDao.findSleepDuration(id);
+    return results;
+  }
+
+  Future<List<Sleep>> findAllSleep() async {
+    final results = await database.sleepDao.findAllSleep();
     return results;
   }
 
@@ -127,6 +131,56 @@ class DatabaseRepository extends ChangeNotifier {
     return results;
   } //findMinSedentary
 
+  int manageSleepData(List<FitbitSleepData> sleepData) {
+    //Create a new Sleep object
+    DateTime? endTime = sleepData[sleepData.length - 1].entryDateTime;
+    DateTime? startTime = sleepData[0].entryDateTime;
+    int sleepDurHourse = endTime!.difference(startTime!).inMinutes ~/ 60;
+    int sleepDurMinutes = endTime.difference(startTime).inMinutes % 60;
+    return sleepDurMinutes;
+  }
+
+  List<double?> StepsData(List<FitbitActivityTimeseriesData> stepsData) {
+    //Create a new Sleep object
+    List<double?> steps = [
+      stepsData[0].value,
+      stepsData[1].value,
+      stepsData[2].value,
+      stepsData[3].value,
+      stepsData[4].value,
+      stepsData[5].value,
+      stepsData[6].value
+    ];
+
+    return steps;
+  }
+
+  List<double?> ActivityData(
+      List<FitbitActivityTimeseriesData> activitycalories,
+      List<FitbitActivityTimeseriesData> calories,
+      List<FitbitActivityTimeseriesData> sedentary) {
+    List<double?> activity = [
+      activitycalories[0].value,
+      calories[0].value,
+      sedentary[0].value
+    ];
+
+    return activity;
+  }
+
+  List<int?> HeartData(List<FitbitHeartData> fitbitHeartData) {
+    //Create a new Sleep object
+
+    List<int?> heart = [
+      fitbitHeartData[0].minutesPeak,
+      fitbitHeartData[0].minutesCardio,
+      fitbitHeartData[0].minimumFatBurn,
+      fitbitHeartData[0].minutesCardio,
+    ];
+
+    return heart;
+  }
+
   //_____________________________________________________________________________
   //_____________________________________________________________________________
   //_____________________________________________________________________________
@@ -167,6 +221,7 @@ class DatabaseRepository extends ChangeNotifier {
     );
     final stepsData = await fitbitActivityTimeseriesDataManager.fetch(
         fitbitActivityTimeseriesApiUrl) as List<FitbitActivityTimeseriesData>;
+
 // _____________________________________________________________________________
 //_____________________________FETCH ACTIVITY CALORIES DATA_____________________
     FitbitActivityTimeseriesDataManager fitbitActivityTimeseriesDataManager2 =
@@ -228,60 +283,41 @@ class DatabaseRepository extends ChangeNotifier {
     final fitbitHeartData = await fitbitHeartDataManager
         .fetch(fitbitHeartApiUrl) as List<FitbitHeartData>;
 
-    int manageSleepData(List<FitbitSleepData> sleepData) {
-      //Create a new Sleep object
-      DateTime? endTime = sleepData[sleepData.length - 1].entryDateTime;
-      DateTime? startTime = sleepData[0].entryDateTime;
-      int sleepDurHourse = endTime!.difference(startTime!).inMinutes ~/ 60;
-      int sleepDurMinutes = endTime.difference(startTime).inMinutes % 60;
-      return sleepDurMinutes;
-    }
+//________________ INSERT DATA FATCHED IN DATABASE _____________________________
+    final heart = HeartData(fitbitHeartData);
+    final activity = ActivityData(activitycalories, calories, sedentary);
+    final steps = StepsData(stepsData);
+    final sleep = manageSleepData(sleepData);
 
-    List<double?> StepsData(List<FitbitActivityTimeseriesData> stepsData) {
-      //Create a new Sleep object
-      List<double?> steps = [
-        stepsData[0].value,
-        stepsData[1].value,
-        stepsData[2].value,
-        stepsData[3].value,
-        stepsData[4].value,
-        stepsData[5].value,
-        stepsData[6].value
-      ];
+    //if (findminutsHeart(1) == 0 && findminutsleep(1) == 0) {
 
-      return steps;
-    }
-
-    List<double?> ActivityData(
-        List<FitbitActivityTimeseriesData> activitycalories,
-        List<FitbitActivityTimeseriesData> calories,
-        List<FitbitActivityTimeseriesData> sedentary) {
-      List<double?> activity = [
-        activitycalories[0].value,
-        calories[0].value,
-        sedentary[0].value
-      ];
-
-      return activity;
-    }
-
-    List<int?> HeartData(List<FitbitHeartData> fitbitHeartData) {
-      //Create a new Sleep object
-      List<int?> heart = [
-        fitbitHeartData[0].minutesPeak,
-        fitbitHeartData[0].minutesCardio,
-        fitbitHeartData[0].minimumFatBurn,
-        fitbitHeartData[0].minutesCardio,
-      ];
-
-      return heart;
-    }
+    //await insertHeart(Heart(1, heart[0]));
+    //await insertHeart(Heart(2, heart[1]));
+    //await insertHeart(Heart(3, heart[2]));
+    //await insertHeart(Heart(4, heart[3]));
+    await insertActivity(
+        Activity(1, steps[0], activity[0], activity[0], activity[0]));
+    await insertActivity(Activity(2, steps[1], null, null, null));
+    await insertActivity(Activity(3, steps[2], null, null, null));
+    await insertActivity(Activity(4, steps[3], null, null, null));
+    await insertActivity(Activity(5, steps[4], null, null, null));
+    await insertActivity(Activity(6, steps[5], null, null, null));
+    await insertActivity(Activity(7, steps[6], null, null, null));
+    await insertSleep(Sleep(1, sleep));
+    //} else {
+    updateHeart(Heart(1, heart[0]));
+    updateHeart(Heart(2, heart[0]));
+    updateHeart(Heart(3, heart[0]));
+    updateHeart(Heart(4, heart[0]));
+    /* updateActivity(
+          Activity(1, steps[0], activity[0], activity[0], activity[0]));
+      updateActivity(Activity(2, steps[1], null, null, null));
+      updateActivity(Activity(3, steps[2], null, null, null));
+      updateActivity(Activity(4, steps[3], null, null, null));
+      updateActivity(Activity(5, steps[4], null, null, null));
+      updateActivity(Activity(6, steps[5], null, null, null));
+      updateActivity(Activity(7, steps[6], null, null, null));
+      updateSleep(Sleep(1, sleep));
+    }*/
   }
-
-  //___________________________________________________________________________
-  //___________________________________________________________________________
-  //___________________________________________________________________________
-  //___________________________________________________________________________
-
-  //updateAnnotation
 }

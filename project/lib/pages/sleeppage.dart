@@ -40,7 +40,7 @@ class _SleepPageState extends State<SleepPage> {
 
           return FutureBuilder(
             initialData: null,
-            future: null,
+            future: dbr.findAllSleep(),
             builder: (context, snapshot) {
               if (snapshot.hasData) {
                 final data = snapshot.data as List<Sleep>;

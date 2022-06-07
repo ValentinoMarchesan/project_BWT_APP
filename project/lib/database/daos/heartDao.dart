@@ -1,3 +1,4 @@
+import 'package:project/chart/heartseries.dart';
 import 'package:project/database/entities/heart.dart';
 import 'package:project/database/entities/sleep.dart';
 import 'package:floor/floor.dart';
@@ -12,7 +13,7 @@ abstract class HeartDao {
   Future<List<Heart>> findminutsHeart(int id);
 
   //Query #2: INSERT
-  @insert
+  @Insert(onConflict: OnConflictStrategy.rollback)
   Future<void> insertHeart(Heart heart);
 
   //Query #3: DELETE

@@ -4,7 +4,10 @@ import 'package:project/chart/heart_chart.dart';
 import 'package:project/chart/heartseries.dart';
 import 'package:project/utils/strings.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import '../repositories/databaseRepository.dart';
 
 class HeartPage extends StatefulWidget {
   static const route = '/home/heart';
@@ -20,14 +23,14 @@ class HeartPage extends StatefulWidget {
 
 class _HeartPageState extends State<HeartPage> {
   //static late SharedPreferences prova;
-  late List<HeartSeries> data;
+  late List<HeartSeries> data_series;
 
   // late int flag;
 
   @override
   void initState() {
     super.initState();
-    data = [HeartSeries.empty()];
+    data_series = [HeartSeries.empty()];
   }
 
   @override
@@ -37,59 +40,31 @@ class _HeartPageState extends State<HeartPage> {
       appBar: AppBar(
         title: const Text(HeartPage.routename),
       ),
-      bottomNavigationBar: ElevatedButton(
-        onPressed: () async {
-          // prova = await SharedPreferences.getInstance();
-          final sp = await SharedPreferences.getInstance();
-
-          //STEP1: Instanciate a menager
-          FitbitHeartDataManager fitbitHeartDataManager =
-              FitbitHeartDataManager(
-            clientID: Strings.fitbitClientID,
-            clientSecret: Strings.fitbitClientSecret,
-          );
-
-          //STEP2: Create the request url
-          FitbitHeartAPIURL fitbitHeartApiUrl = FitbitHeartAPIURL.dayWithUserID(
-              date: DateTime.now(), userID: sp.getString('userid'));
-          // userID: prova.getString('userid'));
-
-          //STEP3: Get the data
-          final fitbitHeartData = await fitbitHeartDataManager
-              .fetch(fitbitHeartApiUrl) as List<FitbitHeartData>;
-
-          final snackBar = SnackBar(content: Text(' ${fitbitHeartData[0]} '));
-
-          ScaffoldMessenger.of(context).showSnackBar(snackBar);
-          print(fitbitHeartData[0].minutesOutOfRange);
-
-          setState(() {
-            // we recreate the build method
-            // flag = 1;
-            // data = HeartPage.marameo(flag);
-            data = [
-              HeartSeries.creation(
-                  'Out of Range',
-                  fitbitHeartData[0].minutesOutOfRange,
-                  charts.ColorUtil.fromDartColor(Colors.red)),
-              HeartSeries.creation(
-                  'Fat Burn',
-                  fitbitHeartData[0].minutesFatBurn,
-                  charts.ColorUtil.fromDartColor(Colors.orangeAccent)),
-              HeartSeries.creation('Cardio', fitbitHeartData[0].minutesCardio,
-                  charts.ColorUtil.fromDartColor(Colors.black12)),
-              HeartSeries.creation('Peak', fitbitHeartData[0].minutesPeak,
-                  charts.ColorUtil.fromDartColor(Colors.blue))
-            ];
-          });
-        },
-        child: Text('tap to fetch today hearth data'),
-      ),
       body: Center(
-        child: HeartChart(
-          data: data,
-        ),
-      ),
+          child: Consumer<DatabaseRepository>(builder: (context, dbr, child) {
+        return FutureBuilder(
+          initialData: null,
+          future: dbr.fetchAllData(),
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              final data_heart = snapshot.data as List<int?>;
+              data_series = [
+                HeartSeries.creation('Out of Range', data_heart[0],
+                    charts.ColorUtil.fromDartColor(Colors.red)),
+                HeartSeries.creation('Fat Burn', data_heart[1],
+                    charts.ColorUtil.fromDartColor(Colors.orangeAccent)),
+                HeartSeries.creation('Cardio', data_heart[2],
+                    charts.ColorUtil.fromDartColor(Colors.black12)),
+                HeartSeries.creation('Peak', data_heart[3],
+                    charts.ColorUtil.fromDartColor(Colors.blue))
+              ];
+              return HeartChart(data: data_series);
+            } else {
+              return CircularProgressIndicator();
+            }
+          },
+        );
+      })),
     );
   }
 } //Page

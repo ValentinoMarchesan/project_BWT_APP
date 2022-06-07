@@ -11,7 +11,7 @@ abstract class SleepDao {
   Future<List<Sleep>> findSleepDuration(int id);
 
   //Query #2: INSERT
-  @insert
+  @Insert(onConflict: OnConflictStrategy.rollback)
   Future<void> insertSleep(Sleep sleep);
 
   //Query #3: DELETE
