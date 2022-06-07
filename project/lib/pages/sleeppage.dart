@@ -49,23 +49,7 @@ class _SleepPageState extends State<SleepPage> {
                         'NO REFERENCE ABOUT SLEEP FOUND',
                         textAlign: TextAlign.center,
                       )
-                    : ListView.builder(
-                        itemCount: data.length,
-                        itemBuilder: (context, sleepIndex) {
-                          //Here, we are using a Card to show a Annotation
-                          return Card(
-                              elevation: 5,
-                              child: ListTile(
-                                  leading: Icon(
-                                    MdiIcons.bookOpenPageVariant,
-                                    color: Colors.deepOrangeAccent,
-                                  ),
-                                  title: Text(
-                                      '\n SLEEP LEVEL = ${data[sleepIndex]}'),
-                                  subtitle: Text('sd')
-                                  // When a ListTile is tapped, the user is redirected to the AnnotationPage where he can edit it.
-                                  ));
-                        });
+                    : Text('ciao');
               } // if
               else {
                 return CircularProgressIndicator();
