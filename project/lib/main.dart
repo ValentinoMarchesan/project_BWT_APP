@@ -15,6 +15,7 @@ import 'package:project/pages/profilePage.dart';
 import 'package:project/pages/sleeppage.dart';
 import 'package:project/pages/steppage.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../models/annotationDB.dart';
 
 Future main() async {
@@ -23,7 +24,9 @@ Future main() async {
   await Userpreferences.init();
 
   final AppDatabase database =
-      await $FloorAppDatabase.databaseBuilder('app_database.db').build();
+      await $FloorAppDatabase.databaseBuilder('app_database1.db').build();
+  final sp = await SharedPreferences.getInstance();
+  sp.setBool('prova', false);
 
   final databaseRepository = DatabaseRepository(database: database);
 
