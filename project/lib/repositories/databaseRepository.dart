@@ -44,6 +44,12 @@ class DatabaseRepository extends ChangeNotifier {
     notifyListeners();
   } //updateAnnotation
 
+  //This method wraps the findAllSleeps() method of the DAO
+  Future<List<Heart>> findAllHeart() async {
+    final results = await database.heartDao.findAllHeart();
+    return results;
+  } //findAllSleeps
+
   Future<void> insertHeart(Heart heart) async {
     await database.heartDao.insertHeart(heart);
     notifyListeners();
@@ -54,22 +60,10 @@ class DatabaseRepository extends ChangeNotifier {
     notifyListeners();
   } //update heart
 
-  Future<List<Heart>> findminutsHeart(int id) async {
-    final results = await database.heartDao.findminutsHeart(id);
-    return results;
-  } //findminutes
-
   Future<void> deleteAllHeart(List<Heart> hearts) async {
     await database.heartDao.deleteHeart(hearts);
     notifyListeners();
   } //removeHeart
-
-  Future<List<Sleep>> findminutsleep(
-    int id,
-  ) async {
-    final results = await database.sleepDao.findSleepDuration(id);
-    return results;
-  }
 
   Future<List<Sleep>> findAllSleep() async {
     final results = await database.sleepDao.findAllSleep();
@@ -111,32 +105,209 @@ class DatabaseRepository extends ChangeNotifier {
     return results;
   } //findAllActivity
 
-  Future<List<Activity>> findstep() async {
-    final results = await database.activityDao.findstep();
+  List<double?> findstep(List<Activity> stepsdata) {
+    //final stepsdata = findstep() as List<Activity>;
+    final results = [
+      stepsdata[0].step,
+      stepsdata[1].step,
+      stepsdata[2].step,
+      stepsdata[3].step,
+      stepsdata[4].step,
+      stepsdata[5].step,
+      stepsdata[6].step
+    ];
+
     return results;
   } //findstep
 
-  Future<List<Activity>> findActCalories() async {
-    final results = await database.activityDao.findActCalories();
+  List<double?> findActivity(List<Activity> activitydata) {
+    // final activitydata = findAllActivity() as List<Activity>;
+    final results = [
+      activitydata[0].step,
+      activitydata[0].calories,
+      activitydata[0].actcalories,
+      activitydata[0].minsedentary,
+    ];
     return results;
-  } //findActCalories
+  } //findAllActivity
 
-  Future<List<Activity>> findCalories() async {
-    final results = await database.activityDao.findCalories();
+  int? findminutsleep(List<Sleep> sleep) {
+    // final sleep = findAllSleep() as List<Sleep>;
+    final results = sleep[0].sleepduration;
+
     return results;
-  } //findCalories
+  }
 
-  Future<List<Activity>> findMinSedentary() async {
-    final results = await database.activityDao.findMinSedentary();
+  List<int?> findMinHeart(List<Heart> heart) {
+    //final heart = findAllHeart() as List<Heart>;
+    final results = [
+      heart[0].minutesheart,
+      heart[1].minutesheart,
+      heart[2].minutesheart,
+      heart[3].minutesheart,
+    ];
     return results;
-  } //findMinSedentary
+  } //findAllSleeps
 
-  int manageSleepData(List<FitbitSleepData> sleepData) {
+  //_____________________________________________________________________________
+  //_____________________________________________________________________________
+  //_____________________________________________________________________________
+  //_____________________________________________________________________________
+  //_____________________________________________________________________________
+
+  Future<void> fetchAllData() async {
+    // Authorize the app
+    final sp = await SharedPreferences.getInstance();
+    for (var i = 0; i < 200; i++) {
+      if (sp.getBool('confirm') == true) {
+        //___________________ FETCH SLEEP DATA ___________________//
+        //Instantiate a proper data manager
+        FitbitSleepDataManager fitbitSleepDataManager = FitbitSleepDataManager(
+          clientID: Strings.fitbitClientID,
+          clientSecret: Strings.fitbitClientSecret,
+        );
+
+        //Fetch data
+        final sleepData = await fitbitSleepDataManager
+            .fetch(FitbitSleepAPIURL.withUserIDAndDay(
+          date: DateTime.now(),
+          userID: sp.getString('userid'),
+        )) as List<FitbitSleepData>;
+        final sleepDurMinutes = ManageSleepData(sleepData);
+
+        insertSleep(Sleep(1, sleepDurMinutes));
+        // updateSleep(Sleep(1, sleepDurMinutes));
+
+        //_____________________________FETCH STEP DATA__________________________________
+        FitbitActivityTimeseriesDataManager
+            fitbitActivityTimeseriesDataManager =
+            FitbitActivityTimeseriesDataManager(
+          clientID: Strings.fitbitClientID,
+          clientSecret: Strings.fitbitClientSecret,
+          type: 'steps',
+        );
+
+        FitbitActivityTimeseriesAPIURL fitbitActivityTimeseriesApiUrl =
+            FitbitActivityTimeseriesAPIURL.weekWithResource(
+          baseDate: DateTime.now(),
+          userID: sp.getString('userid'),
+          resource: fitbitActivityTimeseriesDataManager.type,
+        );
+        final stepsData = await fitbitActivityTimeseriesDataManager
+                .fetch(fitbitActivityTimeseriesApiUrl)
+            as List<FitbitActivityTimeseriesData>;
+
+// _____________________________________________________________________________
+//_____________________________FETCH ACTIVITY CALORIES DATA_____________________
+        FitbitActivityTimeseriesDataManager
+            fitbitActivityTimeseriesDataManager2 =
+            FitbitActivityTimeseriesDataManager(
+          clientID: Strings.fitbitClientID,
+          clientSecret: Strings.fitbitClientSecret,
+          type: 'activityCalories',
+        );
+        FitbitActivityTimeseriesAPIURL fitbitActivityTimeseriesApiUrl2 =
+            FitbitActivityTimeseriesAPIURL.weekWithResource(
+                baseDate: DateTime.now(),
+                userID: sp.getString('userid'),
+                resource: fitbitActivityTimeseriesDataManager2.type);
+        final activitycalories = await fitbitActivityTimeseriesDataManager2
+                .fetch(fitbitActivityTimeseriesApiUrl2)
+            as List<FitbitActivityTimeseriesData>;
+// _____________________________________________________________________________
+//_____________________________FETCH CALORIES DATA______________________________
+        FitbitActivityTimeseriesDataManager
+            fitbitActivityTimeseriesDataManager3 =
+            FitbitActivityTimeseriesDataManager(
+          clientID: Strings.fitbitClientID,
+          clientSecret: Strings.fitbitClientSecret,
+          type: 'calories',
+        );
+        FitbitActivityTimeseriesAPIURL fitbitActivityTimeseriesApiUrl3 =
+            FitbitActivityTimeseriesAPIURL.dayWithResource(
+                date: DateTime.now(),
+                userID: sp.getString('userid'),
+                resource: fitbitActivityTimeseriesDataManager3.type);
+        final calories = await fitbitActivityTimeseriesDataManager3
+                .fetch(fitbitActivityTimeseriesApiUrl3)
+            as List<FitbitActivityTimeseriesData>;
+// _____________________________________________________________________________
+//_____________________________FETCH MINUTES SEDEBTARY__________________________
+        FitbitActivityTimeseriesDataManager
+            fitbitActivityTimeseriesDataManager4 =
+            FitbitActivityTimeseriesDataManager(
+          clientID: Strings.fitbitClientID,
+          clientSecret: Strings.fitbitClientSecret,
+          type: 'minutesSedentary',
+        );
+        FitbitActivityTimeseriesAPIURL fitbitActivityTimeseriesApiUrl4 =
+            FitbitActivityTimeseriesAPIURL.dayWithResource(
+                date: DateTime.now(),
+                userID: sp.getString('userid'),
+                resource: fitbitActivityTimeseriesDataManager4.type);
+        final sedentary = await fitbitActivityTimeseriesDataManager4
+                .fetch(fitbitActivityTimeseriesApiUrl4)
+            as List<FitbitActivityTimeseriesData>;
+        final activity = ActivityData(activitycalories, calories, sedentary);
+        final steps = StepsData(stepsData);
+        insertActivity(
+            Activity(1, steps[0], activity[0], activity[0], activity[0]));
+        insertActivity(Activity(2, steps[1], null, null, null));
+        insertActivity(Activity(3, steps[2], null, null, null));
+        insertActivity(Activity(4, steps[3], null, null, null));
+        insertActivity(Activity(5, steps[4], null, null, null));
+        insertActivity(Activity(6, steps[5], null, null, null));
+        insertActivity(Activity(7, steps[6], null, null, null));
+        /*
+        updateActivity(
+            Activity(1, steps[0], activity[0], activity[0], activity[0]));
+        updateActivity(Activity(2, steps[1], null, null, null));
+        updateActivity(Activity(3, steps[2], null, null, null));
+        updateActivity(Activity(4, steps[3], null, null, null));
+        updateActivity(Activity(5, steps[4], null, null, null));
+        updateActivity(Activity(6, steps[5], null, null, null));
+        updateActivity(Activity(7, steps[6], null, null, null));*/
+
+// _____________________________________________________________________________
+//_____________________________FETCH HEART DATA  _______________________________
+        FitbitHeartDataManager fitbitHeartDataManager = FitbitHeartDataManager(
+          clientID: Strings.fitbitClientID,
+          clientSecret: Strings.fitbitClientSecret,
+        );
+
+        //STEP2: Create the request url
+        FitbitHeartAPIURL fitbitHeartApiUrl = FitbitHeartAPIURL.dayWithUserID(
+            date: DateTime.now(), userID: sp.getString('userid'));
+
+        //STEP3: Get the data
+        final fitbitHeartData = await fitbitHeartDataManager
+            .fetch(fitbitHeartApiUrl) as List<FitbitHeartData>;
+        final heart = HeartData(fitbitHeartData);
+
+        insertHeart(Heart(1, heart[0]));
+        insertHeart(Heart(2, heart[1]));
+        insertHeart(Heart(3, heart[2]));
+        insertHeart(Heart(4, heart[3]));
+        /*
+        updateHeart(Heart(1, heart[0]));
+        updateHeart(Heart(2, heart[0]));
+        updateHeart(Heart(3, heart[0]));
+        updateHeart(Heart(4, heart[0]));*/
+        break;
+      } else {
+        await Future.delayed(Duration(seconds: 20));
+        i = i + 1;
+      }
+    }
+  }
+
+  int ManageSleepData(List<FitbitSleepData> sleepData) {
     //Create a new Sleep object
     DateTime? endTime = sleepData[sleepData.length - 1].entryDateTime;
     DateTime? startTime = sleepData[0].entryDateTime;
-    int sleepDurHourse = endTime!.difference(startTime!).inMinutes ~/ 60;
-    int sleepDurMinutes = endTime.difference(startTime).inMinutes % 60;
+    //int sleepDurHourse = endTime!.difference(startTime!).inMinutes ~/ 60;
+    final sleepDurMinutes = endTime!.difference(startTime!).inMinutes % 60;
+
     return sleepDurMinutes;
   }
 
@@ -156,9 +327,10 @@ class DatabaseRepository extends ChangeNotifier {
   }
 
   List<double?> ActivityData(
-      List<FitbitActivityTimeseriesData> activitycalories,
-      List<FitbitActivityTimeseriesData> calories,
-      List<FitbitActivityTimeseriesData> sedentary) {
+    List<FitbitActivityTimeseriesData> activitycalories,
+    List<FitbitActivityTimeseriesData> calories,
+    List<FitbitActivityTimeseriesData> sedentary,
+  ) {
     List<double?> activity = [
       activitycalories[0].value,
       calories[0].value,
@@ -169,8 +341,6 @@ class DatabaseRepository extends ChangeNotifier {
   }
 
   List<int?> HeartData(List<FitbitHeartData> fitbitHeartData) {
-    //Create a new Sleep object
-
     List<int?> heart = [
       fitbitHeartData[0].minutesPeak,
       fitbitHeartData[0].minutesCardio,
@@ -179,145 +349,5 @@ class DatabaseRepository extends ChangeNotifier {
     ];
 
     return heart;
-  }
-
-  //_____________________________________________________________________________
-  //_____________________________________________________________________________
-  //_____________________________________________________________________________
-  //_____________________________________________________________________________
-  //_____________________________________________________________________________
-
-  Future<void> fetchAllData() async {
-    // Authorize the app
-    final sp = await SharedPreferences.getInstance();
-
-//___________________ FETCH SLEEP DATA ___________________//
-    //Instantiate a proper data manager
-    FitbitSleepDataManager fitbitSleepDataManager = FitbitSleepDataManager(
-      clientID: Strings.fitbitClientID,
-      clientSecret: Strings.fitbitClientSecret,
-    );
-
-    //Fetch data
-    final sleepData =
-        await fitbitSleepDataManager.fetch(FitbitSleepAPIURL.withUserIDAndDay(
-      date: DateTime.now().subtract(const Duration(days: 1)),
-      userID: sp.getString('userid'),
-    )) as List<FitbitSleepData>;
-
-    //_____________________________FETCH STEP DATA__________________________________
-    FitbitActivityTimeseriesDataManager fitbitActivityTimeseriesDataManager =
-        FitbitActivityTimeseriesDataManager(
-      clientID: Strings.fitbitClientID,
-      clientSecret: Strings.fitbitClientSecret,
-      type: 'steps',
-    );
-
-    FitbitActivityTimeseriesAPIURL fitbitActivityTimeseriesApiUrl =
-        FitbitActivityTimeseriesAPIURL.weekWithResource(
-      baseDate: DateTime.now(),
-      userID: sp.getString('userid'),
-      resource: fitbitActivityTimeseriesDataManager.type,
-    );
-    final stepsData = await fitbitActivityTimeseriesDataManager.fetch(
-        fitbitActivityTimeseriesApiUrl) as List<FitbitActivityTimeseriesData>;
-
-// _____________________________________________________________________________
-//_____________________________FETCH ACTIVITY CALORIES DATA_____________________
-    FitbitActivityTimeseriesDataManager fitbitActivityTimeseriesDataManager2 =
-        FitbitActivityTimeseriesDataManager(
-      clientID: Strings.fitbitClientID,
-      clientSecret: Strings.fitbitClientSecret,
-      type: 'activityCalories',
-    );
-    FitbitActivityTimeseriesAPIURL fitbitActivityTimeseriesApiUrl2 =
-        FitbitActivityTimeseriesAPIURL.weekWithResource(
-            baseDate: DateTime.now(),
-            userID: sp.getString('userid'),
-            resource: fitbitActivityTimeseriesDataManager2.type);
-    final activitycalories = await fitbitActivityTimeseriesDataManager2.fetch(
-        fitbitActivityTimeseriesApiUrl2) as List<FitbitActivityTimeseriesData>;
-// _____________________________________________________________________________
-//_____________________________FETCH CALORIES DATA______________________________
-    FitbitActivityTimeseriesDataManager fitbitActivityTimeseriesDataManager3 =
-        FitbitActivityTimeseriesDataManager(
-      clientID: Strings.fitbitClientID,
-      clientSecret: Strings.fitbitClientSecret,
-      type: 'calories',
-    );
-    FitbitActivityTimeseriesAPIURL fitbitActivityTimeseriesApiUrl3 =
-        FitbitActivityTimeseriesAPIURL.dayWithResource(
-            date: DateTime.now(),
-            userID: sp.getString('userid'),
-            resource: fitbitActivityTimeseriesDataManager3.type);
-    final calories = await fitbitActivityTimeseriesDataManager3.fetch(
-        fitbitActivityTimeseriesApiUrl3) as List<FitbitActivityTimeseriesData>;
-// _____________________________________________________________________________
-//_____________________________FETCH MINUTES SEDEBTARY__________________________
-    FitbitActivityTimeseriesDataManager fitbitActivityTimeseriesDataManager4 =
-        FitbitActivityTimeseriesDataManager(
-      clientID: Strings.fitbitClientID,
-      clientSecret: Strings.fitbitClientSecret,
-      type: 'minutesSedentary',
-    );
-    FitbitActivityTimeseriesAPIURL fitbitActivityTimeseriesApiUrl4 =
-        FitbitActivityTimeseriesAPIURL.dayWithResource(
-            date: DateTime.now(),
-            userID: sp.getString('userid'),
-            resource: fitbitActivityTimeseriesDataManager4.type);
-    final sedentary = await fitbitActivityTimeseriesDataManager4.fetch(
-        fitbitActivityTimeseriesApiUrl4) as List<FitbitActivityTimeseriesData>;
-
-// _____________________________________________________________________________
-//_____________________________FETCH HEART DATA  _______________________________
-    FitbitHeartDataManager fitbitHeartDataManager = FitbitHeartDataManager(
-      clientID: Strings.fitbitClientID,
-      clientSecret: Strings.fitbitClientSecret,
-    );
-
-    //STEP2: Create the request url
-    FitbitHeartAPIURL fitbitHeartApiUrl = FitbitHeartAPIURL.dayWithUserID(
-        date: DateTime.now(), userID: sp.getString('userid'));
-
-    //STEP3: Get the data
-    final fitbitHeartData = await fitbitHeartDataManager
-        .fetch(fitbitHeartApiUrl) as List<FitbitHeartData>;
-
-//________________ INSERT DATA FATCHED IN DATABASE _____________________________
-    final heart = HeartData(fitbitHeartData);
-    final activity = ActivityData(activitycalories, calories, sedentary);
-    final steps = StepsData(stepsData);
-    final sleep = manageSleepData(sleepData);
-
-    //if (findminutsHeart(1) == 0 && findminutsleep(1) == 0) {
-
-    //await insertHeart(Heart(1, heart[0]));
-    //await insertHeart(Heart(2, heart[1]));
-    //await insertHeart(Heart(3, heart[2]));
-    //await insertHeart(Heart(4, heart[3]));
-    await insertActivity(
-        Activity(1, steps[0], activity[0], activity[0], activity[0]));
-    await insertActivity(Activity(2, steps[1], null, null, null));
-    await insertActivity(Activity(3, steps[2], null, null, null));
-    await insertActivity(Activity(4, steps[3], null, null, null));
-    await insertActivity(Activity(5, steps[4], null, null, null));
-    await insertActivity(Activity(6, steps[5], null, null, null));
-    await insertActivity(Activity(7, steps[6], null, null, null));
-    await insertSleep(Sleep(1, sleep));
-    //} else {
-    updateHeart(Heart(1, heart[0]));
-    updateHeart(Heart(2, heart[0]));
-    updateHeart(Heart(3, heart[0]));
-    updateHeart(Heart(4, heart[0]));
-    /* updateActivity(
-          Activity(1, steps[0], activity[0], activity[0], activity[0]));
-      updateActivity(Activity(2, steps[1], null, null, null));
-      updateActivity(Activity(3, steps[2], null, null, null));
-      updateActivity(Activity(4, steps[3], null, null, null));
-      updateActivity(Activity(5, steps[4], null, null, null));
-      updateActivity(Activity(6, steps[5], null, null, null));
-      updateActivity(Activity(7, steps[6], null, null, null));
-      updateSleep(Sleep(1, sleep));
-    }*/
   }
 }

@@ -44,12 +44,8 @@ class _SleepPageState extends State<SleepPage> {
             builder: (context, snapshot) {
               if (snapshot.hasData) {
                 final data = snapshot.data as List<Sleep>;
-                return data.length == 0
-                    ? Text(
-                        'NO REFERENCE ABOUT SLEEP FOUND',
-                        textAlign: TextAlign.center,
-                      )
-                    : Text('ciao');
+                final datasleep = dbr.findminutsleep(data);
+                return Text('ciao amico $datasleep');
               } // if
               else {
                 return CircularProgressIndicator();

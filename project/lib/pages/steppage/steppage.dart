@@ -1,6 +1,7 @@
 import 'package:fitbitter/fitbitter.dart';
 import 'package:flutter/material.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
+import 'package:project/database/entities/activity.dart';
 
 import 'package:project/pages/steppage/linear_charts.dart';
 import 'package:project/utils/strings.dart';
@@ -46,18 +47,19 @@ class _StepPageState extends State<StepPage> {
           //We need to use a FutureBuilder since the result of dbr.findAllTodos() is a Future.
           return FutureBuilder(
             initialData: null,
-            future: dbr.findstep(),
+            future: dbr.findAllActivity(),
             builder: (context, snapshot) {
               if (snapshot.hasData) {
-                final data = snapshot.data as List<double?>;
+                final data = snapshot.data as List<Activity>;
+                final datastep = dbr.findstep(data);
                 data_step = [
-                  Steps.creation(1, data[0]),
-                  Steps.creation(2, data[0]),
-                  Steps.creation(3, data[0]),
-                  Steps.creation(4, data[0]),
-                  Steps.creation(5, data[0]),
-                  Steps.creation(6, data[0]),
-                  Steps.creation(7, data[0]),
+                  Steps.creation(1, datastep[0]),
+                  Steps.creation(2, datastep[1]),
+                  Steps.creation(3, datastep[2]),
+                  Steps.creation(4, datastep[3]),
+                  Steps.creation(5, datastep[4]),
+                  Steps.creation(6, datastep[5]),
+                  Steps.creation(7, datastep[6]),
                 ];
                 return LinearCharts(data: data_step);
               } else {

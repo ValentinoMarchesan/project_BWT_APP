@@ -2,6 +2,7 @@ import 'package:fitbitter/fitbitter.dart';
 import 'package:flutter/material.dart';
 import 'package:project/chart/heart_chart.dart';
 import 'package:project/chart/heartseries.dart';
+import 'package:project/database/entities/heart.dart';
 import 'package:project/utils/strings.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
 import 'package:provider/provider.dart';
@@ -44,10 +45,12 @@ class _HeartPageState extends State<HeartPage> {
           child: Consumer<DatabaseRepository>(builder: (context, dbr, child) {
         return FutureBuilder(
           initialData: null,
-          future: dbr.fetchAllData(),
+          future: dbr.findAllHeart(),
           builder: (context, snapshot) {
             if (snapshot.hasData) {
-              final data_heart = snapshot.data as List<int?>;
+              final data = snapshot.data as List<Heart>;
+              final data_heart = dbr.findMinHeart(data);
+
               data_series = [
                 HeartSeries.creation('Out of Range', data_heart[0],
                     charts.ColorUtil.fromDartColor(Colors.red)),
