@@ -174,9 +174,12 @@ class DatabaseRepository extends ChangeNotifier {
           userID: sp.getString('userid'),
         )) as List<FitbitSleepData>;
         final sleepDurMinutes = ManageSleepData(sleepData);
-
-        insertSleep(Sleep(1, sleepDurMinutes));
-        // updateSleep(Sleep(1, sleepDurMinutes));
+        final test1 = findAllSleep();
+        if (test1 == null) {
+          insertSleep(Sleep(1, sleepDurMinutes));
+        } else {
+          updateSleep(Sleep(1, sleepDurMinutes));
+        }
 
         //_____________________________FETCH STEP DATA__________________________________
         FitbitActivityTimeseriesDataManager
@@ -250,23 +253,26 @@ class DatabaseRepository extends ChangeNotifier {
             as List<FitbitActivityTimeseriesData>;
         final activity = ActivityData(activitycalories, calories, sedentary);
         final steps = StepsData(stepsData);
-        insertActivity(
-            Activity(1, steps[0], activity[0], activity[0], activity[0]));
-        insertActivity(Activity(2, steps[1], null, null, null));
-        insertActivity(Activity(3, steps[2], null, null, null));
-        insertActivity(Activity(4, steps[3], null, null, null));
-        insertActivity(Activity(5, steps[4], null, null, null));
-        insertActivity(Activity(6, steps[5], null, null, null));
-        insertActivity(Activity(7, steps[6], null, null, null));
-        /*
-        updateActivity(
-            Activity(1, steps[0], activity[0], activity[0], activity[0]));
-        updateActivity(Activity(2, steps[1], null, null, null));
-        updateActivity(Activity(3, steps[2], null, null, null));
-        updateActivity(Activity(4, steps[3], null, null, null));
-        updateActivity(Activity(5, steps[4], null, null, null));
-        updateActivity(Activity(6, steps[5], null, null, null));
-        updateActivity(Activity(7, steps[6], null, null, null));*/
+        final test2 = findAllActivity();
+        if (test2 == null) {
+          insertActivity(
+              Activity(1, steps[0], activity[0], activity[0], activity[0]));
+          insertActivity(Activity(2, steps[1], null, null, null));
+          insertActivity(Activity(3, steps[2], null, null, null));
+          insertActivity(Activity(4, steps[3], null, null, null));
+          insertActivity(Activity(5, steps[4], null, null, null));
+          insertActivity(Activity(6, steps[5], null, null, null));
+          insertActivity(Activity(7, steps[6], null, null, null));
+        } else {
+          updateActivity(
+              Activity(1, steps[0], activity[0], activity[0], activity[0]));
+          updateActivity(Activity(2, steps[1], null, null, null));
+          updateActivity(Activity(3, steps[2], null, null, null));
+          updateActivity(Activity(4, steps[3], null, null, null));
+          updateActivity(Activity(5, steps[4], null, null, null));
+          updateActivity(Activity(6, steps[5], null, null, null));
+          updateActivity(Activity(7, steps[6], null, null, null));
+        }
 
 // _____________________________________________________________________________
 //_____________________________FETCH HEART DATA  _______________________________
@@ -283,16 +289,18 @@ class DatabaseRepository extends ChangeNotifier {
         final fitbitHeartData = await fitbitHeartDataManager
             .fetch(fitbitHeartApiUrl) as List<FitbitHeartData>;
         final heart = HeartData(fitbitHeartData);
-
-        insertHeart(Heart(1, heart[0]));
-        insertHeart(Heart(2, heart[1]));
-        insertHeart(Heart(3, heart[2]));
-        insertHeart(Heart(4, heart[3]));
-        /*
-        updateHeart(Heart(1, heart[0]));
-        updateHeart(Heart(2, heart[0]));
-        updateHeart(Heart(3, heart[0]));
-        updateHeart(Heart(4, heart[0]));*/
+        final test3 = findAllHeart();
+        if (test3 == null) {
+          insertHeart(Heart(1, heart[0]));
+          insertHeart(Heart(2, heart[1]));
+          insertHeart(Heart(3, heart[2]));
+          insertHeart(Heart(4, heart[3]));
+        } else {
+          updateHeart(Heart(1, heart[0]));
+          updateHeart(Heart(2, heart[1]));
+          updateHeart(Heart(3, heart[2]));
+          updateHeart(Heart(4, heart[3]));
+        }
         break;
       } else {
         await Future.delayed(Duration(seconds: 20));

@@ -50,17 +50,20 @@ class _HeartPageState extends State<HeartPage> {
             if (snapshot.hasData) {
               final data = snapshot.data as List<Heart>;
               final data_heart = dbr.findMinHeart(data);
-
-              data_series = [
-                HeartSeries.creation('Out of Range', data_heart[0],
-                    charts.ColorUtil.fromDartColor(Colors.red)),
-                HeartSeries.creation('Fat Burn', data_heart[1],
-                    charts.ColorUtil.fromDartColor(Colors.orangeAccent)),
-                HeartSeries.creation('Cardio', data_heart[2],
-                    charts.ColorUtil.fromDartColor(Colors.black12)),
-                HeartSeries.creation('Peak', data_heart[3],
-                    charts.ColorUtil.fromDartColor(Colors.blue))
-              ];
+              if (data_heart.isEmpty) {
+                data_series = [HeartSeries.empty()];
+              } else {
+                data_series = [
+                  HeartSeries.creation('Out of Range', data_heart[0],
+                      charts.ColorUtil.fromDartColor(Colors.red)),
+                  HeartSeries.creation('Fat Burn', data_heart[1],
+                      charts.ColorUtil.fromDartColor(Colors.orangeAccent)),
+                  HeartSeries.creation('Cardio', data_heart[2],
+                      charts.ColorUtil.fromDartColor(Colors.black12)),
+                  HeartSeries.creation('Peak', data_heart[3],
+                      charts.ColorUtil.fromDartColor(Colors.blue))
+                ];
+              }
               return HeartChart(data: data_series);
             } else {
               return CircularProgressIndicator();

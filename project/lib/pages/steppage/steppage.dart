@@ -52,16 +52,55 @@ class _StepPageState extends State<StepPage> {
               if (snapshot.hasData) {
                 final data = snapshot.data as List<Activity>;
                 final datastep = dbr.findstep(data);
-                data_step = [
-                  Steps.creation(1, datastep[0]),
-                  Steps.creation(2, datastep[1]),
-                  Steps.creation(3, datastep[2]),
-                  Steps.creation(4, datastep[3]),
-                  Steps.creation(5, datastep[4]),
-                  Steps.creation(6, datastep[5]),
-                  Steps.creation(7, datastep[6]),
-                ];
-                return LinearCharts(data: data_step);
+                if (datastep.length != 0) {
+                  data_step = [
+                    Steps.creation(1, datastep[0]),
+                    Steps.creation(2, datastep[1]),
+                    Steps.creation(3, datastep[2]),
+                    Steps.creation(4, datastep[3]),
+                    Steps.creation(5, datastep[4]),
+                    Steps.creation(6, datastep[5]),
+                    Steps.creation(7, datastep[6]),
+                  ];
+                } else {
+                  data_step = [
+                    Steps.creation(1, 0),
+                    Steps.creation(2, 0),
+                    Steps.creation(3, 0),
+                    Steps.creation(4, 0),
+                    Steps.creation(5, 0),
+                    Steps.creation(6, 0),
+                    Steps.creation(7, 0),
+                  ];
+                }
+                return Column(
+                  children: [
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    LinearCharts(data: data_step),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    Container(
+                      padding: const EdgeInsets.all(30),
+                      height: 200,
+                      width: MediaQuery.of(context).size.width - 70,
+                      decoration: BoxDecoration(
+                        color: Colors.orange,
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      child: const Text(
+                        'TABELLA',
+                        style: TextStyle(
+                            fontSize: 45,
+                            fontFamily: 'Audiowide',
+                            color: Colors.black),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                  ],
+                );
               } else {
                 //A CircularProgressIndicator is shown while the list of Todo is loading.
                 return CircularProgressIndicator();
