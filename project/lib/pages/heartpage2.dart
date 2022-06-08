@@ -21,7 +21,7 @@ class HeartPage2 extends StatelessWidget {
   //Heart? time_Cardio;
   //Heart? time_Peak;
   //late
-  List<HeartSeries> data_series = [];
+  //List<HeartSeries> data_series = [];
   //late List<Heart> data_heart;
 
   @override
@@ -39,26 +39,50 @@ class HeartPage2 extends StatelessWidget {
           builder: (context, snapshot) {
             if (snapshot.hasData) {
               final data_heart = snapshot.data as List<Heart>;
+              final data_series = [
+                HeartSeries.creation(
+                    'Out of Range',
+                    //fitbitHeartData[0].minutesOutOfRange,
+                    data_heart[0].minute,
+                    charts.ColorUtil.fromDartColor(Colors.red)),
+                HeartSeries.creation(
+                    'Fat Burn',
+                    // fitbitHeartData[0].minutesFatBurn,
+                    data_heart[1].minute,
+                    charts.ColorUtil.fromDartColor(Colors.orangeAccent)),
+                HeartSeries.creation(
+                    'Cardio',
+                    // fitbitHeartData[0].minutesCardio,
+                    data_heart[2].minute,
+                    charts.ColorUtil.fromDartColor(Colors.black12)),
+                HeartSeries.creation(
+                    'Peak',
+                    // fitbitHeartData[0].minutesPeak,
+                    data_heart[3].minute,
+                    charts.ColorUtil.fromDartColor(Colors.blue))
+              ];
+
+              return HeartChart(data: data_series);
               // _metodoprova(context);
               // return data_heart.length == 0
               //    ? Text('maracaibo', textAlign: TextAlign.center)
               //     : HeartChart(data: data_series);
-              if (data_heart.length == 0) {
-                List<HeartSeries> data_series = [HeartSeries.empty()];
-                //_metodoprova(context);
-                return HeartChart(data: data_series);
-              } else {
-                // final data_series = _metodoprova2(context);
-                // final data_series = _ritornalista(
-                // context,
-                //time_OutRange!.minute,
-                //  time_FatBurn!.minute,
-                //  time_Cardio!.minute,
-                //   time_Peak!.minute);
+              // if (data_heart.length == 0) {
+              //  List<HeartSeries> data_series = [HeartSeries.empty()];
+              //_metodoprova(context);
+              //  return HeartChart(data: data_series);
+              //   } else {
+              // final data_series = _metodoprova2(context);
+              // final data_series = _ritornalista(
+              // context,
+              //time_OutRange!.minute,
+              //  time_FatBurn!.minute,
+              //  time_Cardio!.minute,
+              //   time_Peak!.minute);
 
-                return HeartChart(data: data_series);
-              }
-              /*     final data_series = [
+              //    return HeartChart(data: data_series);
+            }
+            /*     final data_series = [
             HeartSeries.creation(
                 'Out of Range',
                 //fitbitHeartData[0].minutesOutOfRange,
@@ -80,8 +104,8 @@ class HeartPage2 extends StatelessWidget {
                 time_Peak!.minute,
                 charts.ColorUtil.fromDartColor(Colors.blue))
           ];*/
-              //  return HeartChart(data: data_series);
-            } else {
+            //  return HeartChart(data: data_series);
+            else {
               // _metodoprova(context);
               return CircularProgressIndicator();
             }
@@ -114,7 +138,7 @@ class HeartPage2 extends StatelessWidget {
 
           ScaffoldMessenger.of(context).showSnackBar(snackBar);
           print(fitbitHeartData[0].minutesOutOfRange);
-
+/*
           // _metodoprova(context);
           await Provider.of<DatabaseRepository>(context, listen: false)
               .updateHeart(Heart(1, fitbitHeartData[0].minutesOutOfRange!));
@@ -210,7 +234,7 @@ class HeartPage2 extends StatelessWidget {
                 // fitbitHeartData[0].minutesPeak,
                 time_Peak!.minute,
                 charts.ColorUtil.fromDartColor(Colors.blue))
-          ];*/
+          ];*/ */
         },
         child: Text('tap to fetch today hearth data'),
       ),
