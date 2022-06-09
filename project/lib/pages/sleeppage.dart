@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:fitbitter/fitbitter.dart';
 import 'package:floor/floor.dart';
 import 'package:flutter/material.dart';
@@ -45,11 +47,10 @@ class _SleepPageState extends State<SleepPage> {
               future: dbr.findAllSleep(),
               builder: (context, snapshot) {
                 if (snapshot.hasData) {
+                  _aggiungoSL(dbr);
+
                   final data = snapshot.data as List<Sleep>;
                   final datasleep = dbr.findminutsleep(data);
-                  if (datasleep == null) {
-                    int? datasleep = 0;
-                  }
                   return Column(
                     children: [
                       SizedBox(
@@ -100,33 +101,32 @@ class _SleepPageState extends State<SleepPage> {
       ),
     );
   }
+
+  Future<void> _aggiungoSL(DatabaseRepository database) async {
+    final sp = await SharedPreferences.getInstance();
+    if (sp.getBool('sleep') == false && sp.getBool('confirm') == true) {
+      FitbitSleepDataManager fitbitSleepDataManager = FitbitSleepDataManager(
+        clientID: Strings.fitbitClientID,
+        clientSecret: Strings.fitbitClientSecret,
+      );
+
+      //Fetch data
+      final sleepData =
+          await fitbitSleepDataManager.fetch(FitbitSleepAPIURL.withUserIDAndDay(
+        date: DateTime.now(),
+        userID: sp.getString('userid'),
+      )) as List<FitbitSleepData>;
+
+      DateTime? endTime = sleepData[sleepData.length - 1].entryDateTime;
+      DateTime? startTime = sleepData[0].entryDateTime;
+      int sleepDurHourse = endTime!.difference(startTime!).inMinutes ~/ 60;
+      final sleepDurMinutes = endTime.difference(startTime).inMinutes % 60;
+
+      //database.updateSleep(Sleep(1, sleepDurHourse));
+
+      database.updateSleep(Sleep(1, sleepDurHourse));
+
+      sp.setBool('sleep', true);
+    }
+  }
 }
-/*
-  void Save(BuildContext context, sleepData) async {
-    levelController = sleepData[0].level;
-
-    // If the original Annotation passed to the AnnotationPage was null, then add a new Annotation...
-    if (widget.sleep == null) {
-      Sleep newSleep = Sleep(1, levelController!, DateTime.now());
-      await Provider.of<DatabaseRepository>(context, listen: false)
-          .insertSleep(newSleep);
-    } //if
-    //...otherwise, edit it.
-    else {
-      Sleep updateSleep =
-          Sleep(widget.sleep!.id, levelController!, DateTime.now());
-      await Provider.of<DatabaseRepository>(context, listen: false)
-          .updateSleep(updateSleep);
-    } //else
-    //if
-  } // _validateAndSave
-
-  //Utility method that deletes a Annotation entry.
-  void delete(BuildContext context) async {
-    await Provider.of<DatabaseRepository>(context, listen: false)
-        .removeSleep(widget.sleep!);
-  } //_deleteAndPop
-
-} //AnnotationPage
-//Page
-*/

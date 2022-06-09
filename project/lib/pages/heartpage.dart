@@ -24,14 +24,13 @@ class HeartPage extends StatefulWidget {
 
 class _HeartPageState extends State<HeartPage> {
   //static late SharedPreferences prova;
-  late List<HeartSeries> data_series;
 
   // late int flag;
 
   @override
   void initState() {
     super.initState();
-    data_series = [HeartSeries.empty()];
+    final data_series = [HeartSeries.empty()];
   }
 
   @override
@@ -48,22 +47,21 @@ class _HeartPageState extends State<HeartPage> {
           future: dbr.findAllHeart(),
           builder: (context, snapshot) {
             if (snapshot.hasData) {
+              _aggiungoHR(dbr);
               final data = snapshot.data as List<Heart>;
               final data_heart = dbr.findMinHeart(data);
-              if (data_heart.isEmpty) {
-                data_series = [HeartSeries.empty()];
-              } else {
-                data_series = [
-                  HeartSeries.creation('Out of Range', data_heart[0],
-                      charts.ColorUtil.fromDartColor(Colors.red)),
-                  HeartSeries.creation('Fat Burn', data_heart[1],
-                      charts.ColorUtil.fromDartColor(Colors.orangeAccent)),
-                  HeartSeries.creation('Cardio', data_heart[2],
-                      charts.ColorUtil.fromDartColor(Colors.black12)),
-                  HeartSeries.creation('Peak', data_heart[3],
-                      charts.ColorUtil.fromDartColor(Colors.blue))
-                ];
-              }
+
+              final data_series = [
+                HeartSeries.creation('Out of Range', data_heart[0],
+                    charts.ColorUtil.fromDartColor(Colors.red)),
+                HeartSeries.creation('Fat Burn', data_heart[1],
+                    charts.ColorUtil.fromDartColor(Colors.orangeAccent)),
+                HeartSeries.creation('Cardio', data_heart[2],
+                    charts.ColorUtil.fromDartColor(Colors.black12)),
+                HeartSeries.creation('Peak', data_heart[3],
+                    charts.ColorUtil.fromDartColor(Colors.blue))
+              ];
+
               return HeartChart(data: data_series);
             } else {
               return CircularProgressIndicator();
@@ -73,5 +71,31 @@ class _HeartPageState extends State<HeartPage> {
       })),
     );
   }
+
+  Future<void> _aggiungoHR(DatabaseRepository database) async {
+    final sp = await SharedPreferences.getInstance();
+    if (sp.getBool('heart') == false && sp.getBool('confirm') == true) {
+      FitbitHeartDataManager fitbitHeartDataManager = FitbitHeartDataManager(
+        clientID: Strings.fitbitClientID,
+        clientSecret: Strings.fitbitClientSecret,
+      );
+
+      //STEP2: Create the request url
+      FitbitHeartAPIURL fitbitHeartApiUrl = FitbitHeartAPIURL.dayWithUserID(
+          date: DateTime.now(), userID: sp.getString('userid'));
+
+      //STEP3: Get the data
+      final fitbitHeartData = await fitbitHeartDataManager
+          .fetch(fitbitHeartApiUrl) as List<FitbitHeartData>;
+      final heart = HeartData(fitbitHeartData);
+      database.updateHeart(Heart(1, heart[0]));
+      database.updateHeart(Heart(2, heart[1]));
+      database.updateHeart(Heart(3, heart[2]));
+      database.updateHeart(Heart(4, heart[3]));
+      sp.setBool('heart', true);
+    }
+  }
 } //Page
+ //Page
+
 
