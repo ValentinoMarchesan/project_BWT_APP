@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:lottie/lottie.dart';
 import 'package:project/pages/bmipage.dart';
 import 'package:project/pages/heartpage.dart';
 import 'package:project/pages/sleeppage.dart';
@@ -44,9 +46,9 @@ class CardHR extends StatelessWidget {
                     height: 1,
                     width: 10,
                   ),
-                  Text('HEART RATE'),
+                  Text('HEART RATE', style: TextStyle(fontFamily: 'Audiowide')),
                   SizedBox(
-                    width: 210,
+                    width: 190,
                   ),
                   Icon(Icons.view_column),
                 ],
@@ -54,24 +56,17 @@ class CardHR extends StatelessWidget {
             ),
             Row(
               children: [
-                Stack(
-                  children: [
-                    // parte per posizionare immagine
-                    Ink.image(
-                      image: const NetworkImage(
-                          'https://image.shutterstock.com/image-illustration/cardio-exercise-increases-hearts-health-600w-173381630.jpg'),
-                      // rendere la card schiacciabile
-                      width: 200,
-                      height: 100,
-                      child: InkWell(onTap: () => _toHeartPage(context)),
-                      fit: BoxFit.cover,
-                    ),
-                  ],
+                Container(
+                  color: Color.fromARGB(255, 236, 200, 145),
+                  height: 100,
+                  width: 100,
+                  child: Lottie.network(
+                      'https://assets1.lottiefiles.com/packages/lf20_l09h6eer.json'),
                 ),
                 Container(
                   //colore interno
                   height: 100,
-                  width: 184.7,
+                  width: 284.7,
                   decoration: const BoxDecoration(
                     color: Color.fromARGB(255, 236, 200, 145),
                     /*gradient: LinearGradient(
@@ -88,6 +83,12 @@ class CardHR extends StatelessWidget {
                     children: const [
                       Text(
                         'Through the data acquired by the device, it provides an overview of cardiac activity',
+                        style: TextStyle(
+                            fontSize: 15,
+                            //fontWeight: FontWeight.bold,
+                            color: Colors.black,
+                            fontFamily: 'Audiowide'),
+                        textAlign: TextAlign.justify,
                       ),
                     ],
                   ),
@@ -147,9 +148,10 @@ class CardSM extends StatelessWidget {
                     height: 1,
                     width: 10,
                   ),
-                  Text('SLEEP MONITORING'),
+                  Text('SLEEP MONITORING',
+                      style: TextStyle(fontFamily: 'Audiowide')),
                   SizedBox(
-                    width: 165,
+                    width: 132,
                   ),
                   Icon(Icons.view_column),
                 ],
@@ -157,26 +159,27 @@ class CardSM extends StatelessWidget {
             ),
             Row(
               children: [
-                Stack(
-                  children: [
-                    // parte per posizionare immagine
-                    Ink.image(
-                      image: const NetworkImage(
-                          'https://image.shutterstock.com/image-vector/sleep-cycle-labeled-night-stages-600w-1945387777.jpg'),
-                      // rendere la card schiacciabile
-                      width: 200,
-                      height: 100,
-                      child: InkWell(
-                        onTap: () => _toSleepPage(context),
-                      ),
-                      fit: BoxFit.cover,
-                    ),
-                  ],
+                Container(
+                  width: 10,
+                  height: 100,
+                  color: Color.fromARGB(
+                    255,
+                    236,
+                    200,
+                    145,
+                  ),
+                ),
+                Container(
+                  color: Color.fromARGB(255, 236, 200, 145),
+                  height: 100,
+                  width: 100,
+                  child: Lottie.network(
+                      'https://assets10.lottiefiles.com/packages/lf20_jy3vmooe.json'),
                 ),
                 Container(
                   //colore interno
                   height: 100,
-                  width: 184.7,
+                  width: 274.7,
                   decoration: const BoxDecoration(
                     color: Color.fromARGB(255, 236, 200, 145),
                     /*gradient: LinearGradient(
@@ -192,7 +195,13 @@ class CardSM extends StatelessWidget {
                   child: Column(
                     children: const [
                       Text(
-                        'Inserire Testo',
+                        'Through the data acquired by the device, it provides an overview of sleep activity',
+                        style: TextStyle(
+                            fontSize: 16,
+                            //fontWeight: FontWeight.bold,
+                            color: Colors.black,
+                            fontFamily: 'Audiowide'),
+                        textAlign: TextAlign.justify,
                       ),
                     ],
                   ),
@@ -250,9 +259,10 @@ class CardSteep extends StatelessWidget {
                     height: 1,
                     width: 10,
                   ),
-                  Text('STEPS MONITORING'),
+                  Text('STEPS MONITORING',
+                      style: TextStyle(fontFamily: 'Audiowide')),
                   SizedBox(
-                    width: 160,
+                    width: 128,
                   ),
                   Icon(Icons.view_column),
                 ],
@@ -260,26 +270,27 @@ class CardSteep extends StatelessWidget {
             ),
             Row(
               children: [
-                Stack(
-                  children: [
-                    // parte per posizionare immagine
-                    Ink.image(
-                      image: const NetworkImage(
-                          'https://images.unsplash.com/photo-1461896836934-ffe607ba8211?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80'),
-                      // rendere la card schiacciabile
-                      width: 200,
-                      height: 100,
-                      child: InkWell(
-                        onTap: () => _toStepPage(context),
-                      ),
-                      fit: BoxFit.cover,
-                    ),
-                  ],
+                Container(
+                  width: 20,
+                  height: 100,
+                  color: Color.fromARGB(
+                    255,
+                    236,
+                    200,
+                    145,
+                  ),
+                ),
+                Container(
+                  color: Color.fromARGB(255, 236, 200, 145),
+                  height: 100,
+                  width: 100,
+                  child: Lottie.network(
+                      'https://assets6.lottiefiles.com/packages/lf20_umwjpnnn.json'),
                 ),
                 Container(
                   //colore interno
                   height: 100,
-                  width: 184.7,
+                  width: 264.7,
                   decoration: const BoxDecoration(
                     color: Color.fromARGB(255, 236, 200, 145),
                     /*gradient: LinearGradient(
@@ -295,7 +306,13 @@ class CardSteep extends StatelessWidget {
                   child: Column(
                     children: const [
                       Text(
-                        'Inserire Testo',
+                        'Through the data acquired by the device, it provides an overview of steps activity',
+                        style: TextStyle(
+                            fontSize: 15,
+                            //fontWeight: FontWeight.bold,
+                            color: Colors.black,
+                            fontFamily: 'Audiowide'),
+                        textAlign: TextAlign.justify,
                       ),
                     ],
                   ),
@@ -353,34 +370,15 @@ class Cardbmi extends StatelessWidget {
                     height: 1,
                     width: 10,
                   ),
-                  Text('BMI CALCULATOR'),
+                  Text('BMI CALCULATOR',
+                      style: TextStyle(fontFamily: 'Audiowide')),
                   SizedBox(
-                    width: 181,
+                    width: 145,
                   ),
                   Icon(Icons.view_column),
                 ],
               ),
             ),
-            /*
-          Row(
-            children: [
-              Stack(
-                children: [
-                  // parte per posizionare immagine
-                  Ink.image(
-                    image: NetworkImage(
-                        'https://media.istockphoto.com/photos/sports-equipment-on-green-grass-top-view-picture-id905105146'),
-                    // rendere la card schiacciabile
-                    width: 150,
-                    height: 100,
-                    child: InkWell(
-                      onTap: () => _toBmiPage(context),
-                    ),
-                    fit: BoxFit.fill,
-                  ),
-                ],
-              ),
-              */
             Container(
               //colore interno
               height: 100,
@@ -400,7 +398,13 @@ class Cardbmi extends StatelessWidget {
               child: Column(
                 children: const [
                   Text(
-                    'In this section you can calculate the BMI index by entering the age, weight and height. You also receive a feedback on the physical state based on data collected on the activity carried out in the last seven days. ',
+                    'In this section you can calculate the BMI index by entering the age, weight and height. You also receive a feedback on the physical state.',
+                    style: TextStyle(
+                        fontSize: 15,
+                        //fontWeight: FontWeight.bold,
+                        color: Colors.black,
+                        fontFamily: 'Audiowide'),
+                    textAlign: TextAlign.justify,
                   )
                 ],
               ),
