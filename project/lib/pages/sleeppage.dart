@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:fitbitter/fitbitter.dart';
 import 'package:floor/floor.dart';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:project/database/entities/sleep.dart';
 import 'package:project/pages/steppage/Stepseries.dart';
@@ -33,7 +34,8 @@ class _SleepPageState extends State<SleepPage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text(SleepPage.routename,
-            style: TextStyle(fontSize: 20, fontFamily: 'Audiowide')),
+            style: TextStyle(
+                fontSize: 20, fontFamily: 'Audiowide', color: Colors.black)),
         centerTitle: true,
         backgroundColor: Colors.orange,
       ),
@@ -51,50 +53,115 @@ class _SleepPageState extends State<SleepPage> {
 
                   final data = snapshot.data as List<Sleep>;
                   final datasleep = dbr.findminutsleep(data);
-                  return Column(
-                    children: [
-                      SizedBox(
-                        height: 20,
-                      ),
-                      Container(
-                        padding: const EdgeInsets.all(30),
-                        height: 400,
-                        width: MediaQuery.of(context).size.width - 70,
-                        decoration: BoxDecoration(
-                          color: Colors.orange,
-                          borderRadius: BorderRadius.circular(20),
+                  if (datasleep == null) {
+                    return const Center(
+                        child: CircularProgressIndicator(
+                      valueColor: AlwaysStoppedAnimation<Color>(Colors.red),
+                      strokeWidth: 30,
+                    ));
+                  } else if (datasleep >= 8) {
+                    return Column(
+                      children: [
+                        const SizedBox(
+                          height: 20,
                         ),
-                        child: Text(
-                          'GRAFICO',
-                          style: TextStyle(
-                              fontSize: 50,
-                              fontFamily: 'Audiowide',
-                              color: Colors.black),
-                          textAlign: TextAlign.center,
+                        Container(
+                          padding: const EdgeInsets.all(30),
+                          height: 400,
+                          width: MediaQuery.of(context).size.width - 70,
+                          decoration: BoxDecoration(
+                            color: Colors.orange,
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          child: Lottie.asset(
+                            'assets/sleep2.json',
+                            height: 400,
+                            width: MediaQuery.of(context).size.width - 70,
+                          ),
                         ),
-                      ),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      Container(
-                        padding: const EdgeInsets.all(30),
-                        decoration: BoxDecoration(
-                          color: Colors.orange,
-                          borderRadius: BorderRadius.circular(20),
+                        const SizedBox(
+                          height: 20,
                         ),
-                        width: MediaQuery.of(context).size.width - 70,
-                        height: 100,
-                        child: Text('HAI DORMITO: $datasleep ORE',
-                            style: TextStyle(
-                                fontSize: 20, fontFamily: 'Audiowide')),
-                        alignment: Alignment.center,
-                      ),
-                    ],
-                  );
+                        Container(
+                          padding: const EdgeInsets.all(30),
+                          decoration: BoxDecoration(
+                            color: Colors.orange,
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          width: MediaQuery.of(context).size.width - 70,
+                          height: 155,
+                          child: Column(
+                            children: [
+                              Text('HAI DORMITO: $datasleep ORE',
+                                  style: const TextStyle(
+                                      fontSize: 20, fontFamily: 'Audiowide')),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              const Text(
+                                  'Essere riposati è importante per affrontare la giornata con la carica giusta, complimenti!!',
+                                  style: TextStyle(
+                                      fontSize: 15, fontFamily: 'Audiowide'),
+                                  textAlign: TextAlign.center),
+                            ],
+                          ),
+                          alignment: Alignment.center,
+                        ),
+                      ],
+                    );
+                  } else {
+                    return Column(
+                      children: [
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        Container(
+                          padding: const EdgeInsets.all(30),
+                          height: 400,
+                          width: MediaQuery.of(context).size.width - 70,
+                          decoration: BoxDecoration(
+                            color: Colors.orange,
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          child: Lottie.asset(
+                            'assets/sleep.json',
+                            height: 400,
+                            width: MediaQuery.of(context).size.width - 70,
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        Container(
+                          padding: const EdgeInsets.all(30),
+                          decoration: BoxDecoration(
+                            color: Colors.orange,
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          width: MediaQuery.of(context).size.width - 70,
+                          height: 140,
+                          child: Column(
+                            children: [
+                              Text('HAI DORMITO: $datasleep ORE',
+                                  style: const TextStyle(
+                                      fontSize: 20, fontFamily: 'Audiowide')),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              const Text(
+                                  'Ricordati di andare a dormire prima la prossima volta!!',
+                                  style: TextStyle(
+                                      fontSize: 15, fontFamily: 'Audiowide'),
+                                  textAlign: TextAlign.center),
+                            ],
+                          ),
+                        )
+                      ],
+                    );
+                  }
                 } else {
-                  return CircularProgressIndicator();
-                } // if
-                // else
+                  return const Center(child: CircularProgressIndicator());
+                }
               });
         } // Consumer-builder
             ),

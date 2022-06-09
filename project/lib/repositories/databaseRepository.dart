@@ -123,7 +123,6 @@ class DatabaseRepository extends ChangeNotifier {
   List<double?> findActivity(List<Activity> activitydata) {
     // final activitydata = findAllActivity() as List<Activity>;
     final results = [
-      activitydata[0].step,
       activitydata[0].calories,
       activitydata[0].actcalories,
       activitydata[0].minsedentary,

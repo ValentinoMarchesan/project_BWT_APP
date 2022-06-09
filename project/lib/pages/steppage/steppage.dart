@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:fitbitter/fitbitter.dart';
 import 'package:flutter/material.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
@@ -53,42 +55,88 @@ class _StepPageState extends State<StepPage> {
                 _aggiungoAC(dbr);
                 final data = snapshot.data as List<Activity>;
                 final datastep = dbr.findstep(data);
+                final dataactivity = dbr.findActivity(data);
+                double? means = meanstep(datastep);
+                double? maxsteps = maxstep(datastep);
+                double? minsteps = minstep(datastep);
 
                 data_step = [
-                  Steps.creation(1, datastep[0]),
-                  Steps.creation(2, datastep[1]),
-                  Steps.creation(3, datastep[2]),
+                  Steps.creation(7, datastep[0]),
+                  Steps.creation(6, datastep[1]),
+                  Steps.creation(5, datastep[2]),
                   Steps.creation(4, datastep[3]),
-                  Steps.creation(5, datastep[4]),
-                  Steps.creation(6, datastep[5]),
-                  Steps.creation(7, datastep[6]),
+                  Steps.creation(3, datastep[4]),
+                  Steps.creation(2, datastep[5]),
+                  Steps.creation(1, datastep[6]),
                 ];
                 return Column(
                   children: [
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    LinearCharts(data: data_step),
-                    const SizedBox(
-                      height: 20,
-                    ),
+                    Container(child: LinearCharts(data: data_step)),
+                    SizedBox(height: 40),
                     Container(
-                      padding: const EdgeInsets.all(30),
-                      height: 200,
-                      width: MediaQuery.of(context).size.width - 70,
+                      height: 250,
+                      width: MediaQuery.of(context).size.width - 40,
                       decoration: BoxDecoration(
                         color: Colors.orange,
                         borderRadius: BorderRadius.circular(20),
                       ),
-                      child: const Text(
-                        'TABELLA',
-                        style: TextStyle(
-                            fontSize: 45,
-                            fontFamily: 'Audiowide',
-                            color: Colors.black),
-                        textAlign: TextAlign.center,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const SizedBox(
+                            height: 10,
+                          ),
+                          const Text('  GENERAL INFORMATION:',
+                              style: TextStyle(
+                                  fontSize: 22,
+                                  fontFamily: 'Audiowide',
+                                  color: Colors.black)),
+                          const SizedBox(height: 15),
+                          Text(
+                              '   - Last day step: ${datastep[0]!.toInt()} steps ',
+                              style: const TextStyle(
+                                  fontSize: 15, fontFamily: 'Audiowide'),
+                              textAlign: TextAlign.start),
+                          const SizedBox(height: 5),
+                          Text(
+                              '   - Means steps of the week: ${means!.toInt()} steps',
+                              style: const TextStyle(
+                                  fontSize: 15, fontFamily: 'Audiowide'),
+                              textAlign: TextAlign.start),
+                          const SizedBox(height: 5),
+                          Text(
+                              '   - Max steps in the week: ${maxsteps!.toInt()} steps',
+                              style: const TextStyle(
+                                  fontSize: 15, fontFamily: 'Audiowide'),
+                              textAlign: TextAlign.start),
+                          const SizedBox(height: 5),
+                          Text(
+                              '   - Min steps of the week: ${minsteps.toInt()} steps',
+                              style: const TextStyle(
+                                  fontSize: 15, fontFamily: 'Audiowide'),
+                              textAlign: TextAlign.start),
+                          const SizedBox(height: 5),
+                          Text(
+                              '   - Calories of activity burn:${dataactivity[0]!.toInt()}Kcal',
+                              style: const TextStyle(
+                                  fontSize: 15, fontFamily: 'Audiowide'),
+                              textAlign: TextAlign.start),
+                          const SizedBox(height: 5),
+                          Text(
+                              '   - Calories of the day: ${dataactivity[1]!.toInt()}Kcal',
+                              style: const TextStyle(
+                                  fontSize: 15, fontFamily: 'Audiowide'),
+                              textAlign: TextAlign.start),
+                          const SizedBox(height: 5),
+                          Text(
+                              '   - Minutes sedentary: ${dataactivity[2]!.toInt()} min',
+                              style: const TextStyle(
+                                  fontSize: 15, fontFamily: 'Audiowide'),
+                              textAlign: TextAlign.start),
+                        ],
                       ),
-                    ),
+                    )
                   ],
                 );
               } else {
@@ -183,5 +231,34 @@ class _StepPageState extends State<StepPage> {
   }
 } //Page
 
+double? meanstep(datastep) {
+  double sum = 0;
 
+  datastep.forEach((e) {
+    sum += e!;
+  });
+  double res = sum / 7;
+  return res;
+}
 
+double? maxstep(datastep) {
+  double max = 0;
+  datastep.forEach((e) {
+    if (e! > max) {
+      max = e!;
+    }
+  });
+
+  return max;
+}
+
+double minstep(datastep) {
+  double min = datastep[0];
+  datastep.forEach((e) {
+    if (e! < min) {
+      min = e!;
+    }
+  });
+
+  return min;
+}

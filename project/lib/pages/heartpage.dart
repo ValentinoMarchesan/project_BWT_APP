@@ -12,7 +12,7 @@ import '../repositories/databaseRepository.dart';
 
 class HeartPage extends StatefulWidget {
   static const route = '/home/heart';
-  static const routename = 'Heart Page';
+  static const routename = 'HEART PAGE';
 
   const HeartPage({Key? key}) : super(key: key);
 
@@ -38,7 +38,11 @@ class _HeartPageState extends State<HeartPage> {
     print('${HeartPage.routename} built');
     return Scaffold(
       appBar: AppBar(
-        title: const Text(HeartPage.routename),
+        title: const Text(HeartPage.routename,
+            style: TextStyle(
+                fontSize: 20, fontFamily: 'Audiowide', color: Colors.black)),
+        centerTitle: true,
+        backgroundColor: Colors.orange,
       ),
       body: Center(
           child: Consumer<DatabaseRepository>(builder: (context, dbr, child) {
@@ -62,7 +66,54 @@ class _HeartPageState extends State<HeartPage> {
                     charts.ColorUtil.fromDartColor(Colors.blue))
               ];
 
-              return HeartChart(data: data_series);
+              return Column(
+                children: [
+                  Container(height: 500, child: HeartChart(data: data_series)),
+                  Container(
+                    height: 150,
+                    width: MediaQuery.of(context).size.width - 40,
+                    decoration: BoxDecoration(
+                      color: Colors.orange,
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    child: Column(
+                      children: [
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        const Text('GENERAL INFORMATION:',
+                            style: TextStyle(
+                                fontSize: 20,
+                                fontFamily: 'Audiowide',
+                                color: Colors.black)),
+                        const SizedBox(height: 10),
+                        Text('- Minutes out of range: ${data_heart[0]} min',
+                            style: const TextStyle(
+                                fontSize: 15, fontFamily: 'Audiowide'),
+                            textAlign: TextAlign.start),
+                        const SizedBox(height: 2),
+                        Text(
+                            '- Minutes fat burn:              ${data_heart[1]} min',
+                            style: const TextStyle(
+                                fontSize: 15, fontFamily: 'Audiowide'),
+                            textAlign: TextAlign.start),
+                        const SizedBox(height: 2),
+                        Text(
+                            '- Minutes cardio:                  ${data_heart[2]} min',
+                            style: const TextStyle(
+                                fontSize: 15, fontFamily: 'Audiowide'),
+                            textAlign: TextAlign.start),
+                        const SizedBox(height: 2),
+                        Text(
+                            '- Minutes peak:                    ${data_heart[3]} min',
+                            style: const TextStyle(
+                                fontSize: 15, fontFamily: 'Audiowide'),
+                            textAlign: TextAlign.start),
+                      ],
+                    ),
+                  )
+                ],
+              );
             } else {
               return CircularProgressIndicator();
             }

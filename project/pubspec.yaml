@@ -93,6 +93,8 @@ flutter:
   - assets/logo/def1.png
   - assets/sport.jpg
   - assets/user_image.png
+  - assets/sleep.json
+  - assets/sleep2.json
 
 
   # An image asset can refer to one or more resolution-specific "variants", see
