@@ -60,8 +60,13 @@ class DatabaseRepository extends ChangeNotifier {
     notifyListeners();
   } //update heart
 
-  Future<void> deleteAllHeart(List<Heart> hearts) async {
+  Future<void> deleteHeart(List<Heart> hearts) async {
     await database.heartDao.deleteHeart(hearts);
+    notifyListeners();
+  } //removeHeart
+
+  Future<void> deleteAllHeart() async {
+    await database.heartDao.deleteAllHeart();
     notifyListeners();
   } //removeHeart
 
@@ -80,8 +85,13 @@ class DatabaseRepository extends ChangeNotifier {
     notifyListeners();
   } //update sleep
 
-  Future<void> deleteAllSleep(List<Sleep> sleeps) async {
+  Future<void> deleteSleep(List<Sleep> sleeps) async {
     await database.sleepDao.deleteSleep(sleeps);
+    notifyListeners();
+  } //removeSleep
+
+  Future<void> deleteAllSleep() async {
+    await database.sleepDao.deleteAllSleep();
     notifyListeners();
   } //removeSleep
 
@@ -95,8 +105,13 @@ class DatabaseRepository extends ChangeNotifier {
     notifyListeners();
   } //update activity
 
-  Future<void> deleteAllActivity(List<Activity> activities) async {
+  Future<void> deleteActivity(List<Activity> activities) async {
     await database.activityDao.deleteActivity(activities);
+    notifyListeners();
+  } //removeActivity
+
+  Future<void> deleteAllActivity() async {
+    await database.activityDao.deleteAllActivity();
     notifyListeners();
   } //removeActivity
 
@@ -323,6 +338,16 @@ class DatabaseRepository extends ChangeNotifier {
         insertSleep(Sleep(1, 0));
       }
     }
+  }
+
+  Future<void> deleteAllData() async {
+    deleteAllActivity();
+    deleteAllHeart();
+    deleteAllSleep();
+    final sp = await SharedPreferences.getInstance();
+    sp.remove('sleep');
+    sp.remove('heart');
+    sp.remove('activity');
   }
 }
 

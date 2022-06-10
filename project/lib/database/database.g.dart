@@ -256,6 +256,11 @@ class _$SleepDao extends SleepDao {
   }
 
   @override
+  Future<void> deleteAllSleep() async {
+    await _queryAdapter.queryNoReturn('DELETE FROM Sleep');
+  }
+
+  @override
   Future<void> insertSleep(Sleep sleep) async {
     await _sleepInsertionAdapter.insert(sleep, OnConflictStrategy.rollback);
   }
@@ -324,6 +329,11 @@ class _$HeartDao extends HeartDao {
         mapper: (Map<String, Object?> row) =>
             Heart(row['id'] as int?, row['minutesheart'] as int?),
         arguments: [id]);
+  }
+
+  @override
+  Future<void> deleteAllHeart() async {
+    await _queryAdapter.queryNoReturn('DELETE FROM Heart');
   }
 
   @override
@@ -443,6 +453,11 @@ class _$ActivityDao extends ActivityDao {
             row['actcalories'] as double?,
             row['calories'] as double?,
             row['minsedentary'] as double?));
+  }
+
+  @override
+  Future<void> deleteAllActivity() async {
+    await _queryAdapter.queryNoReturn('DELETE FROM Activity');
   }
 
   @override

@@ -9,7 +9,8 @@ abstract class SleepDao {
   Future<List<Sleep>> findAllSleep();
   @Query('SELECT sleepduration FROM Sleep WHERE id = :id')
   Future<List<Sleep>> findSleepDuration(int id);
-
+  @Query('DELETE FROM Sleep')
+  Future<void> deleteAllSleep();
   //Query #2: INSERT
   @Insert(onConflict: OnConflictStrategy.rollback)
   Future<void> insertSleep(Sleep sleep);
