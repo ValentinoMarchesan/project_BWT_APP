@@ -22,7 +22,8 @@ AppBar buildAppBar(BuildContext context) {
             Alert(
                 context: context,
                 title: 'LOGOUT',
-                desc: 'Do you want logout from your account',
+                desc:
+                    'Do you want logout from your account and delete the fetched data',
                 style: const AlertStyle(
                   titleStyle: TextStyle(
                     fontFamily: 'OpenSans',
@@ -74,6 +75,13 @@ void _toLoginPage(BuildContext context) async {
       clientID: Strings.fitbitClientID,
       clientSecret: Strings.fitbitClientSecret);
   final sp = await SharedPreferences.getInstance();
+  Consumer<DatabaseRepository>(builder: ((context, dbr, child) {
+    dbr.deleteAllHeart();
+
+    return Text('delete all thing');
+  }));
+
+  sp.remove('prova');
   sp.remove('username');
   sp.setBool('confirm', false);
   Navigator.of(context).pushReplacementNamed(LoginPage.route);

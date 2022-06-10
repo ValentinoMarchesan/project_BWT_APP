@@ -15,7 +15,7 @@ abstract class HeartDao {
 
   //Query #3: DELETE -> this allows to delete a Meal from the table
   @delete
-  Future<void> deleteAllHeart(List<Heart> task);
+  Future<void> deleteHeart(List<Heart> task);
 
   //Query #4: UPDATE -> this allows to update a Meal entry
   @Update(onConflict: OnConflictStrategy.replace)
@@ -24,4 +24,8 @@ abstract class HeartDao {
   //Query #5 :SELECT-> this allows to obtain all the entries of the Heart table
   @Query('SELECT * FROM heart')
   Future<List<Heart>> findAllHeart();
-}//MealDao
+  //delete all heart
+
+  @Query('DELETE FROM Heart')
+  Future<void> deleteAllHeart();
+}//HeartDao

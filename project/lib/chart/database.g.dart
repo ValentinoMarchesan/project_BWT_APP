@@ -145,6 +145,11 @@ class _$HeartDao extends HeartDao {
   }
 
   @override
+  Future<void> deleteAllHeart() async {
+    await _queryAdapter.queryNoReturn('DELETE FROM Heart');
+  }
+
+  @override
   Future<void> insertHeart(Heart heart) async {
     await _heartInsertionAdapter.insert(heart, OnConflictStrategy.abort);
   }
@@ -155,7 +160,7 @@ class _$HeartDao extends HeartDao {
   }
 
   @override
-  Future<void> deleteAllHeart(List<Heart> task) async {
+  Future<void> deleteHeart(List<Heart> task) async {
     await _heartDeletionAdapter.deleteList(task);
   }
 }

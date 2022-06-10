@@ -51,8 +51,8 @@ class DatabaseRepository extends ChangeNotifier {
     return results;
   } //findminutes
 
-  Future<void> deleteAllHeart(List<Heart> hearts) async {
-    await database.heartDao.deleteAllHeart(hearts);
+  Future<void> deleteHeart(List<Heart> hearts) async {
+    await database.heartDao.deleteHeart(hearts);
     notifyListeners();
   } //removeHeart
 
@@ -61,6 +61,11 @@ class DatabaseRepository extends ChangeNotifier {
     final results = await database.heartDao.findAllHeart();
     return results;
   } //findAllMeals
+
+  Future<void> deleteAllHeart() async {
+    await database.heartDao.deleteAllHeart();
+    notifyListeners();
+  } //removeallHeart
 
   /*
 
@@ -112,12 +117,17 @@ class DatabaseRepository extends ChangeNotifier {
           true); //this is for the hearthpage in the case the database is fill with the fetched values
 
       final lista = await findAllHeart();
+      print('${lista.length}');
+      print('prova e confirm sono true');
+
       if (lista.isEmpty) {
+        print('i ' ' insert new values in the database');
         insertHeart(Heart(1, fitbitHeartData[0].minimumOutOfRange));
         insertHeart(Heart(2, fitbitHeartData[0].minutesFatBurn));
         insertHeart(Heart(3, fitbitHeartData[0].minutesCardio));
         insertHeart(Heart(4, fitbitHeartData[0].minutesPeak));
       } else {
+        print('i' 'm updating new values on database');
         updateHeart(Heart(1, fitbitHeartData[0].minimumOutOfRange));
         updateHeart(Heart(2, fitbitHeartData[0].minutesFatBurn));
         updateHeart(Heart(3, fitbitHeartData[0].minutesCardio));
@@ -167,8 +177,12 @@ class DatabaseRepository extends ChangeNotifier {
       final sp = await SharedPreferences.getInstance();
       sp.setBool('prova',
           false); //this is for the hearthpage in the case the database is fill with the default values
+      print('prova è false e confirm è false ');
+      print(sp.get('prova'));
       final lista = await findAllHeart();
+      print(lista.length);
       if (lista.isEmpty) {
+        print('i' ' m adding the first value in the dataabse');
         insertHeart(Heart(1, 0));
         insertHeart(Heart(2, 0));
         insertHeart(Heart(3, 0));
