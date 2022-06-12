@@ -2,7 +2,9 @@ import 'package:fitbitter/fitbitter.dart';
 import 'package:flutter/material.dart';
 import 'package:project/pages/loginPage.dart';
 import 'package:project/pages/profilePage.dart';
+import 'package:project/repositories/databaseRepository.dart';
 import 'package:project/utils/strings.dart';
+import 'package:provider/provider.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
@@ -58,7 +60,7 @@ AppBar buildAppBar(BuildContext context) {
                     color: Colors.orangeAccent,
                     child: const Text('Yes'),
                     onPressed: () {
-                      _toLoginPage(context);
+                      _toLoginPage_DeleteAll(context);
                     },
                   )
                 ]).show();
@@ -67,11 +69,13 @@ AppBar buildAppBar(BuildContext context) {
   );
 }
 
-void _toLoginPage(BuildContext context) async {
+void _toLoginPage_DeleteAll(BuildContext context) async {
   await FitbitConnector.unauthorize(
       clientID: Strings.fitbitClientID,
       clientSecret: Strings.fitbitClientSecret);
   final sp = await SharedPreferences.getInstance();
+  await Provider.of<DatabaseRepository>(context, listen: false).deleteAllData();
+  //await Provider.of<DatabaseRepository>(context, listen: false).deleteAllData();
   sp.remove('username');
   sp.setBool('confirm', false);
   Navigator.of(context).pushReplacementNamed(LoginPage.route);
