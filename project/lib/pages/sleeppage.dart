@@ -53,13 +53,57 @@ class _SleepPageState extends State<SleepPage> {
 
                   final data = snapshot.data as List<Sleep>;
                   final datasleep = dbr.findminutsleep(data);
-                  if (datasleep == null) {
-                    return const Center(
-                        child: CircularProgressIndicator(
-                      valueColor: AlwaysStoppedAnimation<Color>(Colors.red),
-                      strokeWidth: 30,
-                    ));
-                  } else if (datasleep >= 8) {
+                  if (datasleep == 0) {
+                    return Column(
+                      children: [
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        Container(
+                          padding: const EdgeInsets.all(30),
+                          height: 400,
+                          width: MediaQuery.of(context).size.width - 70,
+                          decoration: BoxDecoration(
+                            color: Colors.orange,
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          child: Lottie.asset(
+                            'assets/sleep3.json',
+                            height: 400,
+                            width: MediaQuery.of(context).size.width - 70,
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+                        Container(
+                          padding: const EdgeInsets.all(30),
+                          decoration: BoxDecoration(
+                            color: Colors.orange,
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          width: MediaQuery.of(context).size.width - 70,
+                          height: 140,
+                          child: Column(
+                            children: const [
+                              Text('NO INFO ABOUT SLEEP!',
+                                  style: TextStyle(
+                                      fontSize: 19, fontFamily: 'Audiowide')),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              Text(
+                                  'Per poterti aiutare dovresti aprirti un pò di più con me!!',
+                                  style: TextStyle(
+                                      fontSize: 15, fontFamily: 'Audiowide'),
+                                  textAlign: TextAlign.center),
+                            ],
+                          ),
+                          alignment: Alignment.center,
+                        ),
+                      ],
+                    );
+                  } else if (datasleep! >= 8) {
                     return Column(
                       children: [
                         const SizedBox(
@@ -184,16 +228,18 @@ class _SleepPageState extends State<SleepPage> {
         userID: sp.getString('userid'),
       )) as List<FitbitSleepData>;
 
-      DateTime? endTime = sleepData[sleepData.length - 1].entryDateTime;
-      DateTime? startTime = sleepData[0].entryDateTime;
-      int sleepDurHourse = endTime!.difference(startTime!).inMinutes ~/ 60;
-      final sleepDurMinutes = endTime.difference(startTime).inMinutes % 60;
-
+      if (sleepData.length > 0) {
+        DateTime? endTime = sleepData[sleepData.length - 1].entryDateTime;
+        DateTime? startTime = sleepData[0].entryDateTime;
+        int sleepDurHourse = endTime!.difference(startTime!).inMinutes ~/ 60;
+        database.updateSleep(Sleep(1, sleepDurHourse));
+        sp.setBool('sleep', true);
+      } else {
+        database.updateSleep(Sleep(1, 0));
+        sp.setBool('sleep', true);
+      }
       //database.updateSleep(Sleep(1, sleepDurHourse));
 
-      database.updateSleep(Sleep(1, sleepDurHourse));
-
-      sp.setBool('sleep', true);
     }
   }
 }
