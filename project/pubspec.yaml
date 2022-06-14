@@ -99,6 +99,13 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
   - assets/logo/meco_logo.png
+  - assets/MeCo/superhappy.png
+  - assets/MeCo/sleepy.png
+  - assets/MeCo/meh.png
+  - assets/MeCo/meditation.png
+  - assets/MeCo/idea.png
+  - assets/MeCo/happy.png
+  - assets/MeCo/sad.png
   - assets/sport.jpg
   - assets/user_image.png
   - assets/sleep.json

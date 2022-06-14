@@ -17,6 +17,21 @@ class DatabaseRepository extends ChangeNotifier {
     fetchAllData();
   }
 
+  // for gamepage (no usato)
+  List<double?> findGame(List<Activity> stepsdata, List<Sleep> sleep) {
+    final result = [
+      stepsdata[0].step,
+      sleep[0].sleepduration!.toDouble(),
+    ];
+    return result;
+  }
+
+  // for gamepage (no usato)
+  Future<void> findallGame() async {
+    findAllActivity();
+    findAllSleep();
+  }
+
   //This method wraps the findAllAnnotations() method of the DAO
   Future<List<Annotation>> findAllAnnotations() async {
     final results = await database.annotationDao.findAllAnnotations();
