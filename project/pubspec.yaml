@@ -95,6 +95,7 @@ flutter:
   - assets/user_image.png
   - assets/sleep.json
   - assets/sleep2.json
+  - assets/sleep3.json
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

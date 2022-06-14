@@ -254,7 +254,7 @@ class DatabaseRepository extends ChangeNotifier {
       final test2 = await findAllActivity();
       if (test2.isEmpty) {
         insertActivity(
-            Activity(1, steps[0], activity[0], activity[0], activity[0]));
+            Activity(1, steps[0], activity[0], activity[1], activity[2]));
         insertActivity(Activity(2, steps[1], null, null, null));
         insertActivity(Activity(3, steps[2], null, null, null));
         insertActivity(Activity(4, steps[3], null, null, null));
@@ -263,7 +263,7 @@ class DatabaseRepository extends ChangeNotifier {
         insertActivity(Activity(7, steps[6], null, null, null));
       } else {
         updateActivity(
-            Activity(1, steps[0], activity[0], activity[0], activity[0]));
+            Activity(1, steps[0], activity[0], activity[1], activity[2]));
         updateActivity(Activity(2, steps[1], null, null, null));
         updateActivity(Activity(3, steps[2], null, null, null));
         updateActivity(Activity(4, steps[3], null, null, null));
@@ -328,12 +328,17 @@ class DatabaseRepository extends ChangeNotifier {
 
 int ManageSleepData(List<FitbitSleepData> sleepData) {
   //Create a new Sleep object
-  DateTime? endTime = sleepData[sleepData.length - 1].entryDateTime;
-  DateTime? startTime = sleepData[0].entryDateTime;
-  int sleepDurHourse = endTime!.difference(startTime!).inMinutes ~/ 60;
-  final sleepDurMinutes = endTime.difference(startTime).inMinutes % 60;
+  if (sleepData.length == 0) {
+    const sleepDurHourse = 0;
+    return sleepDurHourse;
+  } else {
+    DateTime? endTime = sleepData[sleepData.length - 1].entryDateTime;
+    DateTime? startTime = sleepData[0].entryDateTime;
+    int sleepDurHourse = endTime!.difference(startTime!).inMinutes ~/ 60;
+    final sleepDurMinutes = endTime.difference(startTime).inMinutes % 60;
 
-  return sleepDurHourse;
+    return sleepDurHourse;
+  }
 }
 
 List<double?> StepsData(List<FitbitActivityTimeseriesData> stepsData) {

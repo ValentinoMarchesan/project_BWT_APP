@@ -71,8 +71,15 @@ class _StepPageState extends State<StepPage> {
                 ];
                 return Column(
                   children: [
-                    Container(child: LinearCharts(data: data_step)),
-                    SizedBox(height: 40),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: LinearCharts(data: data_step)),
+                    SizedBox(height: 20),
                     Container(
                       height: 250,
                       width: MediaQuery.of(context).size.width - 40,
@@ -118,19 +125,19 @@ class _StepPageState extends State<StepPage> {
                               textAlign: TextAlign.start),
                           const SizedBox(height: 5),
                           Text(
-                              '   - Calories of activity burn:${dataactivity[0]!.toInt()}Kcal',
-                              style: const TextStyle(
-                                  fontSize: 15, fontFamily: 'Audiowide'),
-                              textAlign: TextAlign.start),
-                          const SizedBox(height: 5),
-                          Text(
-                              '   - Calories of the day: ${dataactivity[1]!.toInt()}Kcal',
+                              '   - Calories of activity burn:${dataactivity[1]!.toInt()}Kcal',
                               style: const TextStyle(
                                   fontSize: 15, fontFamily: 'Audiowide'),
                               textAlign: TextAlign.start),
                           const SizedBox(height: 5),
                           Text(
                               '   - Minutes sedentary: ${dataactivity[2]!.toInt()} min',
+                              style: const TextStyle(
+                                  fontSize: 15, fontFamily: 'Audiowide'),
+                              textAlign: TextAlign.start),
+                          const SizedBox(height: 5),
+                          Text(
+                              '   - hours sedentary: ${dataactivity[2]! / 60.toInt()} h',
                               style: const TextStyle(
                                   fontSize: 15, fontFamily: 'Audiowide'),
                               textAlign: TextAlign.start),
@@ -219,7 +226,7 @@ class _StepPageState extends State<StepPage> {
       final steps = StepsData(stepsData);
 
       database.updateActivity(
-          Activity(1, steps[0], activity[0], activity[0], activity[0]));
+          Activity(1, steps[0], activity[0], activity[1], activity[2]));
       database.updateActivity(Activity(2, steps[1], null, null, null));
       database.updateActivity(Activity(3, steps[2], null, null, null));
       database.updateActivity(Activity(4, steps[3], null, null, null));
