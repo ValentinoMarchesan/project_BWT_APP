@@ -75,13 +75,13 @@ void _toLoginPage(BuildContext context) async {
       clientID: Strings.fitbitClientID,
       clientSecret: Strings.fitbitClientSecret);
   final sp = await SharedPreferences.getInstance();
-  final lista = await Provider.of<DatabaseRepository>(context, listen: false)
-      .findAllHeart();
   await Provider.of<DatabaseRepository>(context, listen: false)
       .deleteAllHeart();
-  sp.remove('prova');
+  sp.setBool('prova', false);
   sp.remove('username');
+  sp.setBool('deleteall', true);
   sp.setBool('confirm', false);
+
   Navigator.of(context).pushReplacementNamed(LoginPage.route);
   //Navigator.pushNamed(context, LoginPage.route);
 }

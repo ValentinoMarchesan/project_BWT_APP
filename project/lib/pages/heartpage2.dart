@@ -13,6 +13,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'heartpage2.dart';
 
 //Homepage screen. It will show the list of meals.
+/*
 class HeartPage2 extends StatefulWidget {
   HeartPage2({Key? key}) : super(key: key);
 
@@ -30,6 +31,14 @@ class _HeartPage2State extends State<HeartPage2> {
     super.initState();
     final data_series = [HeartSeries.empty()];
   }
+  */
+
+class HeartPage2 extends StatelessWidget {
+  HeartPage2({Key? key}) : super(key: key);
+
+  static const route = '/home/heart2';
+  static const routename = 'Heartpage2';
+  static get fitbitHeartData => null;
 
   //Heart? time_OutRange;
   @override
@@ -45,9 +54,13 @@ class _HeartPage2State extends State<HeartPage2> {
             initialData: null,
             future: dbr.findAllHeart(),
             builder: (context, snapshot) {
+              // _aggiungo(dbr);
               if (snapshot.hasData) {
                 _aggiungo(dbr);
                 final data_heart = snapshot.data as List<Heart>;
+                if (data_heart.length == 0) {
+                  _aggiungo(dbr);
+                }
 
                 final data_series = [
                   HeartSeries.creation(
@@ -123,10 +136,33 @@ class _HeartPage2State extends State<HeartPage2> {
           );
         })));
   }
-
+}
+/*
   Future<void> _aggiungo(DatabaseRepository database) async {
     final sp = await SharedPreferences.getInstance();
-    if (sp.getBool('prova') == false) {
+
+    if ((sp.getBool('prova') == false &&
+        sp.getBool('confirm') == true &&
+        sp.getBool('deleteall') == true)) {
+      FitbitHeartDataManager fitbitHeartDataManager = FitbitHeartDataManager(
+        clientID: Strings.fitbitClientID,
+        clientSecret: Strings.fitbitClientSecret,
+      );
+
+      //STEP2: Create the request url
+      FitbitHeartAPIURL fitbitHeartApiUrl = FitbitHeartAPIURL.dayWithUserID(
+          date: DateTime.now(), userID: sp.getString('userid'));
+
+      //STEP3: Get the data
+      final fitbitHeartData = await fitbitHeartDataManager
+          .fetch(fitbitHeartApiUrl) as List<FitbitHeartData>;
+      database.insertHeart(Heart(1, fitbitHeartData[0].minimumOutOfRange));
+      database.insertHeart(Heart(2, fitbitHeartData[0].minutesFatBurn));
+      database.insertHeart(Heart(3, fitbitHeartData[0].minutesCardio));
+      database.insertHeart(Heart(4, fitbitHeartData[0].minutesPeak));
+      sp.setBool('prova', true);
+      sp.remove('deleteall');
+    } else if (sp.getBool('prova') == false && sp.getBool('confirm') == true) {
       FitbitHeartDataManager fitbitHeartDataManager = FitbitHeartDataManager(
         clientID: Strings.fitbitClientID,
         clientSecret: Strings.fitbitClientSecret,
@@ -147,4 +183,29 @@ class _HeartPage2State extends State<HeartPage2> {
       sp.setBool('prova', true);
     }
   }
-} //Page
+} //Page */
+
+Future<void> _aggiungo(DatabaseRepository database) async {
+  final sp = await SharedPreferences.getInstance();
+  if (sp.getBool('prova') == false && sp.getBool('confirm') == true) {
+    FitbitHeartDataManager fitbitHeartDataManager = FitbitHeartDataManager(
+      clientID: Strings.fitbitClientID,
+      clientSecret: Strings.fitbitClientSecret,
+    );
+
+    //STEP2: Create the request url
+    FitbitHeartAPIURL fitbitHeartApiUrl = FitbitHeartAPIURL.dayWithUserID(
+        date: DateTime.now(), userID: sp.getString('userid'));
+
+    //STEP3: Get the data
+    final fitbitHeartData = await fitbitHeartDataManager
+        .fetch(fitbitHeartApiUrl) as List<FitbitHeartData>;
+
+    database.updateHeart(Heart(1, fitbitHeartData[0].minimumOutOfRange));
+    database.updateHeart(Heart(2, fitbitHeartData[0].minutesFatBurn));
+    database.updateHeart(Heart(3, fitbitHeartData[0].minutesCardio));
+    database.updateHeart(Heart(4, fitbitHeartData[0].minutesPeak));
+    sp.setBool('prova', true);
+  }
+}
+ //Page
