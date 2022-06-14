@@ -183,6 +183,11 @@ class _$AnnotationDao extends AnnotationDao {
   }
 
   @override
+  Future<void> deleteAllAnnotation() async {
+    await _queryAdapter.queryNoReturn('DELETE* FROM Annotation');
+  }
+
+  @override
   Future<void> insertAnnotation(Annotation annotation) async {
     await _annotationInsertionAdapter.insert(
         annotation, OnConflictStrategy.abort);

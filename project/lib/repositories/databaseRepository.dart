@@ -70,6 +70,11 @@ class DatabaseRepository extends ChangeNotifier {
     notifyListeners();
   } //removeHeart
 
+  Future<void> deleteAllAnnotation() async {
+    await database.annotationDao.deleteAllAnnotation();
+    notifyListeners();
+  } //insert activity
+
   Future<List<Sleep>> findAllSleep() async {
     final results = await database.sleepDao.findAllSleep();
     return results;
@@ -344,6 +349,7 @@ class DatabaseRepository extends ChangeNotifier {
     deleteAllActivity();
     deleteAllHeart();
     deleteAllSleep();
+    deleteAllAnnotation();
     final sp = await SharedPreferences.getInstance();
     sp.remove('sleep');
     sp.remove('heart');
