@@ -1,4 +1,5 @@
 import 'package:confetti/confetti.dart';
+import 'package:fab_circular_menu/fab_circular_menu.dart';
 import 'package:fitbitter/fitbitter.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -8,6 +9,7 @@ import 'package:project/database/entities/activity.dart';
 import 'package:project/database/entities/annotation.dart';
 import 'package:project/database/entities/sleep.dart';
 import 'package:provider/provider.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../repositories/databaseRepository.dart';
@@ -25,193 +27,197 @@ class GamePage extends StatefulWidget {
 }
 
 class _GamePageState extends State<GamePage> {
+  final GlobalKey<FabCircularMenuState> fabKey = GlobalKey();
   @override
   Widget build(BuildContext context) {
     double maxheight = 300;
     return Scaffold(
-      appBar: AppBar(
-        title: const Text(GamePage.routename,
-            style: TextStyle(
-              fontFamily: 'AudioWide',
-              fontSize: 20,
-              fontWeight: FontWeight.w500,
-              color: Color(0xFF000000),
-            )),
-        centerTitle: true,
-        backgroundColor: Colors.orange,
-        elevation: 0,
-      ),
-      body: Column(
-        children: [
-          Container(
-            child: Stack(
-              children: [
-                Opacity(
-                  opacity: 0.5,
-                  child: ClipPath(
-                    clipper: WaveClipper(),
-                    child: Container(
-                      color: Colors.deepOrangeAccent,
-                      height: 100,
+        appBar: AppBar(
+          title: const Text(GamePage.routename,
+              style: TextStyle(
+                fontFamily: 'AudioWide',
+                fontSize: 20,
+                fontWeight: FontWeight.w500,
+                color: Color(0xFF000000),
+              )),
+          centerTitle: true,
+          backgroundColor: Colors.orange,
+          elevation: 0,
+        ),
+        body: Column(
+          children: [
+            Container(
+              child: Stack(
+                children: [
+                  Opacity(
+                    opacity: 0.5,
+                    child: ClipPath(
+                      clipper: WaveClipper(),
+                      child: Container(
+                        color: Colors.deepOrangeAccent,
+                        height: 100,
+                      ),
                     ),
                   ),
-                ),
-                ClipPath(
-                  clipper: WaveClipper(),
-                  child: Container(
-                    color: Colors.orange,
-                    height: 80,
-                    alignment: Alignment.center,
+                  ClipPath(
+                    clipper: WaveClipper(),
+                    child: Container(
+                      color: Colors.orange,
+                      height: 80,
+                      alignment: Alignment.center,
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-          Consumer<DatabaseRepository>(builder: (context, dbr, child) {
-            return FutureBuilder(
-                initialData: null,
-                future: dbr.findAllActivity(),
-                builder: (context, snapshot) {
-                  if (snapshot.hasData) {
-                    _aggiungoAC(dbr);
+            Consumer<DatabaseRepository>(builder: (context, dbr, child) {
+              return FutureBuilder(
+                  initialData: null,
+                  future: dbr.findAllActivity(),
+                  builder: (context, snapshot) {
+                    if (snapshot.hasData) {
+                      _aggiungoAC(dbr);
 
-                    final data = snapshot.data as List<Activity>;
+                      final data = snapshot.data as List<Activity>;
 
-                    final datastep = dbr.findstep(data);
+                      final datastep = dbr.findstep(data);
 
-                    final datasteps = datastep[0];
-                    if (datasteps == null) {
-                      return CircularProgressIndicator();
-                    } else if (/*sonno<7 && passi<6000 */ datasteps > 6000) {
-                      return FutureBuilder(
-                          initialData: null,
-                          future: dbr.findAllSleep(),
-                          builder: (context, snapshot) {
-                            if (snapshot.hasData) {
-                              _aggiungoSL(dbr);
+                      final datasteps = datastep[0];
+                      if (datasteps == null) {
+                        return CircularProgressIndicator();
+                      } else if (/*sonno<7 && passi<6000 */ datasteps > 6000) {
+                        return FutureBuilder(
+                            initialData: null,
+                            future: dbr.findAllSleep(),
+                            builder: (context, snapshot) {
+                              if (snapshot.hasData) {
+                                _aggiungoSL(dbr);
 
-                              final data = snapshot.data as List<Sleep>;
+                                final data = snapshot.data as List<Sleep>;
 
-                              final datasleep = dbr.findminutsleep(data);
+                                final datasleep = dbr.findminutsleep(data);
 
-                              if (datasleep == null) {
-                                return CircularProgressIndicator();
-                              } else if (datasleep < 7) {
-                                return FutureBuilder(
-                                    initialData: null,
-                                    future: dbr.findAllAnnotations(),
-                                    builder: (context, snapshot) {
-                                      if (snapshot.hasData) {
-                                        final data =
-                                            snapshot.data as List<Annotation>;
-                                        print(data.length - 1);
+                                if (datasleep == null) {
+                                  return CircularProgressIndicator();
+                                } else if (datasleep < 7) {
+                                  return FutureBuilder(
+                                      initialData: null,
+                                      future: dbr.findAllAnnotations(),
+                                      builder: (context, snapshot) {
+                                        if (snapshot.hasData) {
+                                          final data =
+                                              snapshot.data as List<Annotation>;
 
-                                        if (data.length == 0) {
-                                          return Image.asset(
-                                              'assets/MeCo/happy.png');
-                                        } else if (data[data.length - 1].ml >
-                                                1500 &&
-                                            data[data.length - 1].min > 10) {
-                                          return Column(
-                                            children: [
-                                              Image.asset(
-                                                  'assets/MeCo/superhappy.png'),
-                                            ],
-                                          );
+                                          if (data.length == 0) {
+                                            return Image.asset(
+                                                'assets/MeCo/happy.png');
+                                          } else if (data[data.length - 1].ml >
+                                                  1500 &&
+                                              data[data.length - 1].min > 10) {
+                                            return Column(
+                                              children: [
+                                                Image.asset(
+                                                    'assets/MeCo/superhappy.png'),
+                                              ],
+                                            );
+                                          } else {
+                                            return Image.asset(
+                                                'assets/MeCo/happy.png');
+                                          }
                                         } else {
-                                          return Image.asset(
-                                              'assets/MeCo/happy.png');
+                                          return CircularProgressIndicator();
                                         }
-                                      } else {
-                                        return CircularProgressIndicator();
-                                      }
-                                    });
+                                      });
+                                } else {
+                                  return Image.asset('assets/MeCo/sleepy.png');
+                                }
                               } else {
-                                return Image.asset('assets/MeCo/sleepy.png');
-                              }
-                            } else {
-                              return CircularProgressIndicator();
-                            }
-                          });
-                    } else {
-                      return FutureBuilder(
-                          initialData: null,
-                          future: dbr.findAllSleep(),
-                          builder: (context, snapshot) {
-                            if (snapshot.hasData) {
-                              _aggiungoSL(dbr);
-
-                              final data = snapshot.data as List<Sleep>;
-
-                              final datasleep = dbr.findminutsleep(data);
-
-                              if (datasleep == null) {
                                 return CircularProgressIndicator();
-                              } else if (datasleep > 7) {
-                                return Image.asset('assets/MeCo/meh.png');
-                              } else {
-                                return Image.asset('assets/MeCo/sad.png');
                               }
-                            } else {
-                              return CircularProgressIndicator();
-                            }
-                          });
+                            });
+                      } else {
+                        return FutureBuilder(
+                            initialData: null,
+                            future: dbr.findAllSleep(),
+                            builder: (context, snapshot) {
+                              if (snapshot.hasData) {
+                                _aggiungoSL(dbr);
+
+                                final data = snapshot.data as List<Sleep>;
+
+                                final datasleep = dbr.findminutsleep(data);
+
+                                if (datasleep == null) {
+                                  return CircularProgressIndicator();
+                                } else if (datasleep > 7) {
+                                  return Image.asset('assets/MeCo/meh.png');
+                                } else {
+                                  return Image.asset('assets/MeCo/sad.png');
+                                }
+                              } else {
+                                return CircularProgressIndicator();
+                              }
+                            });
+                      }
+                    } else {
+                      return CircularProgressIndicator();
                     }
-                  } else {
-                    return CircularProgressIndicator();
-                  }
-                });
-          })
-        ],
-      ),
-      floatingActionButton: Row(
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: [
-          FloatingActionButton(
-            heroTag: 'sleep',
-            focusColor: Colors.red,
-            splashColor: Colors.red,
-            backgroundColor: Colors.red,
-            onPressed: () async {
-              final sp = await SharedPreferences.getInstance();
-              sp.setInt('sleepduration', 9);
-              setState(() {});
-            },
-            child: Icon(Icons.add),
-          ),
-          SizedBox(
-            width: 10,
-          ),
-          FloatingActionButton(
-            heroTag: 'Removesleep',
-            focusColor: Colors.red,
-            splashColor: Colors.red,
-            backgroundColor: Colors.red,
-            onPressed: () async {
-              final sp = await SharedPreferences.getInstance();
-              sp.remove('sleepduration');
-              setState(() {});
-            },
-            child: Icon(Icons.remove),
-          ),
-          SizedBox(
-            width: 10,
-          ),
-          FloatingActionButton(
-            heroTag: 'wrongsleep',
-            focusColor: Colors.red,
-            splashColor: Colors.red,
-            backgroundColor: Colors.red,
-            onPressed: () async {
-              final sp = await SharedPreferences.getInstance();
-              sp.setInt('sleepduration', 6);
-              setState(() {});
-            },
-            child: Icon(FontAwesomeIcons.faceAngry),
-          ),
-        ],
-      ),
-    );
+                  });
+            })
+          ],
+        ),
+        floatingActionButton: FloatingActionButton(
+            backgroundColor: Colors.orange,
+            child: Icon(FontAwesomeIcons.infoCircle),
+            onPressed: () {
+              Alert(
+                  context: context,
+                  title: 'STATE INFORMATION',
+                  desc: 'In this page we can present the state of MeCo\n'
+                      '1. Sleep: the number of minutes of sleep\n'
+                      '2. Steps: the number of steps\n'
+                      '3. Activity: the number of minutes of activity\n'
+                      '4. Annotation: the number of annotations\n'
+                      '5. Sleep: the number of minutes of sleep\n',
+                  style: const AlertStyle(
+                    titleStyle: TextStyle(
+                      fontFamily: 'OpenSans',
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20,
+                      shadows: [
+                        Shadow(
+                            color: Color.fromARGB(255, 210, 239, 244),
+                            blurRadius: 2)
+                      ],
+                      letterSpacing: 2,
+                    ),
+                    descStyle: TextStyle(
+                      fontFamily: 'OpenSans',
+                      fontSize: 16,
+                      shadows: [
+                        Shadow(
+                            color: Color.fromARGB(255, 210, 239, 244),
+                            blurRadius: 2)
+                      ],
+                      letterSpacing: 2,
+                    ),
+                  ),
+                  buttons: [
+                    DialogButton(
+                      radius: const BorderRadius.all(Radius.circular(30)),
+                      color: Colors.orangeAccent,
+                      child: const Text('OK!',
+                          style: TextStyle(
+                              fontFamily: 'Audiowide',
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20,
+                              color: Colors.white)),
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                    )
+                  ]).show();
+            }));
   }
 
   Future<void> _aggiungoAC(DatabaseRepository database) async {
@@ -325,19 +331,19 @@ class _GamePageState extends State<GamePage> {
 
     }
   }
-}
 
 // _____________ tentativo di algoritmo gampage _____________________
-game() async {
-  int count = 0;
-  final sp = await SharedPreferences.getInstance();
-  var percentage = sp.getDouble('lastdaystep');
-  while (percentage! > 5000) {
-    percentage = percentage - 5000;
-    count = count + 1;
+  game() async {
+    int count = 0;
+    final sp = await SharedPreferences.getInstance();
+    var percentage = sp.getDouble('lastdaystep');
+    while (percentage! > 5000) {
+      percentage = percentage - 5000;
+      count = count + 1;
+    }
+    double result = (percentage * 100) / 5000;
+    return result;
   }
-  double result = (percentage * 100) / 5000;
-  return result;
 }
 
 // _____________ classe che disegna l'onda sull app bar ___________________

@@ -60,6 +60,7 @@ dependencies:
   progress_indicator: ^0.2.2
   confetti: ^0.6.0
   lottie: ^1.3.0
+  fab_circular_menu: 
 
 dev_dependencies:
   flutter_test:
