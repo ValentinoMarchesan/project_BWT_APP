@@ -25,8 +25,6 @@ Future main() async {
 
   final AppDatabase database =
       await $FloorAppDatabase.databaseBuilder('app_database1.db').build();
-  final sp = await SharedPreferences.getInstance();
-  sp.setBool('prova', false);
 
   final databaseRepository = DatabaseRepository(database: database);
 
