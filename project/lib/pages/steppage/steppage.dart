@@ -137,7 +137,7 @@ class _StepPageState extends State<StepPage> {
                               textAlign: TextAlign.start),
                           const SizedBox(height: 5),
                           Text(
-                              '   - hours sedentary: ${dataactivity[2]! / 60.toInt()} h',
+                              '   - hours sedentary: ${(dataactivity[2]! / 60).toInt()} h',
                               style: const TextStyle(
                                   fontSize: 15, fontFamily: 'Audiowide'),
                               textAlign: TextAlign.start),
