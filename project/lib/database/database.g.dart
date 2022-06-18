@@ -184,7 +184,7 @@ class _$AnnotationDao extends AnnotationDao {
 
   @override
   Future<void> deleteAllAnnotation() async {
-    await _queryAdapter.queryNoReturn('DELETE* FROM Annotation');
+    await _queryAdapter.queryNoReturn('DELETE FROM Annotation');
   }
 
   @override
