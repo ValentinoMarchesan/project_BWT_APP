@@ -61,8 +61,8 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return FlutterLogin(
-      title: 'MyMo',
-      logo: const AssetImage('assets/logo/def1.png'),
+      title: 'MeCo',
+      logo: const AssetImage('assets/logo/meco_logo.png'),
       onLogin: _loginUser,
       onSignup: _signUpUser,
       onRecoverPassword: _recoverPassword,
@@ -79,10 +79,10 @@ class _LoginPageState extends State<LoginPage> {
         errorColor: Colors.red,
         beforeHeroFontSize: 65, // dimensione del titolo
         titleStyle: const TextStyle(
-          color: Color.fromARGB(255, 255, 255, 255),
-          fontFamily: 'Audiowide', // carattere personalizzato aggiunto
-          letterSpacing: 10,
-        ),
+            color: Color.fromARGB(255, 255, 255, 255),
+            fontFamily: 'Goldman', // carattere personalizzato aggiunto
+            letterSpacing: 23,
+            fontSize: 65),
         bodyStyle: const TextStyle(
           //password dimenticata
           fontStyle: FontStyle.italic,

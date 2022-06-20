@@ -7,6 +7,7 @@ import 'package:project/pages/diarypage.dart';
 import 'package:project/pages/editProfilePage.dart';
 import 'package:project/pages/heartpage.dart';
 import 'package:project/pages/homepage.dart';
+import 'package:project/pages/infopage.dart';
 import 'package:project/pages/loginPage.dart';
 import 'package:project/pages/profilePage.dart';
 import 'package:project/pages/sleeppage.dart';
@@ -84,6 +85,10 @@ class MyApp extends StatelessWidget {
         } else if (settings.name == ProfilePage.route) {
           return MaterialPageRoute(builder: (context) {
             return ProfilePage();
+          });
+        } else if (settings.name == InfoPage.route) {
+          return MaterialPageRoute(builder: (context) {
+            return InfoPage();
           });
         } else if (settings.name == SleepPage.route) {
           return MaterialPageRoute(builder: (context) {
