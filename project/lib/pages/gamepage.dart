@@ -9,9 +9,11 @@ import 'package:progress_indicator/progress_indicator.dart';
 import 'package:project/database/entities/activity.dart';
 import 'package:project/database/entities/annotation.dart';
 import 'package:project/database/entities/sleep.dart';
+import 'package:project/pages/infopage.dart';
 import 'package:provider/provider.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:slide_to_act/slide_to_act.dart';
 
 import '../repositories/databaseRepository.dart';
 import '../utils/strings.dart';
@@ -71,233 +73,235 @@ class _GamePageState extends State<GamePage> {
               ],
             ),
           ),
-          Consumer<DatabaseRepository>(builder: (context, dbr, child) {
-            return FutureBuilder(
-                initialData: null,
-                future: SharedPreferences.getInstance(),
-                builder: (context, snapshot) {
-                  if (snapshot.hasData) {
-                    final sp = snapshot.data as SharedPreferences;
-                    if (sp.getBool('demo') == false) {
-                      return FutureBuilder(
-                          initialData: null,
-                          future: dbr.findAllActivity(),
-                          builder: (context, snapshot) {
-                            if (snapshot.hasData) {
-                              _aggiungoAC(dbr);
+          Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(20),
+            ),
+            height: 340,
+            child: Consumer<DatabaseRepository>(builder: (context, dbr, child) {
+              return FutureBuilder(
+                  initialData: null,
+                  future: SharedPreferences.getInstance(),
+                  builder: (context, snapshot) {
+                    if (snapshot.hasData) {
+                      final sp = snapshot.data as SharedPreferences;
+                      if (sp.getBool('demo') == false) {
+                        return FutureBuilder(
+                            initialData: null,
+                            future: dbr.findAllActivity(),
+                            builder: (context, snapshot) {
+                              if (snapshot.hasData) {
+                                _aggiungoAC(dbr);
 
-                              final data = snapshot.data as List<Activity>;
+                                final data = snapshot.data as List<Activity>;
 
-                              final datastep = dbr.findstep(data);
+                                final datastep = dbr.findstep(data);
 
-                              final datasteps = datastep[0];
-                              if (datasteps == null) {
-                                return CircularProgressIndicator();
-                              } else if (datasteps > 6000) {
-                                return FutureBuilder(
-                                    initialData: null,
-                                    future: dbr.findAllSleep(),
-                                    builder: (context, snapshot) {
-                                      if (snapshot.hasData) {
-                                        _aggiungoSL(dbr);
+                                final datasteps = datastep[0];
+                                if (datasteps == null) {
+                                  return CircularProgressIndicator();
+                                } else if (datasteps > 6000) {
+                                  return FutureBuilder(
+                                      initialData: null,
+                                      future: dbr.findAllSleep(),
+                                      builder: (context, snapshot) {
+                                        if (snapshot.hasData) {
+                                          _aggiungoSL(dbr);
 
-                                        final data =
-                                            snapshot.data as List<Sleep>;
+                                          final data =
+                                              snapshot.data as List<Sleep>;
 
-                                        final datasleep =
-                                            dbr.findminutsleep(data);
+                                          final datasleep =
+                                              dbr.findminutsleep(data);
 
-                                        if (datasleep == null) {
-                                          return CircularProgressIndicator();
-                                        } else if (datasleep > 7) {
-                                          return FutureBuilder(
-                                              initialData: null,
-                                              future: dbr.findAllAnnotations(),
-                                              builder: (context, snapshot) {
-                                                if (snapshot.hasData) {
-                                                  final data = snapshot.data
-                                                      as List<Annotation>;
+                                          if (datasleep == null) {
+                                            return CircularProgressIndicator();
+                                          } else if (datasleep > 7) {
+                                            return FutureBuilder(
+                                                initialData: null,
+                                                future:
+                                                    dbr.findAllAnnotations(),
+                                                builder: (context, snapshot) {
+                                                  if (snapshot.hasData) {
+                                                    final data = snapshot.data
+                                                        as List<Annotation>;
 
-                                                  if (data.length == 0) {
-                                                    return Column(
-                                                      children: [
-                                                        Container(
-                                                          child: Image.asset(
-                                                              'assets/MeCo/happy.png'),
-                                                          color: Colors.black,
-                                                          width: 380,
-                                                          height: 340,
-                                                        ),
-                                                        Container(
-                                                          margin:
-                                                              const EdgeInsets
-                                                                      .fromLTRB(
-                                                                  0, 10, 70, 0),
-                                                          decoration: BoxDecoration(
-                                                              borderRadius:
-                                                                  BorderRadius
-                                                                      .circular(
-                                                                          10),
-                                                              color: Colors
-                                                                  .orange),
-                                                          height: 140,
-                                                          width: 300,
-                                                          child:
-                                                              ExpandablePanel(
-                                                            header: const Text(
-                                                              'TITLE',
-                                                              style: TextStyle(
-                                                                  fontFamily:
-                                                                      'AudioWide',
-                                                                  fontSize: 20,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w500,
-                                                                  color: Colors
-                                                                      .white),
-                                                              textAlign:
-                                                                  TextAlign
-                                                                      .center,
-                                                            ),
-                                                            collapsed:
-                                                                const Text(
-                                                              '  VUOI SAPERNE DI PIU\'?'
-                                                              '\n'
-                                                              'SCOPRI LA CARD',
-                                                              style: TextStyle(
-                                                                fontSize: 20,
-                                                                fontFamily:
-                                                                    'AudioWide',
-                                                              ),
-                                                              textAlign:
-                                                                  TextAlign
-                                                                      .center,
-                                                            ),
-                                                            expanded:
-                                                                const Text(
-                                                              'BLABLABLA'
-                                                              '   BLABLABLA'
-                                                              '   BLABLABLA',
-                                                              style: TextStyle(
-                                                                  fontSize: 20,
-                                                                  fontFamily:
-                                                                      'AudioWide',
-                                                                  color: Colors
-                                                                      .white),
-                                                              textAlign:
-                                                                  TextAlign
-                                                                      .center,
-                                                            ),
+                                                    if (data.length == 0) {
+                                                      sp.setInt(
+                                                          'statusinfo', 1);
+                                                      return Column(
+                                                        children: [
+                                                          Container(
+                                                            child: Image.asset(
+                                                                'assets/MeCo/happy.png'),
+                                                            width: 380,
+                                                            height: 340,
                                                           ),
-                                                        ),
-                                                      ],
-                                                    );
-                                                  } else if (data[data.length -
-                                                                  1]
-                                                              .ml >
-                                                          1500 &&
-                                                      data[data.length - 1]
-                                                              .min >
-                                                          10) {
-                                                    return Column(
-                                                      children: [
-                                                        Image.asset(
-                                                            'assets/MeCo/superhappy.png'),
-                                                      ],
-                                                    );
+                                                        ],
+                                                      );
+                                                    } else if (data[data.length -
+                                                                    1]
+                                                                .ml >
+                                                            1500 &&
+                                                        data[data.length - 1]
+                                                                .min >
+                                                            10) {
+                                                      return Column(
+                                                        children: [
+                                                          Image.asset(
+                                                              'assets/MeCo/superhappy.png'),
+                                                        ],
+                                                      );
+                                                    } else {
+                                                      return Column(
+                                                        children: [
+                                                          Image.asset(
+                                                              'assets/MeCo/happy.png'),
+                                                        ],
+                                                      );
+                                                    }
                                                   } else {
-                                                    return Column(
-                                                      children: [
-                                                        Image.asset(
-                                                            'assets/MeCo/happy.png'),
-                                                      ],
-                                                    );
+                                                    return CircularProgressIndicator();
                                                   }
-                                                } else {
-                                                  return CircularProgressIndicator();
-                                                }
-                                              });
+                                                });
+                                          } else {
+                                            sp.setInt('statusinfo', 2);
+                                            return Image.asset(
+                                                'assets/MeCo/sleepy.png');
+                                          }
                                         } else {
-                                          return Image.asset(
-                                              'assets/MeCo/sleepy.png');
-                                        }
-                                      } else {
-                                        return CircularProgressIndicator();
-                                      }
-                                    });
-                              } else {
-                                return FutureBuilder(
-                                    initialData: null,
-                                    future: dbr.findAllSleep(),
-                                    builder: (context, snapshot) {
-                                      if (snapshot.hasData) {
-                                        _aggiungoSL(dbr);
-
-                                        final data =
-                                            snapshot.data as List<Sleep>;
-
-                                        final datasleep =
-                                            dbr.findminutsleep(data);
-
-                                        if (datasleep == null) {
                                           return CircularProgressIndicator();
-                                        } else if (datasleep > 7) {
-                                          return Image.asset(
-                                              'assets/MeCo/meh.png');
-                                        } else {
-                                          return Image.asset(
-                                              'assets/MeCo/sad.png');
                                         }
-                                      } else {
-                                        return CircularProgressIndicator();
-                                      }
-                                    });
-                              }
-                            } else {
-                              return CircularProgressIndicator();
-                            }
-                          });
-                    } else {
-                      return FutureBuilder(
-                          initialData: null,
-                          future: SharedPreferences.getInstance(),
-                          builder: (context, snapshot) {
-                            if (snapshot.hasData) {
-                              final sp = snapshot.data as SharedPreferences;
-                              if (sp.getInt('status') == 1) {
-                                return Image.asset('assets/MeCo/happy.png');
-                              } else if (sp.getInt('status') == 2) {
-                                return Image.asset('assets/MeCo/sleepy.png');
-                              } else if (sp.getInt('status') == 3) {
-                                return Image.asset('assets/MeCo/meh.png');
-                              } else if (sp.getInt('status') == 4) {
-                                return Image.asset('assets/MeCo/sad.png');
-                              } else if (sp.getInt('status') == 5) {
-                                return Image.asset(
-                                    'assets/MeCo/superhappy.png');
+                                      });
+                                } else {
+                                  return FutureBuilder(
+                                      initialData: null,
+                                      future: dbr.findAllSleep(),
+                                      builder: (context, snapshot) {
+                                        if (snapshot.hasData) {
+                                          _aggiungoSL(dbr);
+
+                                          final data =
+                                              snapshot.data as List<Sleep>;
+
+                                          final datasleep =
+                                              dbr.findminutsleep(data);
+
+                                          if (datasleep == null) {
+                                            return CircularProgressIndicator();
+                                          } else if (datasleep > 7) {
+                                            sp.setInt('statusinfo', 3);
+                                            return Image.asset(
+                                                'assets/MeCo/meh.png');
+                                          } else {
+                                            sp.setInt('statusinfo', 4);
+                                            return Image.asset(
+                                                'assets/MeCo/sad.png');
+                                          }
+                                        } else {
+                                          return CircularProgressIndicator();
+                                        }
+                                      });
+                                }
                               } else {
                                 return CircularProgressIndicator();
                               }
-                            } else {
-                              return CircularProgressIndicator();
-                            }
-                          });
+                            });
+                      } else {
+                        return FutureBuilder(
+                            initialData: null,
+                            future: SharedPreferences.getInstance(),
+                            builder: (context, snapshot) {
+                              if (snapshot.hasData) {
+                                final sp = snapshot.data as SharedPreferences;
+                                if (sp.getInt('status') == 1) {
+                                  sp.setInt('statusinfo', 1);
+                                  return Image.asset('assets/MeCo/happy.png');
+                                } else if (sp.getInt('status') == 2) {
+                                  sp.setInt('statusinfo', 2);
+                                  return Image.asset('assets/MeCo/sleepy.png');
+                                } else if (sp.getInt('status') == 3) {
+                                  sp.setInt('statusinfo', 3);
+                                  return Image.asset('assets/MeCo/meh.png');
+                                } else if (sp.getInt('status') == 4) {
+                                  sp.setInt('statusinfo', 4);
+                                  return Image.asset('assets/MeCo/sad.png');
+                                } else if (sp.getInt('status') == 5) {
+                                  return Image.asset(
+                                      'assets/MeCo/superhappy.png');
+                                } else {
+                                  return CircularProgressIndicator();
+                                }
+                              } else {
+                                return CircularProgressIndicator();
+                              }
+                            });
+                      }
+                    } else {
+                      return CircularProgressIndicator();
                     }
-                  } else {
-                    return CircularProgressIndicator();
-                  }
-                });
-          }),
+                  });
+            }),
+          ),
+          SizedBox(
+            height: 8,
+          ),
+          Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: Colors.orange[500],
+              ),
+              height: 140,
+              width: 360,
+              child: Column(
+                children: [
+                  const Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Text(
+                      'Hi its MeCo! Are you curious about how your current lifestyle affects your body?',
+                      style: TextStyle(
+                          fontSize: 12,
+                          fontWeight: FontWeight.bold,
+                          fontFamily: 'Audiowide'),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: SlideAction(
+                      elevation: 8,
+                      innerColor: Colors.orange,
+                      outerColor: Colors.orange[200],
+                      sliderButtonIcon: const Icon(FontAwesomeIcons.info,
+                          color: Colors.white),
+                      text: '     Slide to know more',
+                      textStyle: const TextStyle(
+                        fontSize: 15,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'AudioWide',
+                        color: Colors.white,
+                      ),
+                      onSubmit: (() {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                              builder: (context) => const InfoPage()),
+                        );
+                        //await the re build of our UI
+                      }),
+                    ),
+                  ),
+                ],
+              )),
         ],
       ),
       floatingActionButton: Builder(
         builder: (context) => FabCircularMenu(
           key: fabKey,
           // Cannot be `Alignment.center`
-          alignment: Alignment(0.95, 0.92),
-          ringColor: Colors.white.withAlpha(25),
-          ringDiameter: 440.0,
-          ringWidth: 180.0,
+          alignment: Alignment(-1, -0.65),
+          ringColor: Colors.white.withAlpha(0),
+          ringDiameter: 300.0,
+          ringWidth: 80,
           fabSize: 50.0,
           fabElevation: 8.0,
           fabIconBorder: CircleBorder(),
@@ -319,6 +323,7 @@ class _GamePageState extends State<GamePage> {
             } else {
               final sp = await SharedPreferences.getInstance();
               sp.setBool('demo', false);
+              sp.remove('statusinfo');
               setState(() {});
             }
           },
@@ -331,8 +336,7 @@ class _GamePageState extends State<GamePage> {
               },
               shape: CircleBorder(),
               padding: const EdgeInsets.all(24.0),
-              child:
-                  Icon(FontAwesomeIcons.faceGrinSquint, color: Colors.orange),
+              child: Icon(FontAwesomeIcons.faceGrinSquint, color: Colors.black),
             ),
             RawMaterialButton(
               onPressed: () async {
@@ -342,7 +346,7 @@ class _GamePageState extends State<GamePage> {
               },
               shape: CircleBorder(),
               padding: const EdgeInsets.all(24.0),
-              child: Icon(FontAwesomeIcons.faceFrownOpen, color: Colors.orange),
+              child: Icon(FontAwesomeIcons.faceFrownOpen, color: Colors.black),
             ),
             RawMaterialButton(
               onPressed: () async {
@@ -352,7 +356,7 @@ class _GamePageState extends State<GamePage> {
               },
               shape: CircleBorder(),
               padding: const EdgeInsets.all(24.0),
-              child: Icon(FontAwesomeIcons.faceSmile, color: Colors.orange),
+              child: Icon(FontAwesomeIcons.faceSmile, color: Colors.black),
             ),
             RawMaterialButton(
               onPressed: () async {
@@ -362,7 +366,7 @@ class _GamePageState extends State<GamePage> {
               },
               shape: CircleBorder(),
               padding: const EdgeInsets.all(24.0),
-              child: Icon(FontAwesomeIcons.faceSadCry, color: Colors.orange),
+              child: Icon(FontAwesomeIcons.faceSadCry, color: Colors.black),
             ),
             RawMaterialButton(
               onPressed: () async {
@@ -373,7 +377,7 @@ class _GamePageState extends State<GamePage> {
               shape: CircleBorder(),
               padding: const EdgeInsets.all(24.0),
               child:
-                  Icon(FontAwesomeIcons.faceLaughSquint, color: Colors.orange),
+                  Icon(FontAwesomeIcons.faceLaughSquint, color: Colors.black),
             ),
           ],
         ),
@@ -579,7 +583,7 @@ class _AnimationWidgetState extends State<AnimationWidget> {
               alignment: Alignment.center,
               child: ConfettiWidget(
                 confettiController: controller,
-                colors: [
+                colors: const [
                   Colors.red,
                   Colors.green,
                   Colors.blue,
@@ -597,3 +601,8 @@ class _AnimationWidgetState extends State<AnimationWidget> {
     );
   }
 }
+
+void _toInfoPage(BuildContext context) {
+  Navigator.pushNamed(context, InfoPage.route);
+} //_toStepPage
+
