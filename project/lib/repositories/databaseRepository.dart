@@ -193,11 +193,6 @@ class DatabaseRepository extends ChangeNotifier {
     deleteAllSleep();
     deleteAllAnnotation();
     final sp = await SharedPreferences.getInstance();
-<<<<<<< HEAD
-    sp.remove('sleep');
-    sp.remove('heart');
-    sp.remove('activity');
-=======
 
     if (sp.getBool('confirm') == true) {
       sp.setBool('sleep', true);
@@ -364,7 +359,6 @@ class DatabaseRepository extends ChangeNotifier {
         insertSleep(Sleep(1, 0));
       }
     }
->>>>>>> Riccardo-mod
   }
 }
 
