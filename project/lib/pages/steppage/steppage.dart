@@ -235,6 +235,13 @@ class _StepPageState extends State<StepPage> {
       database.updateActivity(Activity(7, steps[6], null, null, null));
       sp.setBool('activity', true);
     }
+    /*
+    await Deleyed(const Duration(hours: 5), () {
+      setState(() {
+        sp.setBool('Activity', false);
+      });
+    });
+    */
   }
 } //Page
 

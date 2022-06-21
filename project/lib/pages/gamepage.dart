@@ -147,9 +147,18 @@ class _GamePageState extends State<GamePage> {
                                                                 .min >
                                                             10) {
                                                       return Column(
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .center,
                                                         children: [
-                                                          Image.asset(
-                                                              'assets/MeCo/superhappy.png'),
+                                                          AnimationWidget(
+                                                            child: Container(
+                                                              height: 340,
+                                                              width: 400,
+                                                              child: Image.asset(
+                                                                  'assets/MeCo/superhappy.png'),
+                                                            ),
+                                                          ),
                                                         ],
                                                       );
                                                     } else {
@@ -227,8 +236,10 @@ class _GamePageState extends State<GamePage> {
                                   sp.setInt('statusinfo', 4);
                                   return Image.asset('assets/MeCo/sad.png');
                                 } else if (sp.getInt('status') == 5) {
-                                  return Image.asset(
-                                      'assets/MeCo/superhappy.png');
+                                  return AnimationWidget(
+                                    child: Image.asset(
+                                        'assets/MeCo/superhappy.png'),
+                                  );
                                 } else {
                                   return CircularProgressIndicator();
                                 }
@@ -244,7 +255,7 @@ class _GamePageState extends State<GamePage> {
             }),
           ),
           SizedBox(
-            height: 8,
+            height: 10,
           ),
           Container(
               decoration: BoxDecoration(
@@ -387,7 +398,7 @@ class _GamePageState extends State<GamePage> {
 
   Future<void> _aggiungoAC(DatabaseRepository database) async {
     final sp = await SharedPreferences.getInstance();
-    if (sp.getBool('activity') == false && sp.getBool('confirm') == true) {
+    if (sp.getBool('activity') == false && sp.getBool('game') == false) {
       FitbitActivityTimeseriesDataManager fitbitActivityTimeseriesDataManager =
           FitbitActivityTimeseriesDataManager(
         clientID: Strings.fitbitClientID,
@@ -469,7 +480,7 @@ class _GamePageState extends State<GamePage> {
 
   Future<void> _aggiungoSL(DatabaseRepository database) async {
     final sp = await SharedPreferences.getInstance();
-    if (sp.getBool('sleep') == false && sp.getBool('confirm') == true) {
+    if (sp.getBool('sleep') == false && sp.getBool('game') == false) {
       FitbitSleepDataManager fitbitSleepDataManager = FitbitSleepDataManager(
         clientID: Strings.fitbitClientID,
         clientSecret: Strings.fitbitClientSecret,

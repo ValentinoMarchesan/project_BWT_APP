@@ -105,8 +105,8 @@ void _initializeDB(BuildContext context) async {
   final sp = await SharedPreferences.getInstance();
   sp.setBool('sleep', false);
   sp.setBool('activity', false);
-  sp.setBool('heart',
-      false); //this is for the hearthpage in the case the database is fill with the default values
+  sp.setBool('heart', false);
+  sp.setBool('game', false);
   final lista = await Provider.of<DatabaseRepository>(context, listen: false)
       .findAllHeart();
   final lista2 = await Provider.of<DatabaseRepository>(context, listen: false)
