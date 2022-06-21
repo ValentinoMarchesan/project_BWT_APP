@@ -475,6 +475,8 @@ class _GamePageState extends State<GamePage> {
       database.updateActivity(Activity(6, steps[5], null, null, null));
       database.updateActivity(Activity(7, steps[6], null, null, null));
       sp.setBool('activity', true);
+      final time = DateTime.now().toString();
+      sp.setString('time', time);
     }
   }
 
