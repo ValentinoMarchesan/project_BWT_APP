@@ -215,7 +215,9 @@ class _SleepPageState extends State<SleepPage> {
 
   Future<void> _aggiungoSL(DatabaseRepository database) async {
     final sp = await SharedPreferences.getInstance();
-    if (sp.getBool('sleep') == false && sp.getBool('confirm') == true) {
+    final now = DateTime.now().hour;
+    if ((sp.getBool('sleep') == false && sp.getBool('confirm') == true) ||
+        (now != sp.getInt("hour2"))) {
       FitbitSleepDataManager fitbitSleepDataManager = FitbitSleepDataManager(
         clientID: Strings.fitbitClientID,
         clientSecret: Strings.fitbitClientSecret,
@@ -238,8 +240,8 @@ class _SleepPageState extends State<SleepPage> {
         database.updateSleep(Sleep(1, 0));
         sp.setBool('sleep', true);
       }
-      //database.updateSleep(Sleep(1, sleepDurHourse));
-
+      final timefetch = DateTime.now().hour;
+      sp.setInt('hour2', timefetch);
     }
   }
 }

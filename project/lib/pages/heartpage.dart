@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:project/chart/heart_chart.dart';
 import 'package:project/chart/heartseries.dart';
 import 'package:project/database/entities/heart.dart';
+import 'package:project/models/appbar_widget.dart';
 import 'package:project/utils/strings.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
 import 'package:provider/provider.dart';
@@ -37,13 +38,7 @@ class _HeartPageState extends State<HeartPage> {
   Widget build(BuildContext context) {
     print('${HeartPage.routename} built');
     return Scaffold(
-      appBar: AppBar(
-        title: const Text(HeartPage.routename,
-            style: TextStyle(
-                fontSize: 20, fontFamily: 'Audiowide', color: Colors.black)),
-        centerTitle: true,
-        backgroundColor: Colors.orange,
-      ),
+      appBar: buildAppBarHeartPage(context),
       body: Center(
           child: Consumer<DatabaseRepository>(builder: (context, dbr, child) {
         return FutureBuilder(
@@ -125,7 +120,9 @@ class _HeartPageState extends State<HeartPage> {
 
   Future<void> _aggiungoHR(DatabaseRepository database) async {
     final sp = await SharedPreferences.getInstance();
-    if (sp.getBool('heart') == false && sp.getBool('confirm') == true) {
+    final now = DateTime.now().hour;
+    if ((sp.getBool('heart') == false && sp.getBool('confirm') == true) ||
+        (now != sp.getInt("hour1"))) {
       FitbitHeartDataManager fitbitHeartDataManager = FitbitHeartDataManager(
         clientID: Strings.fitbitClientID,
         clientSecret: Strings.fitbitClientSecret,
@@ -144,6 +141,8 @@ class _HeartPageState extends State<HeartPage> {
       database.updateHeart(Heart(3, heart[2]));
       database.updateHeart(Heart(4, heart[3]));
       sp.setBool('heart', true);
+      final timefetch = DateTime.now().hour;
+      sp.setInt('hour1', timefetch);
     }
   }
 } //Page

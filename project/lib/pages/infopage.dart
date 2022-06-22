@@ -69,7 +69,15 @@ class InfoPage extends StatelessWidget {
                       final sp = snapshot.data as SharedPreferences;
                       if (sp.getInt('statusinfo') == 1) {
                         return const Text(
-                            'PAPER SU BENEFICI DI UN CORRETTO STILE DI VITA');
+                            'IMPORTANCE OF SLEEP AND ACTIVITY \n'
+                            'Sleep helps everyone to retain and consolidate memories. When a subject practice or learn new skills, sleep helps form memories, and contributes to improved performance in the future. \n'
+                            'Without sleep, the pathways in the brain that allow you to learn and make memories can’t be performed or maintained. Sleep is also essential for cognitive processing. Also, just as exercise can help improve or maintain mental health, sleep is important for maintaining subjects’ mental health. Quality sleep is associated with improving overall mood. Healthy sleep prevents irritability and decreases the risk of developments such as depression. \n'
+                            '\nTHE BENEFIT OF ACTIVITY \n'
+                            '\n 1) Research shows that playing sports boosts blood flow to your brain. This enables your body to build more connections between nerves within the brain. This improves memory, stimulates creativity, and helps your brain develop better problem-solving skills. \n'
+                            '\n 2) One study found that playing sports can improve brain function. It also showed that just being a sports fan may have a positive impact on your brain. Playing or watching sports can have an effect on the neural networks that support language comprehension.',
+                            style:
+                                TextStyle(fontSize: 14, fontFamily: 'Roboto'),
+                            textAlign: TextAlign.justify);
                       } else if (sp.getInt('statusinfo') == 2) {
                         return Text('PAPER SU MANCANZA DI SONNO');
                       } else if (sp.getInt('statusinfo') == 3) {

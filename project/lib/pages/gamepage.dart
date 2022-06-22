@@ -135,7 +135,7 @@ class _GamePageState extends State<GamePage> {
                                                           Container(
                                                             child: Image.asset(
                                                                 'assets/MeCo/happy.png'),
-                                                            width: 380,
+                                                            width: 400,
                                                             height: 340,
                                                           ),
                                                         ],
@@ -163,11 +163,11 @@ class _GamePageState extends State<GamePage> {
                                                         ],
                                                       );
                                                     } else {
-                                                      return Column(
-                                                        children: [
-                                                          Image.asset(
-                                                              'assets/MeCo/happy.png'),
-                                                        ],
+                                                      return Container(
+                                                        height: 340,
+                                                        width: 400,
+                                                        child: Image.asset(
+                                                            'assets/MeCo/happy.png'),
                                                       );
                                                     }
                                                   } else {
@@ -176,8 +176,12 @@ class _GamePageState extends State<GamePage> {
                                                 });
                                           } else {
                                             sp.setInt('statusinfo', 2);
-                                            return Image.asset(
-                                                'assets/MeCo/sleepy.png');
+                                            return Container(
+                                              height: 340,
+                                              width: 400,
+                                              child: Image.asset(
+                                                  'assets/MeCo/sleepy.png'),
+                                            );
                                           }
                                         } else {
                                           return CircularProgressIndicator();
@@ -202,12 +206,20 @@ class _GamePageState extends State<GamePage> {
                                           } else if (datasleep >= 7 &&
                                               datasleep <= 9) {
                                             sp.setInt('statusinfo', 3);
-                                            return Image.asset(
-                                                'assets/MeCo/meh.png');
+                                            return Container(
+                                              height: 340,
+                                              width: 400,
+                                              child: Image.asset(
+                                                  'assets/MeCo/meh.png'),
+                                            );
                                           } else {
                                             sp.setInt('statusinfo', 4);
-                                            return Image.asset(
-                                                'assets/MeCo/sad.png');
+                                            return Container(
+                                              height: 340,
+                                              width: 400,
+                                              child: Image.asset(
+                                                  'assets/MeCo/sad.png'),
+                                            );
                                           }
                                         } else {
                                           return CircularProgressIndicator();
@@ -227,20 +239,40 @@ class _GamePageState extends State<GamePage> {
                                 final sp = snapshot.data as SharedPreferences;
                                 if (sp.getInt('status') == 1) {
                                   sp.setInt('statusinfo', 1);
-                                  return Image.asset('assets/MeCo/happy.png');
+                                  return Container(
+                                      height: 340,
+                                      width: 400,
+                                      child:
+                                          Image.asset('assets/MeCo/happy.png'));
                                 } else if (sp.getInt('status') == 2) {
                                   sp.setInt('statusinfo', 2);
-                                  return Image.asset('assets/MeCo/sleepy.png');
+                                  return Container(
+                                      height: 340,
+                                      width: 400,
+                                      child: Image.asset(
+                                          'assets/MeCo/sleepy.png'));
                                 } else if (sp.getInt('status') == 3) {
                                   sp.setInt('statusinfo', 3);
-                                  return Image.asset('assets/MeCo/meh.png');
+                                  return Container(
+                                      height: 340,
+                                      width: 400,
+                                      child:
+                                          Image.asset('assets/MeCo/meh.png'));
                                 } else if (sp.getInt('status') == 4) {
                                   sp.setInt('statusinfo', 4);
-                                  return Image.asset('assets/MeCo/sad.png');
+                                  return Container(
+                                      height: 340,
+                                      width: 400,
+                                      child:
+                                          Image.asset('assets/MeCo/sad.png'));
                                 } else if (sp.getInt('status') == 5) {
                                   return AnimationWidget(
-                                    child: Image.asset(
-                                        'assets/MeCo/superhappy.png'),
+                                    child: Container(
+                                      height: 340,
+                                      width: 400,
+                                      child: Image.asset(
+                                          'assets/MeCo/superhappy.png'),
+                                    ),
                                   );
                                 } else {
                                   return CircularProgressIndicator();
@@ -400,7 +432,9 @@ class _GamePageState extends State<GamePage> {
 
   Future<void> _aggiungoAC(DatabaseRepository database) async {
     final sp = await SharedPreferences.getInstance();
-    if (sp.getBool('activity') == false && sp.getBool('game') == false) {
+    final now = DateTime.now().hour;
+    if ((sp.getBool('activity') == false && sp.getBool('game') == false) ||
+        (now != sp.getInt("hour"))) {
       FitbitActivityTimeseriesDataManager fitbitActivityTimeseriesDataManager =
           FitbitActivityTimeseriesDataManager(
         clientID: Strings.fitbitClientID,
@@ -477,14 +511,17 @@ class _GamePageState extends State<GamePage> {
       database.updateActivity(Activity(6, steps[5], null, null, null));
       database.updateActivity(Activity(7, steps[6], null, null, null));
       sp.setBool('activity', true);
-      final time = DateTime.now().toString();
-      sp.setString('time', time);
+
+      final timefetch = DateTime.now().hour;
+      sp.setInt('hour', timefetch);
     }
   }
 
   Future<void> _aggiungoSL(DatabaseRepository database) async {
     final sp = await SharedPreferences.getInstance();
-    if (sp.getBool('sleep') == false && sp.getBool('game') == false) {
+    final now = DateTime.now().hour;
+    if ((sp.getBool('sleep') == false && sp.getBool('game') == false) ||
+        (now != sp.getInt("hour"))) {
       FitbitSleepDataManager fitbitSleepDataManager = FitbitSleepDataManager(
         clientID: Strings.fitbitClientID,
         clientSecret: Strings.fitbitClientSecret,

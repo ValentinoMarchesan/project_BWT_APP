@@ -80,6 +80,11 @@ class _AuthPageState extends State<AuthPage> {
                 final sp = await SharedPreferences.getInstance();
                 sp.setString('userid', userId!);
                 sp.setBool('confirm', true);
+                final timefetch = DateTime.now().hour;
+                sp.setInt('hour', timefetch);
+                sp.setInt('hour1', timefetch);
+                sp.setInt('hour2', timefetch);
+                sp.setInt('hour3', timefetch);
 
                 Navigator.of(context).pushReplacementNamed(HomePage.route);
               },
@@ -107,6 +112,7 @@ void _initializeDB(BuildContext context) async {
   sp.setBool('activity', false);
   sp.setBool('heart', false);
   sp.setBool('game', false);
+
   final lista = await Provider.of<DatabaseRepository>(context, listen: false)
       .findAllHeart();
   final lista2 = await Provider.of<DatabaseRepository>(context, listen: false)

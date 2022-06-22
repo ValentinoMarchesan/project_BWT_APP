@@ -154,96 +154,92 @@ class _StepPageState extends State<StepPage> {
           );
         }));
   }
+} //Page
 
-  Future<void> _aggiungoAC(DatabaseRepository database) async {
-    final sp = await SharedPreferences.getInstance();
-    if (sp.getBool('activity') == false && sp.getBool('confirm') == true) {
-      FitbitActivityTimeseriesDataManager fitbitActivityTimeseriesDataManager =
-          FitbitActivityTimeseriesDataManager(
-        clientID: Strings.fitbitClientID,
-        clientSecret: Strings.fitbitClientSecret,
-        type: 'steps',
-      );
+Future<void> _aggiungoAC(DatabaseRepository database) async {
+  final sp = await SharedPreferences.getInstance();
+  final now = DateTime.now().hour;
+  print(now);
+  print(sp.getInt('hour3'));
+  if ((sp.getBool('activity') == false && sp.getBool('confirm') == true) ||
+      (now != sp.getInt("hour3"))) {
+    FitbitActivityTimeseriesDataManager fitbitActivityTimeseriesDataManager =
+        FitbitActivityTimeseriesDataManager(
+      clientID: Strings.fitbitClientID,
+      clientSecret: Strings.fitbitClientSecret,
+      type: 'steps',
+    );
 
-      FitbitActivityTimeseriesAPIURL fitbitActivityTimeseriesApiUrl =
-          FitbitActivityTimeseriesAPIURL.weekWithResource(
-        baseDate: DateTime.now(),
-        userID: sp.getString('userid'),
-        resource: fitbitActivityTimeseriesDataManager.type,
-      );
-      final stepsData = await fitbitActivityTimeseriesDataManager.fetch(
-          fitbitActivityTimeseriesApiUrl) as List<FitbitActivityTimeseriesData>;
+    FitbitActivityTimeseriesAPIURL fitbitActivityTimeseriesApiUrl =
+        FitbitActivityTimeseriesAPIURL.weekWithResource(
+      baseDate: DateTime.now(),
+      userID: sp.getString('userid'),
+      resource: fitbitActivityTimeseriesDataManager.type,
+    );
+    final stepsData = await fitbitActivityTimeseriesDataManager.fetch(
+        fitbitActivityTimeseriesApiUrl) as List<FitbitActivityTimeseriesData>;
 
 // _____________________________________________________________________________
 //_____________________________FETCH ACTIVITY CALORIES DATA_____________________
-      FitbitActivityTimeseriesDataManager fitbitActivityTimeseriesDataManager2 =
-          FitbitActivityTimeseriesDataManager(
-        clientID: Strings.fitbitClientID,
-        clientSecret: Strings.fitbitClientSecret,
-        type: 'activityCalories',
-      );
-      FitbitActivityTimeseriesAPIURL fitbitActivityTimeseriesApiUrl2 =
-          FitbitActivityTimeseriesAPIURL.weekWithResource(
-              baseDate: DateTime.now(),
-              userID: sp.getString('userid'),
-              resource: fitbitActivityTimeseriesDataManager2.type);
-      final activitycalories = await fitbitActivityTimeseriesDataManager2
-              .fetch(fitbitActivityTimeseriesApiUrl2)
-          as List<FitbitActivityTimeseriesData>;
+    FitbitActivityTimeseriesDataManager fitbitActivityTimeseriesDataManager2 =
+        FitbitActivityTimeseriesDataManager(
+      clientID: Strings.fitbitClientID,
+      clientSecret: Strings.fitbitClientSecret,
+      type: 'activityCalories',
+    );
+    FitbitActivityTimeseriesAPIURL fitbitActivityTimeseriesApiUrl2 =
+        FitbitActivityTimeseriesAPIURL.weekWithResource(
+            baseDate: DateTime.now(),
+            userID: sp.getString('userid'),
+            resource: fitbitActivityTimeseriesDataManager2.type);
+    final activitycalories = await fitbitActivityTimeseriesDataManager2.fetch(
+        fitbitActivityTimeseriesApiUrl2) as List<FitbitActivityTimeseriesData>;
 // _____________________________________________________________________________
 //_____________________________FETCH CALORIES DATA______________________________
-      FitbitActivityTimeseriesDataManager fitbitActivityTimeseriesDataManager3 =
-          FitbitActivityTimeseriesDataManager(
-        clientID: Strings.fitbitClientID,
-        clientSecret: Strings.fitbitClientSecret,
-        type: 'calories',
-      );
-      FitbitActivityTimeseriesAPIURL fitbitActivityTimeseriesApiUrl3 =
-          FitbitActivityTimeseriesAPIURL.dayWithResource(
-              date: DateTime.now(),
-              userID: sp.getString('userid'),
-              resource: fitbitActivityTimeseriesDataManager3.type);
-      final calories = await fitbitActivityTimeseriesDataManager3
-              .fetch(fitbitActivityTimeseriesApiUrl3)
-          as List<FitbitActivityTimeseriesData>;
+    FitbitActivityTimeseriesDataManager fitbitActivityTimeseriesDataManager3 =
+        FitbitActivityTimeseriesDataManager(
+      clientID: Strings.fitbitClientID,
+      clientSecret: Strings.fitbitClientSecret,
+      type: 'calories',
+    );
+    FitbitActivityTimeseriesAPIURL fitbitActivityTimeseriesApiUrl3 =
+        FitbitActivityTimeseriesAPIURL.dayWithResource(
+            date: DateTime.now(),
+            userID: sp.getString('userid'),
+            resource: fitbitActivityTimeseriesDataManager3.type);
+    final calories = await fitbitActivityTimeseriesDataManager3.fetch(
+        fitbitActivityTimeseriesApiUrl3) as List<FitbitActivityTimeseriesData>;
 // _____________________________________________________________________________
 //_____________________________FETCH MINUTES SEDEBTARY__________________________
-      FitbitActivityTimeseriesDataManager fitbitActivityTimeseriesDataManager4 =
-          FitbitActivityTimeseriesDataManager(
-        clientID: Strings.fitbitClientID,
-        clientSecret: Strings.fitbitClientSecret,
-        type: 'minutesSedentary',
-      );
-      FitbitActivityTimeseriesAPIURL fitbitActivityTimeseriesApiUrl4 =
-          FitbitActivityTimeseriesAPIURL.dayWithResource(
-              date: DateTime.now(),
-              userID: sp.getString('userid'),
-              resource: fitbitActivityTimeseriesDataManager4.type);
-      final sedentary = await fitbitActivityTimeseriesDataManager4
-              .fetch(fitbitActivityTimeseriesApiUrl4)
-          as List<FitbitActivityTimeseriesData>;
-      final activity = ActivityData(activitycalories, calories, sedentary);
-      final steps = StepsData(stepsData);
+    FitbitActivityTimeseriesDataManager fitbitActivityTimeseriesDataManager4 =
+        FitbitActivityTimeseriesDataManager(
+      clientID: Strings.fitbitClientID,
+      clientSecret: Strings.fitbitClientSecret,
+      type: 'minutesSedentary',
+    );
+    FitbitActivityTimeseriesAPIURL fitbitActivityTimeseriesApiUrl4 =
+        FitbitActivityTimeseriesAPIURL.dayWithResource(
+            date: DateTime.now(),
+            userID: sp.getString('userid'),
+            resource: fitbitActivityTimeseriesDataManager4.type);
+    final sedentary = await fitbitActivityTimeseriesDataManager4.fetch(
+        fitbitActivityTimeseriesApiUrl4) as List<FitbitActivityTimeseriesData>;
+    final activity = ActivityData(activitycalories, calories, sedentary);
+    final steps = StepsData(stepsData);
 
-      database.updateActivity(
-          Activity(1, steps[0], activity[0], activity[1], activity[2]));
-      database.updateActivity(Activity(2, steps[1], null, null, null));
-      database.updateActivity(Activity(3, steps[2], null, null, null));
-      database.updateActivity(Activity(4, steps[3], null, null, null));
-      database.updateActivity(Activity(5, steps[4], null, null, null));
-      database.updateActivity(Activity(6, steps[5], null, null, null));
-      database.updateActivity(Activity(7, steps[6], null, null, null));
-      sp.setBool('activity', true);
-    }
-    /*
-    await Deleyed(const Duration(hours: 5), () {
-      setState(() {
-        sp.setBool('Activity', false);
-      });
-    });
-    */
+    database.updateActivity(
+        Activity(1, steps[0], activity[0], activity[1], activity[2]));
+    database.updateActivity(Activity(2, steps[1], null, null, null));
+    database.updateActivity(Activity(3, steps[2], null, null, null));
+    database.updateActivity(Activity(4, steps[3], null, null, null));
+    database.updateActivity(Activity(5, steps[4], null, null, null));
+    database.updateActivity(Activity(6, steps[5], null, null, null));
+    database.updateActivity(Activity(7, steps[6], null, null, null));
+    sp.setBool('activity', true);
+    final timefetch = DateTime.now().hour;
+    sp.setInt('hour3', timefetch);
   }
-} //Page
+}
 
 double? meanstep(datastep) {
   double sum = 0;
