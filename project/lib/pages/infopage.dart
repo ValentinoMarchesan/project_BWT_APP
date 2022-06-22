@@ -68,8 +68,9 @@ class InfoPage extends StatelessWidget {
                     if (snapshot.hasData) {
                       final sp = snapshot.data as SharedPreferences;
                       if (sp.getInt('statusinfo') == 1) {
-                        return const Text(
-                            'PAPER SU BENEFICI DI UN CORRETTO STILE DI VITA');
+                        return const Text('IMPORTANCE OF SLEEP AND ACTIVITY \n'
+                            'Sleep helps everyone to retain and consolidate memories. When a subject practice or learn new skills, sleep helps form memories, and contributes to improved performance in the future. Without sleep, the pathways in the brain that allow you to learn and make memories can’t be performed or maintained. \n'
+                            'Sleep is also essential for cognitive processing. Also, just as exercise can help improve or maintain mental health, sleep is important for maintaining subjects’ mental health. Quality sleep is associated with improving overall mood. Healthy sleep prevents irritability and decreases the risk of developments such as depression. \n');
                       } else if (sp.getInt('statusinfo') == 2) {
                         return Text('PAPER SU MANCANZA DI SONNO');
                       } else if (sp.getInt('statusinfo') == 3) {
