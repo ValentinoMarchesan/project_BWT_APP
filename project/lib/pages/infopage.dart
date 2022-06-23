@@ -73,8 +73,8 @@ class InfoPage extends StatelessWidget {
                             'Sleep helps everyone to retain and consolidate memories. When a subject practice or learn new skills, sleep helps form memories, and contributes to improved performance in the future. \n'
                             'Without sleep, the pathways in the brain that allow you to learn and make memories can’t be performed or maintained. Sleep is also essential for cognitive processing. Also, just as exercise can help improve or maintain mental health, sleep is important for maintaining subjects’ mental health. Quality sleep is associated with improving overall mood. Healthy sleep prevents irritability and decreases the risk of developments such as depression. \n'
                             '\nTHE BENEFIT OF ACTIVITY '
-                            '\n - Research shows that playing sports boosts blood flow to your brain. This enables your body to build more connections between nerves within the brain. This improves memory, stimulates creativity, and helps your brain develop better problem-solving skills. \n'
-                            '\n - One study found that playing sports can improve brain function. It also showed that just being a sports fan may have a positive impact on your brain. Playing or watching sports can have an effect on the neural networks that support language comprehension.',
+                            '\n • Research shows that playing sports boosts blood flow to your brain. This enables your body to build more connections between nerves within the brain. This improves memory, stimulates creativity, and helps your brain develop better problem-solving skills. \n'
+                            '\n • One study found that playing sports can improve brain function. It also showed that just being a sports fan may have a positive impact on your brain. Playing or watching sports can have an effect on the neural networks that support language comprehension.',
                             style:
                                 TextStyle(fontSize: 14, fontFamily: 'Roboto'),
                             textAlign: TextAlign.start);
@@ -101,13 +101,13 @@ class InfoPage extends StatelessWidget {
                       } else if (sp.getInt('statusinfo') == 4) {
                         return const Text(
                             'PAY ATTENTION: TRY TO SLEEP MORE HOURS AND TRY TO MAKE SOME SPORTS \n'
-                            'because: Exercise increases blood flow to the brain. Due to its high metabolic demand, the brain demands good circulation, and exercise aids it, \n'
-                            'Exercise improves memory,\n'
-                            'Exercise help in contrasting stress.\n'
-                            'Sleep helps everyone to retain and consolidate memories, \n'
-                            'Sleep contributes to improved sport performance, \n'
-                            'Without sleep, the pathways in the brain that allow you to learn and make memories can’t be performed or maintained, \n'
-                            'Sleep is important for maintaining subjects’ mental health,\n',
+                            'because: \n - Exercise increases blood flow to the brain. Due to its high metabolic demand, the brain demands good circulation, and exercise aids it; \n'
+                            '• Exercise improves memory;\n'
+                            '• Exercise help in contrasting stress.\n'
+                            '• Sleep helps everyone to retain and consolidate memories; \n'
+                            '• Sleep contributes to improved sport performance; \n'
+                            '• Without sleep, the pathways in the brain that allow you to learn and make memories can’t be performed or maintained; \n'
+                            '• Sleep is important for maintaining subjects’ mental health.\n',
                             style:
                                 TextStyle(fontSize: 14, fontFamily: 'Roboto'),
                             textAlign: TextAlign.start);
@@ -118,19 +118,19 @@ class InfoPage extends StatelessWidget {
                           '\n                                    HYDRATATION \n'
                           'Water helps your brain cells communicate with each other, clears out toxins and waste that impairs brain function, and carries nutrients to your brain. This all falls apart if your fluid levels drop.'
                           'Staying hydrated has been linked to:'
-                          '\n •	Faster decision making and improved performance on cognitive tests,'
-                          '\n •	Better concentration and enhanced short-term memory,'
-                          '\n •	Higher test scores in an educational context ,'
-                          '\n •	Improved focus and decreased mental fatigue,'
+                          '\n •	Faster decision making and improved performance on cognitive tests;'
+                          '\n •	Better concentration and enhanced short-term memory;'
+                          '\n •	Higher test scores in an educational context;'
+                          '\n •	Improved focus and decreased mental fatigue;'
                           '\n •	Stronger cognitive functioning across the board, including more alertness, less confusion, and even improved learning.'
                           '\n '
                           '\n                                    MEDITATION \n'
                           'Meditation benefits for the brain are abundant. Meditating strengthens neural connections and can literally change the configuration of these networks. With regular practice, you can cultivate a more resilient neurobiology that: '
-                          '\n•	Contributes to a greater sense of well-being,'
-                          '\n•	Helps to maintain brain health as you age,'
-                          '\n•	Aids in alleviating mental stress,'
-                          '\n•	Promotes healthy, sustained focus,'
-                          '\n•	help regulate the balance of vital hormones,'
+                          '\n•	Contributes to a greater sense of well-being;'
+                          '\n•	Helps to maintain brain health as you age;'
+                          '\n•	Aids in alleviating mental stress;'
+                          '\n•	Promotes healthy, sustained focus;'
+                          '\n•	help regulate the balance of vital hormones;'
                           '\n•	with practice, meditation can also help you develop empathy and be more compassionate.',
                           style: TextStyle(fontSize: 13, fontFamily: 'Roboto'),
                           textAlign: TextAlign.start,
