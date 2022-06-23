@@ -73,9 +73,15 @@ AppBar buildAppBar(BuildContext context) {
 
 AppBar buildAppBarHeartPage(BuildContext context) {
   return AppBar(
-    title: const Text(HeartPage.routename),
+    title: const Text(
+      HeartPage.routename,
+      style: TextStyle(
+        fontFamily: 'Audiowide',
+      ),
+    ),
+    centerTitle: true,
     // leading: BackButton(),
-    backgroundColor: Colors.orangeAccent,
+    backgroundColor: Colors.orange,
     elevation: 0,
     actions: [
       IconButton(
@@ -147,9 +153,6 @@ void _toLoginPage_DeleteAll(BuildContext context) async {
   sp.remove('username');
   sp.setBool('confirm', false);
   Navigator.of(context).pushReplacementNamed(LoginPage.route);
-  sp.remove('hour');
-  sp.remove('hour1');
-  sp.remove('hour2');
-  sp.remove('hour3');
+
   //Navigator.pushNamed(context, LoginPage.route);
 }

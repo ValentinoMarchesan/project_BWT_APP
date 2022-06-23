@@ -121,8 +121,16 @@ class _HeartPageState extends State<HeartPage> {
   Future<void> _aggiungoHR(DatabaseRepository database) async {
     final sp = await SharedPreferences.getInstance();
     final now = DateTime.now().hour;
+    if (sp.getInt('hour1') == null) {
+      sp.setInt('hour1', DateTime.now().hour);
+    }
+    final timelastfetch = sp.getInt("hour1");
+    List test = [now, timelastfetch];
+    print(
+      test,
+    );
     if ((sp.getBool('heart') == false && sp.getBool('confirm') == true) ||
-        (now != sp.getInt("hour1"))) {
+        (now != timelastfetch)) {
       FitbitHeartDataManager fitbitHeartDataManager = FitbitHeartDataManager(
         clientID: Strings.fitbitClientID,
         clientSecret: Strings.fitbitClientSecret,

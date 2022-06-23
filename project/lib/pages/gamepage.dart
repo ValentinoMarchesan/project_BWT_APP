@@ -432,9 +432,17 @@ class _GamePageState extends State<GamePage> {
 
   Future<void> _aggiungoAC(DatabaseRepository database) async {
     final sp = await SharedPreferences.getInstance();
+    if (sp.getInt('hour') == null) {
+      sp.setInt('hour', DateTime.now().hour);
+    }
     final now = DateTime.now().hour;
+    final timelastfetch = sp.getInt("hour");
+    List test = [now, timelastfetch];
+    print(
+      test,
+    );
     if ((sp.getBool('activity') == false && sp.getBool('game') == false) ||
-        (now != sp.getInt("hour"))) {
+        (now != timelastfetch)) {
       FitbitActivityTimeseriesDataManager fitbitActivityTimeseriesDataManager =
           FitbitActivityTimeseriesDataManager(
         clientID: Strings.fitbitClientID,
@@ -520,8 +528,13 @@ class _GamePageState extends State<GamePage> {
   Future<void> _aggiungoSL(DatabaseRepository database) async {
     final sp = await SharedPreferences.getInstance();
     final now = DateTime.now().hour;
+    final timelastfetch = sp.getInt("hour");
+    List test = [now, timelastfetch];
+    print(
+      test,
+    );
     if ((sp.getBool('sleep') == false && sp.getBool('game') == false) ||
-        (now != sp.getInt("hour"))) {
+        (now != timelastfetch)) {
       FitbitSleepDataManager fitbitSleepDataManager = FitbitSleepDataManager(
         clientID: Strings.fitbitClientID,
         clientSecret: Strings.fitbitClientSecret,

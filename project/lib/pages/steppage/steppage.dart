@@ -17,7 +17,7 @@ class StepPage extends StatefulWidget {
   StepPage({Key? key}) : super(key: key);
 
   static const route = '/home/Step';
-  static const routename = 'StepPage';
+  static const routename = 'STEPS MONITORING';
 
   @override
   State<StepPage> createState() => _StepPageState();
@@ -35,7 +35,11 @@ class _StepPageState extends State<StepPage> {
             icon: Icon(Icons.arrow_back),
             onPressed: () => Navigator.pop(context),
           ),
-          title: const Text(StepPage.routename),
+          centerTitle: true,
+          title: const Text(
+            StepPage.routename,
+            style: TextStyle(fontFamily: 'Audiowide'),
+          ),
           shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.vertical(
               bottom: Radius.circular(10),
@@ -159,10 +163,16 @@ class _StepPageState extends State<StepPage> {
 Future<void> _aggiungoAC(DatabaseRepository database) async {
   final sp = await SharedPreferences.getInstance();
   final now = DateTime.now().hour;
-  print(now);
-  print(sp.getInt('hour3'));
+  if (sp.getInt('hour3') == null) {
+    sp.setInt('hour3', DateTime.now().hour);
+  }
+  final timelastfetch = sp.getInt("hour3");
+  List test = [now, timelastfetch];
+  print(
+    test,
+  );
   if ((sp.getBool('activity') == false && sp.getBool('confirm') == true) ||
-      (now != sp.getInt("hour3"))) {
+      (now != timelastfetch)) {
     FitbitActivityTimeseriesDataManager fitbitActivityTimeseriesDataManager =
         FitbitActivityTimeseriesDataManager(
       clientID: Strings.fitbitClientID,

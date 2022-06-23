@@ -18,7 +18,7 @@ class SleepPage extends StatefulWidget {
   SleepPage({Key? key}) : super(key: key);
 
   static const route = '/home/sleep';
-  static const routename = 'SLEEPPAGE';
+  static const routename = 'SLEEP MONITORING';
   Sleep? sleep;
 
   @override
@@ -35,7 +35,9 @@ class _SleepPageState extends State<SleepPage> {
       appBar: AppBar(
         title: const Text(SleepPage.routename,
             style: TextStyle(
-                fontSize: 20, fontFamily: 'Audiowide', color: Colors.black)),
+              fontSize: 20,
+              fontFamily: 'Audiowide',
+            )),
         centerTitle: true,
         backgroundColor: Colors.orange,
       ),
@@ -216,8 +218,17 @@ class _SleepPageState extends State<SleepPage> {
   Future<void> _aggiungoSL(DatabaseRepository database) async {
     final sp = await SharedPreferences.getInstance();
     final now = DateTime.now().hour;
+    if (sp.getInt('hour2') == null) {
+      sp.setInt('hour2', DateTime.now().hour);
+    }
+
+    final timelastfetch = sp.getInt("hour2");
+    List test = [now, timelastfetch];
+    print(
+      test,
+    );
     if ((sp.getBool('sleep') == false && sp.getBool('confirm') == true) ||
-        (now != sp.getInt("hour2"))) {
+        (now != timelastfetch)) {
       FitbitSleepDataManager fitbitSleepDataManager = FitbitSleepDataManager(
         clientID: Strings.fitbitClientID,
         clientSecret: Strings.fitbitClientSecret,
