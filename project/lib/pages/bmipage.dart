@@ -2,12 +2,23 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-const activateColor = Color.fromARGB(255, 229, 155, 86);
+/*
+decoration: const BoxDecoration(
+                gradient: LinearGradient(
+                  //sfumatura
+                  colors: [Colors.orangeAccent, Colors.deepOrange],
+                  // direzione della sfumatura
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                ),
+              ),
+*/
+const activateColor = Colors.orange;
 const inactiveColor = Color(0xFFffffff);
 
 class BmiPage extends StatefulWidget {
   static const route = '/home/Bmi';
-  static const routename = 'BmiPage';
+  static const routename = 'BMI CALCULATOR PAGE';
 
   const BmiPage({Key? key}) : super(key: key);
 
@@ -64,8 +75,11 @@ class _BmiPageState extends State<BmiPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(BmiPage.routename),
-        backgroundColor: const Color.fromARGB(255, 229, 155, 86),
+        title: const Text(
+          BmiPage.routename,
+          style: TextStyle(fontFamily: 'Audiowide'),
+        ),
+        backgroundColor: Colors.orange,
       ),
       body: Column(
         children: [
@@ -118,7 +132,8 @@ class _BmiPageState extends State<BmiPage> {
                   style: TextStyle(
                       color: Colors.black,
                       fontSize: 15.0,
-                      fontWeight: FontWeight.bold),
+                      fontWeight: FontWeight.bold,
+                      fontFamily: 'Audiowide'),
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -135,9 +150,9 @@ class _BmiPageState extends State<BmiPage> {
                     const Text(
                       'cm',
                       style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 15.0,
-                      ),
+                          color: Colors.black,
+                          fontSize: 15.0,
+                          fontFamily: 'Audiowide'),
                     ),
                   ],
                 ),
@@ -170,7 +185,8 @@ class _BmiPageState extends State<BmiPage> {
                           style: TextStyle(
                               color: Colors.black,
                               fontSize: 15.0,
-                              fontWeight: FontWeight.bold),
+                              fontWeight: FontWeight.bold,
+                              fontFamily: 'Audiowide'),
                         ),
                         Text(
                           weight.toString(),
@@ -233,7 +249,8 @@ class _BmiPageState extends State<BmiPage> {
                           style: TextStyle(
                               color: Colors.black,
                               fontSize: 15.0,
-                              fontWeight: FontWeight.bold),
+                              fontWeight: FontWeight.bold,
+                              fontFamily: 'Audiowide'),
                         ),
                         Text(
                           age.toString(),
@@ -308,11 +325,12 @@ class _BmiPageState extends State<BmiPage> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               const Text(
-                                'Result',
+                                'RESULT',
                                 style: TextStyle(
                                     color: Colors.black,
                                     fontSize: 20.0,
-                                    fontWeight: FontWeight.bold),
+                                    fontWeight: FontWeight.bold,
+                                    fontFamily: 'Audiowide'),
                               ),
                               Text(
                                 result.toString(),
@@ -344,11 +362,12 @@ class _BmiPageState extends State<BmiPage> {
               margin: const EdgeInsets.only(top: 10.0),
               child: const Center(
                 child: Text(
-                  'Calculate',
+                  'CALCULATE',
                   style: TextStyle(
                       color: Color(0xFFffffff),
-                      fontSize: 30.0,
-                      fontWeight: FontWeight.bold),
+                      fontSize: 25.0,
+                      fontWeight: FontWeight.bold,
+                      fontFamily: 'Audiowide'),
                 ),
               ),
             ),
@@ -403,9 +422,7 @@ class DataContainer extends StatelessWidget {
         Text(
           title,
           style: const TextStyle(
-            color: Colors.black,
-            fontSize: 20.0,
-          ),
+              color: Colors.black, fontSize: 20.0, fontFamily: 'Audiowide'),
         )
       ],
     );

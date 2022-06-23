@@ -16,6 +16,8 @@ abstract class ActivityDao {
   Future<List<Activity>> findCalories();
   @Query('SELECT * FROM Activity')
   Future<List<Activity>> findMinSedentary();
+  @Query('DELETE FROM Activity')
+  Future<void> deleteAllActivity();
 
   //Query #2: INSERT
   @Insert(onConflict: OnConflictStrategy.rollback)

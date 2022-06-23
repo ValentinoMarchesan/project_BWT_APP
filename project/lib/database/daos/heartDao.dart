@@ -11,7 +11,8 @@ abstract class HeartDao {
   Future<List<Heart>> findAllHeart();
   @Query('SELECT minutesheart FROM Heart WHERE id = :id')
   Future<List<Heart>> findminutsHeart(int id);
-
+  @Query('DELETE FROM Heart')
+  Future<void> deleteAllHeart();
   //Query #2: INSERT
   @Insert(onConflict: OnConflictStrategy.rollback)
   Future<void> insertHeart(Heart heart);

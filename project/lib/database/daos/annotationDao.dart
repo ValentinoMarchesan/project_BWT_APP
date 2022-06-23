@@ -20,4 +20,7 @@ abstract class AnnotationDao {
   //Query #4: UPDATE -> update una annotatino entry
   @Update(onConflict: OnConflictStrategy.replace)
   Future<void> updateAnnotation(Annotation annotation);
+
+  @Query('DELETE FROM Annotation')
+  Future<void> deleteAllAnnotation();
 } //AnnotationDao

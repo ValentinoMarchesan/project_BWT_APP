@@ -3,8 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:project/pages/homepage.dart';
 import 'package:project/pages/loginPage.dart';
 import 'package:project/utils/strings.dart';
+import 'package:provider/provider.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import '../database/entities/activity.dart';
+import '../database/entities/heart.dart';
+import '../database/entities/sleep.dart';
+import '../repositories/databaseRepository.dart';
 
 class AuthPage extends StatefulWidget {
   AuthPage({Key? key}) : super(key: key);
@@ -64,6 +70,7 @@ class _AuthPageState extends State<AuthPage> {
               color: Colors.orangeAccent,
               child: const Text('Yes'),
               onPressed: () async {
+                _initializeDB(context);
                 String? userId = await FitbitConnector.authorize(
                     context: context,
                     clientID: Strings.fitbitClientID,
@@ -92,4 +99,45 @@ void _toLoginPage(BuildContext context) async {
   sp.remove('username');
   Navigator.of(context).pushReplacementNamed(LoginPage.route);
   //Navigator.pushNamed(context, LoginPage.route);
+}
+
+void _initializeDB(BuildContext context) async {
+  final sp = await SharedPreferences.getInstance();
+  sp.setBool('sleep', false);
+  sp.setBool('activity', false);
+  sp.setBool('heart', false);
+  sp.setBool('game', false);
+
+  final lista = await Provider.of<DatabaseRepository>(context, listen: false)
+      .findAllHeart();
+  final lista2 = await Provider.of<DatabaseRepository>(context, listen: false)
+      .findAllActivity();
+  final lista3 = await Provider.of<DatabaseRepository>(context, listen: false)
+      .findAllSleep();
+  if (lista.isEmpty && lista2.isEmpty && lista3.isEmpty) {
+    Provider.of<DatabaseRepository>(context, listen: false)
+        .insertHeart(Heart(1, 0));
+    Provider.of<DatabaseRepository>(context, listen: false)
+        .insertHeart(Heart(2, 0));
+    Provider.of<DatabaseRepository>(context, listen: false)
+        .insertHeart(Heart(3, 0));
+    Provider.of<DatabaseRepository>(context, listen: false)
+        .insertHeart(Heart(4, 0));
+    Provider.of<DatabaseRepository>(context, listen: false)
+        .insertActivity(Activity(1, 0, 0, 0, 0));
+    Provider.of<DatabaseRepository>(context, listen: false)
+        .insertActivity(Activity(2, 0, 0, 0, 0));
+    Provider.of<DatabaseRepository>(context, listen: false)
+        .insertActivity(Activity(3, 0, 0, 0, 0));
+    Provider.of<DatabaseRepository>(context, listen: false)
+        .insertActivity(Activity(4, 0, 0, 0, 0));
+    Provider.of<DatabaseRepository>(context, listen: false)
+        .insertActivity(Activity(5, 0, 0, 0, 0));
+    Provider.of<DatabaseRepository>(context, listen: false)
+        .insertActivity(Activity(6, 0, 0, 0, 0));
+    Provider.of<DatabaseRepository>(context, listen: false)
+        .insertActivity(Activity(7, 0, 0, 0, 0));
+    Provider.of<DatabaseRepository>(context, listen: false)
+        .insertSleep(Sleep(1, 0));
+  }
 }
