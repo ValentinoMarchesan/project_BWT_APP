@@ -22,7 +22,7 @@ class FormSeparator extends StatelessWidget {
                 width: 75,
                 child: Container(
                   // color: Theme.of(context).accentColor,
-                  color: Colors.orange,
+                  color: const Color.fromARGB(255, 254, 183, 77),
                 ),
               ),
               Expanded(
@@ -31,15 +31,16 @@ class FormSeparator extends StatelessWidget {
                 label,
                 style: const TextStyle(
                     fontWeight: FontWeight.w600,
-                    fontSize: 16,
-                    color: Colors.black),
+                    fontFamily: 'OpenSans',
+                    fontSize: 17,
+                    color: Color.fromARGB(255, 192, 115, 1)),
               ))),
               SizedBox(
                 height: 2,
                 width: 75,
                 child: Container(
                   // color: Theme.of(context).accentColor,
-                  color: Colors.orange,
+                  color: const Color.fromARGB(255, 254, 183, 77),
                 ),
               ),
             ],

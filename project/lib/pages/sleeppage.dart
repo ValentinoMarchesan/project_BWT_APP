@@ -39,7 +39,7 @@ class _SleepPageState extends State<SleepPage> {
               fontFamily: 'Audiowide',
             )),
         centerTitle: true,
-        backgroundColor: Colors.orange,
+        backgroundColor: const Color.fromARGB(255, 254, 183, 77),
       ),
       body: Center(
         child: Consumer<DatabaseRepository>(builder: (context, dbr, child) {
@@ -66,7 +66,7 @@ class _SleepPageState extends State<SleepPage> {
                           height: 400,
                           width: MediaQuery.of(context).size.width - 70,
                           decoration: BoxDecoration(
-                            color: Colors.orange,
+                            color: const Color.fromARGB(255, 254, 183, 77),
                             borderRadius: BorderRadius.circular(20),
                           ),
                           child: Lottie.asset(
@@ -81,7 +81,7 @@ class _SleepPageState extends State<SleepPage> {
                         Container(
                           padding: const EdgeInsets.all(30),
                           decoration: BoxDecoration(
-                            color: Colors.orange,
+                            color: const Color.fromARGB(255, 254, 183, 77),
                             borderRadius: BorderRadius.circular(20),
                           ),
                           width: MediaQuery.of(context).size.width - 70,
@@ -90,14 +90,18 @@ class _SleepPageState extends State<SleepPage> {
                             children: const [
                               Text('NO INFO ABOUT SLEEP!',
                                   style: TextStyle(
-                                      fontSize: 19, fontFamily: 'Audiowide')),
+                                      fontSize: 19,
+                                      fontFamily: 'Audiowide',
+                                      color: Colors.white)),
                               SizedBox(
                                 height: 10,
                               ),
                               Text(
                                   'Per poterti aiutare dovresti aprirti un pò di più con me!!',
                                   style: TextStyle(
-                                      fontSize: 15, fontFamily: 'Audiowide'),
+                                      fontSize: 15,
+                                      fontFamily: 'OpenSans',
+                                      color: Colors.white),
                                   textAlign: TextAlign.center),
                             ],
                           ),
@@ -116,7 +120,7 @@ class _SleepPageState extends State<SleepPage> {
                           height: 400,
                           width: MediaQuery.of(context).size.width - 70,
                           decoration: BoxDecoration(
-                            color: Colors.orange,
+                            color: const Color.fromARGB(255, 254, 183, 77),
                             borderRadius: BorderRadius.circular(20),
                           ),
                           child: Lottie.asset(
@@ -131,7 +135,7 @@ class _SleepPageState extends State<SleepPage> {
                         Container(
                           padding: const EdgeInsets.all(30),
                           decoration: BoxDecoration(
-                            color: Colors.orange,
+                            color: const Color.fromARGB(255, 254, 183, 77),
                             borderRadius: BorderRadius.circular(20),
                           ),
                           width: MediaQuery.of(context).size.width - 70,
@@ -166,7 +170,7 @@ class _SleepPageState extends State<SleepPage> {
                           height: 400,
                           width: MediaQuery.of(context).size.width - 70,
                           decoration: BoxDecoration(
-                            color: Colors.orange,
+                            color: const Color.fromARGB(255, 254, 183, 77),
                             borderRadius: BorderRadius.circular(20),
                           ),
                           child: Lottie.asset(
@@ -181,7 +185,7 @@ class _SleepPageState extends State<SleepPage> {
                         Container(
                           padding: const EdgeInsets.all(30),
                           decoration: BoxDecoration(
-                            color: Colors.orange,
+                            color: const Color.fromARGB(255, 254, 183, 77),
                             borderRadius: BorderRadius.circular(20),
                           ),
                           width: MediaQuery.of(context).size.width - 70,

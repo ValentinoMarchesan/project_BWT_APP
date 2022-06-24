@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -29,7 +30,10 @@ class CardHR extends StatelessWidget {
               decoration: const BoxDecoration(
                 gradient: LinearGradient(
                   //sfumatura
-                  colors: [Colors.orangeAccent, Colors.deepOrange],
+                  colors: [
+                    const Color.fromARGB(255, 239, 65, 123),
+                    const Color.fromARGB(255, 244, 190, 110)
+                  ],
                   // direzione della sfumatura
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
@@ -41,23 +45,33 @@ class CardHR extends StatelessWidget {
                   SizedBox(
                     width: 10,
                   ),
-                  Icon(Icons.heart_broken),
+                  Icon(
+                    Icons.heart_broken,
+                    color: Colors.white,
+                  ),
                   SizedBox(
                     height: 1,
                     width: 10,
                   ),
-                  Text('HEART RATE', style: TextStyle(fontFamily: 'Audiowide')),
-                  SizedBox(
-                    width: 190,
+                  Text(
+                    'HEART MONITORING',
+                    style:
+                        TextStyle(fontFamily: 'Audiowide', color: Colors.white),
                   ),
-                  Icon(Icons.view_column),
+                  SizedBox(
+                    width: 132,
+                  ),
+                  Icon(
+                    Icons.view_column,
+                    color: Colors.white,
+                  ),
                 ],
               ),
             ),
             Row(
               children: [
                 Container(
-                  color: Color.fromARGB(255, 236, 200, 145),
+                  color: Color.fromRGBO(255, 255, 255, 1),
                   height: 100,
                   width: 100,
                   child: Lottie.network(
@@ -68,7 +82,7 @@ class CardHR extends StatelessWidget {
                   height: 100,
                   width: 284.7,
                   decoration: const BoxDecoration(
-                    color: Color.fromARGB(255, 236, 200, 145),
+                    color: Color.fromRGBO(255, 255, 255, 1),
                     /*gradient: LinearGradient(
                     //sfumatura
                     colors: [Colors.orangeAccent, Colors.deepOrange],
@@ -80,15 +94,17 @@ class CardHR extends StatelessWidget {
                   ),
                   padding: const EdgeInsets.all(10),
                   child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: const [
                       Text(
-                        'Through the data acquired by the device, it provides an overview of cardiac activity',
+                        'Through the data acquired by your device, it provides an overview of your cardiac activity',
                         style: TextStyle(
-                            fontSize: 15,
-                            //fontWeight: FontWeight.bold,
-                            color: Colors.black,
-                            fontFamily: 'Audiowide'),
-                        textAlign: TextAlign.justify,
+                          fontSize: 15,
+                          //fontWeight: FontWeight.bold,
+                          color: Colors.black,
+                          fontFamily: 'OpenSans',
+                        ),
+                        textAlign: TextAlign.center,
                       ),
                     ],
                   ),
@@ -129,7 +145,10 @@ class CardSM extends StatelessWidget {
               decoration: const BoxDecoration(
                 gradient: LinearGradient(
                   //sfumatura
-                  colors: [Colors.orangeAccent, Colors.deepOrange],
+                  colors: [
+                    const Color.fromARGB(255, 239, 65, 123),
+                    const Color.fromARGB(255, 244, 190, 110)
+                  ],
                   // direzione della sfumatura
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
@@ -141,19 +160,18 @@ class CardSM extends StatelessWidget {
                   SizedBox(
                     width: 10,
                   ),
-                  Icon(
-                    Icons.dark_mode,
-                  ),
+                  Icon(Icons.dark_mode, color: Colors.white),
                   SizedBox(
                     height: 1,
                     width: 10,
                   ),
                   Text('SLEEP MONITORING',
-                      style: TextStyle(fontFamily: 'Audiowide')),
+                      style: TextStyle(
+                          fontFamily: 'Audiowide', color: Colors.white)),
                   SizedBox(
                     width: 132,
                   ),
-                  Icon(Icons.view_column),
+                  Icon(Icons.view_column, color: Colors.white),
                 ],
               ),
             ),
@@ -162,15 +180,10 @@ class CardSM extends StatelessWidget {
                 Container(
                   width: 10,
                   height: 100,
-                  color: Color.fromARGB(
-                    255,
-                    236,
-                    200,
-                    145,
-                  ),
+                  color: Color.fromRGBO(255, 255, 255, 1),
                 ),
                 Container(
-                  color: Color.fromARGB(255, 236, 200, 145),
+                  color: Color.fromRGBO(255, 255, 255, 1),
                   height: 100,
                   width: 100,
                   child: Lottie.network(
@@ -181,7 +194,7 @@ class CardSM extends StatelessWidget {
                   height: 100,
                   width: 274.7,
                   decoration: const BoxDecoration(
-                    color: Color.fromARGB(255, 236, 200, 145),
+                    color: Color.fromRGBO(255, 255, 255, 1),
                     /*gradient: LinearGradient(
                     //sfumatura
                     colors: [Colors.orangeAccent, Colors.deepOrange],
@@ -193,15 +206,16 @@ class CardSM extends StatelessWidget {
                   ),
                   padding: const EdgeInsets.all(8),
                   child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: const [
                       Text(
-                        'Through the data acquired by the device, it provides an overview of sleep activity',
+                        'Through the data acquired by your device, it provides an overview of your sleep activity',
                         style: TextStyle(
-                            fontSize: 16,
+                            fontSize: 15,
                             //fontWeight: FontWeight.bold,
                             color: Colors.black,
-                            fontFamily: 'Audiowide'),
-                        textAlign: TextAlign.justify,
+                            fontFamily: 'OpenSans'),
+                        textAlign: TextAlign.center,
                       ),
                     ],
                   ),
@@ -220,7 +234,7 @@ class CardSM extends StatelessWidget {
 }
 
 //______________________________________________________________________________
-//_______________ STEEP MONITORING CARD ________________________________________
+//_______________ STEP MONITORING CARD ________________________________________
 //______________________________________________________________________________
 
 class CardSteep extends StatelessWidget {
@@ -242,7 +256,10 @@ class CardSteep extends StatelessWidget {
               decoration: const BoxDecoration(
                 gradient: LinearGradient(
                   //sfumatura
-                  colors: [Colors.orangeAccent, Colors.deepOrange],
+                  colors: [
+                    const Color.fromARGB(255, 239, 65, 123),
+                    const Color.fromARGB(255, 244, 190, 110)
+                  ],
                   // direzione della sfumatura
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
@@ -254,17 +271,18 @@ class CardSteep extends StatelessWidget {
                   SizedBox(
                     width: 10,
                   ),
-                  Icon(Icons.run_circle),
+                  Icon(Icons.run_circle, color: Colors.white),
                   SizedBox(
                     height: 1,
                     width: 10,
                   ),
                   Text('STEPS MONITORING',
-                      style: TextStyle(fontFamily: 'Audiowide')),
+                      style: TextStyle(
+                          fontFamily: 'Audiowide', color: Colors.white)),
                   SizedBox(
                     width: 128,
                   ),
-                  Icon(Icons.view_column),
+                  Icon(Icons.view_column, color: Colors.white),
                 ],
               ),
             ),
@@ -273,15 +291,10 @@ class CardSteep extends StatelessWidget {
                 Container(
                   width: 20,
                   height: 100,
-                  color: Color.fromARGB(
-                    255,
-                    236,
-                    200,
-                    145,
-                  ),
+                  color: Color.fromRGBO(255, 255, 255, 1),
                 ),
                 Container(
-                  color: Color.fromARGB(255, 236, 200, 145),
+                  color: Color.fromRGBO(255, 255, 255, 1),
                   height: 100,
                   width: 100,
                   child: Lottie.network(
@@ -292,7 +305,7 @@ class CardSteep extends StatelessWidget {
                   height: 100,
                   width: 264.7,
                   decoration: const BoxDecoration(
-                    color: Color.fromARGB(255, 236, 200, 145),
+                    color: Color.fromRGBO(255, 255, 255, 1),
                     /*gradient: LinearGradient(
                     //sfumatura
                     colors: [Colors.orangeAccent, Colors.deepOrange],
@@ -304,15 +317,16 @@ class CardSteep extends StatelessWidget {
                   ),
                   padding: const EdgeInsets.all(8),
                   child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: const [
                       Text(
-                        'Through the data acquired by the device, it provides an overview of steps activity',
+                        'Through the data acquired by your device, it provides an overview of your step activity',
                         style: TextStyle(
                             fontSize: 15,
                             //fontWeight: FontWeight.bold,
                             color: Colors.black,
-                            fontFamily: 'Audiowide'),
-                        textAlign: TextAlign.justify,
+                            fontFamily: 'OpenSans'),
+                        textAlign: TextAlign.center,
                       ),
                     ],
                   ),
@@ -353,7 +367,10 @@ class Cardbmi extends StatelessWidget {
               decoration: const BoxDecoration(
                 gradient: LinearGradient(
                   //sfumatura
-                  colors: [Colors.orangeAccent, Colors.deepOrange],
+                  colors: [
+                    const Color.fromARGB(255, 239, 65, 123),
+                    const Color.fromARGB(255, 244, 190, 110)
+                  ],
                   // direzione della sfumatura
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
@@ -365,17 +382,20 @@ class Cardbmi extends StatelessWidget {
                   SizedBox(
                     width: 10,
                   ),
-                  Icon(FontAwesomeIcons.weightScale),
+                  Icon(FontAwesomeIcons.weightScale, color: Colors.white),
                   SizedBox(
                     height: 1,
-                    width: 10,
+                    width: 15,
                   ),
-                  Text('BMI CALCULATOR',
-                      style: TextStyle(fontFamily: 'Audiowide')),
+                  Text(
+                    'BMI CALCULATOR',
+                    style:
+                        TextStyle(fontFamily: 'Audiowide', color: Colors.white),
+                  ),
                   SizedBox(
                     width: 145,
                   ),
-                  Icon(Icons.view_column),
+                  Icon(Icons.view_column, color: Colors.white),
                 ],
               ),
             ),
@@ -384,7 +404,7 @@ class Cardbmi extends StatelessWidget {
               height: 100,
               //width: 234.7,
               decoration: const BoxDecoration(
-                color: Color.fromARGB(255, 236, 200, 145),
+                color: Color.fromRGBO(255, 255, 255, 1),
                 /*gradient: LinearGradient(
                                 //sfumatura
                                 colors: [Colors.orangeAccent, Colors.deepOrange],
@@ -396,15 +416,16 @@ class Cardbmi extends StatelessWidget {
               ),
               padding: const EdgeInsets.all(10),
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: const [
                   Text(
-                    'In this section you can calculate the BMI index by entering the age, weight and height. You also receive a feedback on the physical state.',
+                    'Calculate your BMI, it is very simple! Just enter your age, weight and height and you will receive a feedback on your physical state',
                     style: TextStyle(
                         fontSize: 15,
                         //fontWeight: FontWeight.bold,
                         color: Colors.black,
-                        fontFamily: 'Audiowide'),
-                    textAlign: TextAlign.justify,
+                        fontFamily: 'OpenSans'),
+                    textAlign: TextAlign.center,
                   )
                 ],
               ),

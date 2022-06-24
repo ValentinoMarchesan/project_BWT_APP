@@ -155,7 +155,7 @@ class _HomePageState extends State<HomePage> {
           borderRadius: const BorderRadius.vertical(top: Radius.circular(20)),
           child: WaterDropNavBar(
             backgroundColor: navigationBarColor,
-            waterDropColor: Colors.orangeAccent,
+            waterDropColor: const Color.fromARGB(255, 254, 183, 77),
             onItemSelected: (int index) {
               setState(() {
                 selectedIndex = index;

@@ -17,7 +17,7 @@ class AnnotationPage extends StatefulWidget {
   AnnotationPage({Key? key, required this.annotation}) : super(key: key);
 
   static const route = '/home/diary/annotation'; //CONTROLLA!!
-  static const routeDisplayName = 'Annotation';
+  static const routeDisplayName = 'ANNOTATION';
 
   @override
   State<AnnotationPage> createState() => _AnnotationPageState();
@@ -69,9 +69,10 @@ class _AnnotationPageState extends State<AnnotationPage> {
     // A FAB is showed to provide the "delete" functinality. It is showed only if the meal already exists.
     return Scaffold(
       appBar: AppBar(
-        title: Text(AnnotationPage.routeDisplayName),
+        title: Text(AnnotationPage.routeDisplayName,
+            style: TextStyle(fontFamily: 'Audiowide')),
         centerTitle: true,
-        backgroundColor: Colors.orange,
+        backgroundColor: const Color.fromARGB(255, 254, 183, 77),
         actions: [
           IconButton(
             onPressed: () => _validateAndSave(context),
@@ -87,6 +88,7 @@ class _AnnotationPageState extends State<AnnotationPage> {
           : FloatingActionButton(
               onPressed: () => _deleteAndPop(context),
               child: Icon(Icons.delete),
+              backgroundColor: Colors.deepOrange,
             ),
     );
   } //build
@@ -111,9 +113,9 @@ class _AnnotationPageState extends State<AnnotationPage> {
               controller: _minController,
               icon: MdiIcons.meditation,
             ),
-            FormSeparator(label: 'Mood'),
+            FormSeparator(label: 'Your thoughts'),
             FormTextTile(
-              labelText: 'Mood',
+              labelText: 'A penny for your thoughts!',
               icon: MdiIcons.stickerEmoji,
               controller: _moodController,
             ),

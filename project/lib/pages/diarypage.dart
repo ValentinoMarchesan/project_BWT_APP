@@ -16,10 +16,13 @@ class DiaryPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(DiaryPage.routename),
+        title: const Text(
+          DiaryPage.routename,
+          style: TextStyle(fontFamily: 'Audiowide'),
+        ),
         centerTitle: true,
-        backgroundColor: Colors.orange,
-        shadowColor: Colors.orangeAccent,
+        backgroundColor: const Color.fromARGB(255, 254, 183, 77),
+        shadowColor: const Color.fromARGB(255, 254, 183, 77),
       ),
       body: Center(
         child: Consumer<DatabaseRepository>(builder: (context, dbr, child) {
@@ -37,8 +40,9 @@ class DiaryPage extends StatelessWidget {
 
                 return data.length == 0
                     ? Text(
-                        'The annotation list is currently empty. \n You can note down your daily: water intake, mood ecc.',
+                        'Your annotation list is currently empty! \n You can note down your daily: water intake, minutes of meditation and mood. Try now!',
                         textAlign: TextAlign.center,
+                        style: TextStyle(fontSize: 18, fontFamily: 'OpenSans'),
                       )
                     : ListView.builder(
                         itemCount: data.length,
@@ -76,7 +80,7 @@ class DiaryPage extends StatelessWidget {
       // Rationale: I'm using null as annotation to let AnnotationPage know that we want to add a new annotation.
       floatingActionButton: FloatingActionButton(
         child: const Icon(MdiIcons.plus),
-        backgroundColor: Colors.deepOrangeAccent,
+        backgroundColor: Color.fromARGB(255, 243, 175, 73),
         onPressed: () => _toAnnotationPage(context, null),
       ),
     );

@@ -81,7 +81,7 @@ AppBar buildAppBarHeartPage(BuildContext context) {
     ),
     centerTitle: true,
     // leading: BackButton(),
-    backgroundColor: Colors.orange,
+    backgroundColor: const Color.fromARGB(255, 254, 183, 77),
     elevation: 0,
     actions: [
       IconButton(
@@ -101,7 +101,7 @@ AppBar buildAppBarHeartPage(BuildContext context) {
                         '\n•	 In the fat burn zone, moderate workouts use 50 to 69 percent of your maximum heart rate.\n',
                         style: TextStyle(
                           fontFamily: 'OpenSans',
-                          fontSize: 14,
+                          fontSize: 15,
                         ))
                   ]),
                 ),
@@ -131,7 +131,7 @@ AppBar buildAppBarHeartPage(BuildContext context) {
                 buttons: [
                   DialogButton(
                     radius: const BorderRadius.all(Radius.circular(30)),
-                    color: Colors.orangeAccent,
+                    color: const Color.fromARGB(255, 254, 183, 77),
                     child: const Text('OK'),
                     onPressed: () {
                       Navigator.pop(context);

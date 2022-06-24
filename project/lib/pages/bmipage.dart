@@ -13,12 +13,12 @@ decoration: const BoxDecoration(
                 ),
               ),
 */
-const activateColor = Colors.orange;
+const activateColor = const Color.fromARGB(255, 254, 183, 77);
 const inactiveColor = Color(0xFFffffff);
 
 class BmiPage extends StatefulWidget {
   static const route = '/home/Bmi';
-  static const routename = 'BMI CALCULATOR PAGE';
+  static const routename = 'BMI CALCULATOR';
 
   const BmiPage({Key? key}) : super(key: key);
 
@@ -79,7 +79,7 @@ class _BmiPageState extends State<BmiPage> {
           BmiPage.routename,
           style: TextStyle(fontFamily: 'Audiowide'),
         ),
-        backgroundColor: Colors.orange,
+        backgroundColor: const Color.fromARGB(255, 254, 183, 77),
       ),
       body: Column(
         children: [
@@ -94,7 +94,7 @@ class _BmiPageState extends State<BmiPage> {
                       });
                     }),
                     child: ContainerBox(
-                      boxColor: maleBoxColor,
+                      boxColor: Color.fromARGB(255, 208, 226, 203),
                       childWidget: const DataContainer(
                         icon: FontAwesomeIcons.mars,
                         title: 'MALE',
@@ -110,7 +110,7 @@ class _BmiPageState extends State<BmiPage> {
                       });
                     }),
                     child: ContainerBox(
-                      boxColor: femaleBoxColor,
+                      boxColor: Color.fromARGB(255, 216, 206, 229),
                       childWidget: const DataContainer(
                         icon: FontAwesomeIcons.venus,
                         title: 'FEMALE',

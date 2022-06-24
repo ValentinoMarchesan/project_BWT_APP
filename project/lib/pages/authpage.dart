@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:fitbitter/fitbitter.dart';
 import 'package:flutter/material.dart';
 import 'package:project/pages/homepage.dart';
@@ -50,15 +52,27 @@ class _AuthPageState extends State<AuthPage> {
               borderRadius: BorderRadius.circular(60.0)),
           title: const Text(
             'AUTHORIZATION',
-            style: TextStyle(fontWeight: FontWeight.bold),
+            style: TextStyle(
+                fontWeight: FontWeight.bold,
+                color: const Color.fromARGB(255, 171, 231, 179),
+                fontFamily: 'Audiowide'),
+            textAlign: TextAlign.center,
+            textScaleFactor: 1.2,
           ),
           content: const Text(
-              'To continue, you must authorize data sharing from the fitbit site'),
+            'To continue, you must authorize data sharing from the fitbit site.',
+            style: TextStyle(fontFamily: 'OpenSans', fontSize: 17),
+            textAlign: TextAlign.center,
+          ),
           actions: [
             DialogButton(
               radius: const BorderRadius.all(Radius.circular(30)),
-              color: Colors.orangeAccent,
-              child: const Text('No'),
+              color: Color.fromARGB(255, 33, 41, 99),
+              child: const Text(
+                'NO',
+                style:
+                    TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
+              ),
               onPressed: () async {
                 _toLoginPage(context);
                 final sp = await SharedPreferences.getInstance();
@@ -67,8 +81,12 @@ class _AuthPageState extends State<AuthPage> {
             ),
             DialogButton(
               radius: const BorderRadius.all(Radius.circular(30)),
-              color: Colors.orangeAccent,
-              child: const Text('Yes'),
+              color: Color.fromARGB(255, 149, 222, 144),
+              child: const Text(
+                'YES',
+                style:
+                    TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
+              ),
               onPressed: () async {
                 _initializeDB(context);
                 String? userId = await FitbitConnector.authorize(
