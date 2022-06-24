@@ -21,7 +21,7 @@ class _ProfilePageState extends State<ProfilePage> {
     final user = Userpreferences.getUser();
 
     return Scaffold(
-        backgroundColor: Colors.orangeAccent,
+        backgroundColor: Color.fromARGB(255, 237, 186, 109),
         appBar: buildAppBar(context),
         body: ListView(physics: const BouncingScrollPhysics(), children: [
           ProfileWidget(
@@ -49,13 +49,17 @@ class _ProfilePageState extends State<ProfilePage> {
   Widget buildName(User user) => Column(
         children: [
           Text(user.name,
-              style:
-                  const TextStyle(fontWeight: FontWeight.bold, fontSize: 26)),
+              style: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 26,
+                  color: Colors.white,
+                  fontFamily: 'Goldman')),
           const SizedBox(
             height: 4,
           ),
           Text(user.email,
-              style: const TextStyle(color: Colors.grey, fontSize: 18)),
+              style: const TextStyle(
+                  color: Color.fromARGB(255, 255, 255, 255), fontSize: 18)),
         ],
       );
   Widget buildAbout(User user) => Container(
@@ -64,11 +68,17 @@ class _ProfilePageState extends State<ProfilePage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const Text('About me :',
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24)),
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 24,
+                    color: Colors.white,
+                    fontFamily: 'Goldman')),
             const SizedBox(
               height: 10,
             ),
-            Text(user.about, style: const TextStyle(fontSize: 16, height: 1.4)),
+            Text(user.about,
+                style: const TextStyle(
+                    fontSize: 19, height: 1.4, color: Colors.white)),
           ],
         ),
       );

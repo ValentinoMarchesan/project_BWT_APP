@@ -13,9 +13,14 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 AppBar buildAppBar(BuildContext context) {
   return AppBar(
-    title: const Text(ProfilePage.routename),
+    centerTitle: true,
+    title: const Text(
+      'MY PROFILE',
+      style: TextStyle(fontFamily: 'Audiowide'),
+      textAlign: TextAlign.center,
+    ),
     // leading: BackButton(),
-    backgroundColor: Colors.orangeAccent,
+    backgroundColor: const Color.fromARGB(255, 254, 183, 77),
     elevation: 0,
     actions: [
       IconButton(
@@ -24,10 +29,10 @@ AppBar buildAppBar(BuildContext context) {
             Alert(
                 context: context,
                 title: 'LOGOUT',
-                desc: 'Do you want logout from your account',
+                desc: 'Do you want to logout from your account?',
                 style: const AlertStyle(
                   titleStyle: TextStyle(
-                    fontFamily: 'OpenSans',
+                    fontFamily: 'Audiowide',
                     fontWeight: FontWeight.bold,
                     fontSize: 20,
                     shadows: [
@@ -51,16 +56,28 @@ AppBar buildAppBar(BuildContext context) {
                 buttons: [
                   DialogButton(
                     radius: const BorderRadius.all(Radius.circular(30)),
-                    color: Colors.orangeAccent,
-                    child: const Text('No'),
+                    color: const Color.fromARGB(255, 254, 183, 77),
+                    child: const Text(
+                      'NO',
+                      style: TextStyle(
+                          fontFamily: 'Audiowide',
+                          fontSize: 16,
+                          color: Colors.white),
+                    ),
                     onPressed: () {
                       Navigator.pop(context);
                     },
                   ),
                   DialogButton(
                     radius: const BorderRadius.all(Radius.circular(30)),
-                    color: Colors.orangeAccent,
-                    child: const Text('Yes'),
+                    color: const Color.fromARGB(255, 254, 183, 77),
+                    child: const Text(
+                      'YES',
+                      style: TextStyle(
+                          fontFamily: 'Audiowide',
+                          fontSize: 16,
+                          color: Colors.white),
+                    ),
                     onPressed: () {
                       _toLoginPage_DeleteAll(context);
                     },

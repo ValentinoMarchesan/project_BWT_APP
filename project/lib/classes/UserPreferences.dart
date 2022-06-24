@@ -9,7 +9,7 @@ class Userpreferences {
   static late SharedPreferences _preferences;
   static const _keyUser = 'user'; //in key user we store user information
   static const myUser = User(
-      imagePath: 'assets/user_image.png',
+      imagePath: 'assets/profile_pic.png',
       name: 'Name',
       email: email_name,
       about: 'somethings about you');

@@ -36,15 +36,15 @@ class _GamePageState extends State<GamePage> {
     double maxheight = 300;
     return Scaffold(
       appBar: AppBar(
-        title: const Text(GamePage.routename,
+        title: const Text('MeCo',
             style: TextStyle(
-              fontFamily: 'AudioWide',
-              fontSize: 20,
+              fontFamily: 'Goldman',
+              fontSize: 50,
               fontWeight: FontWeight.w500,
-              color: Color(0xFF000000),
+              color: Colors.white,
             )),
         centerTitle: true,
-        backgroundColor: Colors.orange,
+        backgroundColor: const Color.fromARGB(255, 254, 183, 77),
         elevation: 0,
       ),
       body: Column(
@@ -57,7 +57,7 @@ class _GamePageState extends State<GamePage> {
                   child: ClipPath(
                     clipper: WaveClipper(),
                     child: Container(
-                      color: Colors.deepOrangeAccent,
+                      color: Colors.greenAccent,
                       height: 100,
                     ),
                   ),
@@ -65,7 +65,7 @@ class _GamePageState extends State<GamePage> {
                 ClipPath(
                   clipper: WaveClipper(),
                   child: Container(
-                    color: Colors.orange,
+                    color: const Color.fromARGB(255, 254, 183, 77),
                     height: 80,
                     alignment: Alignment.center,
                   ),
@@ -294,7 +294,7 @@ class _GamePageState extends State<GamePage> {
           Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
-                color: Colors.orange[500],
+                color: const Color.fromARGB(255, 254, 183, 77),
               ),
               height: 140,
               width: 360,
@@ -303,11 +303,11 @@ class _GamePageState extends State<GamePage> {
                   const Padding(
                     padding: EdgeInsets.all(8.0),
                     child: Text(
-                      'Hi its MeCo! Are you curious about how your current lifestyle affects your body?',
+                      'Hi is MeCo! Are you curious about how your current lifestyle affects your body?',
                       style: TextStyle(
-                          fontSize: 12,
-                          fontWeight: FontWeight.bold,
-                          fontFamily: 'Audiowide'),
+                          fontSize: 16,
+                          fontFamily: 'OpenSans',
+                          color: Colors.white),
                       textAlign: TextAlign.center,
                     ),
                   ),
@@ -315,15 +315,15 @@ class _GamePageState extends State<GamePage> {
                     padding: const EdgeInsets.all(8.0),
                     child: SlideAction(
                       elevation: 8,
-                      innerColor: Colors.orange,
-                      outerColor: Colors.orange[200],
+                      innerColor: Color.fromARGB(255, 197, 254, 215),
+                      outerColor: Color.fromARGB(255, 149, 231, 201),
                       sliderButtonIcon: const Icon(FontAwesomeIcons.info,
                           color: Colors.white),
-                      text: '     Slide to know more',
+                      text: '     SLIDE TO KNOW MORE',
                       textStyle: const TextStyle(
                         fontSize: 15,
                         fontWeight: FontWeight.bold,
-                        fontFamily: 'AudioWide',
+                        fontFamily: 'Goldman',
                         color: Colors.white,
                       ),
                       onSubmit: (() {

@@ -74,8 +74,8 @@ class CardHR extends StatelessWidget {
                   color: Color.fromRGBO(255, 255, 255, 1),
                   height: 100,
                   width: 100,
-                  child: Lottie.network(
-                      'https://assets1.lottiefiles.com/packages/lf20_l09h6eer.json'),
+                  child: Image.asset('assets/homepage/heart_home.png',
+                      scale: 80, fit: BoxFit.scaleDown),
                 ),
                 Container(
                   //colore interno
@@ -186,8 +186,8 @@ class CardSM extends StatelessWidget {
                   color: Color.fromRGBO(255, 255, 255, 1),
                   height: 100,
                   width: 100,
-                  child: Lottie.network(
-                      'https://assets10.lottiefiles.com/packages/lf20_jy3vmooe.json'),
+                  child: Image.asset('assets/homepage/sleep_home.png',
+                      scale: 5, fit: BoxFit.none),
                 ),
                 Container(
                   //colore interno
@@ -294,12 +294,11 @@ class CardSteep extends StatelessWidget {
                   color: Color.fromRGBO(255, 255, 255, 1),
                 ),
                 Container(
-                  color: Color.fromRGBO(255, 255, 255, 1),
-                  height: 100,
-                  width: 100,
-                  child: Lottie.network(
-                      'https://assets6.lottiefiles.com/packages/lf20_umwjpnnn.json'),
-                ),
+                    color: Color.fromRGBO(255, 255, 255, 1),
+                    height: 100,
+                    width: 80,
+                    child: Image.asset('assets/homepage/walk_home.png',
+                        scale: 15, fit: BoxFit.none)),
                 Container(
                   //colore interno
                   height: 100,

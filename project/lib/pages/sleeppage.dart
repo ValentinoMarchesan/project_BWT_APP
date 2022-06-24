@@ -97,9 +97,9 @@ class _SleepPageState extends State<SleepPage> {
                                 height: 10,
                               ),
                               Text(
-                                  'Per poterti aiutare dovresti aprirti un pò di più con me!!',
+                                  'In order to help you, you should open up a little bit more with me!',
                                   style: TextStyle(
-                                      fontSize: 15,
+                                      fontSize: 17,
                                       fontFamily: 'OpenSans',
                                       color: Colors.white),
                                   textAlign: TextAlign.center),
@@ -142,16 +142,20 @@ class _SleepPageState extends State<SleepPage> {
                           height: 155,
                           child: Column(
                             children: [
-                              Text('HAI DORMITO: $datasleep ORE',
+                              Text('YOU HAVE SLEPT: $datasleep h',
                                   style: const TextStyle(
-                                      fontSize: 20, fontFamily: 'Audiowide')),
+                                      fontSize: 20,
+                                      fontFamily: 'Audiowide',
+                                      color: Colors.white)),
                               const SizedBox(
                                 height: 10,
                               ),
                               const Text(
-                                  'Essere riposati è importante per affrontare la giornata con la carica giusta, complimenti!!',
+                                  'Having a good rest is important to face your day with the right energy, congrats!',
                                   style: TextStyle(
-                                      fontSize: 15, fontFamily: 'Audiowide'),
+                                      fontSize: 17,
+                                      fontFamily: 'OpenSans',
+                                      color: Colors.white),
                                   textAlign: TextAlign.center),
                             ],
                           ),
@@ -192,16 +196,20 @@ class _SleepPageState extends State<SleepPage> {
                           height: 140,
                           child: Column(
                             children: [
-                              Text('HAI DORMITO: $datasleep ORE',
+                              Text('YOU HAVE SLEPT: $datasleep h',
                                   style: const TextStyle(
-                                      fontSize: 20, fontFamily: 'Audiowide')),
+                                      fontSize: 20,
+                                      fontFamily: 'Audiowide',
+                                      color: Colors.white)),
                               const SizedBox(
                                 height: 10,
                               ),
                               const Text(
-                                  'Ricordati di andare a dormire prima la prossima volta!!',
+                                  'Next time remember to go to sleep earlier!',
                                   style: TextStyle(
-                                      fontSize: 15, fontFamily: 'Audiowide'),
+                                      fontSize: 17,
+                                      fontFamily: 'OpenSans',
+                                      color: Colors.white),
                                   textAlign: TextAlign.center),
                             ],
                           ),

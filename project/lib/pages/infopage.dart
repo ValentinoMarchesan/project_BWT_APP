@@ -13,15 +13,15 @@ class InfoPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text(InfoPage.routename,
+          title: const Text('SOME INFORMATIONS',
               style: TextStyle(
                 fontFamily: 'AudioWide',
                 fontSize: 20,
                 fontWeight: FontWeight.w500,
-                color: Color(0xFF000000),
+                color: Color.fromARGB(255, 255, 255, 255),
               )),
           centerTitle: true,
-          backgroundColor: Colors.orange,
+          backgroundColor: const Color.fromARGB(255, 254, 183, 77),
           elevation: 0,
         ),
         body: Column(children: [
@@ -33,7 +33,7 @@ class InfoPage extends StatelessWidget {
                   child: ClipPath(
                     clipper: WaveClipper(),
                     child: Container(
-                      color: Colors.deepOrangeAccent,
+                      color: Color.fromARGB(255, 92, 211, 154),
                       height: 100,
                     ),
                   ),
@@ -41,7 +41,7 @@ class InfoPage extends StatelessWidget {
                 ClipPath(
                   clipper: WaveClipper(),
                   child: Container(
-                    color: Colors.orange,
+                    color: const Color.fromARGB(255, 254, 183, 77),
                     height: 80,
                     alignment: Alignment.center,
                   ),
@@ -55,7 +55,7 @@ class InfoPage extends StatelessWidget {
           Container(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20),
-              color: Colors.orange[500],
+              color: Color.fromARGB(255, 124, 171, 164),
             ),
             height: 500,
             width: MediaQuery.of(context).size.width - 30,
@@ -75,8 +75,10 @@ class InfoPage extends StatelessWidget {
                             '\nTHE BENEFIT OF ACTIVITY \n'
                             '\n 1) Research shows that playing sports boosts blood flow to your brain. This enables your body to build more connections between nerves within the brain. This improves memory, stimulates creativity, and helps your brain develop better problem-solving skills. \n'
                             '\n 2) One study found that playing sports can improve brain function. It also showed that just being a sports fan may have a positive impact on your brain. Playing or watching sports can have an effect on the neural networks that support language comprehension.',
-                            style:
-                                TextStyle(fontSize: 14, fontFamily: 'Roboto'),
+                            style: TextStyle(
+                                fontSize: 14,
+                                fontFamily: 'OpenSans',
+                                color: Color.fromARGB(255, 255, 255, 255)),
                             textAlign: TextAlign.justify);
                       } else if (sp.getInt('statusinfo') == 2) {
                         return Text('PAPER SU MANCANZA DI SONNO');

@@ -88,7 +88,7 @@ class ProfileWidget extends StatelessWidget {
   //   ));
 
   Widget buildCoverImage() {
-    final Backimage = AssetImage('assets/sport.jpg');
+    final Backimage = AssetImage('assets/oic.JPG');
     return Container(
         color: Colors.grey,
         child: Image(

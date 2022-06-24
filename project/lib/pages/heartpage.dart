@@ -94,32 +94,32 @@ class _HeartPageState extends State<HeartPage> {
                         Text(
                             '- Minutes out of range:       ${data_heart[0]} min',
                             style: const TextStyle(
-                                fontSize: 15,
-                                fontFamily: 'Audiowide',
+                                fontSize: 18,
+                                fontFamily: 'OpenSans',
                                 color: Colors.white),
                             textAlign: TextAlign.start),
                         const SizedBox(height: 2),
                         Text(
                             '- Minutes fat burn:              ${data_heart[1]} min',
                             style: const TextStyle(
-                                fontSize: 15,
-                                fontFamily: 'Audiowide',
+                                fontSize: 18,
+                                fontFamily: 'OpenSans',
                                 color: Colors.white),
                             textAlign: TextAlign.start),
                         const SizedBox(height: 2),
                         Text(
                             '- Minutes cardio:                  ${data_heart[2]} min',
                             style: const TextStyle(
-                                fontSize: 15,
-                                fontFamily: 'Audiowide',
+                                fontSize: 18,
+                                fontFamily: 'OpenSans',
                                 color: Colors.white),
                             textAlign: TextAlign.start),
                         const SizedBox(height: 2),
                         Text(
                             '- Minutes peak:                    ${data_heart[3]} min',
                             style: const TextStyle(
-                                fontSize: 15,
-                                fontFamily: 'Audiowide',
+                                fontSize: 18,
+                                fontFamily: 'OpenSans',
                                 color: Colors.white),
                             textAlign: TextAlign.start),
                       ],

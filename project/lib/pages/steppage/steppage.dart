@@ -107,56 +107,56 @@ class _StepPageState extends State<StepPage> {
                           Text(
                               '   - Last day step: ${datastep[0]!.toInt()} steps ',
                               style: const TextStyle(
-                                  fontSize: 15,
-                                  fontFamily: 'Audiowide',
+                                  fontSize: 18,
+                                  fontFamily: 'OpenSans',
                                   color: Colors.white),
                               textAlign: TextAlign.start),
                           const SizedBox(height: 5),
                           Text(
                               '   - Means steps of the week: ${means!.toInt()} steps',
                               style: const TextStyle(
-                                  fontSize: 15,
-                                  fontFamily: 'Audiowide',
+                                  fontSize: 18,
+                                  fontFamily: 'OpenSans',
                                   color: Colors.white),
                               textAlign: TextAlign.start),
                           const SizedBox(height: 5),
                           Text(
                               '   - Max steps in the week: ${maxsteps!.toInt()} steps',
                               style: const TextStyle(
-                                  fontSize: 15,
-                                  fontFamily: 'Audiowide',
+                                  fontSize: 18,
+                                  fontFamily: 'OpenSans',
                                   color: Colors.white),
                               textAlign: TextAlign.start),
                           const SizedBox(height: 5),
                           Text(
                               '   - Min steps of the week: ${minsteps.toInt()} steps',
                               style: const TextStyle(
-                                  fontSize: 15,
-                                  fontFamily: 'Audiowide',
+                                  fontSize: 18,
+                                  fontFamily: 'OpenSans',
                                   color: Colors.white),
                               textAlign: TextAlign.start),
                           const SizedBox(height: 5),
                           Text(
                               '   - Calories of activity burn:${dataactivity[1]!.toInt()}Kcal',
                               style: const TextStyle(
-                                  fontSize: 15,
-                                  fontFamily: 'Audiowide',
+                                  fontSize: 18,
+                                  fontFamily: 'OpenSans',
                                   color: Colors.white),
                               textAlign: TextAlign.start),
                           const SizedBox(height: 5),
                           Text(
                               '   - Minutes sedentary: ${dataactivity[2]!.toInt()} min',
                               style: const TextStyle(
-                                  fontSize: 15,
-                                  fontFamily: 'Audiowide',
+                                  fontSize: 18,
+                                  fontFamily: 'OpenSans',
                                   color: Colors.white),
                               textAlign: TextAlign.start),
                           const SizedBox(height: 5),
                           Text(
                               '   - hours sedentary: ${(dataactivity[2]! / 60).toInt()} h',
                               style: const TextStyle(
-                                  fontSize: 15,
-                                  fontFamily: 'Audiowide',
+                                  fontSize: 18,
+                                  fontFamily: 'OpenSans',
                                   color: Colors.white),
                               textAlign: TextAlign.start),
                         ],

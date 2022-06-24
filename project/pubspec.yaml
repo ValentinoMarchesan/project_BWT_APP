@@ -114,6 +114,11 @@ flutter:
   - assets/sleep.json
   - assets/sleep2.json
   - assets/sleep3.json
+  - assets/homepage/heart_home.png
+  - assets/homepage/walk_home.png
+  - assets/homepage/sleep_home.png
+  - assets/oic.JPG
+  - assets/profile_pic.png
 
   
   # An image asset can refer to one or more resolution-specific "variants", see
