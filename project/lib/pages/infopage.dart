@@ -79,11 +79,19 @@ class InfoPage extends StatelessWidget {
                                 TextStyle(fontSize: 14, fontFamily: 'Roboto'),
                             textAlign: TextAlign.start);
                       } else if (sp.getInt('statusinfo') == 2) {
-                        return const Text(
-                          'PAY ATTENTION: SLEEP IS VERY IMPORTANT \n'
-                          'Sleep plays a critical role in thinking and learning. Lack of sleep hurts these cognitive processes in many ways. First, it impairs attention, alertness, concentration, reasoning, and problem solving. This makes it more difficult to learn efficiently. Second, during the night, various sleep cycles play a role in “consolidating” memories in the mind. If you don’t get enough sleep, you won’t be able to remember what you learned and experienced during the day.',
-                          style: TextStyle(fontSize: 14, fontFamily: 'Roboto'),
-                          textAlign: TextAlign.start,
+                        return Column(
+                          children: [
+                            const Text(
+                              'PAY ATTENTION: SLEEP IS VERY IMPORTANT \n'
+                              'Sleep plays a critical role in thinking and learning. Lack of sleep hurts these cognitive processes in many ways. First, it impairs attention, alertness, concentration, reasoning, and problem solving. This makes it more difficult to learn efficiently. Second, during the night, various sleep cycles play a role in “consolidating” memories in the mind. If you don’t get enough sleep, you won’t be able to remember what you learned and experienced during the day.',
+                              style:
+                                  TextStyle(fontSize: 14, fontFamily: 'Roboto'),
+                              textAlign: TextAlign.start,
+                            ),
+                            Container(
+                                height: 320,
+                                child: Image.asset('assets/MeCo/idea.png'))
+                          ],
                         );
                       } else if (sp.getInt('statusinfo') == 3) {
                         return const Text(
@@ -99,18 +107,25 @@ class InfoPage extends StatelessWidget {
                           textAlign: TextAlign.start,
                         );
                       } else if (sp.getInt('statusinfo') == 4) {
-                        return const Text(
-                            'PAY ATTENTION: TRY TO SLEEP MORE HOURS AND TRY TO MAKE SOME SPORTS \n'
-                            'because: \n - Exercise increases blood flow to the brain. Due to its high metabolic demand, the brain demands good circulation, and exercise aids it; \n'
-                            '• Exercise improves memory;\n'
-                            '• Exercise help in contrasting stress.\n'
-                            '• Sleep helps everyone to retain and consolidate memories; \n'
-                            '• Sleep contributes to improved sport performance; \n'
-                            '• Without sleep, the pathways in the brain that allow you to learn and make memories can’t be performed or maintained; \n'
-                            '• Sleep is important for maintaining subjects’ mental health.\n',
-                            style:
-                                TextStyle(fontSize: 14, fontFamily: 'Roboto'),
-                            textAlign: TextAlign.start);
+                        return Column(
+                          children: [
+                            const Text(
+                                'PAY ATTENTION: TRY TO SLEEP MORE HOURS AND TRY TO MAKE SOME SPORTS \n'
+                                'because: \n - Exercise increases blood flow to the brain. Due to its high metabolic demand, the brain demands good circulation, and exercise aids it; \n'
+                                '• Exercise improves memory;\n'
+                                '• Exercise help in contrasting stress.\n'
+                                '• Sleep helps everyone to retain and consolidate memories; \n'
+                                '• Sleep contributes to improved sport performance; \n'
+                                '• Without sleep, the pathways in the brain that allow you to learn and make memories can’t be performed or maintained; \n'
+                                '• Sleep is important for maintaining subjects’ mental health.\n',
+                                style: TextStyle(
+                                    fontSize: 14, fontFamily: 'Roboto'),
+                                textAlign: TextAlign.start),
+                            Container(
+                                height: 200,
+                                child: Image.asset('assets/MeCo/idea.png'))
+                          ],
+                        );
                       } else if (sp.getInt('statusinfo') == 5) {
                         return const Text(
                           'SUPER! YOU SLEEP THE NEEDED HOURS, YOU PLAYING SPORTS, YOU HYDRATE AND YOU DO MEDITATION \n'

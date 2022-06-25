@@ -1,6 +1,5 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:path_provider/path_provider.dart';
 
 class ProfileWidget extends StatelessWidget {
   //final String backgroundPath;
@@ -12,7 +11,6 @@ class ProfileWidget extends StatelessWidget {
 
   const ProfileWidget({
     Key? key,
-    //required this.backgroundPath,
     required this.imagePath,
     this.isEdit = false,
     required this.onClicked,
@@ -78,26 +76,15 @@ class ProfileWidget extends StatelessWidget {
         ),
       );
 
-  // Widget buildCoverImage() => Container(
-  //    color: Colors.grey,
-  //  child: Image(
-  // image: AssetImage('assets/tree.jpg'),
-  // width: double.infinity,
-  // height: coverHeight,
-  //   fit: BoxFit.cover,
-  //   ));
-
   Widget buildCoverImage() {
     final Backimage = AssetImage('assets/sport.jpg');
     return Container(
         color: Colors.grey,
         child: Image(
-          //image: AssetImage('assets/tree.jpg'),
           image: Backimage,
           width: double.infinity,
           height: coverHeight,
           fit: BoxFit.cover,
-          // child: InkWell(onTap: onClicked),
         ));
   }
 }

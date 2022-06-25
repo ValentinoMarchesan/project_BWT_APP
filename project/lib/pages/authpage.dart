@@ -78,10 +78,14 @@ class _AuthPageState extends State<AuthPage> {
                     redirectUri: Strings.fitbitRedirectUri,
                     callbackUrlScheme: Strings.fitbitCallbackScheme);
                 final sp = await SharedPreferences.getInstance();
-                sp.setString('userid', userId!);
-                sp.setBool('confirm', true);
+                if (userId == null) {
+                  Navigator.of(context).pushReplacementNamed(LoginPage.route);
+                } else {
+                  sp.setString('userid', userId);
+                  sp.setBool('confirm', true);
 
-                Navigator.of(context).pushReplacementNamed(HomePage.route);
+                  Navigator.of(context).pushReplacementNamed(HomePage.route);
+                }
               },
             )
           ],

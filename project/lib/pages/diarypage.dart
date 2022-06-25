@@ -16,7 +16,10 @@ class DiaryPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(DiaryPage.routename),
+        title: const Text(
+          DiaryPage.routename,
+          style: TextStyle(fontFamily: 'Audiowide'),
+        ),
         centerTitle: true,
         backgroundColor: Colors.orange,
         shadowColor: Colors.orangeAccent,

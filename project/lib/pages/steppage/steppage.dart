@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:fitbitter/fitbitter.dart';
 import 'package:flutter/material.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
@@ -48,9 +46,6 @@ class _StepPageState extends State<StepPage> {
           backgroundColor: Colors.orange,
         ),
         body: Consumer<DatabaseRepository>(builder: (context, dbr, child) {
-          //The logic is to query the DB for the entire list of Todo using dbr.findAllTodos()
-          //and then populate the ListView accordingly.
-          //We need to use a FutureBuilder since the result of dbr.findAllTodos() is a Future.
           return FutureBuilder(
             initialData: null,
             future: dbr.findAllActivity(),
@@ -75,7 +70,7 @@ class _StepPageState extends State<StepPage> {
                 ];
                 return Column(
                   children: [
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                     Container(

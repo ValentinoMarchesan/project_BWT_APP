@@ -1,11 +1,9 @@
 class User {
-  //final String backgroundPath;
   final String imagePath;
   final String name;
   final String email;
   final String about;
   const User({
-    //required this.backgroundPath,
     required this.imagePath,
     required this.name,
     required this.email,
@@ -21,7 +19,6 @@ class User {
       // with this method we take a User instance and if there is some modification
       //we'll take the previous state of User
       User(
-          //backgroundPath: backgroundPath ?? this.backgroundPath,
           imagePath: imagePath ?? this.imagePath,
           name: name ?? this.name,
           email: email ?? this.email,
@@ -30,7 +27,6 @@ class User {
   //String the key and dynamic the value of the Map
   //convert map json to User object
   static User fromJson(Map<String, dynamic> json) => User(
-        // backgroundPath: json['backgroundPath']
         imagePath: json['imagePath'],
         name: json['name'],
         email: json['email'],
@@ -38,7 +34,6 @@ class User {
       );
 //to store data in the device
   Map<String, dynamic> toJson() => {
-        //'backgroundPath': backgroundPath
         'imagePath': imagePath,
         'name': name,
         'email': email,

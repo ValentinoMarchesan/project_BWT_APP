@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
 import 'heartseries.dart';
 
+//Class that define HeartChart as a BarCharts
 class HeartChart extends StatelessWidget {
   final List<HeartSeries> data;
 
@@ -20,14 +21,15 @@ class HeartChart extends StatelessWidget {
 
     return Container(
       height: 600,
-      padding: EdgeInsets.all(15),
+      padding: const EdgeInsets.all(15),
       child: Card(
+        elevation: 10,
         child: Padding(
           padding: const EdgeInsets.all(9.0),
           child: Column(
             children: <Widget>[
-              Text("Heart activity in a day",
-                  style: Theme.of(context).textTheme.bodyMedium),
+              const Text("Heart activity in a day",
+                  style: TextStyle(fontFamily: 'Audiowide')),
               Expanded(
                 child: charts.BarChart(series, animate: true),
               )

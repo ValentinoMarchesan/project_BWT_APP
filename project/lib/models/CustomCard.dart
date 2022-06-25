@@ -85,7 +85,6 @@ class CardHR extends StatelessWidget {
                         'Through the data acquired by the device, it provides an overview of cardiac activity',
                         style: TextStyle(
                             fontSize: 15,
-                            //fontWeight: FontWeight.bold,
                             color: Colors.black,
                             fontFamily: 'Audiowide'),
                         textAlign: TextAlign.justify,
@@ -117,15 +116,15 @@ class CardSM extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       clipBehavior: Clip.antiAlias,
-      // forma dei bordi
+      // border shape
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
-      // contenuto
+      // content
       child: GestureDetector(
         onTap: () => _toSleepPage(context),
         child: Column(
           children: [
             Container(
-              //colore interno
+              //internal color
               decoration: const BoxDecoration(
                 gradient: LinearGradient(
                   //sfumatura
@@ -162,7 +161,7 @@ class CardSM extends StatelessWidget {
                 Container(
                   width: 10,
                   height: 100,
-                  color: Color.fromARGB(
+                  color: const Color.fromARGB(
                     255,
                     236,
                     200,
@@ -273,7 +272,7 @@ class CardSteep extends StatelessWidget {
                 Container(
                   width: 20,
                   height: 100,
-                  color: Color.fromARGB(
+                  color: const Color.fromARGB(
                     255,
                     236,
                     200,
