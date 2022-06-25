@@ -1,6 +1,7 @@
 import 'package:charts_flutter/flutter.dart' as charts;
 import 'package:flutter/material.dart';
 
+//Class that define data of HeartCharts
 class HeartSeries {
   String status;
   int min;

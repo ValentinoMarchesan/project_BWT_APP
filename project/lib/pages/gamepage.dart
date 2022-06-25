@@ -143,7 +143,7 @@ class _GamePageState extends State<GamePage> {
                                                     } else if (data[data.length -
                                                                     1]
                                                                 .ml >
-                                                            1500 &&
+                                                            2000 &&
                                                         data[data.length - 1]
                                                                 .min >
                                                             10) {
@@ -266,6 +266,7 @@ class _GamePageState extends State<GamePage> {
                                       child:
                                           Image.asset('assets/MeCo/sad.png'));
                                 } else if (sp.getInt('status') == 5) {
+                                  sp.setInt('statusinfo', 5);
                                   return AnimationWidget(
                                     child: Container(
                                       height: 340,
@@ -381,7 +382,7 @@ class _GamePageState extends State<GamePage> {
               },
               shape: CircleBorder(),
               padding: const EdgeInsets.all(24.0),
-              child: Icon(FontAwesomeIcons.faceGrinSquint, color: Colors.black),
+              child: Icon(FontAwesomeIcons.faceSmile, color: Colors.black),
             ),
             RawMaterialButton(
               onPressed: () async {
@@ -391,7 +392,7 @@ class _GamePageState extends State<GamePage> {
               },
               shape: CircleBorder(),
               padding: const EdgeInsets.all(24.0),
-              child: Icon(FontAwesomeIcons.faceFrownOpen, color: Colors.black),
+              child: Icon(FontAwesomeIcons.faceDizzy, color: Colors.black),
             ),
             RawMaterialButton(
               onPressed: () async {
@@ -401,7 +402,7 @@ class _GamePageState extends State<GamePage> {
               },
               shape: CircleBorder(),
               padding: const EdgeInsets.all(24.0),
-              child: Icon(FontAwesomeIcons.faceSmile, color: Colors.black),
+              child: Icon(FontAwesomeIcons.faceMeh, color: Colors.black),
             ),
             RawMaterialButton(
               onPressed: () async {

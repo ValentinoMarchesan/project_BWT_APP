@@ -133,15 +133,15 @@ class CardSM extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       clipBehavior: Clip.antiAlias,
-      // forma dei bordi
+      // border shape
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
-      // contenuto
+      // content
       child: GestureDetector(
         onTap: () => _toSleepPage(context),
         child: Column(
           children: [
             Container(
-              //colore interno
+              //internal color
               decoration: const BoxDecoration(
                 gradient: LinearGradient(
                   //sfumatura
