@@ -357,8 +357,8 @@ class _GamePageState extends State<GamePage> {
           // fabCloseColor: Colors.white
           // These properties take precedence over fabColor
           fabColor: Colors.white,
-          fabOpenIcon: Icon(Icons.info_outline, color: Colors.orange),
-          fabCloseIcon: Icon(Icons.close, color: Colors.orange),
+          fabOpenIcon: const Icon(Icons.info_outline, color: Colors.orange),
+          fabCloseIcon: const Icon(Icons.close, color: Colors.orange),
           fabMargin: const EdgeInsets.all(16.0),
           animationDuration: const Duration(milliseconds: 800),
           animationCurve: Curves.easeInOutCirc,
@@ -561,19 +561,6 @@ class _GamePageState extends State<GamePage> {
       //database.updateSleep(Sleep(1, sleepDurHourse));
 
     }
-  }
-
-// _____________ tentativo di algoritmo gampage _____________________
-  game() async {
-    int count = 0;
-    final sp = await SharedPreferences.getInstance();
-    var percentage = sp.getDouble('lastdaystep');
-    while (percentage! > 5000) {
-      percentage = percentage - 5000;
-      count = count + 1;
-    }
-    double result = (percentage * 100) / 5000;
-    return result;
   }
 }
 
