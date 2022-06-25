@@ -86,8 +86,8 @@ class InfoPage extends StatelessWidget {
                             const Text(
                               'PAY ATTENTION: SLEEP IS VERY IMPORTANT \n'
                               'Sleep plays a critical role in thinking and learning. Lack of sleep hurts these cognitive processes in many ways. First, it impairs attention, alertness, concentration, reasoning, and problem solving. This makes it more difficult to learn efficiently. Second, during the night, various sleep cycles play a role in “consolidating” memories in the mind. If you don’t get enough sleep, you won’t be able to remember what you learned and experienced during the day.',
-                              style:
-                                  TextStyle(fontSize: 14, fontFamily: 'Roboto'),
+                              style: TextStyle(
+                                  fontSize: 14, fontFamily: 'OpenSans'),
                               textAlign: TextAlign.start,
                             ),
                             Container(
@@ -105,7 +105,8 @@ class InfoPage extends StatelessWidget {
                           'Exercise improves memory by increasing molecular targets like the brain-derived neurotrophic factor (BDNF). This molecular factor increases synaptogenesis, forming new synapses that mediate learning and memory, making it easier to absorb information and form long-term memories. The more BDNF, the more the memory improves in function and capacity.'
                           '\n         EXERCISE LOWERS STRESS IMPACT \n'
                           'Exercise is not a direct solution to stress, but it does pacify the experience. It is important to note that exercise does not decrease stress hormones, but it does decrease the number of stress receptors in the hippocampus. Reducing stress receptors minimizes the effect of stress hormones on the brain, decreasing the impact of stressful experiences.',
-                          style: TextStyle(fontSize: 14, fontFamily: 'Roboto'),
+                          style:
+                              TextStyle(fontSize: 14, fontFamily: 'OpenSans'),
                           textAlign: TextAlign.start,
                         );
                       } else if (sp.getInt('statusinfo') == 4) {
@@ -113,7 +114,7 @@ class InfoPage extends StatelessWidget {
                           children: [
                             const Text(
                                 'PAY ATTENTION: TRY TO SLEEP MORE HOURS AND TRY TO MAKE SOME SPORTS \n'
-                                'because: \n - Exercise increases blood flow to the brain. Due to its high metabolic demand, the brain demands good circulation, and exercise aids it; \n'
+                                'because: \n• Exercise increases blood flow to the brain. Due to its high metabolic demand, the brain demands good circulation, and exercise aids it; \n'
                                 '• Exercise improves memory;\n'
                                 '• Exercise help in contrasting stress.\n'
                                 '• Sleep helps everyone to retain and consolidate memories; \n'
@@ -121,7 +122,7 @@ class InfoPage extends StatelessWidget {
                                 '• Without sleep, the pathways in the brain that allow you to learn and make memories can’t be performed or maintained; \n'
                                 '• Sleep is important for maintaining subjects’ mental health.\n',
                                 style: TextStyle(
-                                    fontSize: 14, fontFamily: 'Roboto'),
+                                    fontSize: 14, fontFamily: 'OpenSans'),
                                 textAlign: TextAlign.start),
                             Container(
                                 height: 200,
@@ -149,7 +150,8 @@ class InfoPage extends StatelessWidget {
                           '\n•	Promotes healthy, sustained focus;'
                           '\n•	help regulate the balance of vital hormones;'
                           '\n•	with practice, meditation can also help you develop empathy and be more compassionate.',
-                          style: TextStyle(fontSize: 13, fontFamily: 'Roboto'),
+                          style:
+                              TextStyle(fontSize: 13, fontFamily: 'OpenSans'),
                           textAlign: TextAlign.start,
                         );
                       } else {
