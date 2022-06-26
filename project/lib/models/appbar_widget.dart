@@ -98,7 +98,19 @@ AppBar buildAppBarHeartPage(BuildContext context) {
     ),
     centerTitle: true,
     // leading: BackButton(),
-    backgroundColor: const Color.fromARGB(255, 254, 183, 77),
+    flexibleSpace: Container(
+        decoration: BoxDecoration(
+      gradient: LinearGradient(
+        //sfumatura
+        colors: [
+          Color.fromARGB(255, 239, 65, 123),
+          Color.fromARGB(255, 244, 190, 110)
+        ],
+        // direzione della sfumatura
+        begin: Alignment.topLeft,
+        end: Alignment.bottomRight,
+      ),
+    )),
     elevation: 0,
     actions: [
       IconButton(

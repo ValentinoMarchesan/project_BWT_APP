@@ -49,32 +49,32 @@ class _HomePageState extends State<HomePage> {
                 // ignore: prefer_const_literals_to_create_immutables
                 children: <Widget>[
                   const SizedBox(
-                    height: 15,
+                    height: 35,
                   ),
 //_____________________ HEART RATE CARD ________________________________________
                   const CardHR(),
 //__________________________ FINE HEART RATE CARD _____________________________
                   const SizedBox(
-                    height: 5,
+                    height: 10,
                   ),
 // _______________________ SLEEP CARD _________________________________________
                   const CardSM(),
 //________________________ FINE SLEEP CARD ____________________________________
                   const SizedBox(
-                    height: 5,
+                    height: 10,
                   ),
 // _____________________ STEP CARD _____________________________________________
                   const CardSteep(),
 //___________________________ FINE STEP CARD ___________________________________
                   const SizedBox(
-                    height: 5,
+                    height: 10,
                   ),
 //_________________________ ACTIVITY CARD ______________________________________
                   const Cardbmi(),
 //_________________________ FINE ACTIVITY CARD _________________________________
 
                   const SizedBox(
-                    height: 5,
+                    height: 10,
                   ),
                   //_______________________________________________________________________
                   //________________________________________________________________________

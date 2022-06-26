@@ -13,7 +13,7 @@ decoration: const BoxDecoration(
                 ),
               ),
 */
-const activateColor = const Color.fromARGB(255, 254, 183, 77);
+const activateColor = Color.fromARGB(255, 244, 190, 110);
 const inactiveColor = Color(0xFFffffff);
 
 class BmiPage extends StatefulWidget {
@@ -79,7 +79,20 @@ class _BmiPageState extends State<BmiPage> {
           BmiPage.routename,
           style: TextStyle(fontFamily: 'Audiowide'),
         ),
-        backgroundColor: const Color.fromARGB(255, 254, 183, 77),
+        centerTitle: true,
+        flexibleSpace: Container(
+            decoration: BoxDecoration(
+          gradient: LinearGradient(
+            //sfumatura
+            colors: [
+              Color.fromARGB(255, 239, 65, 123),
+              Color.fromARGB(255, 244, 190, 110)
+            ],
+            // direzione della sfumatura
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+          ),
+        )),
       ),
       body: Column(
         children: [
@@ -94,7 +107,7 @@ class _BmiPageState extends State<BmiPage> {
                       });
                     }),
                     child: ContainerBox(
-                      boxColor: Color.fromARGB(255, 208, 226, 203),
+                      boxColor: Color.fromARGB(255, 235, 213, 180),
                       childWidget: const DataContainer(
                         icon: FontAwesomeIcons.mars,
                         title: 'MALE',
@@ -110,7 +123,7 @@ class _BmiPageState extends State<BmiPage> {
                       });
                     }),
                     child: ContainerBox(
-                      boxColor: Color.fromARGB(255, 216, 206, 229),
+                      boxColor: Color.fromARGB(255, 235, 213, 180),
                       childWidget: const DataContainer(
                         icon: FontAwesomeIcons.venus,
                         title: 'FEMALE',

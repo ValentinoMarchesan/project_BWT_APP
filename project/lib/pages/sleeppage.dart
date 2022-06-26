@@ -39,7 +39,19 @@ class _SleepPageState extends State<SleepPage> {
               fontFamily: 'Audiowide',
             )),
         centerTitle: true,
-        backgroundColor: const Color.fromARGB(255, 254, 183, 77),
+        flexibleSpace: Container(
+            decoration: BoxDecoration(
+          gradient: LinearGradient(
+            //sfumatura
+            colors: [
+              Color.fromARGB(255, 239, 65, 123),
+              Color.fromARGB(255, 244, 190, 110)
+            ],
+            // direzione della sfumatura
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+          ),
+        )),
       ),
       body: Center(
         child: Consumer<DatabaseRepository>(builder: (context, dbr, child) {
@@ -59,14 +71,23 @@ class _SleepPageState extends State<SleepPage> {
                     return Column(
                       children: [
                         const SizedBox(
-                          height: 20,
+                          height: 50,
                         ),
                         Container(
                           padding: const EdgeInsets.all(30),
                           height: 400,
                           width: MediaQuery.of(context).size.width - 70,
                           decoration: BoxDecoration(
-                            color: const Color.fromARGB(255, 254, 183, 77),
+                            gradient: LinearGradient(
+                              //sfumatura
+                              colors: [
+                                Color.fromARGB(255, 239, 65, 123),
+                                Color.fromARGB(255, 244, 190, 110)
+                              ],
+                              // direzione della sfumatura
+                              begin: Alignment.topLeft,
+                              end: Alignment.bottomRight,
+                            ),
                             borderRadius: BorderRadius.circular(20),
                           ),
                           child: Lottie.asset(
@@ -81,7 +102,7 @@ class _SleepPageState extends State<SleepPage> {
                         Container(
                           padding: const EdgeInsets.all(30),
                           decoration: BoxDecoration(
-                            color: const Color.fromARGB(255, 254, 183, 77),
+                            color: Color.fromARGB(255, 244, 190, 110),
                             borderRadius: BorderRadius.circular(20),
                           ),
                           width: MediaQuery.of(context).size.width - 70,
@@ -113,14 +134,23 @@ class _SleepPageState extends State<SleepPage> {
                     return Column(
                       children: [
                         const SizedBox(
-                          height: 20,
+                          height: 50,
                         ),
                         Container(
                           padding: const EdgeInsets.all(30),
                           height: 400,
                           width: MediaQuery.of(context).size.width - 70,
                           decoration: BoxDecoration(
-                            color: const Color.fromARGB(255, 254, 183, 77),
+                            gradient: LinearGradient(
+                              //sfumatura
+                              colors: [
+                                Color.fromARGB(255, 239, 65, 123),
+                                Color.fromARGB(255, 244, 190, 110)
+                              ],
+                              // direzione della sfumatura
+                              begin: Alignment.topLeft,
+                              end: Alignment.bottomRight,
+                            ),
                             borderRadius: BorderRadius.circular(20),
                           ),
                           child: Lottie.asset(
@@ -135,7 +165,7 @@ class _SleepPageState extends State<SleepPage> {
                         Container(
                           padding: const EdgeInsets.all(30),
                           decoration: BoxDecoration(
-                            color: const Color.fromARGB(255, 254, 183, 77),
+                            color: Color.fromARGB(255, 244, 190, 110),
                             borderRadius: BorderRadius.circular(20),
                           ),
                           width: MediaQuery.of(context).size.width - 70,
@@ -167,14 +197,23 @@ class _SleepPageState extends State<SleepPage> {
                     return Column(
                       children: [
                         const SizedBox(
-                          height: 20,
+                          height: 50,
                         ),
                         Container(
                           padding: const EdgeInsets.all(30),
                           height: 400,
                           width: MediaQuery.of(context).size.width - 70,
                           decoration: BoxDecoration(
-                            color: const Color.fromARGB(255, 254, 183, 77),
+                            gradient: LinearGradient(
+                              //sfumatura
+                              colors: [
+                                Color.fromARGB(255, 239, 65, 123),
+                                Color.fromARGB(255, 244, 190, 110)
+                              ],
+                              // direzione della sfumatura
+                              begin: Alignment.topLeft,
+                              end: Alignment.bottomRight,
+                            ),
                             borderRadius: BorderRadius.circular(20),
                           ),
                           child: Lottie.asset(
@@ -189,7 +228,7 @@ class _SleepPageState extends State<SleepPage> {
                         Container(
                           padding: const EdgeInsets.all(30),
                           decoration: BoxDecoration(
-                            color: const Color.fromARGB(255, 254, 183, 77),
+                            color: Color.fromARGB(255, 244, 190, 110),
                             borderRadius: BorderRadius.circular(20),
                           ),
                           width: MediaQuery.of(context).size.width - 70,

@@ -44,7 +44,19 @@ class _GamePageState extends State<GamePage> {
               color: Colors.white,
             )),
         centerTitle: true,
-        backgroundColor: const Color.fromARGB(255, 254, 183, 77),
+        flexibleSpace: Container(
+            decoration: BoxDecoration(
+          gradient: LinearGradient(
+            //sfumatura
+            colors: [
+              Color.fromARGB(255, 239, 65, 123),
+              Color.fromARGB(255, 244, 190, 110)
+            ],
+            // direzione della sfumatura
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+          ),
+        )),
         elevation: 0,
       ),
       body: Column(
@@ -65,7 +77,18 @@ class _GamePageState extends State<GamePage> {
                 ClipPath(
                   clipper: WaveClipper(),
                   child: Container(
-                    color: const Color.fromARGB(255, 254, 183, 77),
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        //sfumatura
+                        colors: [
+                          Color.fromARGB(255, 239, 65, 123),
+                          Color.fromARGB(255, 244, 190, 110)
+                        ],
+                        // direzione della sfumatura
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                      ),
+                    ),
                     height: 80,
                     alignment: Alignment.center,
                   ),
@@ -295,7 +318,16 @@ class _GamePageState extends State<GamePage> {
           Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
-                color: const Color.fromARGB(255, 254, 183, 77),
+                gradient: LinearGradient(
+                  //sfumatura
+                  colors: [
+                    Color.fromARGB(255, 239, 65, 123),
+                    Color.fromARGB(255, 244, 190, 110)
+                  ],
+                  // direzione della sfumatura
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                ),
               ),
               height: 140,
               width: 360,
@@ -316,7 +348,7 @@ class _GamePageState extends State<GamePage> {
                     padding: const EdgeInsets.all(8.0),
                     child: SlideAction(
                       elevation: 8,
-                      innerColor: Color.fromARGB(255, 197, 254, 215),
+                      innerColor: Color.fromARGB(255, 231, 184, 113),
                       outerColor: Color.fromARGB(255, 149, 231, 201),
                       sliderButtonIcon: const Icon(FontAwesomeIcons.info,
                           color: Colors.white),
@@ -382,7 +414,8 @@ class _GamePageState extends State<GamePage> {
               },
               shape: CircleBorder(),
               padding: const EdgeInsets.all(24.0),
-              child: Icon(FontAwesomeIcons.faceSmile, color: Colors.black),
+              child: Icon(FontAwesomeIcons.faceSmile,
+                  color: Color.fromARGB(255, 50, 114, 53)),
             ),
             RawMaterialButton(
               onPressed: () async {
@@ -392,7 +425,8 @@ class _GamePageState extends State<GamePage> {
               },
               shape: CircleBorder(),
               padding: const EdgeInsets.all(24.0),
-              child: Icon(FontAwesomeIcons.faceDizzy, color: Colors.black),
+              child: Icon(FontAwesomeIcons.faceDizzy,
+                  color: Color.fromARGB(255, 50, 114, 53)),
             ),
             RawMaterialButton(
               onPressed: () async {
@@ -402,7 +436,8 @@ class _GamePageState extends State<GamePage> {
               },
               shape: CircleBorder(),
               padding: const EdgeInsets.all(24.0),
-              child: Icon(FontAwesomeIcons.faceMeh, color: Colors.black),
+              child: Icon(FontAwesomeIcons.faceMeh,
+                  color: Color.fromARGB(255, 50, 114, 53)),
             ),
             RawMaterialButton(
               onPressed: () async {
@@ -412,7 +447,8 @@ class _GamePageState extends State<GamePage> {
               },
               shape: CircleBorder(),
               padding: const EdgeInsets.all(24.0),
-              child: Icon(FontAwesomeIcons.faceSadCry, color: Colors.black),
+              child: Icon(FontAwesomeIcons.faceSadCry,
+                  color: Color.fromARGB(255, 50, 114, 53)),
             ),
             RawMaterialButton(
               onPressed: () async {
@@ -422,8 +458,8 @@ class _GamePageState extends State<GamePage> {
               },
               shape: CircleBorder(),
               padding: const EdgeInsets.all(24.0),
-              child:
-                  Icon(FontAwesomeIcons.faceLaughSquint, color: Colors.black),
+              child: Icon(FontAwesomeIcons.faceLaughSquint,
+                  color: Color.fromARGB(255, 50, 114, 53)),
             ),
           ],
         ),

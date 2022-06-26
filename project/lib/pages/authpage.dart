@@ -45,7 +45,18 @@ class _AuthPageState extends State<AuthPage> {
   Widget build(BuildContext context) {
     print('${AuthPage.routename} built');
     return Container(
-      color: const Color.fromARGB(255, 244, 190, 110),
+      decoration: const BoxDecoration(
+        gradient: LinearGradient(
+          //sfumatura
+          colors: [
+            const Color.fromARGB(255, 239, 65, 123),
+            const Color.fromARGB(255, 244, 190, 110)
+          ],
+          // direzione della sfumatura
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+        ),
+      ),
       child: SafeArea(
         child: AlertDialog(
           shape: ContinuousRectangleBorder(
@@ -54,7 +65,7 @@ class _AuthPageState extends State<AuthPage> {
             'AUTHORIZATION',
             style: TextStyle(
                 fontWeight: FontWeight.bold,
-                color: const Color.fromARGB(255, 171, 231, 179),
+                color: Color.fromARGB(255, 150, 201, 157),
                 fontFamily: 'Audiowide'),
             textAlign: TextAlign.center,
             textScaleFactor: 1.2,

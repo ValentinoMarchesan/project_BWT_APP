@@ -77,7 +77,16 @@ class _HeartPageState extends State<HeartPage> {
                     height: 150,
                     width: MediaQuery.of(context).size.width - 40,
                     decoration: BoxDecoration(
-                      color: const Color.fromARGB(255, 254, 183, 77),
+                      gradient: LinearGradient(
+                        //sfumatura
+                        colors: [
+                          Color.fromARGB(255, 244, 190, 110),
+                          Color.fromARGB(255, 243, 178, 82)
+                        ],
+                        // direzione della sfumatura
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                      ),
                       borderRadius: BorderRadius.circular(20),
                     ),
                     child: Column(

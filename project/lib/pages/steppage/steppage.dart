@@ -43,7 +43,19 @@ class _StepPageState extends State<StepPage> {
               bottom: Radius.circular(10),
             ),
           ),
-          backgroundColor: const Color.fromARGB(255, 254, 183, 77),
+          flexibleSpace: Container(
+              decoration: BoxDecoration(
+            gradient: LinearGradient(
+              //sfumatura
+              colors: [
+                Color.fromARGB(255, 239, 65, 123),
+                Color.fromARGB(255, 244, 190, 110)
+              ],
+              // direzione della sfumatura
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+            ),
+          )),
         ),
         body: Consumer<DatabaseRepository>(builder: (context, dbr, child) {
           return FutureBuilder(
@@ -83,7 +95,16 @@ class _StepPageState extends State<StepPage> {
                       height: 250,
                       width: MediaQuery.of(context).size.width - 40,
                       decoration: BoxDecoration(
-                        color: const Color.fromARGB(255, 254, 183, 77),
+                        gradient: LinearGradient(
+                          //sfumatura
+                          colors: [
+                            Color.fromARGB(255, 244, 190, 110),
+                            Color.fromARGB(255, 243, 178, 82)
+                          ],
+                          // direzione della sfumatura
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight,
+                        ),
                         borderRadius: BorderRadius.circular(20),
                       ),
                       child: Column(
