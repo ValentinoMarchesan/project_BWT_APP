@@ -469,6 +469,7 @@ class _GamePageState extends State<GamePage> {
   } //GamePage
 
 //this method permit to fetch the activity data if the authorization is done and if no activity data has already fecthed. It also update the data in the database
+//if the user enter in the application after 1 hour, fetch again data
   Future<void> _aggiungoAC(DatabaseRepository database) async {
     final sp = await SharedPreferences.getInstance();
     if (sp.getInt('hour') == null) {

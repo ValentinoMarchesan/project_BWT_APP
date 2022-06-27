@@ -144,6 +144,7 @@ class _HeartPageState extends State<HeartPage> {
 
   //method for fetching heart data if the authorization is done and or is the first time that the data are fetched or if the hour is changed from the last fetch
   //the method also upload the data in the database
+
   Future<void> _aggiungoHR(DatabaseRepository database) async {
     final sp = await SharedPreferences.getInstance();
     final now = DateTime.now().hour;
