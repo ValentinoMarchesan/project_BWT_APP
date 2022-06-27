@@ -138,7 +138,7 @@ class _StepPageState extends State<StepPage> {
                               textAlign: TextAlign.start),
                           const SizedBox(height: 5),
                           Text(
-                              '   - Max steps in the week: ${maxsteps!.toInt()} steps',
+                              '   - Max steps of the week: ${maxsteps!.toInt()} steps',
                               style: const TextStyle(
                                   fontSize: 18,
                                   fontFamily: 'OpenSans',
@@ -154,7 +154,7 @@ class _StepPageState extends State<StepPage> {
                               textAlign: TextAlign.start),
                           const SizedBox(height: 5),
                           Text(
-                              '   - Calories of activity burn:${dataactivity[1]!.toInt()}Kcal',
+                              '   - Last day Cal. of activity burn:${dataactivity[1]!.toInt()}Kcal',
                               style: const TextStyle(
                                   fontSize: 18,
                                   fontFamily: 'OpenSans',
@@ -162,7 +162,7 @@ class _StepPageState extends State<StepPage> {
                               textAlign: TextAlign.start),
                           const SizedBox(height: 5),
                           Text(
-                              '   - Minutes sedentary: ${dataactivity[2]!.toInt()} min',
+                              '   - Last day minutes sedentary: ${dataactivity[2]!.toInt()} min',
                               style: const TextStyle(
                                   fontSize: 18,
                                   fontFamily: 'OpenSans',
@@ -170,7 +170,7 @@ class _StepPageState extends State<StepPage> {
                               textAlign: TextAlign.start),
                           const SizedBox(height: 5),
                           Text(
-                              '   - hours sedentary: ${(dataactivity[2]! / 60).toInt()} h',
+                              '   - Last day hours sedentary: ${(dataactivity[2]! / 60).toInt()} h',
                               style: const TextStyle(
                                   fontSize: 18,
                                   fontFamily: 'OpenSans',

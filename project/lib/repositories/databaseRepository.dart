@@ -57,17 +57,21 @@ class DatabaseRepository extends ChangeNotifier {
     notifyListeners();
   } //updateAnnotation
 
-  //This method wraps the findAllSleeps() method of the DAO
+  //This method wraps the findAllHeart() method of the DAO
   Future<List<Heart>> findAllHeart() async {
     final results = await database.heartDao.findAllHeart();
     return results;
   } //findAllSleeps
 
+//This method wraps the insertHeart() method of the DAO.
+  //Then, it notifies the listeners that something changed.
   Future<void> insertHeart(Heart heart) async {
     await database.heartDao.insertHeart(heart);
     notifyListeners();
   } //insert heart
 
+//This method wraps the updateHeart() method of the DAO.
+  //Then, it notifies the listeners that something changed.
   Future<void> updateHeart(Heart heart) async {
     await database.heartDao.updateHeart(heart);
     notifyListeners();
@@ -78,68 +82,89 @@ class DatabaseRepository extends ChangeNotifier {
     notifyListeners();
   } //removeHeart
 
+//This method wraps the deleteHeart() method of the DAO.
+  //Then, it notifies the listeners that something changed.
   Future<void> deleteAllHeart() async {
     await database.heartDao.deleteAllHeart();
     notifyListeners();
   } //removeHeart
 
+//This method wraps the deleteAllAnnotation() method of the DAO.
+  //Then, it notifies the listeners that something changed.
   Future<void> deleteAllAnnotation() async {
     await database.annotationDao.deleteAllAnnotation();
     notifyListeners();
   } //insert activity
 
+//This method wraps the findAllsleep() method of the DAO
   Future<List<Sleep>> findAllSleep() async {
     final results = await database.sleepDao.findAllSleep();
     return results;
   }
 
+//This method wraps the insertsleep() method of the DAO.
+  //Then, it notifies the listeners that something changed.
   Future<void> insertSleep(Sleep sleep) async {
     await database.sleepDao.insertSleep(sleep);
     notifyListeners();
   } //insert sleep
 
+//This method wraps the updateSleep() method of the DAO.
+  //Then, it notifies the listeners that something changed.
   Future<void> updateSleep(Sleep sleep) async {
     await database.sleepDao.updateSleep(sleep);
     notifyListeners();
   } //update sleep
 
+//This method wraps the deleteSleep() method of the DAO.
+  //Then, it notifies the listeners that something changed.
   Future<void> deleteSleep(List<Sleep> sleeps) async {
     await database.sleepDao.deleteSleep(sleeps);
     notifyListeners();
   } //removeSleep
 
+//This method wraps the deleteAllsleep() method of the DAO.
+  //Then, it notifies the listeners that something changed.
   Future<void> deleteAllSleep() async {
     await database.sleepDao.deleteAllSleep();
     notifyListeners();
   } //removeSleep
 
+//This method wraps the insertActivity() method of the DAO.
+  //Then, it notifies the listeners that something changed.
   Future<void> insertActivity(Activity activity) async {
     await database.activityDao.insertActivity(activity);
     notifyListeners();
   } //insert activity
 
+//This method wraps the updateActivity() method of the DAO.
+  //Then, it notifies the listeners that something changed.
   Future<void> updateActivity(Activity activity) async {
     await database.activityDao.updateActivity(activity);
     notifyListeners();
   } //update activity
 
+//This method wraps the deleteActivity() method of the DAO.
+  //Then, it notifies the listeners that something changed.
   Future<void> deleteActivity(List<Activity> activities) async {
     await database.activityDao.deleteActivity(activities);
     notifyListeners();
   } //removeActivity
 
+//This method wraps the deleteAllactivity() method of the DAO.
+  //Then, it notifies the listeners that something changed.
   Future<void> deleteAllActivity() async {
     await database.activityDao.deleteAllActivity();
     notifyListeners();
   } //removeActivity
 
+//This method wraps the findAllActivity() method of the DAO
   Future<List<Activity>> findAllActivity() async {
     final results = await database.activityDao.findAllActivity();
     return results;
   } //findAllActivity
 
   List<double?> findstep(List<Activity> stepsdata) {
-    //final stepsdata = findstep() as List<Activity>;
     final results = [
       stepsdata[0].step,
       stepsdata[1].step,
@@ -154,7 +179,6 @@ class DatabaseRepository extends ChangeNotifier {
   } //findstep
 
   List<double?> findActivity(List<Activity> activitydata) {
-    // final activitydata = findAllActivity() as List<Activity>;
     final results = [
       activitydata[0].calories,
       activitydata[0].actcalories,
@@ -164,14 +188,12 @@ class DatabaseRepository extends ChangeNotifier {
   } //findAllActivity
 
   int? findminutsleep(List<Sleep> sleep) {
-    // final sleep = findAllSleep() as List<Sleep>;
     final results = sleep[0].sleepduration;
 
     return results;
   }
 
   List<int?> findMinHeart(List<Heart> heart) {
-    //final heart = findAllHeart() as List<Heart>;
     final results = [
       heart[0].minutesheart,
       heart[1].minutesheart,
@@ -181,12 +203,7 @@ class DatabaseRepository extends ChangeNotifier {
     return results;
   } //findAllSleeps
 
-  //_____________________________________________________________________________
-  //_____________________________________________________________________________
-  //_____________________________________________________________________________
-  //_____________________________________________________________________________
-  //_____________________________________________________________________________
-
+//Methods that implement all delete
   Future<void> deleteAllData() async {
     deleteAllActivity();
     deleteAllHeart();
@@ -199,6 +216,7 @@ class DatabaseRepository extends ChangeNotifier {
   }
 }
 
+// Methods that manage sleepdata for obtain sleep duration
 int ManageSleepData(List<FitbitSleepData> sleepData) {
   //Create a new Sleep object
   if (sleepData.length == 0) {

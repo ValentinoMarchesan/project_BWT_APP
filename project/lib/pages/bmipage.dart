@@ -97,7 +97,7 @@ class _BmiPageState extends State<BmiPage> {
                       });
                     }),
                     child: ContainerBox(
-                      boxColor: Color.fromARGB(255, 235, 213, 180),
+                      boxColor: maleBoxColor,
                       childWidget: const DataContainer(
                         icon: FontAwesomeIcons.mars,
                         title: 'MALE',
@@ -113,7 +113,7 @@ class _BmiPageState extends State<BmiPage> {
                       });
                     }),
                     child: ContainerBox(
-                      boxColor: Color.fromARGB(255, 235, 213, 180),
+                      boxColor: femaleBoxColor,
                       childWidget: const DataContainer(
                         icon: FontAwesomeIcons.venus,
                         title: 'FEMALE',
@@ -361,7 +361,19 @@ class _BmiPageState extends State<BmiPage> {
             child: Container(
               width: double.infinity,
               height: 70.0,
-              color: activateColor,
+              //color: activateColor,
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  //shade
+                  colors: [
+                    Color.fromARGB(255, 239, 65, 123),
+                    Color.fromARGB(255, 244, 190, 110)
+                  ],
+                  // direction of shade
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                ),
+              ),
               margin: const EdgeInsets.only(top: 10.0),
               child: const Center(
                 child: Text(
