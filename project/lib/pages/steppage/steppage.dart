@@ -182,7 +182,6 @@ class _StepPageState extends State<StepPage> {
                   ],
                 );
               } else {
-                //A CircularProgressIndicator is shown while the list of Todo is loading.
                 return CircularProgressIndicator();
               } //else
             }, //builder of FutureBuilder

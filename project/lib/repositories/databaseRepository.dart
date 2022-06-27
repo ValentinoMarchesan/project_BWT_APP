@@ -15,7 +15,7 @@ class DatabaseRepository extends ChangeNotifier {
   //Default constructor
   DatabaseRepository({required this.database}) {}
 
-  // for gamepage (no usato)
+  // for gamepage
   List<double?> findGame(List<Activity> stepsdata, List<Sleep> sleep) {
     final result = [
       stepsdata[0].step,
@@ -24,7 +24,7 @@ class DatabaseRepository extends ChangeNotifier {
     return result;
   }
 
-  // for gamepage (no usato)
+  // for gamepage
   Future<void> findallGame() async {
     findAllActivity();
     findAllSleep();

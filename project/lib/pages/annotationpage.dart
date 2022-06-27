@@ -16,7 +16,7 @@ class AnnotationPage extends StatefulWidget {
   // AnnotationPage constructor
   AnnotationPage({Key? key, required this.annotation}) : super(key: key);
 
-  static const route = '/home/diary/annotation'; //CONTROLLA!!
+  static const route = '/home/diary/annotation';
   static const routeDisplayName = 'ANNOTATION';
 
   @override
