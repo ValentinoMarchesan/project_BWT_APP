@@ -11,6 +11,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../repositories/databaseRepository.dart';
 
+//define the page in which there is the graph on heart data
 class HeartPage extends StatefulWidget {
   static const route = '/home/heart';
   static const routename = 'HEART MONITORING';
@@ -24,10 +25,6 @@ class HeartPage extends StatefulWidget {
 }
 
 class _HeartPageState extends State<HeartPage> {
-  //static late SharedPreferences prova;
-
-  // late int flag;
-
   @override
   void initState() {
     super.initState();
@@ -78,12 +75,12 @@ class _HeartPageState extends State<HeartPage> {
                     width: MediaQuery.of(context).size.width - 40,
                     decoration: BoxDecoration(
                       gradient: LinearGradient(
-                        //sfumatura
+                        //shade
                         colors: [
                           Color.fromARGB(255, 244, 190, 110),
                           Color.fromARGB(255, 243, 178, 82)
                         ],
-                        // direzione della sfumatura
+                        // direction of shade
                         begin: Alignment.topLeft,
                         end: Alignment.bottomRight,
                       ),
@@ -145,6 +142,8 @@ class _HeartPageState extends State<HeartPage> {
     );
   }
 
+  //method for fetching heart data if the authorization is done and or is the first time that the data are fetched or if the hour is changed from the last fetch
+  //the method also upload the data in the database
   Future<void> _aggiungoHR(DatabaseRepository database) async {
     final sp = await SharedPreferences.getInstance();
     final now = DateTime.now().hour;
@@ -180,7 +179,5 @@ class _HeartPageState extends State<HeartPage> {
       sp.setInt('hour1', timefetch);
     }
   }
-} //Page
- //Page
-
+} //HeartPage
 

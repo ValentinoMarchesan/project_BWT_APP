@@ -11,6 +11,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../../repositories/databaseRepository.dart';
 import 'Stepseries.dart';
 
+//this class define the stepPage in which you can see the weekly steps
 class StepPage extends StatefulWidget {
   StepPage({Key? key}) : super(key: key);
 
@@ -96,12 +97,12 @@ class _StepPageState extends State<StepPage> {
                       width: MediaQuery.of(context).size.width - 40,
                       decoration: BoxDecoration(
                         gradient: LinearGradient(
-                          //sfumatura
+                          //shade
                           colors: [
                             Color.fromARGB(255, 244, 190, 110),
                             Color.fromARGB(255, 243, 178, 82)
                           ],
-                          // direzione della sfumatura
+                          // direction of shade
                           begin: Alignment.topLeft,
                           end: Alignment.bottomRight,
                         ),
@@ -188,8 +189,10 @@ class _StepPageState extends State<StepPage> {
           );
         }));
   }
-} //Page
+} //StepPage
 
+//this method fetch the data if no date has already fetched or if the hour is changed from the last fecth. the authorization must be done.
+//the method also update the data in the database
 Future<void> _aggiungoAC(DatabaseRepository database) async {
   final sp = await SharedPreferences.getInstance();
   final now = DateTime.now().hour;
@@ -281,6 +284,7 @@ Future<void> _aggiungoAC(DatabaseRepository database) async {
   }
 }
 
+//mean of weekly steps
 double? meanstep(datastep) {
   double sum = 0;
 
@@ -291,6 +295,7 @@ double? meanstep(datastep) {
   return res;
 }
 
+//max of weekly steps
 double? maxstep(datastep) {
   double max = 0;
   datastep.forEach((e) {
@@ -302,6 +307,7 @@ double? maxstep(datastep) {
   return max;
 }
 
+//min of weekly step
 double minstep(datastep) {
   double min = datastep[0];
   datastep.forEach((e) {

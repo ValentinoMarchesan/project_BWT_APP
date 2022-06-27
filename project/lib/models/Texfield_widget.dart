@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+//class to fill and save the text inside the box in the profile page
 class TextFieldWidget extends StatefulWidget {
   final int maxLines;
   final String label;
@@ -8,7 +9,7 @@ class TextFieldWidget extends StatefulWidget {
 
   const TextFieldWidget({
     Key? key,
-    this.maxLines = 1, //textfiledwidget has a
+    this.maxLines = 1,
     required this.label,
     required this.text,
     required this.onChanged,

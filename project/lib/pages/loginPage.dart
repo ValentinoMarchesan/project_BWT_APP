@@ -5,6 +5,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import 'homepage.dart';
 
+//define the login page
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
   static const route = '/';
@@ -15,7 +16,6 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  //const LoginPage({Key? key}) : super(key: key);
   void initState() {
     super.initState();
     //check if the user is already Logged in before rendering the loginpage
@@ -30,7 +30,7 @@ class _LoginPageState extends State<LoginPage> {
     }
   }
 
-  String email = 'bug@expert.com';
+  String email = 'meco@biomedical.com';
 
   final inputBorder = const BorderRadius.vertical(
     bottom: Radius.circular(10.0),
@@ -71,20 +71,20 @@ class _LoginPageState extends State<LoginPage> {
       },
       theme: LoginTheme(
         primaryColor: const Color.fromARGB(
-            255, 244, 190, 110), //colore principale = a quello di SIGN UP
+            255, 244, 190, 110), //principle color = same of SIGN UP
         pageColorLight:
-            const Color.fromARGB(255, 239, 65, 123), //colore secondario
+            const Color.fromARGB(255, 239, 65, 123), //secondary color
         accentColor: const Color.fromARGB(
-            255, 171, 231, 179), // colore del rettangolino dell'animazione
+            255, 171, 231, 179), // color of animation rectangle
         errorColor: Colors.red,
-        beforeHeroFontSize: 65, // dimensione del titolo
+        beforeHeroFontSize: 65, // title dimension
         titleStyle: const TextStyle(
             color: Color.fromARGB(255, 255, 255, 255),
             fontFamily: 'Goldman', // carattere personalizzato aggiunto
             letterSpacing: 23,
             fontSize: 65),
         bodyStyle: const TextStyle(
-          //password dimenticata
+          //password forgot
           fontStyle: FontStyle.italic,
           decoration: TextDecoration.underline,
         ),
@@ -114,7 +114,7 @@ class _LoginPageState extends State<LoginPage> {
         inputTheme: InputDecorationTheme(
           filled: false,
           fillColor: const Color.fromARGB(255, 227, 189, 169)
-              .withOpacity(.1), //rettangolini delle credenziali
+              .withOpacity(.1), //credentials rectangles
           contentPadding: EdgeInsets.zero,
           errorStyle: const TextStyle(
             backgroundColor: Color.fromARGB(255, 255, 255, 255),
@@ -122,12 +122,11 @@ class _LoginPageState extends State<LoginPage> {
             fontSize: 14,
           ),
           labelStyle: const TextStyle(
-              fontSize: 15, fontFamily: 'Quicksand'), // credenziali
+              fontSize: 15, fontFamily: 'Quicksand'), // credentials
           enabledBorder: UnderlineInputBorder(
             borderSide: const BorderSide(
-                color:
-                    Color.fromARGB(255, 235, 109, 36), //linea delle credenziali
-                width: 3), //255, 189, 189, 235
+                color: Color.fromARGB(255, 235, 109, 36), //line of credentials
+                width: 3),
             borderRadius: inputBorder,
           ),
           focusedBorder: UnderlineInputBorder(
@@ -136,8 +135,7 @@ class _LoginPageState extends State<LoginPage> {
           ),
           errorBorder: UnderlineInputBorder(
             borderSide: const BorderSide(
-                color: Colors.red,
-                width: 7), // linea delle credenziali se errore
+                color: Colors.red, width: 7), // line of credentials if error
             borderRadius: inputBorder,
           ),
           focusedErrorBorder: UnderlineInputBorder(
@@ -151,22 +149,17 @@ class _LoginPageState extends State<LoginPage> {
           ),
         ),
         buttonTheme: LoginButtonTheme(
-          splashColor: Colors.red, //255, 185, 223, 234
-          backgroundColor:
-              const Color.fromARGB(255, 235, 153, 47), //255, 101, 173, 232
+          splashColor: Colors.red,
+          backgroundColor: const Color.fromARGB(255, 235, 153, 47),
           highlightColor: Colors.yellow,
           elevation: 10,
           highlightElevation: 15,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10),
           ),
-
-          // shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
-          // shape: CircleBorder(side: BorderSide(color: Colors.green)),
-          // shape: ContinuousRectangleBorder(borderRadius: BorderRadius.circular(55.0)),
         ),
-        logoWidth: 1, //dimensioni logo, massimo =1
+        logoWidth: 1,
       ),
     );
   }
-}
+}//login page

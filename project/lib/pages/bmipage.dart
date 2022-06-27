@@ -2,20 +2,10 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-/*
-decoration: const BoxDecoration(
-                gradient: LinearGradient(
-                  //sfumatura
-                  colors: [Colors.orangeAccent, Colors.deepOrange],
-                  // direzione della sfumatura
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                ),
-              ),
-*/
 const activateColor = Color.fromARGB(255, 244, 190, 110);
 const inactiveColor = Color(0xFFffffff);
 
+//define the page for the computing of subject's BMI
 class BmiPage extends StatefulWidget {
   static const route = '/home/Bmi';
   static const routename = 'BMI CALCULATOR';
@@ -83,12 +73,12 @@ class _BmiPageState extends State<BmiPage> {
         flexibleSpace: Container(
             decoration: BoxDecoration(
           gradient: LinearGradient(
-            //sfumatura
+            //shade
             colors: [
               Color.fromARGB(255, 239, 65, 123),
               Color.fromARGB(255, 244, 190, 110)
             ],
-            // direzione della sfumatura
+            // direction of shade
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
           ),
@@ -391,8 +381,8 @@ class _BmiPageState extends State<BmiPage> {
   }
 }
 
+//class to create a custom container of elements
 class ContainerBox extends StatelessWidget {
-  // ignore: use_key_in_widget_constructors
   const ContainerBox({required this.boxColor, this.childWidget});
   final Color boxColor;
   final Widget? childWidget;
@@ -417,8 +407,8 @@ class ContainerBox extends StatelessWidget {
   }
 }
 
+//class to set the format of text inside the custom container
 class DataContainer extends StatelessWidget {
-  // ignore: use_key_in_widget_constructors
   const DataContainer({required this.icon, required this.title});
   final IconData icon;
   final String title;

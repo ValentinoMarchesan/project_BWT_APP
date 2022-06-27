@@ -6,6 +6,7 @@ import 'package:project/classes/user.dart';
 import 'package:project/pages/editProfilePage.dart';
 import '../models/appbar_widget.dart';
 
+//define the page where there is the profile information of the subject
 class ProfilePage extends StatefulWidget {
   static const route = ' /home/profile';
   static const routename = 'ProfilePage';
@@ -25,7 +26,6 @@ class _ProfilePageState extends State<ProfilePage> {
         appBar: buildAppBar(context),
         body: ListView(physics: const BouncingScrollPhysics(), children: [
           ProfileWidget(
-            // backgroundPath: user.backgroundPath,
             imagePath: user.imagePath,
             onClicked: () async {
               await Navigator.of(context).push(
@@ -46,6 +46,7 @@ class _ProfilePageState extends State<ProfilePage> {
         ]));
   }
 
+//we can change the name in the profile page
   Widget buildName(User user) => Column(
         children: [
           Text(user.name,
@@ -62,6 +63,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   color: Color.fromARGB(255, 255, 255, 255), fontSize: 18)),
         ],
       );
+  //we can update the subject's personal information
   Widget buildAbout(User user) => Container(
         padding: const EdgeInsets.symmetric(horizontal: 48),
         child: Column(
@@ -82,4 +84,4 @@ class _ProfilePageState extends State<ProfilePage> {
           ],
         ),
       );
-}
+}//profile page

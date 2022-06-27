@@ -14,6 +14,7 @@ import '../database/entities/heart.dart';
 import '../database/entities/sleep.dart';
 import '../repositories/databaseRepository.dart';
 
+//define the page that makes the authorizization
 class AuthPage extends StatefulWidget {
   AuthPage({Key? key}) : super(key: key);
 
@@ -25,39 +26,24 @@ class AuthPage extends StatefulWidget {
 }
 
 class _AuthPageState extends State<AuthPage> {
-  /*
-  void initState() {
-    super.initState();
-    //check if the user is already Logged in before rendering the loginpage
-    _checkLogin();
-  } //initstate
-
-  void _checkLogin() async {
-    //get the sharedpreferences instance and check
-    final sp = await SharedPreferences.getInstance();
-    if (sp.getString('username') != null && sp.getBool('confirm') == true) {
-      Navigator.of(context).pushReplacementNamed(HomePage.route);
-    }
-  }
-  */
-
   @override
   Widget build(BuildContext context) {
     print('${AuthPage.routename} built');
     return Container(
       decoration: const BoxDecoration(
         gradient: LinearGradient(
-          //sfumatura
+          //shade
           colors: [
             const Color.fromARGB(255, 239, 65, 123),
             const Color.fromARGB(255, 244, 190, 110)
           ],
-          // direzione della sfumatura
+          // direction of shade
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),
       ),
       child: SafeArea(
+        //create the box for the authorization
         child: AlertDialog(
           shape: ContinuousRectangleBorder(
               borderRadius: BorderRadius.circular(60.0)),
@@ -84,6 +70,7 @@ class _AuthPageState extends State<AuthPage> {
                 style:
                     TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
               ),
+              //if you not authorize you come back to login page
               onPressed: () async {
                 _toLoginPage(context);
                 final sp = await SharedPreferences.getInstance();
@@ -122,8 +109,9 @@ class _AuthPageState extends State<AuthPage> {
       ),
     );
   }
-} //Page
+} //AuthPage
 
+//come back to login page from authorization page
 void _toLoginPage(BuildContext context) async {
   await FitbitConnector.unauthorize(
       clientID: Strings.fitbitClientID,
@@ -131,11 +119,12 @@ void _toLoginPage(BuildContext context) async {
   final sp = await SharedPreferences.getInstance();
   sp.remove('username');
   Navigator.of(context).pushReplacementNamed(LoginPage.route);
-  //Navigator.pushNamed(context, LoginPage.route);
 }
 
+//inizialize the database if it is empty
 void _initializeDB(BuildContext context) async {
   final sp = await SharedPreferences.getInstance();
+  //series of control data for the sleep,activity, heart and game page
   sp.setBool('sleep', false);
   sp.setBool('activity', false);
   sp.setBool('heart', false);

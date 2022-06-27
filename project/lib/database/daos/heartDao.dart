@@ -3,7 +3,7 @@ import 'package:project/database/entities/heart.dart';
 import 'package:project/database/entities/sleep.dart';
 import 'package:floor/floor.dart';
 
-// classe che definisce i DAO
+//class that defines the DAO of Heart entity
 @dao
 abstract class HeartDao {
   //Query #1: SELECT

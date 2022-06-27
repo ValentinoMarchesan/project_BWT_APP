@@ -6,6 +6,7 @@ import 'package:project/pages/profilePage.dart';
 import 'package:water_drop_nav_bar/water_drop_nav_bar.dart';
 import 'diarypage.dart';
 
+//class that define the HomePage
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
   static const route = '/Auth/home/';
@@ -27,7 +28,6 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    /// [AnnotatedRegion<SystemUiOverlayStyle>] only for android black navigation bar. 3 button navigation control (legacy)
     print('${HomePage.routename} built');
     return AnnotatedRegion<SystemUiOverlayStyle>(
       value: SystemUiOverlayStyle(
@@ -46,61 +46,42 @@ class _HomePageState extends State<HomePage> {
             Container(
               alignment: Alignment.center,
               child: ListView(
-                // ignore: prefer_const_literals_to_create_immutables
                 children: <Widget>[
                   const SizedBox(
                     height: 35,
                   ),
 //_____________________ HEART RATE CARD ________________________________________
                   const CardHR(),
-//__________________________ FINE HEART RATE CARD _____________________________
+//__________________________ END HEART RATE CARD _____________________________
                   const SizedBox(
                     height: 10,
                   ),
 // _______________________ SLEEP CARD _________________________________________
                   const CardSM(),
-//________________________ FINE SLEEP CARD ____________________________________
+//________________________ END SLEEP CARD ____________________________________
                   const SizedBox(
                     height: 10,
                   ),
 // _____________________ STEP CARD _____________________________________________
                   const CardSteep(),
-//___________________________ FINE STEP CARD ___________________________________
+//___________________________ END STEP CARD ___________________________________
                   const SizedBox(
                     height: 10,
                   ),
 //_________________________ ACTIVITY CARD ______________________________________
                   const Cardbmi(),
-//_________________________ FINE ACTIVITY CARD _________________________________
+//_________________________ END ACTIVITY CARD _________________________________
 
                   const SizedBox(
                     height: 10,
                   ),
-                  //_______________________________________________________________________
-                  //________________________________________________________________________
-                  /*
-                  ElevatedButton(
-                    onPressed: () async {
-                      // Authorize the app
-                      String? userId = await FitbitConnector.authorize(
-                          context: context,
-                          clientID: Strings.fitbitClientID,
-                          clientSecret: Strings.fitbitClientSecret,
-                          redirectUri: Strings.fitbitRedirectUri,
-                          callbackUrlScheme: Strings.fitbitCallbackScheme);
-                    },
-                    child: Text('Tap to authorize'),
-                  ),
-                  */
-
-                  //_______________________________________________________________________
-                  //________________________________________________________________________
                 ],
               ),
             ),
 //______________________________________________________________________________
-//_________________  FINE HOMEPAGE    __________________________________________
-//_______________ CONTAINER ACTIVITY _______________________________________
+//_________________  END HOMEPAGE    __________________________________________
+
+//_______________ CONTAINER DIARYPAGE _______________________________________
 //______________________________________________________________________________
             Container(
               alignment: Alignment.center,
@@ -109,7 +90,7 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
 //______________________________________________________________________________
-//_________________FINE TRAININGPAGE  __________________________________________
+//_________________END ACTIVITYPAGE  __________________________________________
 //_______________ CONTAINER GAMEPAGE ___________________________________________
 //______________________________________________________________________________
             Container(
@@ -122,31 +103,12 @@ class _HomePageState extends State<HomePage> {
 //______________________________________________________________________________
             Container(
               alignment: Alignment.center,
-              child: SafeArea(child: ProfilePage()
-
-                  /*
-                 ListView(
-                  padding: EdgeInsets.zero,
-                  children: [
-                    ListTile(
-                      leading: Icon(Icons.account_box),
-                      title: Text('To ProfilePage'),
-                      onTap: () => _toProfilePage(context),
-                    ),
-                    ListTile(
-                      leading: Icon(Icons.logout),
-                      title: Text('Logout'),
-                      onTap: () => _toLoginPage(context),
-                    ),
-                  ],
-                ),
-              */
-                  ),
+              child: SafeArea(child: ProfilePage()),
             ),
           ],
         ),
 //______________________________________________________________________________
-//______________________ FINE SETTING PAGE _____________________________________
+//______________________ END SETTING PAGE _____________________________________
 //______________________________________________________________________________
 //__________________________ BOTTOM BAR ________________________________________
 //______________________________________________________________________________
@@ -186,4 +148,4 @@ class _HomePageState extends State<HomePage> {
       ),
     );
   }
-}
+}//HomePage

@@ -11,6 +11,7 @@ import 'package:rflutter_alert/rflutter_alert.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
 
+// create a custom appbar for the profile page
 AppBar buildAppBar(BuildContext context) {
   return AppBar(
     centerTitle: true,
@@ -19,10 +20,10 @@ AppBar buildAppBar(BuildContext context) {
       style: TextStyle(fontFamily: 'Audiowide'),
       textAlign: TextAlign.center,
     ),
-    // leading: BackButton(),
     backgroundColor: const Color.fromARGB(255, 254, 183, 77),
     elevation: 0,
     actions: [
+      //logout button
       IconButton(
           icon: const Icon(Icons.logout),
           onPressed: () {
@@ -88,6 +89,7 @@ AppBar buildAppBar(BuildContext context) {
   );
 }
 
+//custom appbar for the HeartPage
 AppBar buildAppBarHeartPage(BuildContext context) {
   return AppBar(
     title: const Text(
@@ -97,22 +99,21 @@ AppBar buildAppBarHeartPage(BuildContext context) {
       ),
     ),
     centerTitle: true,
-    // leading: BackButton(),
     flexibleSpace: Container(
         decoration: BoxDecoration(
       gradient: LinearGradient(
-        //sfumatura
         colors: [
           Color.fromARGB(255, 239, 65, 123),
           Color.fromARGB(255, 244, 190, 110)
         ],
-        // direzione della sfumatura
+        // shade direction
         begin: Alignment.topLeft,
         end: Alignment.bottomRight,
       ),
     )),
     elevation: 0,
     actions: [
+      //info button
       IconButton(
           icon: const Icon(FontAwesomeIcons.info),
           onPressed: () {
@@ -172,16 +173,15 @@ AppBar buildAppBarHeartPage(BuildContext context) {
   );
 }
 
+//this is the action of the logout: we come back to login page and at the same time delete all the database's data
 void _toLoginPage_DeleteAll(BuildContext context) async {
   await FitbitConnector.unauthorize(
       clientID: Strings.fitbitClientID,
       clientSecret: Strings.fitbitClientSecret);
   final sp = await SharedPreferences.getInstance();
   await Provider.of<DatabaseRepository>(context, listen: false).deleteAllData();
-  //await Provider.of<DatabaseRepository>(context, listen: false).deleteAllData();
+
   sp.remove('username');
   sp.setBool('confirm', false);
   Navigator.of(context).pushReplacementNamed(LoginPage.route);
-
-  //Navigator.pushNamed(context, LoginPage.route);
 }

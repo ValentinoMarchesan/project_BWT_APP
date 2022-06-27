@@ -5,7 +5,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_login/flutter_login.dart';
 
 class Userpreferences {
-  static const email_name = "bug@expert.com";
+  static const email_name = "meco@biomedical.com";
   static late SharedPreferences _preferences;
   static const _keyUser = 'user'; //in key user we store user information
   static const myUser = User(

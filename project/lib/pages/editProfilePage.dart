@@ -13,6 +13,7 @@ import 'package:project/models/appbar_widget.dart';
 
 import 'package:path/path.dart'; //to use basename in line 45
 
+//define the page to edit the profile page
 class EditprofilePage extends StatefulWidget {
   static const route = ' home/profile/edit';
   static const routename = 'EditProfilePage';
@@ -35,73 +36,59 @@ class _EditProfilePageState extends State<EditprofilePage> {
   @override
   Widget build(BuildContext context) => Scaffold(
       appBar: buildAppBar(context),
-      body: ListView(
-          // padding: EdgeInsets.symmetric(horizontal: 2),
-          physics: BouncingScrollPhysics(),
-          children: [
-            ProfileWidget(
-              // backgroundPath: user.backgroundPath,
-              imagePath: user.imagePath,
-              isEdit: true,
-              onClicked: () async {
-                final image = await ImagePicker().getImage(
-                    source: ImageSource
-                        .gallery); //permit to take an image from the phone gallery
-                if (image == null) return;
-                final directory =
-                    await getApplicationDocumentsDirectory(); //save on directory if image is not null
-                final name = basename(image.path); //obtain the name of the file
-                final imageFile = io.File('${directory.path}/$name');
-                //directory is were we want store our file and the name of the image
-                final newImage = await io.File(image.path).copy(imageFile.path);
-                setState(() => user = user.copy(imagePath: newImage.path));
-                // final background =
-                //     await ImagePicker().getImage(source: ImageSource.gallery);
-                // if (background == null) return;
-                //    final directory2 = await getApplicationDocumentsDirectory();
-                //  final backname = basename(background.path);
-                //   final backFile = io.File('${directory2.path}/$backname');
-
-                // final newback =
-                //       await io.File(background.path).copy(backFile.path);
-                //   setState(() => user = user.copy(backgroundPath: newback.path));
-                //save the new imagepath
-              },
-            ),
-            const SizedBox(
-              height: 24,
-            ),
-            Container(
-                padding: EdgeInsets.all(20),
-                child: Column(children: [
-                  TextFieldWidget(
-                      label: 'Full Name',
-                      text: user.name,
-                      onChanged: (name) => user = user.copy(name: name)),
-                  const SizedBox(
-                    height: 24,
-                  ),
-                  TextFieldWidget(
-                      label: 'Email',
-                      text: user.email,
-                      onChanged: (email) => user = user.copy(email: email)),
-                  const SizedBox(
-                    height: 24,
-                  ),
-                  TextFieldWidget(
-                      label: 'About',
-                      text: user.about,
-                      maxLines: 5,
-                      onChanged: (about) => user = user.copy(about: about)),
-                  const SizedBox(height: 20),
-                ])),
-            FloatingActionButton.extended(
-              icon: Icon(Icons.save),
-              label: Text('save'),
-              onPressed: () {
-                Userpreferences.setUser(user);
-                Navigator.of(context).pop();
-              },
-            )
-          ]));
+      body: ListView(physics: BouncingScrollPhysics(), children: [
+        ProfileWidget(
+          imagePath: user.imagePath,
+          isEdit: true,
+          onClicked: () async {
+            final image = await ImagePicker().getImage(
+                source: ImageSource
+                    .gallery); //permit to take an image from the phone gallery
+            if (image == null) return;
+            final directory =
+                await getApplicationDocumentsDirectory(); //save on directory if image is not null
+            final name = basename(image.path); //obtain the name of the file
+            final imageFile = io.File('${directory.path}/$name');
+            //directory is were we want store our file and the name of the image
+            final newImage = await io.File(image.path).copy(imageFile.path);
+            setState(() => user = user.copy(imagePath: newImage.path));
+          },
+        ),
+        const SizedBox(
+          height: 24,
+        ),
+        //here we update the text inside the box on profile page with the new text that the user has inserted
+        Container(
+            padding: EdgeInsets.all(20),
+            child: Column(children: [
+              TextFieldWidget(
+                  label: 'Full Name',
+                  text: user.name,
+                  onChanged: (name) => user = user.copy(name: name)),
+              const SizedBox(
+                height: 24,
+              ),
+              TextFieldWidget(
+                  label: 'Email',
+                  text: user.email,
+                  onChanged: (email) => user = user.copy(email: email)),
+              const SizedBox(
+                height: 24,
+              ),
+              TextFieldWidget(
+                  label: 'About',
+                  text: user.about,
+                  maxLines: 5,
+                  onChanged: (about) => user = user.copy(about: about)),
+              const SizedBox(height: 20),
+            ])),
+        FloatingActionButton.extended(
+          icon: Icon(Icons.save),
+          label: Text('save'),
+          onPressed: () {
+            Userpreferences.setUser(user);
+            Navigator.of(context).pop();
+          },
+        )
+      ]));
 }

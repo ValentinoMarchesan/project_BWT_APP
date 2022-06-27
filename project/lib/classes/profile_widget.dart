@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 
+//define the skeleton fo the profile page
 class ProfileWidget extends StatelessWidget {
   //final String backgroundPath;
   final String imagePath;
@@ -33,6 +34,7 @@ class ProfileWidget extends StatelessWidget {
         ]);
   }
 
+//create the profile image
   Widget buildImage() {
     final image = imagePath.contains('assets/')
         ? AssetImage(imagePath)
@@ -76,6 +78,7 @@ class ProfileWidget extends StatelessWidget {
         ),
       );
 
+//create the background image
   Widget buildCoverImage() {
     final Backimage = AssetImage('assets/oic.JPG');
     return Container(

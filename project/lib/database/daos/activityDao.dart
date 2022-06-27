@@ -2,7 +2,7 @@ import 'package:project/database/entities/activity.dart';
 import 'package:project/database/entities/sleep.dart';
 import 'package:floor/floor.dart';
 
-// classe che definisce i DAO
+// class that defines the DAO of activity entity
 @dao
 abstract class ActivityDao {
   //Query #1: SELECT
@@ -30,11 +30,4 @@ abstract class ActivityDao {
   //Query #4: UPDATE
   @Update(onConflict: OnConflictStrategy.replace)
   Future<void> updateActivity(Activity activity);
-} 
-
-/*
-final double? step;
-  final double? actcalories;
-  final double? calories;
-  final double? minsedentary;
-*/
+}

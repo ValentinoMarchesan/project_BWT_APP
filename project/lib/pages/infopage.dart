@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:project/pages/gamepage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+//define the InfoPage where there are the info on MECO avatar mood
 class InfoPage extends StatelessWidget {
   const InfoPage({Key? key}) : super(key: key);
 
@@ -67,6 +68,7 @@ class InfoPage extends StatelessWidget {
                   builder: (context, snapshot) {
                     if (snapshot.hasData) {
                       final sp = snapshot.data as SharedPreferences;
+                      //statusinfo is a control parameter to understand which is the mood of MECO avatar
                       if (sp.getInt('statusinfo') == 1) {
                         return const Text(
                             'IMPORTANCE OF SLEEP AND ACTIVITY \n'
@@ -165,4 +167,4 @@ class InfoPage extends StatelessWidget {
           )
         ]));
   }
-}
+} //InfoPage

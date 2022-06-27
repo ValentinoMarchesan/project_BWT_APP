@@ -28,7 +28,8 @@ Future main() async {
   //This creates a new DatabaseRepository from the AppDatabase instance just initialized
   final databaseRepository = DatabaseRepository(database: database);
 
-  // Run the app and provide to the whole widget tree the instance of the DatabaseRepository.That instance will be then shared through the platform and will be unique.
+  // Run the app and provide to the whole widget tree the instance of the DatabaseRepository.
+  //That instance will be then shared through the platform and will be unique.
   runApp(ChangeNotifierProvider<DatabaseRepository>(
     create: (context) => databaseRepository,
     child: MyApp(),
@@ -42,20 +43,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       initialRoute: LoginPage.route,
 
-      // VECCHIO CODICE, PIU' SEMPLICE DA LEGGERE:
-      // routes: {
-      // LoginPage.route: (context) => LoginPage(),
-      // HomePage.route: (context) => HomePage(),
-      // ProfilePage.route: (context) => ProfilePage(),
-      // EditProfilePage.route: (context) => EditProfilePage(),
-      // ActivityPage.route: (context) => ActivityPage(),
-      // StepPage.route: (context) => StepPage(),
-      // HeartPage.route: (context) => HeartPage(),
-      // SleepPage.route: (context) => SleepPage(),
-      // WalkPage.route: (context) => WalkPage(walkDB: walkDB, walkIndex: )},),
-
-      // CODICE IMPLEMENTATO DAL PROF. NEL LAB 7:
-      // another way to manage Navigation. This approach can be handy when you need to pass data to a route directly to its constructor and you want to continue to use pushNamed().
+      // another way to manage Navigation. This approach can be handy when you need to pass data to a route directly
+      //to its constructor and you want to continue to use pushNamed().
 
       onGenerateRoute: (settings) {
         if (settings.name == LoginPage.route) {

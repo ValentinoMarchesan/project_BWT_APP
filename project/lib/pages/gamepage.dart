@@ -18,7 +18,7 @@ import 'package:slide_to_act/slide_to_act.dart';
 import '../repositories/databaseRepository.dart';
 import '../utils/strings.dart';
 
-/// This is the stateless widget that the main application instantiates.
+//define the page in which you can see the MECO avatar
 class GamePage extends StatefulWidget {
   const GamePage({Key? key}) : super(key: key);
 
@@ -47,12 +47,12 @@ class _GamePageState extends State<GamePage> {
         flexibleSpace: Container(
             decoration: BoxDecoration(
           gradient: LinearGradient(
-            //sfumatura
+            //shade
             colors: [
               Color.fromARGB(255, 239, 65, 123),
               Color.fromARGB(255, 244, 190, 110)
             ],
-            // direzione della sfumatura
+            // direction of shade
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
           ),
@@ -79,12 +79,12 @@ class _GamePageState extends State<GamePage> {
                   child: Container(
                     decoration: BoxDecoration(
                       gradient: LinearGradient(
-                        //sfumatura
+                        //shade
                         colors: [
                           Color.fromARGB(255, 239, 65, 123),
                           Color.fromARGB(255, 244, 190, 110)
                         ],
-                        // direzione della sfumatura
+                        // direction of shade
                         begin: Alignment.topLeft,
                         end: Alignment.bottomRight,
                       ),
@@ -149,7 +149,8 @@ class _GamePageState extends State<GamePage> {
                                                   if (snapshot.hasData) {
                                                     final data = snapshot.data
                                                         as List<Annotation>;
-
+//we associates different mood of MECO avatar based on steps done, hour of sleep, water drunk and minutes of meditation
+//this is saved in status parameter, while statusinfo need to associate an info page to a mood of MECO
                                                     if (data.length == 0) {
                                                       sp.setInt(
                                                           'statusinfo', 1);
@@ -319,12 +320,12 @@ class _GamePageState extends State<GamePage> {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
                 gradient: LinearGradient(
-                  //sfumatura
+                  //shade
                   colors: [
                     Color.fromARGB(255, 239, 65, 123),
                     Color.fromARGB(255, 244, 190, 110)
                   ],
-                  // direzione della sfumatura
+                  // direction of shade
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
                 ),
@@ -336,7 +337,8 @@ class _GamePageState extends State<GamePage> {
                   const Padding(
                     padding: EdgeInsets.all(8.0),
                     child: Text(
-                      'Hi is MeCo! Are you curious about how your current lifestyle affects your body?',
+                      'Hi i\'m'
+                      ' MeCo! Are you curious about how your current lifestyle affects your body?',
                       style: TextStyle(
                           fontSize: 16,
                           fontFamily: 'OpenSans',
@@ -375,7 +377,6 @@ class _GamePageState extends State<GamePage> {
       floatingActionButton: Builder(
         builder: (context) => FabCircularMenu(
           key: fabKey,
-          // Cannot be `Alignment.center`
           alignment: Alignment(-1, -0.65),
           ringColor: Colors.white.withAlpha(0),
           ringDiameter: 300.0,
@@ -465,8 +466,9 @@ class _GamePageState extends State<GamePage> {
         ),
       ),
     );
-  }
+  } //GamePage
 
+//this method permit to fetch the activity data if the authorization is done and if no activity data has already fecthed. It also update the data in the database
   Future<void> _aggiungoAC(DatabaseRepository database) async {
     final sp = await SharedPreferences.getInstance();
     if (sp.getInt('hour') == null) {
@@ -562,6 +564,7 @@ class _GamePageState extends State<GamePage> {
     }
   }
 
+  //this method permit to fetch the sleep data if the authorization is done and if no sleep data has already fecthed. it also update the data in the database
   Future<void> _aggiungoSL(DatabaseRepository database) async {
     final sp = await SharedPreferences.getInstance();
     final now = DateTime.now().hour;
@@ -594,12 +597,10 @@ class _GamePageState extends State<GamePage> {
         database.updateSleep(Sleep(1, 0));
         sp.setBool('sleep', true);
       }
-      //database.updateSleep(Sleep(1, sleepDurHourse));
-
     }
   }
 
-// _____________ tentativo di algoritmo gampage _____________________
+// _____________ tentativo di algoritmo gampage _____________________IN TEORIA NON UTILIZZATO
   game() async {
     int count = 0;
     final sp = await SharedPreferences.getInstance();
@@ -613,7 +614,7 @@ class _GamePageState extends State<GamePage> {
   }
 }
 
-// _____________ classe che disegna l'onda sull app bar ___________________
+// _____________ class that draw the wave on appbar  ___________________
 class WaveClipper extends CustomClipper<Path> {
   @override
   Path getClip(Size size) {
@@ -648,7 +649,7 @@ class WaveClipper extends CustomClipper<Path> {
   }
 }
 
-//
+// IN TEORIA NON UTILIZZATO
 class AnimationWidget extends StatefulWidget {
   final Widget child;
 
@@ -704,7 +705,7 @@ class _AnimationWidgetState extends State<AnimationWidget> {
   }
 }
 
+//IN TEORIA NON UTILIZZATO
 void _toInfoPage(BuildContext context) {
   Navigator.pushNamed(context, InfoPage.route);
 } //_toStepPage
-

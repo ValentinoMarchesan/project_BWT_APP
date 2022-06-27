@@ -1,7 +1,7 @@
 import 'package:project/database/entities/annotation.dart';
 import 'package:floor/floor.dart';
 
-// classe che definisce i DAO
+//class that defines the DAO of Annotation entity
 
 @dao
 abstract class AnnotationDao {

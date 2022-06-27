@@ -7,6 +7,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import 'Stepseries.dart';
 
+//create the linearcharts for the steppage
 class LinearCharts extends StatelessWidget {
   final List<Steps> data;
   LinearCharts({required this.data});
@@ -33,7 +34,7 @@ class LinearCharts extends StatelessWidget {
           selectionModels: [
             charts.SelectionModelConfig(
                 changedListener: (charts.SelectionModel model) {
-              // gestisce le interazioni con il grafico
+              // manage the interaction with the graph
               if (model.hasDatumSelection) {
                 pointerAmount = model.selectedSeries[0]
                     .measureFn(model.selectedDatum[0].index)
@@ -60,7 +61,7 @@ class LinearCharts extends StatelessWidget {
   }
 }
 
-// classe che gestisce il rettangolo che restituisce i passi giornalieri
+//class that manages the graph of the weekly steps
 class MySymbolRenderer extends charts.CircleSymbolRenderer {
   @override
   void paint(charts.ChartCanvas canvas, Rectangle<num> bounds,

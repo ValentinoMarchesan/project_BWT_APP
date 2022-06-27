@@ -1,3 +1,4 @@
+//class that defines a Step object
 class Steps {
   final int day;
   final double? step;

@@ -14,6 +14,7 @@ import '../repositories/databaseRepository.dart';
 import '../utils/formats.dart';
 import '../utils/strings.dart';
 
+//define the page where there is information about how many hours the subject's has slept
 class SleepPage extends StatefulWidget {
   SleepPage({Key? key}) : super(key: key);
 
@@ -42,12 +43,12 @@ class _SleepPageState extends State<SleepPage> {
         flexibleSpace: Container(
             decoration: BoxDecoration(
           gradient: LinearGradient(
-            //sfumatura
+            //shade
             colors: [
               Color.fromARGB(255, 239, 65, 123),
               Color.fromARGB(255, 244, 190, 110)
             ],
-            // direzione della sfumatura
+            // direction of shade
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
           ),
@@ -55,8 +56,8 @@ class _SleepPageState extends State<SleepPage> {
       ),
       body: Center(
         child: Consumer<DatabaseRepository>(builder: (context, dbr, child) {
-          // The logic is to query the DB for the entire list of Annotation using dbr.findAllAnnotations() and then populate the ListView accordingly.
-          // We need to use a FutureBuilder since the result of dbr.findAllAnnotations() is a Future.
+          // The logic is to query the DB for the entire list of sleep data using dbr.findAllSleep().
+          // We need to use a FutureBuilder since the result of dbr.findAllSleep() is a Future.
 
           return FutureBuilder(
               initialData: null,
@@ -79,12 +80,12 @@ class _SleepPageState extends State<SleepPage> {
                           width: MediaQuery.of(context).size.width - 70,
                           decoration: BoxDecoration(
                             gradient: LinearGradient(
-                              //sfumatura
+                              //shade
                               colors: [
                                 Color.fromARGB(255, 239, 65, 123),
                                 Color.fromARGB(255, 244, 190, 110)
                               ],
-                              // direzione della sfumatura
+                              //direction of shade
                               begin: Alignment.topLeft,
                               end: Alignment.bottomRight,
                             ),
@@ -142,12 +143,12 @@ class _SleepPageState extends State<SleepPage> {
                           width: MediaQuery.of(context).size.width - 70,
                           decoration: BoxDecoration(
                             gradient: LinearGradient(
-                              //sfumatura
+                              //shade
                               colors: [
                                 Color.fromARGB(255, 239, 65, 123),
                                 Color.fromARGB(255, 244, 190, 110)
                               ],
-                              // direzione della sfumatura
+                              // direction of shade
                               begin: Alignment.topLeft,
                               end: Alignment.bottomRight,
                             ),
@@ -205,12 +206,12 @@ class _SleepPageState extends State<SleepPage> {
                           width: MediaQuery.of(context).size.width - 70,
                           decoration: BoxDecoration(
                             gradient: LinearGradient(
-                              //sfumatura
+                              //shade
                               colors: [
                                 Color.fromARGB(255, 239, 65, 123),
                                 Color.fromARGB(255, 244, 190, 110)
                               ],
-                              // direzione della sfumatura
+                              // direction of shade
                               begin: Alignment.topLeft,
                               end: Alignment.bottomRight,
                             ),
@@ -266,6 +267,7 @@ class _SleepPageState extends State<SleepPage> {
     );
   }
 
+// this method fetch the data if the authorization is done and if it is the first time we open the app, or if the hour is changed from the last fetch
   Future<void> _aggiungoSL(DatabaseRepository database) async {
     final sp = await SharedPreferences.getInstance();
     final now = DateTime.now().hour;
@@ -306,4 +308,4 @@ class _SleepPageState extends State<SleepPage> {
       sp.setInt('hour2', timefetch);
     }
   }
-}
+} //sleep page

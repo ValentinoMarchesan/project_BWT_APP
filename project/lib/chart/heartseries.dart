@@ -12,6 +12,7 @@ class HeartSeries {
     required this.color,
   });
 
+//create an empty graph if there aren't data
   static HeartSeries empty() => HeartSeries(
       status: '', min: 0, color: charts.ColorUtil.fromDartColor(Colors.white));
 

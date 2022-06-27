@@ -1,7 +1,7 @@
 import 'package:project/database/entities/sleep.dart';
 import 'package:floor/floor.dart';
 
-// classe che definisce i DAO
+//class that defines the DAO of Sleep entity
 @dao
 abstract class SleepDao {
   //Query #1: SELECT

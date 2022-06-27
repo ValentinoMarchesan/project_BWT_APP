@@ -18,23 +18,23 @@ class CardHR extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       clipBehavior: Clip.antiAlias,
-      // forma dei bordi
+      // shape of edges
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
-      // contenuto
+      // content
       child: GestureDetector(
         onTap: () => _toHeartPage(context),
         child: Column(
           children: [
             Container(
-              //colore interno
+              //internal color
               decoration: const BoxDecoration(
                 gradient: LinearGradient(
-                  //sfumatura
+                  //shade
                   colors: [
                     const Color.fromARGB(255, 239, 65, 123),
                     const Color.fromARGB(255, 244, 190, 110)
                   ],
-                  // direzione della sfumatura
+                  // shade direction
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
                 ),
@@ -78,19 +78,11 @@ class CardHR extends StatelessWidget {
                       scale: 80, fit: BoxFit.scaleDown),
                 ),
                 Container(
-                  //colore interno
+                  //internal color
                   height: 100,
                   width: 284.7,
                   decoration: const BoxDecoration(
                     color: Color.fromRGBO(255, 255, 255, 1),
-                    /*gradient: LinearGradient(
-                    //sfumatura
-                    colors: [Colors.orangeAccent, Colors.deepOrange],
-                    // direzione della sfumatura
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                  ),
-                  */
                   ),
                   padding: const EdgeInsets.all(10),
                   child: Column(
@@ -100,7 +92,6 @@ class CardHR extends StatelessWidget {
                         'Through the data acquired by your device, it provides an overview of your cardiac activity',
                         style: TextStyle(
                           fontSize: 15,
-                          //fontWeight: FontWeight.bold,
                           color: Colors.black,
                           fontFamily: 'OpenSans',
                         ),
@@ -119,7 +110,7 @@ class CardHR extends StatelessWidget {
 
   void _toHeartPage(BuildContext context) {
     Navigator.pushNamed(context, HeartPage.route);
-  } //_toStepPage
+  } //_toHeartPage
 }
 
 //______________________________________________________________________________
@@ -144,12 +135,12 @@ class CardSM extends StatelessWidget {
               //internal color
               decoration: const BoxDecoration(
                 gradient: LinearGradient(
-                  //sfumatura
+                  //shade
                   colors: [
                     const Color.fromARGB(255, 239, 65, 123),
                     const Color.fromARGB(255, 244, 190, 110)
                   ],
-                  // direzione della sfumatura
+                  // shade direction
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
                 ),
@@ -190,19 +181,11 @@ class CardSM extends StatelessWidget {
                       scale: 5, fit: BoxFit.none),
                 ),
                 Container(
-                  //colore interno
+                  //internal color
                   height: 100,
                   width: 274.7,
                   decoration: const BoxDecoration(
                     color: Color.fromRGBO(255, 255, 255, 1),
-                    /*gradient: LinearGradient(
-                    //sfumatura
-                    colors: [Colors.orangeAccent, Colors.deepOrange],
-                    // direzione della sfumatura
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                  ),
-                  */
                   ),
                   padding: const EdgeInsets.all(8),
                   child: Column(
@@ -212,7 +195,6 @@ class CardSM extends StatelessWidget {
                         'Through the data acquired by your device, it provides an overview of your sleep activity',
                         style: TextStyle(
                             fontSize: 15,
-                            //fontWeight: FontWeight.bold,
                             color: Colors.black,
                             fontFamily: 'OpenSans'),
                         textAlign: TextAlign.center,
@@ -230,7 +212,7 @@ class CardSM extends StatelessWidget {
 
   void _toSleepPage(BuildContext context) {
     Navigator.pushNamed(context, SleepPage.route);
-  } //_toStepPage
+  } //_toSleepPage
 }
 
 //______________________________________________________________________________
@@ -244,23 +226,23 @@ class CardSteep extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       clipBehavior: Clip.antiAlias,
-      // forma dei bordi
+      //shape of edges
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
-      // contenuto
+      // content
       child: GestureDetector(
         onTap: () => _toStepPage(context),
         child: Column(
           children: [
             Container(
-              //colore interno
+              //internal color
               decoration: const BoxDecoration(
                 gradient: LinearGradient(
-                  //sfumatura
+                  //shade
                   colors: [
                     const Color.fromARGB(255, 239, 65, 123),
                     const Color.fromARGB(255, 244, 190, 110)
                   ],
-                  // direzione della sfumatura
+                  // direction of shade
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
                 ),
@@ -300,19 +282,11 @@ class CardSteep extends StatelessWidget {
                     child: Image.asset('assets/homepage/walk_home.png',
                         scale: 15, fit: BoxFit.none)),
                 Container(
-                  //colore interno
+                  //internal color
                   height: 100,
                   width: 264.7,
                   decoration: const BoxDecoration(
                     color: Color.fromRGBO(255, 255, 255, 1),
-                    /*gradient: LinearGradient(
-                    //sfumatura
-                    colors: [Colors.orangeAccent, Colors.deepOrange],
-                    // direzione della sfumatura
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                  ),
-                  */
                   ),
                   padding: const EdgeInsets.all(8),
                   child: Column(
@@ -322,7 +296,6 @@ class CardSteep extends StatelessWidget {
                         'Through the data acquired by your device, it provides an overview of your step activity',
                         style: TextStyle(
                             fontSize: 15,
-                            //fontWeight: FontWeight.bold,
                             color: Colors.black,
                             fontFamily: 'OpenSans'),
                         textAlign: TextAlign.center,
@@ -344,7 +317,7 @@ class CardSteep extends StatelessWidget {
 }
 
 //______________________________________________________________________________
-//_______________________ ACTIVITY CARD ________________________________________
+//_______________________ BMI CARD ________________________________________
 //______________________________________________________________________________
 
 class Cardbmi extends StatelessWidget {
@@ -354,23 +327,23 @@ class Cardbmi extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       clipBehavior: Clip.antiAlias,
-      // forma dei bordi
+      // shape of edges
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
-      // contenuto
+      // content
       child: GestureDetector(
         onTap: () => _toBmiPage(context),
         child: Column(
           children: [
             Container(
-              //colore interno
+              //internal color
               decoration: const BoxDecoration(
                 gradient: LinearGradient(
-                  //sfumatura
+                  //shade
                   colors: [
                     const Color.fromARGB(255, 239, 65, 123),
                     const Color.fromARGB(255, 244, 190, 110)
                   ],
-                  // direzione della sfumatura
+                  //direction of shade
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
                 ),
@@ -399,19 +372,10 @@ class Cardbmi extends StatelessWidget {
               ),
             ),
             Container(
-              //colore interno
+              //internal color
               height: 100,
-              //width: 234.7,
               decoration: const BoxDecoration(
                 color: Color.fromRGBO(255, 255, 255, 1),
-                /*gradient: LinearGradient(
-                                //sfumatura
-                                colors: [Colors.orangeAccent, Colors.deepOrange],
-                                // direzione della sfumatura
-                                begin: Alignment.topLeft,
-                                end: Alignment.bottomRight,
-                                ),
-                              */
               ),
               padding: const EdgeInsets.all(10),
               child: Column(
@@ -421,7 +385,6 @@ class Cardbmi extends StatelessWidget {
                     'Calculate your BMI, it is very simple! Just enter your age, weight and height and you will receive a feedback on your physical state',
                     style: TextStyle(
                         fontSize: 15,
-                        //fontWeight: FontWeight.bold,
                         color: Colors.black,
                         fontFamily: 'OpenSans'),
                     textAlign: TextAlign.center,
