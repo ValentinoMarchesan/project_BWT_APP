@@ -378,8 +378,8 @@ class _GamePageState extends State<GamePage> {
           // fabCloseColor: Colors.white
           // These properties take precedence over fabColor
           fabColor: Colors.white,
-          fabOpenIcon: Icon(Icons.info_outline, color: Colors.orange),
-          fabCloseIcon: Icon(Icons.close, color: Colors.orange),
+          fabOpenIcon: const Icon(Icons.info_outline, color: Colors.orange),
+          fabCloseIcon: const Icon(Icons.close, color: Colors.orange),
           fabMargin: const EdgeInsets.all(16.0),
           animationDuration: const Duration(milliseconds: 800),
           animationCurve: Curves.easeInOutCirc,
