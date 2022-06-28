@@ -608,6 +608,8 @@ class AnimationWidget extends StatefulWidget {
   State<AnimationWidget> createState() => _AnimationWidgetState();
 }
 
+// Class that make the animation of superhappy status
+// "coridandoli" effect
 class _AnimationWidgetState extends State<AnimationWidget> {
   late ConfettiController controller;
 
@@ -651,8 +653,3 @@ class _AnimationWidgetState extends State<AnimationWidget> {
     );
   }
 }
-
-//IN TEORIA NON UTILIZZATO
-void _toInfoPage(BuildContext context) {
-  Navigator.pushNamed(context, InfoPage.route);
-} //_toStepPage
