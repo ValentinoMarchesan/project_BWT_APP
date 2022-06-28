@@ -130,7 +130,7 @@ class _InfoPageState extends State<InfoPage> {
                                   return Column(
                                     children: [
                                       const Text(
-                                        'TO MAKE MeCo HAPPIER, SLEEP MORE! PAY ATTENTION SLEEP IS VERY IMPORTANT. \n'
+                                        'TO MAKE MeCo HAPPIER, SLEEP MORE! PAY ATTENTION, SLEEP IS VERY IMPORTANT. \n'
                                         '\n'
                                         'Sleep plays a critical role in thinking and learning processes: the lack of sleep hurts these cognitive processes in many ways.'
                                         '\nFirstly, it impairs attention, alertness, concentration, reasoning, and problem solving. This makes it more difficult to learn efficiently.'
@@ -173,7 +173,7 @@ class _InfoPageState extends State<InfoPage> {
                                   return Column(
                                     children: [
                                       const Text(
-                                          ' MeCo IS VERY SAD! TO IMPROVE MeCo\'S WELL-BEING, TRY TO SLEEP MORE AND MAKE SOME SPORT! In fact, it is known that:'
+                                          'MeCo IS VERY SAD! TO IMPROVE MeCo\'S WELL-BEING, TRY TO SLEEP MORE AND MAKE SOME SPORT! In fact, it is known that:'
                                           '\n'
                                           '\n• exercise increases blood flow to the brain. Due to its high metabolic demand, the brain demands good circulation and exercise aids it; \n'
                                           '• exercise improves memory;\n'
@@ -259,7 +259,7 @@ class _InfoPageState extends State<InfoPage> {
                                   return Column(
                                     children: [
                                       const Text(
-                                          'TO MAKE MeCo HAPPIER, SLEEP MORE! PAY ATTENTION SLEEP IS VERY IMPORTANT. \n'
+                                          'TO MAKE MeCo HAPPIER, SLEEP MORE! PAY ATTENTION, SLEEP IS VERY IMPORTANT. \n'
                                           '\n'
                                           'Sleep plays a critical role in thinking and learning processes: the lack of sleep hurts these cognitive processes in many ways.'
                                           '\nFirstly, it impairs attention, alertness, concentration, reasoning, and problem solving. This makes it more difficult to learn efficiently.'
@@ -301,7 +301,7 @@ class _InfoPageState extends State<InfoPage> {
                                   return Column(
                                     children: [
                                       const Text(
-                                          ' MeCo IS VERY SAD! TO IMPROVE MeCo\'S WELL-BEING, TRY TO SLEEP MORE AND MAKE SOME SPORT! In fact, it is known that:'
+                                          'MeCo IS VERY SAD! TO IMPROVE MeCo\'S WELL-BEING, TRY TO SLEEP MORE AND MAKE SOME SPORT! In fact, it is known that:'
                                           '\n'
                                           '\n• exercise increases blood flow to the brain. Due to its high metabolic demand, the brain demands good circulation and exercise aids it; \n'
                                           '• exercise improves memory;\n'
@@ -367,7 +367,7 @@ class _InfoPageState extends State<InfoPage> {
       floatingActionButton: Builder(
         builder: (context) => FabCircularMenu(
           key: fabKey,
-          alignment: Alignment(-1, -0.78),
+          alignment: Alignment(-1, -0.65),
           ringColor: Colors.white.withAlpha(0),
           ringDiameter: 300.0,
           ringWidth: 80,
@@ -405,8 +405,8 @@ class _InfoPageState extends State<InfoPage> {
               },
               shape: CircleBorder(),
               padding: const EdgeInsets.all(24.0),
-              child: const Icon(FontAwesomeIcons.faceSmile,
-                  color: Color.fromARGB(217, 198, 17, 104)),
+              child:
+                  const Icon(FontAwesomeIcons.faceSmile, color: Colors.black),
             ),
             RawMaterialButton(
               onPressed: () async {
@@ -416,8 +416,7 @@ class _InfoPageState extends State<InfoPage> {
               },
               shape: CircleBorder(),
               padding: const EdgeInsets.all(24.0),
-              child: Icon(FontAwesomeIcons.faceDizzy,
-                  color: Color.fromARGB(217, 198, 17, 104)),
+              child: Icon(FontAwesomeIcons.faceDizzy, color: Colors.black),
             ),
             RawMaterialButton(
               onPressed: () async {
@@ -427,8 +426,7 @@ class _InfoPageState extends State<InfoPage> {
               },
               shape: CircleBorder(),
               padding: const EdgeInsets.all(24.0),
-              child: Icon(FontAwesomeIcons.faceMeh,
-                  color: Color.fromARGB(217, 198, 17, 104)),
+              child: Icon(FontAwesomeIcons.faceMeh, color: Colors.black),
             ),
             RawMaterialButton(
               onPressed: () async {
@@ -438,8 +436,7 @@ class _InfoPageState extends State<InfoPage> {
               },
               shape: CircleBorder(),
               padding: const EdgeInsets.all(24.0),
-              child: Icon(FontAwesomeIcons.faceSadCry,
-                  color: Color.fromARGB(217, 198, 17, 104)),
+              child: Icon(FontAwesomeIcons.faceSadCry, color: Colors.black),
             ),
             RawMaterialButton(
               onPressed: () async {
@@ -450,7 +447,7 @@ class _InfoPageState extends State<InfoPage> {
               shape: CircleBorder(),
               padding: const EdgeInsets.all(24.0),
               child: const Icon(FontAwesomeIcons.faceLaughSquint,
-                  color: Color.fromARGB(217, 198, 17, 104)),
+                  color: Colors.black),
             ),
           ],
         ),

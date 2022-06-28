@@ -48,7 +48,7 @@ class _HomePageState extends State<HomePage> {
               child: ListView(
                 children: const <Widget>[
                   SizedBox(
-                    height: 35,
+                    height: 20,
                   ),
 //_____________________ HEART RATE CARD ________________________________________
                   CardHR(),

@@ -219,7 +219,7 @@ class _GamePageState extends State<GamePage> {
                                             sp.setInt('statusinfo', 3);
                                             return Container(
                                               height: 300,
-                                              width: 400,
+                                              width: 300,
                                               child: Image.asset(
                                                   'assets/MeCo/meh.png'),
                                             );
@@ -227,7 +227,7 @@ class _GamePageState extends State<GamePage> {
                                             sp.setInt('statusinfo', 4);
                                             return Container(
                                               height: 300,
-                                              width: 400,
+                                              width: 300,
                                               child: Image.asset(
                                                   'assets/MeCo/sad.png'),
                                             );
@@ -267,14 +267,14 @@ class _GamePageState extends State<GamePage> {
                                   sp.setInt('statusinfo', 3);
                                   return Container(
                                       height: 300,
-                                      width: 400,
+                                      width: 300,
                                       child:
                                           Image.asset('assets/MeCo/meh.png'));
                                 } else if (sp.getInt('status') == 4) {
                                   sp.setInt('statusinfo', 4);
                                   return Container(
                                       height: 300,
-                                      width: 400,
+                                      width: 300,
                                       child:
                                           Image.asset('assets/MeCo/sad.png'));
                                 } else if (sp.getInt('status') == 5) {
@@ -282,7 +282,7 @@ class _GamePageState extends State<GamePage> {
                                   return AnimationWidget(
                                     child: Container(
                                       height: 300,
-                                      width: 400,
+                                      width: 380,
                                       child: Image.asset(
                                           'assets/MeCo/superhappy.png'),
                                     ),
@@ -366,7 +366,7 @@ class _GamePageState extends State<GamePage> {
       floatingActionButton: Builder(
         builder: (context) => FabCircularMenu(
           key: fabKey,
-          alignment: Alignment(-1, -0.75),
+          alignment: Alignment(-1, -0.65),
           ringColor: Colors.white.withAlpha(0),
           ringDiameter: 300.0,
           ringWidth: 80,
@@ -399,8 +399,7 @@ class _GamePageState extends State<GamePage> {
               },
               shape: CircleBorder(),
               padding: const EdgeInsets.all(24.0),
-              child: Icon(FontAwesomeIcons.faceSmile,
-                  color: Color.fromARGB(217, 198, 17, 104)),
+              child: Icon(FontAwesomeIcons.faceSmile, color: Colors.black),
             ),
             RawMaterialButton(
               onPressed: () async {
@@ -410,8 +409,7 @@ class _GamePageState extends State<GamePage> {
               },
               shape: CircleBorder(),
               padding: const EdgeInsets.all(24.0),
-              child: Icon(FontAwesomeIcons.faceDizzy,
-                  color: Color.fromARGB(217, 198, 17, 104)),
+              child: Icon(FontAwesomeIcons.faceDizzy, color: Colors.black),
             ),
             RawMaterialButton(
               onPressed: () async {
@@ -421,8 +419,7 @@ class _GamePageState extends State<GamePage> {
               },
               shape: CircleBorder(),
               padding: const EdgeInsets.all(24.0),
-              child: Icon(FontAwesomeIcons.faceMeh,
-                  color: Color.fromARGB(217, 198, 17, 104)),
+              child: Icon(FontAwesomeIcons.faceMeh, color: Colors.black),
             ),
             RawMaterialButton(
               onPressed: () async {
@@ -432,8 +429,7 @@ class _GamePageState extends State<GamePage> {
               },
               shape: CircleBorder(),
               padding: const EdgeInsets.all(24.0),
-              child: Icon(FontAwesomeIcons.faceSadCry,
-                  color: Color.fromARGB(217, 198, 17, 104)),
+              child: Icon(FontAwesomeIcons.faceSadCry, color: Colors.black),
             ),
             RawMaterialButton(
               onPressed: () async {
@@ -443,8 +439,8 @@ class _GamePageState extends State<GamePage> {
               },
               shape: CircleBorder(),
               padding: const EdgeInsets.all(24.0),
-              child: Icon(FontAwesomeIcons.faceLaughSquint,
-                  color: Color.fromARGB(217, 198, 17, 104)),
+              child:
+                  Icon(FontAwesomeIcons.faceLaughSquint, color: Colors.black),
             ),
           ],
         ),
@@ -456,8 +452,8 @@ class _GamePageState extends State<GamePage> {
 
   Future<void> _aggiungoGM(DatabaseRepository database) async {
     final sp = await SharedPreferences.getInstance();
-    if (((sp.getBool('activity') == false || sp.getBool('sleep') == false)) &&
-        sp.getBool('game') == false) {
+    if (((sp.getBool('activity') == false || sp.getBool('sleep') == false) &&
+        sp.getBool('game') == false)) {
       FitbitActivityTimeseriesDataManager fitbitActivityTimeseriesDataManager =
           FitbitActivityTimeseriesDataManager(
         clientID: Strings.fitbitClientID,
@@ -524,23 +520,10 @@ class _GamePageState extends State<GamePage> {
           as List<FitbitActivityTimeseriesData>;
       final activity = ActivityData(activitycalories, calories, sedentary);
       final steps = StepsData(stepsData);
-
-      database.updateActivity(
-          Activity(1, steps[0], activity[0], activity[1], activity[2]));
-      database.updateActivity(Activity(2, steps[1], null, null, null));
-      database.updateActivity(Activity(3, steps[2], null, null, null));
-      database.updateActivity(Activity(4, steps[3], null, null, null));
-      database.updateActivity(Activity(5, steps[4], null, null, null));
-      database.updateActivity(Activity(6, steps[5], null, null, null));
-      database.updateActivity(Activity(7, steps[6], null, null, null));
-      sp.setBool('activity', true);
       FitbitSleepDataManager fitbitSleepDataManager = FitbitSleepDataManager(
         clientID: Strings.fitbitClientID,
         clientSecret: Strings.fitbitClientSecret,
       );
-
-      // _____________________________________________________________________________
-//_____________________________FETCH SLEEP DATA _____________________________________
       final sleepData =
           await fitbitSleepDataManager.fetch(FitbitSleepAPIURL.withUserIDAndDay(
         date: DateTime.now(),
@@ -551,10 +534,21 @@ class _GamePageState extends State<GamePage> {
         DateTime? endTime = sleepData[sleepData.length - 1].entryDateTime;
         DateTime? startTime = sleepData[0].entryDateTime;
         int sleepDurHourse = endTime!.difference(startTime!).inMinutes ~/ 60;
+        database.updateSleep(Sleep(1, sleepDurHourse));
+        sp.setBool('sleep', true);
       } else {
         database.updateSleep(Sleep(1, 0));
         sp.setBool('sleep', true);
       }
+      database.updateActivity(
+          Activity(1, steps[0], activity[0], activity[1], activity[2]));
+      database.updateActivity(Activity(2, steps[1], null, null, null));
+      database.updateActivity(Activity(3, steps[2], null, null, null));
+      database.updateActivity(Activity(4, steps[3], null, null, null));
+      database.updateActivity(Activity(5, steps[4], null, null, null));
+      database.updateActivity(Activity(6, steps[5], null, null, null));
+      database.updateActivity(Activity(7, steps[6], null, null, null));
+      sp.setBool('activity', true);
       sp.setBool('game', true);
     }
   }
