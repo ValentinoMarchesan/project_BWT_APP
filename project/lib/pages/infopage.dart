@@ -109,7 +109,7 @@ class _InfoPageState extends State<InfoPage> {
                                 //statusinfo is a control parameter to understand which is the mood of MECO avatar
                                 if (sp.getInt('statusinfo') == 1) {
                                   return const Text(
-                                      'MeCo IS HAPPY. IN ORDER TO MAKE MeCo HAPPIER, TRY TO SLEEP OR MOVE MORE!\n'
+                                      'MeCo IS HAPPY, YOU HAVE SLEPT AND MOVED ENOUGH. IN ORDER TO MAKE MeCo HAPPIER, TRY TO DRINK AND MEDITATE A LITTLE BIT MORE!\n'
                                       '\n'
                                       '• SLEEPING BENEFITS '
                                       '\n'
@@ -238,7 +238,7 @@ class _InfoPageState extends State<InfoPage> {
                                 final sp = snapshot.data as SharedPreferences;
                                 if (sp.getInt('info') == 1) {
                                   return const Text(
-                                      'MeCo IS HAPPY. IN ORDER TO MAKE MeCo HAPPIER, TRY TO SLEEP OR MOVE MORE!\n'
+                                      'MeCo IS HAPPY, YOU HAVE SLEPT AND MOVED ENOUGH. IN ORDER TO MAKE MeCo HAPPIER, TRY TO DRINK AND MEDITATE A LITTLE BIT MORE!\n'
                                       '\n'
                                       '• SLEEPING BENEFITS '
                                       '\n'
@@ -367,7 +367,7 @@ class _InfoPageState extends State<InfoPage> {
       floatingActionButton: Builder(
         builder: (context) => FabCircularMenu(
           key: fabKey,
-          alignment: Alignment(-1, -0.65),
+          alignment: Alignment(-1, -0.68),
           ringColor: Colors.white.withAlpha(0),
           ringDiameter: 300.0,
           ringWidth: 80,
@@ -380,8 +380,8 @@ class _InfoPageState extends State<InfoPage> {
           // fabCloseColor: Colors.white
           // These properties take precedence over fabColor
           fabColor: Colors.white,
-          fabOpenIcon: Icon(Icons.info_outline, color: Colors.deepOrangeAccent),
-          fabCloseIcon: Icon(Icons.close, color: Colors.deepOrangeAccent),
+          fabOpenIcon: Icon(Icons.info_outline, color: Colors.orange),
+          fabCloseIcon: Icon(Icons.close, color: Colors.orange),
           fabMargin: const EdgeInsets.all(16.0),
           animationDuration: const Duration(milliseconds: 800),
           animationCurve: Curves.easeInOutCirc,

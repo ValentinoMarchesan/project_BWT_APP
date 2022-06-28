@@ -121,7 +121,7 @@ class _GamePageState extends State<GamePage> {
                                 final datasteps = datastep[0];
                                 if (datasteps == null) {
                                   return CircularProgressIndicator();
-                                } else if (datasteps > 6000) {
+                                } else if (datasteps > 7000) {
                                   return FutureBuilder(
                                       initialData: null,
                                       future: dbr.findAllSleep(),
