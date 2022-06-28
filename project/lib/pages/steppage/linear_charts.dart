@@ -7,7 +7,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import 'Stepseries.dart';
 
-//create the linearcharts for the steppage
+//Class that create the linearcharts for the steppage
 class LinearCharts extends StatelessWidget {
   final List<Steps> data;
   LinearCharts({required this.data});
