@@ -188,9 +188,7 @@ class StepPage extends StatelessWidget {
 Future<void> _aggiungoAC(DatabaseRepository database) async {
   final sp = await SharedPreferences.getInstance();
   final now = DateTime.now().hour;
-  if (sp.getInt('hour') == null) {
-    sp.setInt('hour', DateTime.now().hour);
-  }
+
   final timelastfetch = sp.getInt("hour");
   List test = [now, timelastfetch];
   print(
