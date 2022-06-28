@@ -270,7 +270,7 @@ Future<void> _aggiungoAC(DatabaseRepository database) async {
     database.updateActivity(Activity(7, steps[6], null, null, null));
     sp.setBool('activity', true);
     final timefetch = DateTime.now().hour;
-    sp.setInt('hour3', timefetch);
+    sp.setInt('hour', timefetch);
   }
 }
 
