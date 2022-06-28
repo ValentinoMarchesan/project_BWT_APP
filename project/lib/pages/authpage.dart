@@ -50,18 +50,20 @@ class AuthPage extends StatelessWidget {
             textScaleFactor: 1.2,
           ),
           content: const Text(
-            'To continue, you must authorize data sharing from the fitbit site.',
+            'To continue, you must authorize data sharing from the Fitbit site.',
             style: TextStyle(fontFamily: 'OpenSans', fontSize: 17),
             textAlign: TextAlign.center,
           ),
           actions: [
             DialogButton(
               radius: const BorderRadius.all(Radius.circular(30)),
-              color: Color.fromARGB(255, 33, 41, 99),
+              color: Color.fromARGB(219, 221, 59, 113),
               child: const Text(
                 'NO',
-                style:
-                    TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                    fontSize: 17),
               ),
               //if you not authorize you come back to login page
               onPressed: () async {
@@ -75,8 +77,10 @@ class AuthPage extends StatelessWidget {
               color: Color.fromARGB(255, 149, 222, 144),
               child: const Text(
                 'YES',
-                style:
-                    TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                    fontSize: 17),
               ),
               onPressed: () async {
                 _initializeDB(context);

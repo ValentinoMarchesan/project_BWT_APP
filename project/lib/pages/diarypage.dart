@@ -19,7 +19,8 @@ class DiaryPage extends StatelessWidget {
       appBar: AppBar(
         title: const Text(
           DiaryPage.routename,
-          style: TextStyle(fontFamily: 'Audiowide'),
+          style:
+              TextStyle(fontFamily: 'Audiowide', fontWeight: FontWeight.bold),
         ),
         centerTitle: true,
         backgroundColor: const Color.fromARGB(255, 254, 183, 77),

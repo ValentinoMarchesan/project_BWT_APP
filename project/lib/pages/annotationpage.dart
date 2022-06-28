@@ -70,7 +70,8 @@ class _AnnotationPageState extends State<AnnotationPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(AnnotationPage.routeDisplayName,
-            style: TextStyle(fontFamily: 'Audiowide')),
+            style: TextStyle(
+                fontFamily: 'Audiowide', fontWeight: FontWeight.bold)),
         centerTitle: true,
         backgroundColor: const Color.fromARGB(255, 254, 183, 77),
         actions: [

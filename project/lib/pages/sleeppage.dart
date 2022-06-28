@@ -31,6 +31,7 @@ class SleepPage extends StatelessWidget {
             style: TextStyle(
               fontSize: 20,
               fontFamily: 'Audiowide',
+              fontWeight: FontWeight.bold,
             )),
         centerTitle: true,
         flexibleSpace: Container(

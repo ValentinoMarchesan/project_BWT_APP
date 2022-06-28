@@ -53,24 +53,21 @@ class HeartPage extends StatelessWidget {
                     'Out of Range',
                     data_heart[0],
                     charts.ColorUtil.fromDartColor(
-                        Color.fromARGB(255, 162, 17, 7))),
+                        Color.fromARGB(219, 221, 59, 113))),
                 HeartSeries.creation('Fat Burn', data_heart[1],
                     charts.ColorUtil.fromDartColor(Colors.orangeAccent)),
-                HeartSeries.creation(
-                    'Cardio',
-                    data_heart[2],
-                    charts.ColorUtil.fromDartColor(
-                        Color.fromARGB(255, 136, 196, 118))),
+                HeartSeries.creation('Cardio', data_heart[2],
+                    charts.ColorUtil.fromDartColor(Colors.greenAccent)),
                 HeartSeries.creation(
                     'Peak',
                     data_heart[3],
                     charts.ColorUtil.fromDartColor(
-                        Color.fromARGB(255, 68, 142, 216)))
+                        Color.fromARGB(230, 107, 160, 252)))
               ];
 
               return Column(
                 children: [
-                  Container(height: 450, child: HeartChart(data: data_series)),
+                  Container(height: 500, child: HeartChart(data: data_series)),
                   Container(
                     height: 180,
                     width: MediaQuery.of(context).size.width - 40,
@@ -78,8 +75,8 @@ class HeartPage extends StatelessWidget {
                       gradient: LinearGradient(
                         //shade
                         colors: [
-                          Color.fromARGB(255, 244, 190, 110),
-                          Color.fromARGB(255, 243, 178, 82)
+                          Color.fromARGB(255, 239, 65, 123),
+                          Color.fromARGB(255, 244, 190, 110)
                         ],
                         // direction of shade
                         begin: Alignment.topLeft,
@@ -95,38 +92,40 @@ class HeartPage extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.baseline,
                         children: [
                           const SizedBox(
-                            height: 10,
+                            height: 11,
                           ),
-                          const Text('GENERAL INFORMATION:',
+                          const Text('    GENERAL INFORMATION',
                               style: TextStyle(
-                                  fontSize: 20,
-                                  fontFamily: 'Audiowide',
-                                  color: Colors.white)),
+                                fontSize: 20,
+                                fontFamily: 'Audiowide',
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                              )),
                           const SizedBox(height: 10),
                           Text(
-                              ' Minutes out of range: ${data_heart[0]}min/1440 min'
-                              '\n where there are:',
+                              '  Minutes out of range: ${data_heart[0]} / 1440 min,'
+                              '  \n  where: ',
                               style: const TextStyle(
                                   fontSize: 18,
                                   fontFamily: 'OpenSans',
                                   color: Colors.white),
                               textAlign: TextAlign.start),
                           const SizedBox(height: 2),
-                          Text('- Minutes fat burn:  ${data_heart[1]} min',
+                          Text('  -  Minutes fat burn: ${data_heart[1]} min',
                               style: const TextStyle(
                                   fontSize: 18,
                                   fontFamily: 'OpenSans',
                                   color: Colors.white),
                               textAlign: TextAlign.start),
                           const SizedBox(height: 2),
-                          Text('- Minutes cardio:     ${data_heart[2]} min',
+                          Text('  -  Minutes cardio: ${data_heart[2]} min',
                               style: const TextStyle(
                                   fontSize: 18,
                                   fontFamily: 'OpenSans',
                                   color: Colors.white),
                               textAlign: TextAlign.start),
                           const SizedBox(height: 2),
-                          Text('- Minutes peak:        ${data_heart[3]} min',
+                          Text('  -  Minutes peak: ${data_heart[3]} min',
                               style: const TextStyle(
                                   fontSize: 18,
                                   fontFamily: 'OpenSans',

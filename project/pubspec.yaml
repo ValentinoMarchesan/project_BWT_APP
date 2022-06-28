@@ -119,6 +119,7 @@ flutter:
   - assets/homepage/sleep_home.png
   - assets/oic.JPG
   - assets/profile_pic.png
+  - assets/homepage/heart_doodle.png
 
   
   # An image asset can refer to one or more resolution-specific "variants", see

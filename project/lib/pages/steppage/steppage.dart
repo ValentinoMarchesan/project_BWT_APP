@@ -30,7 +30,8 @@ class StepPage extends StatelessWidget {
           centerTitle: true,
           title: const Text(
             StepPage.routename,
-            style: TextStyle(fontFamily: 'Audiowide'),
+            style:
+                TextStyle(fontFamily: 'Audiowide', fontWeight: FontWeight.bold),
           ),
           shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.vertical(
@@ -77,7 +78,7 @@ class StepPage extends StatelessWidget {
                 return Column(
                   children: [
                     const SizedBox(
-                      height: 20,
+                      height: 30,
                     ),
                     Container(
                         decoration: BoxDecoration(
@@ -92,8 +93,8 @@ class StepPage extends StatelessWidget {
                         gradient: LinearGradient(
                           //shade
                           colors: [
-                            Color.fromARGB(255, 244, 190, 110),
-                            Color.fromARGB(255, 243, 178, 82)
+                            Color.fromARGB(255, 239, 65, 123),
+                            Color.fromARGB(255, 244, 190, 110)
                           ],
                           // direction of shade
                           begin: Alignment.topLeft,
@@ -108,14 +109,14 @@ class StepPage extends StatelessWidget {
                           const SizedBox(
                             height: 10,
                           ),
-                          const Text('  GENERAL INFORMATION:',
+                          const Text('   GENERAL INFORMATION',
                               style: TextStyle(
                                   fontSize: 22,
                                   fontFamily: 'Audiowide',
                                   color: Color.fromARGB(255, 255, 255, 255))),
                           const SizedBox(height: 15),
                           Text(
-                              '   - Last day step: ${datastep[0]!.toInt()} steps ',
+                              '    -  Today\'s steps: ${datastep[0]!.toInt()} steps ',
                               style: const TextStyle(
                                   fontSize: 18,
                                   fontFamily: 'OpenSans',
@@ -123,7 +124,7 @@ class StepPage extends StatelessWidget {
                               textAlign: TextAlign.start),
                           const SizedBox(height: 5),
                           Text(
-                              '   - Means steps of the week: ${means!.toInt()} steps',
+                              '    -  Means steps of the week: ${means!.toInt()} steps',
                               style: const TextStyle(
                                   fontSize: 18,
                                   fontFamily: 'OpenSans',
@@ -131,7 +132,7 @@ class StepPage extends StatelessWidget {
                               textAlign: TextAlign.start),
                           const SizedBox(height: 5),
                           Text(
-                              '   - Max steps of the week: ${maxsteps!.toInt()} steps',
+                              '    -  Max steps of the week: ${maxsteps!.toInt()} steps',
                               style: const TextStyle(
                                   fontSize: 18,
                                   fontFamily: 'OpenSans',
@@ -139,7 +140,7 @@ class StepPage extends StatelessWidget {
                               textAlign: TextAlign.start),
                           const SizedBox(height: 5),
                           Text(
-                              '   - Min steps of the week: ${minsteps.toInt()} steps',
+                              '    -  Min steps of the week: ${minsteps.toInt()} steps',
                               style: const TextStyle(
                                   fontSize: 18,
                                   fontFamily: 'OpenSans',
@@ -147,7 +148,7 @@ class StepPage extends StatelessWidget {
                               textAlign: TextAlign.start),
                           const SizedBox(height: 5),
                           Text(
-                              '   - Last day Cal. of activity burn:${dataactivity[1]!.toInt()}Kcal',
+                              '    -  Cal. of activity burn (today):${dataactivity[1]!.toInt()} Kcal',
                               style: const TextStyle(
                                   fontSize: 18,
                                   fontFamily: 'OpenSans',
@@ -155,7 +156,7 @@ class StepPage extends StatelessWidget {
                               textAlign: TextAlign.start),
                           const SizedBox(height: 5),
                           Text(
-                              '   - Last day minutes sedentary: ${dataactivity[2]!.toInt()} min',
+                              '    -  Sedentary minutes (today): ${dataactivity[2]!.toInt()} min',
                               style: const TextStyle(
                                   fontSize: 18,
                                   fontFamily: 'OpenSans',
@@ -163,7 +164,7 @@ class StepPage extends StatelessWidget {
                               textAlign: TextAlign.start),
                           const SizedBox(height: 5),
                           Text(
-                              '   - Last day hours sedentary: ${(dataactivity[2]! / 60).toInt()} h',
+                              '    -  Sedentary hours (today): ${(dataactivity[2]! / 60).toInt()} h',
                               style: const TextStyle(
                                   fontSize: 18,
                                   fontFamily: 'OpenSans',

@@ -17,7 +17,7 @@ AppBar buildAppBar(BuildContext context) {
     centerTitle: true,
     title: const Text(
       'MY PROFILE',
-      style: TextStyle(fontFamily: 'Audiowide'),
+      style: TextStyle(fontFamily: 'Audiowide', fontWeight: FontWeight.bold),
       textAlign: TextAlign.center,
     ),
     backgroundColor: const Color.fromARGB(255, 254, 183, 77),
@@ -96,6 +96,7 @@ AppBar buildAppBarHeartPage(BuildContext context) {
       HeartPage.routename,
       style: TextStyle(
         fontFamily: 'Audiowide',
+        fontWeight: FontWeight.bold,
       ),
     ),
     centerTitle: true,
@@ -125,15 +126,14 @@ AppBar buildAppBarHeartPage(BuildContext context) {
                 content: SizedBox(
                   child: Column(children: const [
                     Text(
-                        'Fitbit identifies four heart rate zones: peak, cardio, fat burn and out of range. These zones are based on your maximum heart rate (maximum heart rate can be custom inserted or computed by the formula 220-age).\n'
-                        '\n• Peak zone is where the most intense portion of your workouts happen, and you are at 80 to 100 percent of your maximum heart rate.\n '
-                        '\n• The cardio zone, which is 70 to 84 percent of your max heart rate, is where the hard work is done when you’re training for a big event. You can usually sustain it for about 30 minutes.\n '
-                        '\n• In the fat burn zone, moderate workouts use 50 to 69 percent of your maximum heart rate.\n'
-                        '\n• The out of range zone indicate a heart rate that is lower than that of fat burn zone',
-                        style: TextStyle(
-                          fontFamily: 'OpenSans',
-                          fontSize: 15,
-                        ))
+                      'Fitbit identifies 4 heart rate zones: peak, cardio, fat burn and out of range. \nThese zones are based on your maximum heart rate (it can be custom inserted or computed by the formula 220-age).\n'
+                      '\n• "Peak zone" is where the most intense portion of your workouts happen, and you are at 80 to 100 % of your maximum heart rate.\n '
+                      '\n• "Cardio zone", which is 70 to 84 % of your maximum heart rate, is where the hard work is done when you’re training for a big event. You can usually sustain it for about 30 minutes.\n '
+                      '\n• In the "fat burn zone", moderate workouts use 50 to 69 % of your maximum heart rate.\n'
+                      '\n• "Out of range zone" indicates a heart rate that is lower than that of the fat burn zone.',
+                      style: TextStyle(fontFamily: 'OpenSans', fontSize: 15),
+                      textAlign: TextAlign.justify,
+                    )
                   ]),
                 ),
                 style: const AlertStyle(
@@ -163,7 +163,14 @@ AppBar buildAppBarHeartPage(BuildContext context) {
                   DialogButton(
                     radius: const BorderRadius.all(Radius.circular(30)),
                     color: const Color.fromARGB(255, 254, 183, 77),
-                    child: const Text('OK'),
+                    child: const Text(
+                      'OK',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontFamily: 'Audiowise',
+                          fontSize: 18),
+                    ),
                     onPressed: () {
                       Navigator.pop(context);
                     },

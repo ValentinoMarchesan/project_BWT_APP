@@ -55,8 +55,10 @@ class CardHR extends StatelessWidget {
                   ),
                   Text(
                     'HEART MONITORING',
-                    style:
-                        TextStyle(fontFamily: 'Audiowide', color: Colors.white),
+                    style: TextStyle(
+                        fontFamily: 'Audiowide',
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold),
                   ),
                   SizedBox(
                     width: 132,
@@ -73,14 +75,14 @@ class CardHR extends StatelessWidget {
                 Container(
                   color: Color.fromRGBO(255, 255, 255, 1),
                   height: 100,
-                  width: 100,
+                  width: 130,
                   child: Image.asset('assets/homepage/heart_home.png',
-                      scale: 80, fit: BoxFit.scaleDown),
+                      scale: 65, fit: BoxFit.scaleDown),
                 ),
                 Container(
                   //internal color
                   height: 100,
-                  width: 284.7,
+                  width: 240,
                   decoration: const BoxDecoration(
                     color: Color.fromRGBO(255, 255, 255, 1),
                   ),
@@ -158,7 +160,9 @@ class CardSM extends StatelessWidget {
                   ),
                   Text('SLEEP MONITORING',
                       style: TextStyle(
-                          fontFamily: 'Audiowide', color: Colors.white)),
+                          fontFamily: 'Audiowide',
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold)),
                   SizedBox(
                     width: 132,
                   ),
@@ -176,14 +180,14 @@ class CardSM extends StatelessWidget {
                 Container(
                   color: Color.fromRGBO(255, 255, 255, 1),
                   height: 100,
-                  width: 100,
+                  width: 120,
                   child: Image.asset('assets/homepage/sleep_home.png',
                       scale: 5, fit: BoxFit.none),
                 ),
                 Container(
                   //internal color
                   height: 100,
-                  width: 274.7,
+                  width: 240,
                   decoration: const BoxDecoration(
                     color: Color.fromRGBO(255, 255, 255, 1),
                   ),
@@ -192,7 +196,7 @@ class CardSM extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: const [
                       Text(
-                        'Through the data acquired by your device, it provides an overview of your sleep activity',
+                        'Tap to find out more about your sleep activity acquired through your device!',
                         style: TextStyle(
                             fontSize: 15,
                             color: Colors.black,
@@ -260,7 +264,9 @@ class CardSteep extends StatelessWidget {
                   ),
                   Text('STEPS MONITORING',
                       style: TextStyle(
-                          fontFamily: 'Audiowide', color: Colors.white)),
+                          fontFamily: 'Audiowide',
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold)),
                   SizedBox(
                     width: 128,
                   ),
@@ -272,19 +278,19 @@ class CardSteep extends StatelessWidget {
               children: [
                 Container(
                   width: 20,
-                  height: 100,
+                  height: 50,
                   color: Color.fromRGBO(255, 255, 255, 1),
                 ),
                 Container(
                     color: Color.fromRGBO(255, 255, 255, 1),
                     height: 100,
-                    width: 80,
+                    width: 101,
                     child: Image.asset('assets/homepage/walk_home.png',
-                        scale: 15, fit: BoxFit.none)),
+                        scale: 13, fit: BoxFit.none)),
                 Container(
                   //internal color
                   height: 100,
-                  width: 264.7,
+                  width: 240,
                   decoration: const BoxDecoration(
                     color: Color.fromRGBO(255, 255, 255, 1),
                   ),
@@ -293,7 +299,7 @@ class CardSteep extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: const [
                       Text(
-                        'Through the data acquired by your device, it provides an overview of your step activity',
+                        'Tap to find out more about your step activity acquired through your device!',
                         style: TextStyle(
                             fontSize: 15,
                             color: Colors.black,
@@ -361,8 +367,10 @@ class Cardbmi extends StatelessWidget {
                   ),
                   Text(
                     'BMI CALCULATOR',
-                    style:
-                        TextStyle(fontFamily: 'Audiowide', color: Colors.white),
+                    style: TextStyle(
+                        fontFamily: 'Audiowide',
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold),
                   ),
                   SizedBox(
                     width: 145,
