@@ -83,7 +83,7 @@ class _InfoPageState extends State<InfoPage> {
           ),
         ),
         SizedBox(
-          height: 20,
+          height: 10,
         ),
         Container(
           decoration: BoxDecoration(

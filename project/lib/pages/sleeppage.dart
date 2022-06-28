@@ -290,13 +290,12 @@ class SleepPage extends StatelessWidget {
         DateTime? startTime = sleepData[0].entryDateTime;
         int sleepDurHourse = endTime!.difference(startTime!).inMinutes ~/ 60;
         database.updateSleep(Sleep(1, sleepDurHourse));
-        sp.setBool('sleep', true);
       } else {
         database.updateSleep(Sleep(1, 0));
-        sp.setBool('sleep', true);
       }
       final timefetch = DateTime.now().hour;
       sp.setInt('hour2', timefetch);
+      sp.setBool('sleep', true);
     }
   }
 } //sleep page

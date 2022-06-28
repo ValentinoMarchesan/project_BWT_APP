@@ -67,7 +67,7 @@ class HeartPage extends StatelessWidget {
 
               return Column(
                 children: [
-                  Container(height: 500, child: HeartChart(data: data_series)),
+                  Container(height: 460, child: HeartChart(data: data_series)),
                   Container(
                     height: 180,
                     width: MediaQuery.of(context).size.width - 40,

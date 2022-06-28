@@ -100,7 +100,7 @@ class _GamePageState extends State<GamePage> {
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20),
             ),
-            height: 340,
+            height: 300,
             child: Consumer<DatabaseRepository>(builder: (context, dbr, child) {
               _aggiungoGM(dbr);
               return FutureBuilder(
@@ -157,7 +157,7 @@ class _GamePageState extends State<GamePage> {
                                                             child: Image.asset(
                                                                 'assets/MeCo/happy.png'),
                                                             width: 400,
-                                                            height: 340,
+                                                            height: 300,
                                                           ),
                                                         ],
                                                       );
@@ -168,25 +168,17 @@ class _GamePageState extends State<GamePage> {
                                                         data[data.length - 1]
                                                                 .min >
                                                             10) {
-                                                      return Column(
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .center,
-                                                        children: [
-                                                          Container(
-                                                            height: 340,
-                                                            width: 320,
-                                                            child:
-                                                                AnimationWidget(
-                                                              child: Image.asset(
-                                                                  'assets/MeCo/superhappy.png'),
-                                                            ),
-                                                          ),
-                                                        ],
+                                                      return AnimationWidget(
+                                                        child: Container(
+                                                          height: 300,
+                                                          width: 400,
+                                                          child: Image.asset(
+                                                              'assets/MeCo/superhappy.png'),
+                                                        ),
                                                       );
                                                     } else {
                                                       return Container(
-                                                        height: 340,
+                                                        height: 300,
                                                         width: 400,
                                                         child: Image.asset(
                                                             'assets/MeCo/happy.png'),
@@ -199,7 +191,7 @@ class _GamePageState extends State<GamePage> {
                                           } else {
                                             sp.setInt('statusinfo', 2);
                                             return Container(
-                                              height: 340,
+                                              height: 300,
                                               width: 400,
                                               child: Image.asset(
                                                   'assets/MeCo/sleepy.png'),
@@ -227,7 +219,7 @@ class _GamePageState extends State<GamePage> {
                                               datasleep <= 9) {
                                             sp.setInt('statusinfo', 3);
                                             return Container(
-                                              height: 340,
+                                              height: 300,
                                               width: 400,
                                               child: Image.asset(
                                                   'assets/MeCo/meh.png'),
@@ -235,7 +227,7 @@ class _GamePageState extends State<GamePage> {
                                           } else {
                                             sp.setInt('statusinfo', 4);
                                             return Container(
-                                              height: 340,
+                                              height: 300,
                                               width: 400,
                                               child: Image.asset(
                                                   'assets/MeCo/sad.png'),
@@ -260,28 +252,28 @@ class _GamePageState extends State<GamePage> {
                                 if (sp.getInt('status') == 1) {
                                   sp.setInt('statusinfo', 1);
                                   return Container(
-                                      height: 340,
+                                      height: 300,
                                       width: 400,
                                       child:
                                           Image.asset('assets/MeCo/happy.png'));
                                 } else if (sp.getInt('status') == 2) {
                                   sp.setInt('statusinfo', 2);
                                   return Container(
-                                      height: 340,
+                                      height: 300,
                                       width: 400,
                                       child: Image.asset(
                                           'assets/MeCo/sleepy.png'));
                                 } else if (sp.getInt('status') == 3) {
                                   sp.setInt('statusinfo', 3);
                                   return Container(
-                                      height: 340,
+                                      height: 300,
                                       width: 400,
                                       child:
                                           Image.asset('assets/MeCo/meh.png'));
                                 } else if (sp.getInt('status') == 4) {
                                   sp.setInt('statusinfo', 4);
                                   return Container(
-                                      height: 340,
+                                      height: 300,
                                       width: 400,
                                       child:
                                           Image.asset('assets/MeCo/sad.png'));
@@ -289,7 +281,7 @@ class _GamePageState extends State<GamePage> {
                                   sp.setInt('statusinfo', 5);
                                   return AnimationWidget(
                                     child: Container(
-                                      height: 340,
+                                      height: 300,
                                       width: 400,
                                       child: Image.asset(
                                           'assets/MeCo/superhappy.png'),
