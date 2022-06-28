@@ -22,10 +22,10 @@ class _InfoPageState extends State<InfoPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('BRAIN HEALTH',
+        title: const Text('HOW MeCo FEELS',
             style: TextStyle(
               fontFamily: 'Goldman',
-              fontSize: 25,
+              fontSize: 26,
               fontWeight: FontWeight.w500,
               color: Colors.white,
             )),
