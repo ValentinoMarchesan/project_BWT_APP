@@ -15,19 +15,12 @@ import '../utils/formats.dart';
 import '../utils/strings.dart';
 
 //define the page where there is information about how many hours the subject's has slept
-class SleepPage extends StatefulWidget {
-  SleepPage({Key? key}) : super(key: key);
 
+class SleepPage extends StatelessWidget {
   static const route = '/home/sleep';
   static const routename = 'SLEEP MONITORING';
   Sleep? sleep;
 
-  @override
-  State<SleepPage> createState() => _SleepPageState();
-}
-
-class _SleepPageState extends State<SleepPage> {
-  // initState
   int? data_sleep;
   @override
   Widget build(BuildContext context) {
@@ -131,7 +124,7 @@ class _SleepPageState extends State<SleepPage> {
                         ),
                       ],
                     );
-                  } else if (datasleep! >= 8) {
+                  } else if (datasleep! >= 7) {
                     return Column(
                       children: [
                         const SizedBox(
@@ -271,9 +264,6 @@ class _SleepPageState extends State<SleepPage> {
   Future<void> _aggiungoSL(DatabaseRepository database) async {
     final sp = await SharedPreferences.getInstance();
     final now = DateTime.now().hour;
-    if (sp.getInt('hour2') == null) {
-      sp.setInt('hour2', DateTime.now().hour);
-    }
 
     final timelastfetch = sp.getInt("hour2");
     List test = [now, timelastfetch];

@@ -12,17 +12,10 @@ import '../../repositories/databaseRepository.dart';
 import 'Stepseries.dart';
 
 //this class define the stepPage in which you can see the weekly steps
-class StepPage extends StatefulWidget {
-  StepPage({Key? key}) : super(key: key);
 
+class StepPage extends StatelessWidget {
   static const route = '/home/Step';
   static const routename = 'STEPS MONITORING';
-
-  @override
-  State<StepPage> createState() => _StepPageState();
-}
-
-class _StepPageState extends State<StepPage> {
   late List<Steps> data_step = [];
 
   @override
@@ -195,10 +188,10 @@ class _StepPageState extends State<StepPage> {
 Future<void> _aggiungoAC(DatabaseRepository database) async {
   final sp = await SharedPreferences.getInstance();
   final now = DateTime.now().hour;
-  if (sp.getInt('hour3') == null) {
-    sp.setInt('hour3', DateTime.now().hour);
+  if (sp.getInt('hour') == null) {
+    sp.setInt('hour', DateTime.now().hour);
   }
-  final timelastfetch = sp.getInt("hour3");
+  final timelastfetch = sp.getInt("hour");
   List test = [now, timelastfetch];
   print(
     test,

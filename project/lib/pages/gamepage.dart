@@ -102,6 +102,7 @@ class _GamePageState extends State<GamePage> {
             ),
             height: 340,
             child: Consumer<DatabaseRepository>(builder: (context, dbr, child) {
+              _aggiungoGM(dbr);
               return FutureBuilder(
                   initialData: null,
                   future: SharedPreferences.getInstance(),
@@ -114,8 +115,6 @@ class _GamePageState extends State<GamePage> {
                             future: dbr.findAllActivity(),
                             builder: (context, snapshot) {
                               if (snapshot.hasData) {
-                                _aggiungoAC(dbr);
-
                                 final data = snapshot.data as List<Activity>;
 
                                 final datastep = dbr.findstep(data);
@@ -129,8 +128,6 @@ class _GamePageState extends State<GamePage> {
                                       future: dbr.findAllSleep(),
                                       builder: (context, snapshot) {
                                         if (snapshot.hasData) {
-                                          _aggiungoSL(dbr);
-
                                           final data =
                                               snapshot.data as List<Sleep>;
 
@@ -176,10 +173,11 @@ class _GamePageState extends State<GamePage> {
                                                             MainAxisAlignment
                                                                 .center,
                                                         children: [
-                                                          AnimationWidget(
-                                                            child: Container(
-                                                              height: 340,
-                                                              width: 400,
+                                                          Container(
+                                                            height: 340,
+                                                            width: 320,
+                                                            child:
+                                                                AnimationWidget(
                                                               child: Image.asset(
                                                                   'assets/MeCo/superhappy.png'),
                                                             ),
@@ -217,8 +215,6 @@ class _GamePageState extends State<GamePage> {
                                       future: dbr.findAllSleep(),
                                       builder: (context, snapshot) {
                                         if (snapshot.hasData) {
-                                          _aggiungoSL(dbr);
-
                                           final data =
                                               snapshot.data as List<Sleep>;
 
@@ -469,20 +465,11 @@ class _GamePageState extends State<GamePage> {
   } //GamePage
 
 //this method permit to fetch the activity data if the authorization is done and if no activity data has already fecthed. It also update the data in the database
-//if the user enter in the application after 1 hour, fetch again data
-  Future<void> _aggiungoAC(DatabaseRepository database) async {
+
+  Future<void> _aggiungoGM(DatabaseRepository database) async {
     final sp = await SharedPreferences.getInstance();
-    if (sp.getInt('hour') == null) {
-      sp.setInt('hour', DateTime.now().hour);
-    }
-    final now = DateTime.now().hour;
-    final timelastfetch = sp.getInt("hour");
-    List test = [now, timelastfetch];
-    print(
-      test,
-    );
-    if ((sp.getBool('activity') == false && sp.getBool('game') == false) ||
-        (now != timelastfetch)) {
+    if (((sp.getBool('activity') == false || sp.getBool('sleep') == false)) &&
+        sp.getBool('game') == false) {
       FitbitActivityTimeseriesDataManager fitbitActivityTimeseriesDataManager =
           FitbitActivityTimeseriesDataManager(
         clientID: Strings.fitbitClientID,
@@ -559,29 +546,13 @@ class _GamePageState extends State<GamePage> {
       database.updateActivity(Activity(6, steps[5], null, null, null));
       database.updateActivity(Activity(7, steps[6], null, null, null));
       sp.setBool('activity', true);
-
-      final timefetch = DateTime.now().hour;
-      sp.setInt('hour', timefetch);
-    }
-  }
-
-  //this method permit to fetch the sleep data if the authorization is done and if no sleep data has already fecthed. it also update the data in the database
-  Future<void> _aggiungoSL(DatabaseRepository database) async {
-    final sp = await SharedPreferences.getInstance();
-    final now = DateTime.now().hour;
-    final timelastfetch = sp.getInt("hour");
-    List test = [now, timelastfetch];
-    print(
-      test,
-    );
-    if ((sp.getBool('sleep') == false && sp.getBool('game') == false) ||
-        (now != timelastfetch)) {
       FitbitSleepDataManager fitbitSleepDataManager = FitbitSleepDataManager(
         clientID: Strings.fitbitClientID,
         clientSecret: Strings.fitbitClientSecret,
       );
 
-      //Fetch data
+      // _____________________________________________________________________________
+//_____________________________FETCH SLEEP DATA _____________________________________
       final sleepData =
           await fitbitSleepDataManager.fetch(FitbitSleepAPIURL.withUserIDAndDay(
         date: DateTime.now(),
@@ -592,26 +563,12 @@ class _GamePageState extends State<GamePage> {
         DateTime? endTime = sleepData[sleepData.length - 1].entryDateTime;
         DateTime? startTime = sleepData[0].entryDateTime;
         int sleepDurHourse = endTime!.difference(startTime!).inMinutes ~/ 60;
-        database.updateSleep(Sleep(1, sleepDurHourse));
-        sp.setBool('sleep', true);
       } else {
         database.updateSleep(Sleep(1, 0));
         sp.setBool('sleep', true);
       }
+      sp.setBool('game', true);
     }
-  }
-
-// _____________ tentativo di algoritmo gampage _____________________IN TEORIA NON UTILIZZATO
-  game() async {
-    int count = 0;
-    final sp = await SharedPreferences.getInstance();
-    var percentage = sp.getDouble('lastdaystep');
-    while (percentage! > 5000) {
-      percentage = percentage - 5000;
-      count = count + 1;
-    }
-    double result = (percentage * 100) / 5000;
-    return result;
   }
 }
 
@@ -650,7 +607,6 @@ class WaveClipper extends CustomClipper<Path> {
   }
 }
 
-// IN TEORIA NON UTILIZZATO
 class AnimationWidget extends StatefulWidget {
   final Widget child;
 

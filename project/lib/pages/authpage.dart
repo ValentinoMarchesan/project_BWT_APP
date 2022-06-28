@@ -15,17 +15,10 @@ import '../database/entities/sleep.dart';
 import '../repositories/databaseRepository.dart';
 
 //define the page that makes the authorizization
-class AuthPage extends StatefulWidget {
-  AuthPage({Key? key}) : super(key: key);
 
+class AuthPage extends StatelessWidget {
   static const route = '/login/';
   static const routename = 'AuthPage';
-
-  @override
-  State<AuthPage> createState() => _AuthPageState();
-}
-
-class _AuthPageState extends State<AuthPage> {
   @override
   Widget build(BuildContext context) {
     print('${AuthPage.routename} built');
@@ -99,6 +92,9 @@ class _AuthPageState extends State<AuthPage> {
                 } else {
                   sp.setString('userid', userId);
                   sp.setBool('confirm', true);
+                  sp.setInt('hour', DateTime.now().hour);
+                  sp.setInt('hour1', DateTime.now().hour);
+                  sp.setInt('hour2', DateTime.now().hour);
 
                   Navigator.of(context).pushReplacementNamed(HomePage.route);
                 }
