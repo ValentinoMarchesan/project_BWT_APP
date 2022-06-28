@@ -23,7 +23,7 @@ class _InfoPageState extends State<InfoPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('SOME INFORMATIONS',
+        title: const Text('BRAIN HEALTH',
             style: TextStyle(
               fontFamily: 'Goldman',
               fontSize: 25,
@@ -133,7 +133,9 @@ class _InfoPageState extends State<InfoPage> {
                                       const Text(
                                         'PAY ATTENTION, SLEEP IS VERY IMPORTANT! \n'
                                         '\n'
-                                        'Sleep plays a critical role in thinking and learning processes: the lack of sleep hurts these cognitive processes in many ways. Firstly, it impairs attention, alertness, concentration, reasoning, and problem solving. This makes it more difficult to learn efficiently. Secondly, during the night, various sleep cycles play a role in “consolidating” memories in the mind. Thus, if you don’t get enough sleep, you won’t be able to remember what you\'ve learned and experienced during the day.',
+                                        'Sleep plays a critical role in thinking and learning processes: the lack of sleep hurts these cognitive processes in many ways.'
+                                        '\nFirstly, it impairs attention, alertness, concentration, reasoning, and problem solving. This makes it more difficult to learn efficiently.'
+                                        ' Secondly, during the night, various sleep cycles play a role in “consolidating” memories in the mind. Thus, if you don’t get enough sleep, you won’t be able to remember what you\'ve learned and experienced during the day.',
                                         style: TextStyle(
                                             fontSize: 14,
                                             fontFamily: 'OpenSans',
@@ -261,7 +263,9 @@ class _InfoPageState extends State<InfoPage> {
                                       const Text(
                                           'PAY ATTENTION, SLEEP IS VERY IMPORTANT! \n'
                                           '\n'
-                                          'Sleep plays a critical role in thinking and learning processes: the lack of sleep hurts these cognitive processes in many ways. Firstly, it impairs attention, alertness, concentration, reasoning, and problem solving. This makes it more difficult to learn efficiently. Secondly, during the night, various sleep cycles play a role in “consolidating” memories in the mind. Thus, if you don’t get enough sleep, you won’t be able to remember what you\'ve learned and experienced during the day.',
+                                          'Sleep plays a critical role in thinking and learning processes: the lack of sleep hurts these cognitive processes in many ways.'
+                                          '\nFirstly, it impairs attention, alertness, concentration, reasoning, and problem solving. This makes it more difficult to learn efficiently.'
+                                          ' Secondly, during the night, various sleep cycles play a role in “consolidating” memories in the mind. Thus, if you don’t get enough sleep, you won’t be able to remember what you\'ve learned and experienced during the day.',
                                           style: TextStyle(
                                               fontSize: 14,
                                               fontFamily: 'OpenSans',
@@ -379,8 +383,8 @@ class _InfoPageState extends State<InfoPage> {
           // fabCloseColor: Colors.white
           // These properties take precedence over fabColor
           fabColor: Colors.white,
-          fabOpenIcon: Icon(Icons.info_outline, color: Colors.orange),
-          fabCloseIcon: Icon(Icons.close, color: Colors.orange),
+          fabOpenIcon: Icon(Icons.info_outline, color: Colors.deepOrangeAccent),
+          fabCloseIcon: Icon(Icons.close, color: Colors.deepOrangeAccent),
           fabMargin: const EdgeInsets.all(16.0),
           animationDuration: const Duration(milliseconds: 800),
           animationCurve: Curves.easeInOutCirc,
@@ -404,7 +408,8 @@ class _InfoPageState extends State<InfoPage> {
               },
               shape: CircleBorder(),
               padding: const EdgeInsets.all(24.0),
-              child: Icon(FontAwesomeIcons.faceSmile, color: Colors.black),
+              child: Icon(FontAwesomeIcons.faceSmile,
+                  color: Color.fromARGB(217, 198, 17, 104)),
             ),
             RawMaterialButton(
               onPressed: () async {
@@ -414,7 +419,8 @@ class _InfoPageState extends State<InfoPage> {
               },
               shape: CircleBorder(),
               padding: const EdgeInsets.all(24.0),
-              child: Icon(FontAwesomeIcons.faceDizzy, color: Colors.black),
+              child: Icon(FontAwesomeIcons.faceDizzy,
+                  color: Color.fromARGB(217, 198, 17, 104)),
             ),
             RawMaterialButton(
               onPressed: () async {
@@ -424,7 +430,8 @@ class _InfoPageState extends State<InfoPage> {
               },
               shape: CircleBorder(),
               padding: const EdgeInsets.all(24.0),
-              child: Icon(FontAwesomeIcons.faceMeh, color: Colors.black),
+              child: Icon(FontAwesomeIcons.faceMeh,
+                  color: Color.fromARGB(217, 198, 17, 104)),
             ),
             RawMaterialButton(
               onPressed: () async {
@@ -434,7 +441,8 @@ class _InfoPageState extends State<InfoPage> {
               },
               shape: CircleBorder(),
               padding: const EdgeInsets.all(24.0),
-              child: Icon(FontAwesomeIcons.faceSadCry, color: Colors.black),
+              child: Icon(FontAwesomeIcons.faceSadCry,
+                  color: Color.fromARGB(217, 198, 17, 104)),
             ),
             RawMaterialButton(
               onPressed: () async {
@@ -444,8 +452,8 @@ class _InfoPageState extends State<InfoPage> {
               },
               shape: CircleBorder(),
               padding: const EdgeInsets.all(24.0),
-              child:
-                  Icon(FontAwesomeIcons.faceLaughSquint, color: Colors.black),
+              child: Icon(FontAwesomeIcons.faceLaughSquint,
+                  color: Color.fromARGB(217, 198, 17, 104)),
             ),
           ],
         ),

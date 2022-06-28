@@ -52,7 +52,7 @@ class _ProfilePageState extends State<ProfilePage> {
           Text(user.name,
               style: const TextStyle(
                   fontWeight: FontWeight.bold,
-                  fontSize: 26,
+                  fontSize: 30,
                   color: Colors.white,
                   fontFamily: 'Goldman')),
           const SizedBox(
@@ -72,7 +72,7 @@ class _ProfilePageState extends State<ProfilePage> {
             const Text('About me :',
                 style: TextStyle(
                     fontWeight: FontWeight.bold,
-                    fontSize: 24,
+                    fontSize: 25,
                     color: Colors.white,
                     fontFamily: 'Goldman')),
             const SizedBox(

@@ -136,8 +136,8 @@ class _HomePageState extends State<HomePage> {
                   filledIcon: Icons.history_edu,
                   outlinedIcon: Icons.history_edu),
               BarItem(
-                filledIcon: Icons.gamepad_rounded,
-                outlinedIcon: Icons.gamepad_rounded,
+                filledIcon: Icons.gamepad,
+                outlinedIcon: Icons.gamepad,
               ),
               BarItem(
                   filledIcon: Icons.account_circle,

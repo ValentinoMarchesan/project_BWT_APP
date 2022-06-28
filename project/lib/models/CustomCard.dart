@@ -382,6 +382,7 @@ class Cardbmi extends StatelessWidget {
             Container(
               //internal color
               height: 100,
+              width: 350,
               decoration: const BoxDecoration(
                 color: Color.fromRGBO(255, 255, 255, 1),
               ),

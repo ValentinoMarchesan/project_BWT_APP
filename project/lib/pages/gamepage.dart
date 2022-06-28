@@ -310,11 +310,11 @@ class _GamePageState extends State<GamePage> {
             }),
           ),
           SizedBox(
-            height: 10,
+            height: 7,
           ),
           Container(
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
+                borderRadius: BorderRadius.circular(25),
                 gradient: LinearGradient(
                   //shade
                   colors: [
@@ -326,19 +326,19 @@ class _GamePageState extends State<GamePage> {
                   end: Alignment.bottomRight,
                 ),
               ),
-              height: 140,
+              height: 185,
               width: 360,
               child: Column(
                 children: [
                   const Padding(
                     padding: EdgeInsets.all(8.0),
                     child: Text(
-                      'Hi i\'m'
-                      ' MeCo! Are you curious about how your current lifestyle affects your body?',
+                      'Hi, I\'m your brain MeCo! By the end of this day, try to make me as happy as you can through your daily actions! Are you curious about how your current lifestyle affects your brain?',
                       style: TextStyle(
-                          fontSize: 16,
-                          fontFamily: 'OpenSans',
-                          color: Colors.white),
+                        fontSize: 16,
+                        fontFamily: 'OpenSans',
+                        color: Colors.white,
+                      ),
                       textAlign: TextAlign.center,
                     ),
                   ),
@@ -346,13 +346,13 @@ class _GamePageState extends State<GamePage> {
                     padding: const EdgeInsets.all(8.0),
                     child: SlideAction(
                       elevation: 8,
-                      innerColor: Color.fromARGB(255, 231, 184, 113),
+                      innerColor: Colors.white,
                       outerColor: Color.fromARGB(255, 149, 231, 201),
                       sliderButtonIcon: const Icon(FontAwesomeIcons.info,
-                          color: Colors.white),
+                          color: Color.fromARGB(255, 149, 231, 201)),
                       text: '     SLIDE TO KNOW MORE',
                       textStyle: const TextStyle(
-                        fontSize: 15,
+                        fontSize: 16,
                         fontWeight: FontWeight.bold,
                         fontFamily: 'Goldman',
                         color: Colors.white,
@@ -412,7 +412,7 @@ class _GamePageState extends State<GamePage> {
               shape: CircleBorder(),
               padding: const EdgeInsets.all(24.0),
               child: Icon(FontAwesomeIcons.faceSmile,
-                  color: Color.fromARGB(255, 50, 114, 53)),
+                  color: Color.fromARGB(217, 198, 17, 104)),
             ),
             RawMaterialButton(
               onPressed: () async {
@@ -423,7 +423,7 @@ class _GamePageState extends State<GamePage> {
               shape: CircleBorder(),
               padding: const EdgeInsets.all(24.0),
               child: Icon(FontAwesomeIcons.faceDizzy,
-                  color: Color.fromARGB(255, 50, 114, 53)),
+                  color: Color.fromARGB(217, 198, 17, 104)),
             ),
             RawMaterialButton(
               onPressed: () async {
@@ -434,7 +434,7 @@ class _GamePageState extends State<GamePage> {
               shape: CircleBorder(),
               padding: const EdgeInsets.all(24.0),
               child: Icon(FontAwesomeIcons.faceMeh,
-                  color: Color.fromARGB(255, 50, 114, 53)),
+                  color: Color.fromARGB(217, 198, 17, 104)),
             ),
             RawMaterialButton(
               onPressed: () async {
@@ -445,7 +445,7 @@ class _GamePageState extends State<GamePage> {
               shape: CircleBorder(),
               padding: const EdgeInsets.all(24.0),
               child: Icon(FontAwesomeIcons.faceSadCry,
-                  color: Color.fromARGB(255, 50, 114, 53)),
+                  color: Color.fromARGB(217, 198, 17, 104)),
             ),
             RawMaterialButton(
               onPressed: () async {
@@ -456,7 +456,7 @@ class _GamePageState extends State<GamePage> {
               shape: CircleBorder(),
               padding: const EdgeInsets.all(24.0),
               child: Icon(FontAwesomeIcons.faceLaughSquint,
-                  color: Color.fromARGB(255, 50, 114, 53)),
+                  color: Color.fromARGB(217, 198, 17, 104)),
             ),
           ],
         ),
@@ -644,11 +644,9 @@ class _AnimationWidgetState extends State<AnimationWidget> {
               child: ConfettiWidget(
                 confettiController: controller,
                 colors: const [
-                  Colors.red,
-                  Colors.green,
-                  Colors.blue,
-                  Colors.yellow,
-                  Colors.purple,
+                  Colors.greenAccent,
+                  Color.fromARGB(255, 168, 197, 247),
+                  Color.fromARGB(255, 204, 61, 128),
                 ],
                 blastDirectionality: BlastDirectionality.explosive,
                 shouldLoop: true,

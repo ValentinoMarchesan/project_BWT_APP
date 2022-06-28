@@ -12,7 +12,7 @@ class Userpreferences {
       imagePath: 'assets/profile_pic.png',
       name: 'Name',
       email: email_name,
-      about: 'somethings about you');
+      about: 'Tell us something about yourself!');
 
   static Future init() async =>
       _preferences = await SharedPreferences.getInstance();
