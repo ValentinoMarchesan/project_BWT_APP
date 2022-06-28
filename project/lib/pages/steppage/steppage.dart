@@ -80,15 +80,13 @@ class StepPage extends StatelessWidget {
                     const SizedBox(
                       height: 30,
                     ),
-                    Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
+                    Padding(
+                        padding: const EdgeInsets.fromLTRB(7, 0, 0, 0),
                         child: LinearCharts(data: data_step)),
                     const SizedBox(height: 20),
                     Container(
                       height: 250,
-                      width: MediaQuery.of(context).size.width - 40,
+                      width: MediaQuery.of(context).size.width - 27,
                       decoration: BoxDecoration(
                         gradient: const LinearGradient(
                           //shade
@@ -116,7 +114,7 @@ class StepPage extends StatelessWidget {
                                   color: Color.fromARGB(255, 255, 255, 255))),
                           const SizedBox(height: 15),
                           Text(
-                              '    -  Today\'s steps: ${datastep[0]!.toInt()} steps ',
+                              '    -  Today\'s steps: ${datastep[0]!.toInt()} ',
                               style: const TextStyle(
                                   fontSize: 18,
                                   fontFamily: 'OpenSans',
@@ -124,7 +122,7 @@ class StepPage extends StatelessWidget {
                               textAlign: TextAlign.start),
                           const SizedBox(height: 5),
                           Text(
-                              '    -  Means steps of the week: ${means!.toInt()} steps',
+                              '    -  Average steps of the week: ${means!.toInt()}',
                               style: const TextStyle(
                                   fontSize: 18,
                                   fontFamily: 'OpenSans',
@@ -132,7 +130,7 @@ class StepPage extends StatelessWidget {
                               textAlign: TextAlign.start),
                           const SizedBox(height: 5),
                           Text(
-                              '    -  Max steps of the week: ${maxsteps!.toInt()} steps',
+                              '    -  Max steps of the week: ${maxsteps!.toInt()} ',
                               style: const TextStyle(
                                   fontSize: 18,
                                   fontFamily: 'OpenSans',
@@ -140,7 +138,7 @@ class StepPage extends StatelessWidget {
                               textAlign: TextAlign.start),
                           const SizedBox(height: 5),
                           Text(
-                              '    -  Min steps of the week: ${minsteps.toInt()} steps',
+                              '    -  Min steps of the week: ${minsteps.toInt()} ',
                               style: const TextStyle(
                                   fontSize: 18,
                                   fontFamily: 'OpenSans',

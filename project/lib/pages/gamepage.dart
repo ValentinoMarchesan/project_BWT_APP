@@ -323,11 +323,11 @@ class _GamePageState extends State<GamePage> {
               child: Column(
                 children: [
                   const Padding(
-                    padding: EdgeInsets.all(8.0),
+                    padding: EdgeInsets.all(10),
                     child: Text(
-                      'Hi, I\'m your brain MeCo! By the end of this day, try to make me as happy as you can through your daily actions! Are you curious about how your current lifestyle affects your brain?',
+                      'Hi, I\'m MeCo! By the end of this day, try to make me as happy as you can through your daily actions! Are you curious about how your current lifestyle affects me?',
                       style: TextStyle(
-                        fontSize: 16,
+                        fontSize: 16.5,
                         fontFamily: 'OpenSans',
                         color: Colors.white,
                       ),
@@ -366,7 +366,7 @@ class _GamePageState extends State<GamePage> {
       floatingActionButton: Builder(
         builder: (context) => FabCircularMenu(
           key: fabKey,
-          alignment: Alignment(-1, -0.65),
+          alignment: Alignment(-1, -0.75),
           ringColor: Colors.white.withAlpha(0),
           ringDiameter: 300.0,
           ringWidth: 80,

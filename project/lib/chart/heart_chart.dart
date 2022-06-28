@@ -28,8 +28,11 @@ class HeartChart extends StatelessWidget {
           padding: const EdgeInsets.all(9.0),
           child: Column(
             children: <Widget>[
-              const Text("YOUR HEART ACTIVITY IN A DAY",
-                  style: TextStyle(fontFamily: 'OpenSans')),
+              const Text("TODAY HEART ACTIVITY",
+                  style: TextStyle(
+                    fontFamily: 'OpenSans',
+                    fontSize: 18,
+                  )),
               Expanded(
                 child: charts.BarChart(series, animate: true),
               )

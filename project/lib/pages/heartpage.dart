@@ -35,12 +35,10 @@ class HeartPage extends StatelessWidget {
 
               final data_series = [
                 HeartSeries.creation(
-                    'Out of Range',
-                    data_heart[0],
+                    'Fat Burn',
+                    data_heart[1],
                     charts.ColorUtil.fromDartColor(
                         Color.fromARGB(219, 221, 59, 113))),
-                HeartSeries.creation('Fat Burn', data_heart[1],
-                    charts.ColorUtil.fromDartColor(Colors.orangeAccent)),
                 HeartSeries.creation('Cardio', data_heart[2],
                     charts.ColorUtil.fromDartColor(Colors.greenAccent)),
                 HeartSeries.creation(
@@ -52,7 +50,7 @@ class HeartPage extends StatelessWidget {
 
               return Column(
                 children: [
-                  Container(height: 460, child: HeartChart(data: data_series)),
+                  Container(height: 480, child: HeartChart(data: data_series)),
                   Container(
                     height: 180,
                     width: MediaQuery.of(context).size.width - 40,
@@ -77,7 +75,7 @@ class HeartPage extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.baseline,
                         children: [
                           const SizedBox(
-                            height: 11,
+                            height: 18,
                           ),
                           const Text('    GENERAL INFORMATION',
                               style: TextStyle(
@@ -87,32 +85,30 @@ class HeartPage extends StatelessWidget {
                                 fontWeight: FontWeight.bold,
                               )),
                           const SizedBox(height: 10),
-                          Text(
-                              '  Minutes out of range: ${data_heart[0]} / 1440 min,'
-                              '  \n  where: ',
-                              style: const TextStyle(
-                                  fontSize: 18,
-                                  fontFamily: 'OpenSans',
-                                  color: Colors.white),
-                              textAlign: TextAlign.start),
-                          const SizedBox(height: 2),
                           Text('  -  Minutes fat burn: ${data_heart[1]} min',
                               style: const TextStyle(
-                                  fontSize: 18,
+                                  fontSize: 20,
                                   fontFamily: 'OpenSans',
                                   color: Colors.white),
                               textAlign: TextAlign.start),
                           const SizedBox(height: 2),
                           Text('  -  Minutes cardio: ${data_heart[2]} min',
                               style: const TextStyle(
-                                  fontSize: 18,
+                                  fontSize: 20,
                                   fontFamily: 'OpenSans',
                                   color: Colors.white),
                               textAlign: TextAlign.start),
                           const SizedBox(height: 2),
                           Text('  -  Minutes peak: ${data_heart[3]} min',
                               style: const TextStyle(
-                                  fontSize: 18,
+                                  fontSize: 20,
+                                  fontFamily: 'OpenSans',
+                                  color: Colors.white),
+                              textAlign: TextAlign.start),
+                          const SizedBox(height: 2),
+                          Text('  -  Minutes out of range: ${data_heart[0]}',
+                              style: const TextStyle(
+                                  fontSize: 20,
                                   fontFamily: 'OpenSans',
                                   color: Colors.white),
                               textAlign: TextAlign.start),

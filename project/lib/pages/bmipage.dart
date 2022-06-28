@@ -33,11 +33,11 @@ class _BmiPageState extends State<BmiPage> {
 
   String getInterpretation(double bmi) {
     if (bmi >= 25) {
-      return 'Your BMI is higher than the norm value of 25';
+      return 'Your BMI is higher than the norm value. Try to exercise more and eat better!';
     } else if (bmi > 18.5) {
       return 'Your BMI is perfect, good job!';
     } else {
-      return 'Your BMI is lower than the norm value of 18.5';
+      return 'Your BMI is lower than the norm value. Try to eat more.';
     }
   }
 

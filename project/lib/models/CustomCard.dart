@@ -91,9 +91,9 @@ class CardHR extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: const [
                       Text(
-                        'Through the data acquired by your device, it provides an overview of your cardiac activity',
+                        'Tap here and find out more about your heart activity!',
                         style: TextStyle(
-                          fontSize: 15,
+                          fontSize: 16,
                           color: Colors.black,
                           fontFamily: 'OpenSans',
                         ),
@@ -196,9 +196,9 @@ class CardSM extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: const [
                       Text(
-                        'Tap to find out more about your sleep activity acquired through your device!',
+                        'Tap here and find out how many hours you have slept!',
                         style: TextStyle(
-                            fontSize: 15,
+                            fontSize: 16,
                             color: Colors.black,
                             fontFamily: 'OpenSans'),
                         textAlign: TextAlign.center,
@@ -299,9 +299,9 @@ class CardSteep extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: const [
                       Text(
-                        'Tap to find out more about your step activity acquired through your device!',
+                        'Tap to discover more about your weekly steps activity!',
                         style: TextStyle(
-                            fontSize: 15,
+                            fontSize: 16.5,
                             color: Colors.black,
                             fontFamily: 'OpenSans'),
                         textAlign: TextAlign.center,
@@ -391,9 +391,9 @@ class Cardbmi extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: const [
                   Text(
-                    'Calculate your BMI, it is very simple! Just enter your age, weight and height and you will receive a feedback on your physical state',
+                    'Calculate your BMI, it is very simple! Insert your age, weight and height and you will receive a feedback on your physical state.',
                     style: TextStyle(
-                        fontSize: 15,
+                        fontSize: 16,
                         color: Colors.black,
                         fontFamily: 'OpenSans'),
                     textAlign: TextAlign.center,

@@ -30,7 +30,8 @@ AppBar buildAppBar(BuildContext context) {
             Alert(
                 context: context,
                 title: 'LOGOUT',
-                desc: 'Do you want to logout from your account?',
+                desc:
+                    'Do you want to logout from your account? \n By logging out, all your data will be deleted.',
                 style: const AlertStyle(
                   titleStyle: TextStyle(
                     fontFamily: 'Audiowide',
@@ -126,12 +127,15 @@ AppBar buildAppBarHeartPage(BuildContext context) {
                 content: SizedBox(
                   child: Column(children: const [
                     Text(
-                      'Fitbit identifies 4 heart rate zones: peak, cardio, fat burn and out of range. \nThese zones are based on your maximum heart rate (it can be custom inserted or computed by the formula 220-age).\n'
-                      '\n• "Peak zone" is where the most intense portion of your workouts happen, and you are at 80 to 100 % of your maximum heart rate.\n '
-                      '\n• "Cardio zone", which is 70 to 84 % of your maximum heart rate, is where the hard work is done when you’re training for a big event. You can usually sustain it for about 30 minutes.\n '
-                      '\n• In the "fat burn zone", moderate workouts use 50 to 69 % of your maximum heart rate.\n'
-                      '\n• "Out of range zone" indicates a heart rate that is lower than that of the fat burn zone.',
-                      style: TextStyle(fontFamily: 'OpenSans', fontSize: 15),
+                      'Fitbit identifies 3 heart rate zones: peak, cardio and fat burn. \nThese zones are based on your maximum heart rate (it can be custom inserted or computed by the formula 220 - age).\n'
+                      '\n• "Peak zone" is where the most intense portion of your workouts happens, and you are at 80 to 100% of your maximum heart rate.\n '
+                      '\n• "Cardio zone", which is 70 to 84% of your maximum heart rate, is where the hard work is done when you’re training for a big event. You can usually sustain it for about 30 minutes.\n '
+                      '\n• In the "fat burn zone", moderate workouts use 50 to 69% of your maximum heart rate.\n'
+                      '\n"Minutes out of range" represents the remaining time in which the heart rate doesn\'t belong to the previous zones.',
+                      style: TextStyle(
+                          fontFamily: 'OpenSans',
+                          fontSize: 15,
+                          fontWeight: FontWeight.w400),
                       textAlign: TextAlign.justify,
                     )
                   ]),
