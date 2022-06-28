@@ -71,7 +71,7 @@ class _BmiPageState extends State<BmiPage> {
         ),
         centerTitle: true,
         flexibleSpace: Container(
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
           gradient: LinearGradient(
             //shade
             colors: [
@@ -362,7 +362,7 @@ class _BmiPageState extends State<BmiPage> {
               width: double.infinity,
               height: 70.0,
               //color: activateColor,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 gradient: LinearGradient(
                   //shade
                   colors: [

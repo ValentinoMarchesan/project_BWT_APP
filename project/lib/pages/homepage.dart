@@ -46,33 +46,33 @@ class _HomePageState extends State<HomePage> {
             Container(
               alignment: Alignment.center,
               child: ListView(
-                children: <Widget>[
-                  const SizedBox(
+                children: const <Widget>[
+                  SizedBox(
                     height: 35,
                   ),
 //_____________________ HEART RATE CARD ________________________________________
-                  const CardHR(),
+                  CardHR(),
 //__________________________ END HEART RATE CARD _____________________________
-                  const SizedBox(
+                  SizedBox(
                     height: 10,
                   ),
 // _______________________ SLEEP CARD _________________________________________
-                  const CardSM(),
+                  CardSM(),
 //________________________ END SLEEP CARD ____________________________________
-                  const SizedBox(
+                  SizedBox(
                     height: 10,
                   ),
 // _____________________ STEP CARD _____________________________________________
-                  const CardSteep(),
+                  CardSteep(),
 //___________________________ END STEP CARD ___________________________________
-                  const SizedBox(
+                  SizedBox(
                     height: 10,
                   ),
 //_________________________ ACTIVITY CARD ______________________________________
-                  const Cardbmi(),
+                  Cardbmi(),
 //_________________________ END ACTIVITY CARD _________________________________
 
-                  const SizedBox(
+                  SizedBox(
                     height: 10,
                   ),
                 ],

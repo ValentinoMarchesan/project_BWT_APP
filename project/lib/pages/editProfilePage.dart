@@ -1,7 +1,5 @@
 import 'dart:io'
     as io; //this is to use in a correct way the class File of dart:io
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path_provider/path_provider.dart';
@@ -83,8 +81,8 @@ class _EditProfilePageState extends State<EditprofilePage> {
               const SizedBox(height: 20),
             ])),
         FloatingActionButton.extended(
-          icon: Icon(Icons.save),
-          label: Text('save'),
+          icon: const Icon(Icons.save),
+          label: const Text('save'),
           onPressed: () {
             Userpreferences.setUser(user);
             Navigator.of(context).pop();

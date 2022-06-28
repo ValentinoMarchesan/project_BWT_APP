@@ -1,17 +1,10 @@
-import 'dart:io';
-
 import 'package:fitbitter/fitbitter.dart';
-import 'package:floor/floor.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:project/database/entities/sleep.dart';
-import 'package:project/pages/steppage/Stepseries.dart';
-import 'package:project/pages/steppage/linear_charts.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../repositories/databaseRepository.dart';
-import '../utils/formats.dart';
 import '../utils/strings.dart';
 
 //define the page where there is information about how many hours the subject's has slept
@@ -35,7 +28,7 @@ class SleepPage extends StatelessWidget {
             )),
         centerTitle: true,
         flexibleSpace: Container(
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
           gradient: LinearGradient(
             //shade
             colors: [
@@ -73,7 +66,7 @@ class SleepPage extends StatelessWidget {
                           height: 400,
                           width: MediaQuery.of(context).size.width - 70,
                           decoration: BoxDecoration(
-                            gradient: LinearGradient(
+                            gradient: const LinearGradient(
                               //shade
                               colors: [
                                 Color.fromARGB(255, 239, 65, 123),
@@ -136,7 +129,7 @@ class SleepPage extends StatelessWidget {
                           height: 400,
                           width: MediaQuery.of(context).size.width - 70,
                           decoration: BoxDecoration(
-                            gradient: LinearGradient(
+                            gradient: const LinearGradient(
                               //shade
                               colors: [
                                 Color.fromARGB(255, 239, 65, 123),
@@ -199,7 +192,7 @@ class SleepPage extends StatelessWidget {
                           height: 400,
                           width: MediaQuery.of(context).size.width - 70,
                           decoration: BoxDecoration(
-                            gradient: LinearGradient(
+                            gradient: const LinearGradient(
                               //shade
                               colors: [
                                 Color.fromARGB(255, 239, 65, 123),
@@ -268,6 +261,7 @@ class SleepPage extends StatelessWidget {
 
     final timelastfetch = sp.getInt("hour2");
     List test = [now, timelastfetch];
+    // usefull test for developer for check the correct functioning of the automatic fetch
     print(
       test,
     );

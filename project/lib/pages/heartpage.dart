@@ -13,21 +13,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../repositories/databaseRepository.dart';
 
 //define the page in which there is the graph on heart data
-/*
-class HeartPage extends StatefulWidget {
-  static const route = '/home/heart';
-  static const routename = 'HEART MONITORING';
-
-  const HeartPage({Key? key}) : super(key: key);
-
-
-  @override
-  State<HeartPage> createState() => _HeartPageState();
-}
-
-class _HeartPageState extends State<HeartPage> {
-  @override
-  */
 class HeartPage extends StatelessWidget {
   static const route = '/home/heart';
   static const routename = 'HEART MONITORING';
@@ -72,7 +57,7 @@ class HeartPage extends StatelessWidget {
                     height: 180,
                     width: MediaQuery.of(context).size.width - 40,
                     decoration: BoxDecoration(
-                      gradient: LinearGradient(
+                      gradient: const LinearGradient(
                         //shade
                         colors: [
                           Color.fromARGB(255, 239, 65, 123),
@@ -155,6 +140,7 @@ class HeartPage extends StatelessWidget {
 
     final timelastfetch = sp.getInt("hour1");
     List test = [now, timelastfetch];
+    // usefull print for developer for check the correct functioning of automatic fetching of data
     print(
       test,
     );

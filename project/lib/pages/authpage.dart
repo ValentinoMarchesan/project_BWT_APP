@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:fitbitter/fitbitter.dart';
 import 'package:flutter/material.dart';
 import 'package:project/pages/homepage.dart';

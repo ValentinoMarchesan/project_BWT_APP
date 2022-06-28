@@ -232,6 +232,7 @@ int ManageSleepData(List<FitbitSleepData> sleepData) {
   }
 }
 
+// Methods that manage activity data, in particual stepdata for obtain a list of steps that range from the last 7 days
 List<double?> StepsData(List<FitbitActivityTimeseriesData> stepsData) {
   //Create a new Sleep object
   List<double?> steps = [
@@ -247,6 +248,7 @@ List<double?> StepsData(List<FitbitActivityTimeseriesData> stepsData) {
   return steps;
 }
 
+// Methods that manage activity data
 List<double?> ActivityData(
   List<FitbitActivityTimeseriesData> activitycalories,
   List<FitbitActivityTimeseriesData> calories,
@@ -261,6 +263,7 @@ List<double?> ActivityData(
   return activity;
 }
 
+// Methods that manage heart data for obtain a list of heart data
 List<int?> HeartData(List<FitbitHeartData> fitbitHeartData) {
   List<int?> heart = [
     fitbitHeartData[0].minutesOutOfRange,

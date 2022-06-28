@@ -1,24 +1,24 @@
 import 'package:confetti/confetti.dart';
-import 'package:expandable/expandable.dart';
 import 'package:fab_circular_menu/fab_circular_menu.dart';
 import 'package:fitbitter/fitbitter.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
-import 'package:progress_indicator/progress_indicator.dart';
 import 'package:project/database/entities/activity.dart';
 import 'package:project/database/entities/annotation.dart';
 import 'package:project/database/entities/sleep.dart';
 import 'package:project/pages/infopage.dart';
 import 'package:provider/provider.dart';
-import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:slide_to_act/slide_to_act.dart';
 
 import '../repositories/databaseRepository.dart';
 import '../utils/strings.dart';
 
-//define the page in which you can see the MECO avatar
+/*
+define the page in which you can see the MECO avatar
+Inside that is applied the concept of Gamefication.
+In particular is a combination of 'funny feedback' and 'Educational information'
+*/
 class GamePage extends StatefulWidget {
   const GamePage({Key? key}) : super(key: key);
 
@@ -33,7 +33,6 @@ class _GamePageState extends State<GamePage> {
   final GlobalKey<FabCircularMenuState> fabKey = GlobalKey();
   @override
   Widget build(BuildContext context) {
-    double maxheight = 300;
     return Scaffold(
       appBar: AppBar(
         title: const Text('MeCo',
@@ -45,7 +44,7 @@ class _GamePageState extends State<GamePage> {
             )),
         centerTitle: true,
         flexibleSpace: Container(
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
           gradient: LinearGradient(
             //shade
             colors: [
@@ -77,7 +76,7 @@ class _GamePageState extends State<GamePage> {
                 ClipPath(
                   clipper: WaveClipper(),
                   child: Container(
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       gradient: LinearGradient(
                         //shade
                         colors: [
@@ -243,6 +242,7 @@ class _GamePageState extends State<GamePage> {
                               }
                             });
                       } else {
+                        //  STATUS ONLY FOR DEMO
                         return FutureBuilder(
                             initialData: null,
                             future: SharedPreferences.getInstance(),
@@ -301,13 +301,13 @@ class _GamePageState extends State<GamePage> {
                   });
             }),
           ),
-          SizedBox(
+          const SizedBox(
             height: 7,
           ),
           Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(25),
-                gradient: LinearGradient(
+                gradient: const LinearGradient(
                   //shade
                   colors: [
                     Color.fromARGB(255, 239, 65, 123),
@@ -362,6 +362,7 @@ class _GamePageState extends State<GamePage> {
               )),
         ],
       ),
+      // DEMO BUTTON
       floatingActionButton: Builder(
         builder: (context) => FabCircularMenu(
           key: fabKey,
@@ -372,11 +373,6 @@ class _GamePageState extends State<GamePage> {
           fabSize: 50.0,
           fabElevation: 8.0,
           fabIconBorder: CircleBorder(),
-          // Also can use specific color based on wether
-          // the menu is open or not:
-          // fabOpenColor: Colors.white
-          // fabCloseColor: Colors.white
-          // These properties take precedence over fabColor
           fabColor: Colors.white,
           fabOpenIcon: const Icon(Icons.info_outline, color: Colors.orange),
           fabCloseIcon: const Icon(Icons.close, color: Colors.orange),

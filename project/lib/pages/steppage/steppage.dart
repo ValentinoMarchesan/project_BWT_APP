@@ -16,7 +16,7 @@ import 'Stepseries.dart';
 class StepPage extends StatelessWidget {
   static const route = '/home/Step';
   static const routename = 'STEPS MONITORING';
-  late List<Steps> data_step = [];
+  List<Steps> data_step = [];
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +39,7 @@ class StepPage extends StatelessWidget {
             ),
           ),
           flexibleSpace: Container(
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
             gradient: LinearGradient(
               //sfumatura
               colors: [
@@ -85,12 +85,12 @@ class StepPage extends StatelessWidget {
                           borderRadius: BorderRadius.circular(10),
                         ),
                         child: LinearCharts(data: data_step)),
-                    SizedBox(height: 20),
+                    const SizedBox(height: 20),
                     Container(
                       height: 250,
                       width: MediaQuery.of(context).size.width - 40,
                       decoration: BoxDecoration(
-                        gradient: LinearGradient(
+                        gradient: const LinearGradient(
                           //shade
                           colors: [
                             Color.fromARGB(255, 239, 65, 123),
@@ -191,6 +191,7 @@ Future<void> _aggiungoAC(DatabaseRepository database) async {
   final now = DateTime.now().hour;
 
   final timelastfetch = sp.getInt("hour");
+// This command is usefull for developer to check the 'automatic fetch'
   List test = [now, timelastfetch];
   print(
     test,

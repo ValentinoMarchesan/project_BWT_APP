@@ -41,7 +41,7 @@ class DiaryPage extends StatelessWidget {
                 // If the Annotation table is empty, show a simple Text, otherwise show the list of Annotations using a ListView.
 
                 return data.length == 0
-                    ? Text(
+                    ? const Text(
                         'Your annotation list is currently empty! \n You can note down your daily: water intake, minutes of meditation and mood. Try now!',
                         textAlign: TextAlign.center,
                         style: TextStyle(fontSize: 18, fontFamily: 'OpenSans'),
@@ -53,7 +53,7 @@ class DiaryPage extends StatelessWidget {
                           return Card(
                             elevation: 5,
                             child: ListTile(
-                              leading: Icon(
+                              leading: const Icon(
                                 MdiIcons.bookOpenPageVariant,
                                 color: Colors.deepOrangeAccent,
                               ),
