@@ -135,8 +135,7 @@ class _GamePageState extends State<GamePage> {
 
                                           if (datasleep == null) {
                                             return CircularProgressIndicator();
-                                          } else if (datasleep >= 7 &&
-                                              datasleep <= 9) {
+                                          } else if (datasleep >= 7) {
                                             return FutureBuilder(
                                                 initialData: null,
                                                 future:
@@ -214,8 +213,7 @@ class _GamePageState extends State<GamePage> {
 
                                           if (datasleep == null) {
                                             return CircularProgressIndicator();
-                                          } else if (datasleep >= 7 &&
-                                              datasleep <= 9) {
+                                          } else if (datasleep >= 7) {
                                             sp.setInt('statusinfo', 3);
                                             return Container(
                                               height: 300,

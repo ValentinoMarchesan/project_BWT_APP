@@ -110,13 +110,13 @@ class _InfoPageState extends State<InfoPage> {
                                 if (sp.getInt('statusinfo') == 1) {
                                   return const Text(
                                       'MeCo IS HAPPY, YOU HAVE SLEPT AND MOVED ENOUGH. IN ORDER TO MAKE MeCo HAPPIER, TRY TO DRINK AND MEDITATE A LITTLE BIT MORE!\n'
+                                      'Drinking 2L of water and meditating for 10 min per day is sufficient to make MeCo feel even better.\n'
                                       '\n'
                                       '• SLEEPING BENEFITS '
-                                      '\n'
                                       '\nSleep helps us to retain and consolidate memories. When a subject practice or learn new skills, sleep has a huge impact in forming new memories and it contributes to an improved performance in the future. \n'
                                       'Without sleep, the pathways in the brain that allow you to learn and make memories can’t be formed or maintained. Sleep is also essential for cognitive processing and for improving subjects’ mental health. In fact, quality of sleep is associated with an improved overall mood. An healthy sleep schedule prevents irritability and decreases the risk of developments of various conditions (such as depression). \n'
                                       '\n'
-                                      '• ACTIVITY BENEFITS\n'
+                                      '• ACTIVITY BENEFITS'
                                       '\n 1) Research shows that playing sports boosts blood flow to your brain. This enables your body to build more nerves\' connections within the brain. Thus it improves memory, stimulates creativity, and helps your brain develop better problem-solving skills. \n'
                                       '\n 2) One study reported that playing sports can improve brain function and it has a positive impact on your brain. In fact, playing sports can have a positive effect on the neural networks that support language comprehension.',
                                       style: TextStyle(
@@ -131,6 +131,7 @@ class _InfoPageState extends State<InfoPage> {
                                     children: [
                                       const Text(
                                         'TO MAKE MeCo HAPPIER, SLEEP MORE! PAY ATTENTION, SLEEP IS VERY IMPORTANT. \n'
+                                        'To make MeCo feel better try to sleep at least 7 hours.\n'
                                         '\n'
                                         'Sleep plays a critical role in thinking and learning processes: the lack of sleep hurts these cognitive processes in many ways.'
                                         '\nFirstly, it impairs attention, alertness, concentration, reasoning, and problem solving. This makes it more difficult to learn efficiently.'
@@ -144,7 +145,7 @@ class _InfoPageState extends State<InfoPage> {
                                         textAlign: TextAlign.justify,
                                       ),
                                       Container(
-                                          height: 320,
+                                          height: 300,
                                           child: Image.asset(
                                               'assets/MeCo/idea.png'))
                                     ],
@@ -152,7 +153,8 @@ class _InfoPageState extends State<InfoPage> {
                                 } else if (sp.getInt('statusinfo') == 3) {
                                   return const Text(
                                     'MeCo IS WELL-RESTED, BUT TRY TO MAKE SOME SPORT TO MAKE HIM HAPPIER! '
-                                    'In fact, there are 3 mainly advantages in doing sports: \n'
+                                    '7000 steps per day are sufficient to make MeCo feel better.'
+                                    '\nIn fact, there are 3 mainly advantages in doing sports: \n'
                                     ' \n• EXERCISE FEEDS THE BRAIN \n'
                                     'Remember that exercise increases blood flow to the brain. Due to its high metabolic demand, the brain demands good circulation and exercise aids it. An increase in blood flow is not only extremely beneficial, it is essential. Exercise induces good blood flow to deliver all the nutrients required to carry out brain’s activity, while it also increases the production of important molecules that are essential to the brain\'s functions.'
                                     '\n'
@@ -173,8 +175,8 @@ class _InfoPageState extends State<InfoPage> {
                                   return Column(
                                     children: [
                                       const Text(
-                                          'MeCo IS VERY SAD! TO IMPROVE MeCo\'S WELL-BEING, TRY TO SLEEP MORE AND MAKE SOME SPORT! In fact, it is known that:'
-                                          '\n'
+                                          'MeCo IS VERY SAD! TO IMPROVE MeCo\'S WELL-BEING, TRY TO SLEEP MORE AND MAKE SOME SPORT!'
+                                          '\nAt least 7000 steps and 7 hours of sleep are important to make MeCo feel better.\n\nIn fact, it is known that:'
                                           '\n• exercise increases blood flow to the brain. Due to its high metabolic demand, the brain demands good circulation and exercise aids it; \n'
                                           '• exercise improves memory;\n'
                                           '• exercise has a huge impact in managing stress;\n'
@@ -190,7 +192,7 @@ class _InfoPageState extends State<InfoPage> {
                                               fontWeight: FontWeight.bold),
                                           textAlign: TextAlign.justify),
                                       Container(
-                                          height: 200,
+                                          height: 170,
                                           child: Image.asset(
                                               'assets/MeCo/idea.png'))
                                     ],
@@ -239,13 +241,13 @@ class _InfoPageState extends State<InfoPage> {
                                 if (sp.getInt('info') == 1) {
                                   return const Text(
                                       'MeCo IS HAPPY, YOU HAVE SLEPT AND MOVED ENOUGH. IN ORDER TO MAKE MeCo HAPPIER, TRY TO DRINK AND MEDITATE A LITTLE BIT MORE!\n'
+                                      'Drinking 2L of water and meditating for 10 min per day is sufficient to make MeCo feel even better.\n'
                                       '\n'
                                       '• SLEEPING BENEFITS '
-                                      '\n'
                                       '\nSleep helps us to retain and consolidate memories. When a subject practice or learn new skills, sleep has a huge impact in forming new memories and it contributes to an improved performance in the future. \n'
                                       'Without sleep, the pathways in the brain that allow you to learn and make memories can’t be formed or maintained. Sleep is also essential for cognitive processing and for improving subjects’ mental health. In fact, quality of sleep is associated with an improved overall mood. An healthy sleep schedule prevents irritability and decreases the risk of developments of various conditions (such as depression). \n'
                                       '\n'
-                                      '• ACTIVITY BENEFITS\n'
+                                      '• ACTIVITY BENEFITS'
                                       '\n 1) Research shows that playing sports boosts blood flow to your brain. This enables your body to build more nerves\' connections within the brain. Thus it improves memory, stimulates creativity, and helps your brain develop better problem-solving skills. \n'
                                       '\n 2) One study reported that playing sports can improve brain function and it has a positive impact on your brain. In fact, playing sports can have a positive effect on the neural networks that support language comprehension.',
                                       style: TextStyle(
@@ -259,20 +261,22 @@ class _InfoPageState extends State<InfoPage> {
                                   return Column(
                                     children: [
                                       const Text(
-                                          'TO MAKE MeCo HAPPIER, SLEEP MORE! PAY ATTENTION, SLEEP IS VERY IMPORTANT. \n'
-                                          '\n'
-                                          'Sleep plays a critical role in thinking and learning processes: the lack of sleep hurts these cognitive processes in many ways.'
-                                          '\nFirstly, it impairs attention, alertness, concentration, reasoning, and problem solving. This makes it more difficult to learn efficiently.'
-                                          ' Secondly, during the night, various sleep cycles play a role in “consolidating” memories in the mind. Thus, if you don’t get enough sleep, you won’t be able to remember what you\'ve learned and experienced during the day.',
-                                          style: TextStyle(
-                                              fontSize: 14,
-                                              fontFamily: 'OpenSans',
-                                              color: Color.fromARGB(
-                                                  255, 255, 255, 255),
-                                              fontWeight: FontWeight.bold),
-                                          textAlign: TextAlign.justify),
+                                        'TO MAKE MeCo HAPPIER, SLEEP MORE! PAY ATTENTION, SLEEP IS VERY IMPORTANT. \n'
+                                        'To make MeCo feel better try to sleep at least 7 hours.\n'
+                                        '\n'
+                                        'Sleep plays a critical role in thinking and learning processes: the lack of sleep hurts these cognitive processes in many ways.'
+                                        '\nFirstly, it impairs attention, alertness, concentration, reasoning, and problem solving. This makes it more difficult to learn efficiently.'
+                                        ' Secondly, during the night, various sleep cycles play a role in “consolidating” memories in the mind. Thus, if you don’t get enough sleep, you won’t be able to remember what you\'ve learned and experienced during the day.',
+                                        style: TextStyle(
+                                            fontSize: 14,
+                                            fontFamily: 'OpenSans',
+                                            color: Color.fromARGB(
+                                                255, 255, 255, 255),
+                                            fontWeight: FontWeight.bold),
+                                        textAlign: TextAlign.justify,
+                                      ),
                                       Container(
-                                          height: 320,
+                                          height: 300,
                                           child: Image.asset(
                                               'assets/MeCo/idea.png'))
                                     ],
@@ -280,7 +284,8 @@ class _InfoPageState extends State<InfoPage> {
                                 } else if (sp.getInt('info') == 3) {
                                   return const Text(
                                     'MeCo IS WELL-RESTED, BUT TRY TO MAKE SOME SPORT TO MAKE HIM HAPPIER! '
-                                    'In fact, there are 3 mainly advantages in doing sports: \n'
+                                    '7000 steps per day are sufficient to make MeCo feel better.'
+                                    '\nIn fact, there are 3 mainly advantages in doing sports: \n'
                                     ' \n• EXERCISE FEEDS THE BRAIN \n'
                                     'Remember that exercise increases blood flow to the brain. Due to its high metabolic demand, the brain demands good circulation and exercise aids it. An increase in blood flow is not only extremely beneficial, it is essential. Exercise induces good blood flow to deliver all the nutrients required to carry out brain’s activity, while it also increases the production of important molecules that are essential to the brain\'s functions.'
                                     '\n'
@@ -301,8 +306,8 @@ class _InfoPageState extends State<InfoPage> {
                                   return Column(
                                     children: [
                                       const Text(
-                                          'MeCo IS VERY SAD! TO IMPROVE MeCo\'S WELL-BEING, TRY TO SLEEP MORE AND MAKE SOME SPORT! In fact, it is known that:'
-                                          '\n'
+                                          'MeCo IS VERY SAD! TO IMPROVE MeCo\'S WELL-BEING, TRY TO SLEEP MORE AND MAKE SOME SPORT!'
+                                          '\nAt least 7000 steps and 7 hours of sleep are important to make MeCo feel better.\n\nIn fact, it is known that:'
                                           '\n• exercise increases blood flow to the brain. Due to its high metabolic demand, the brain demands good circulation and exercise aids it; \n'
                                           '• exercise improves memory;\n'
                                           '• exercise has a huge impact in managing stress;\n'
@@ -318,7 +323,7 @@ class _InfoPageState extends State<InfoPage> {
                                               fontWeight: FontWeight.bold),
                                           textAlign: TextAlign.justify),
                                       Container(
-                                          height: 200,
+                                          height: 170,
                                           child: Image.asset(
                                               'assets/MeCo/idea.png'))
                                     ],

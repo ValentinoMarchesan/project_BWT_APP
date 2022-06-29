@@ -67,13 +67,13 @@ class StepPage extends StatelessWidget {
                 double? minsteps = minstep(datastep);
 
                 data_step = [
-                  Steps.creation(7, datastep[0]),
-                  Steps.creation(6, datastep[1]),
-                  Steps.creation(5, datastep[2]),
+                  Steps.creation(1, datastep[0]),
+                  Steps.creation(2, datastep[1]),
+                  Steps.creation(3, datastep[2]),
                   Steps.creation(4, datastep[3]),
-                  Steps.creation(3, datastep[4]),
-                  Steps.creation(2, datastep[5]),
-                  Steps.creation(1, datastep[6]),
+                  Steps.creation(5, datastep[4]),
+                  Steps.creation(6, datastep[5]),
+                  Steps.creation(7, datastep[6]),
                 ];
                 return Column(
                   children: [
@@ -114,7 +114,7 @@ class StepPage extends StatelessWidget {
                                   color: Color.fromARGB(255, 255, 255, 255))),
                           const SizedBox(height: 15),
                           Text(
-                              '    -  Today\'s steps: ${datastep[0]!.toInt()} ',
+                              '    -  Today\'s steps: ${datastep[6]!.toInt()} ',
                               style: const TextStyle(
                                   fontSize: 18,
                                   fontFamily: 'OpenSans',
@@ -146,7 +146,7 @@ class StepPage extends StatelessWidget {
                               textAlign: TextAlign.start),
                           const SizedBox(height: 5),
                           Text(
-                              '    -  Cal. of activity burn (today):${dataactivity[1]!.toInt()} Kcal',
+                              '    -  Calories burnt (today): ${dataactivity[0]!.toInt()} Kcal',
                               style: const TextStyle(
                                   fontSize: 18,
                                   fontFamily: 'OpenSans',
